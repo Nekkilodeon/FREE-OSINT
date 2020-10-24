@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FREE-OSINT", "FREE-OSINT\FREE-OSINT.csproj", "{12099F2A-F892-4617-9F68-D351E78FF509}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FREE_OSINT_Lib", "FREE_OSINT_Lib\FREE_OSINT_Lib.csproj", "{6754F43C-9908-403A-8CA0-95691F7183C9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{12099F2A-F892-4617-9F68-D351E78FF509}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{12099F2A-F892-4617-9F68-D351E78FF509}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{12099F2A-F892-4617-9F68-D351E78FF509}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{12099F2A-F892-4617-9F68-D351E78FF509}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6754F43C-9908-403A-8CA0-95691F7183C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6754F43C-9908-403A-8CA0-95691F7183C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6754F43C-9908-403A-8CA0-95691F7183C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6754F43C-9908-403A-8CA0-95691F7183C9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3932045C-B4C9-4977-A8D8-AAE1F949FE3A}
+	EndGlobalSection
+EndGlobal
