@@ -33,9 +33,9 @@
             // 
             // btnModules
             // 
-            this.btnModules.Location = new System.Drawing.Point(12, 12);
+            this.btnModules.Location = new System.Drawing.Point(12, 352);
             this.btnModules.Name = "btnModules";
-            this.btnModules.Size = new System.Drawing.Size(184, 42);
+            this.btnModules.Size = new System.Drawing.Size(776, 54);
             this.btnModules.TabIndex = 0;
             this.btnModules.Text = "Search";
             this.btnModules.UseVisualStyleBackColor = true;

@@ -7,10 +7,6 @@ namespace FREE_OSINT_Lib
 {
     public interface ISearchable_module
     {
-        List<Intel> Search(String query, List<Object> extras);
-
-        String Title();
-
-        String Description();
+        SearchResult Search(String query, List<Object> extras);
     }
 }
