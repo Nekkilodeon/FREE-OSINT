@@ -58,6 +58,7 @@
             // 
             // btnDone
             // 
+            this.btnDone.Enabled = false;
             this.btnDone.Location = new System.Drawing.Point(605, 366);
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(183, 72);
@@ -68,10 +69,10 @@
             // 
             // txtLog
             // 
-            this.txtLog.Enabled = false;
             this.txtLog.Location = new System.Drawing.Point(12, 366);
             this.txtLog.Multiline = true;
             this.txtLog.Name = "txtLog";
+            this.txtLog.ReadOnly = true;
             this.txtLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtLog.Size = new System.Drawing.Size(587, 72);
             this.txtLog.TabIndex = 3;
@@ -96,7 +97,7 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewModules);
             this.Name = "SearchingForm";
-            this.Text = "SearchingForm";
+            this.Text = "Searching";
             this.ResumeLayout(false);
             this.PerformLayout();
 

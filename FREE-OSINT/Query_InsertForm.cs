@@ -39,6 +39,8 @@ namespace FREE_OSINT
         private void btnSearch_Click(object sender, EventArgs e)
         {
             query = txtQuery.Text;
+            extras = new List<object>();
+            extras.Add(Int16.Parse(txtLimitResults.Value + ""));
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

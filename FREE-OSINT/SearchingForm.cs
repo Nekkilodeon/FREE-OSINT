@@ -15,6 +15,9 @@ namespace FREE_OSINT
     public partial class SearchingForm : Form
     {
         List<ISearchable_module> modules;
+        public List<SearchResult> searchResults;
+        Action action;
+
         public SearchingForm()
         {
             InitializeComponent();
@@ -24,16 +27,21 @@ namespace FREE_OSINT
         {
             InitializeComponent();
             this.modules = modules;
+            this.searchResults = new List<SearchResult>();
             populateModuleList();
             searchModules(query, extras);
+        }
+
+        public void addtoResults(SearchResult result){
+            searchResults.Add(result);
         }
 
         private void populateModuleList()
         {
             listViewModules.Enabled = false;
-            listViewModules.Columns.Add("Module", 300, HorizontalAlignment.Left);
-            listViewModules.Columns.Add("Run", -2, HorizontalAlignment.Left);
-            listViewModules.Columns.Add("Results", -2, HorizontalAlignment.Left);
+            listViewModules.Columns.Add("Module", 320, HorizontalAlignment.Left);
+            listViewModules.Columns.Add("Status", 100, HorizontalAlignment.Left);
+            listViewModules.Columns.Add("Results", 150, HorizontalAlignment.Left);
             if (modules != null)
             {
                 foreach (ISearchable_module module in modules)
@@ -53,12 +61,13 @@ namespace FREE_OSINT
             Thread t = new Thread(new ThreadStart(tws.ThreadProc));
             t.Start();
             Console.WriteLine("Main thread does some work, then waits.");
-            t.Join();
+            //t.Join();
         }
 
         private void btnDone_Click(object sender, EventArgs e)
         {
-
+            this.DialogResult = DialogResult.OK;
+            this.Close();
         }
         private class ThreadWithState
         {
@@ -83,10 +92,41 @@ namespace FREE_OSINT
             {
                 foreach (ISearchable_module module in modules)
                 {
-                    searchingForm.txtLog.Text += "Executing: " + ((IGeneral_module)module).Title();
-                    searchingForm.txtLog.Text += Environment.NewLine;
-                    searchingForm.listViewModules.Items[modules.IndexOf(module)].SubItems[0].Font = new Font(FontFamily.GenericSansSerif, 7.8f, FontStyle.Bold);
+                    searchingForm.txtLog.Invoke((MethodInvoker)delegate {
+                        // Running on the UI thread
+                        searchingForm.txtLog.Text += "Executing: " + ((IGeneral_module)module).Title();
+                        searchingForm.txtLog.Text += Environment.NewLine;
+
+                    });
+                    searchingForm.listViewModules.Invoke((MethodInvoker)delegate {
+                        searchingForm.listViewModules.Items[modules.IndexOf(module)].SubItems[0].Font = new Font(FontFamily.GenericSansSerif, 7.8f, FontStyle.Bold);
+                    });
+
                     SearchResult result = module.Search(query, extras);
+
+                    searchingForm.txtLog.Invoke((MethodInvoker)delegate
+                    {
+                        searchingForm.addtoResults(result);
+                    });
+
+
+                        searchingForm.listViewModules.Invoke((MethodInvoker)delegate {
+                        searchingForm.listViewModules.Items[modules.IndexOf(module)].SubItems[0].Font = new Font(FontFamily.GenericSansSerif, 7.8f, FontStyle.Regular);
+                    });
+                    searchingForm.txtLog.Invoke((MethodInvoker)delegate {
+                        // Running on the UI thread
+                        searchingForm.txtLog.Text += Environment.NewLine;
+                        searchingForm.txtLog.Text = result.Message;
+                        searchingForm.txtLog.Text += Environment.NewLine;
+                    });
+
+                    searchingForm.listViewModules.Invoke((MethodInvoker)delegate {
+                        searchingForm.listViewModules.Items[modules.IndexOf(module)].SubItems[1].Text = Enum.GetName(typeof(Status_Code), result.Status);
+                        searchingForm.listViewModules.Items[modules.IndexOf(module)].SubItems[2].Text = result.Num_results.ToString();
+                    });
+
+                   
+                    /*
                     searchingForm.txtLog.Text += Environment.NewLine;
                     searchingForm.txtLog.Text = result.Message;
                     searchingForm.txtLog.Text += Environment.NewLine;
@@ -94,10 +134,15 @@ namespace FREE_OSINT
                     searchingForm.listViewModules.Items[modules.IndexOf(module)].SubItems[1].Font = new Font(FontFamily.GenericSansSerif, 7.8f, FontStyle.Bold);
                     searchingForm.listViewModules.Items[modules.IndexOf(module)].SubItems[2].Text = result.Num_results.ToString();
                     searchingForm.listViewModules.Items[modules.IndexOf(module)].SubItems[1].Font = new Font(FontFamily.GenericSansSerif, 7.8f, FontStyle.Bold);
-
+                */
                 }
-                //Console.WriteLine(boilerplate, numberValue);
-            }
+                searchingForm.btnDone.Invoke((MethodInvoker)delegate
+                {
+                    searchingForm.btnDone.Enabled = true;
+                });
+
+                    //Console.WriteLine(boilerplate, numberValue);
+                }
         }
 
         private void log(string v)

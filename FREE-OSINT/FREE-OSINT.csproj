@@ -73,6 +73,12 @@
     <Compile Include="Query_InsertForm.Designer.cs">
       <DependentUpon>Query_InsertForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="ResultsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ResultsForm.Designer.cs">
+      <DependentUpon>ResultsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="SearchingForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +102,9 @@
     </Compile>
     <EmbeddedResource Include="Query_InsertForm.resx">
       <DependentUpon>Query_InsertForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ResultsForm.resx">
+      <DependentUpon>ResultsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SearchingForm.resx">
       <DependentUpon>SearchingForm.cs</DependentUpon>
