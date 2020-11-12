@@ -77,6 +77,13 @@ namespace FREE_OSINT
                 }
             }
         }
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,7 +40,25 @@
             this.showFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.resultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.workplace_panel = new System.Windows.Forms.Panel();
+            this.menuStripTargets = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelWorkspaceName = new System.Windows.Forms.Label();
+            this.btnAutoLayout = new System.Windows.Forms.Button();
+            this.panelDrawWorkspace = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnBezier = new System.Windows.Forms.Button();
+            this.btn4way = new System.Windows.Forms.Button();
+            this.btnStraight = new System.Windows.Forms.Button();
+            this.btnSaveImage = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.treeView1 = new System.Windows.Forms.TreeView();
             this.menuStrip1.SuspendLayout();
+            this.workplace_panel.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -51,7 +70,7 @@
             this.resultsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(982, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1262, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -69,25 +88,28 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.newToolStripMenuItem.Text = "New";
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.saveToolStripMenuItem.Text = "Save";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -103,14 +125,14 @@
             // showToolStripMenuItem
             // 
             this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.showToolStripMenuItem.Text = "All Modules";
             this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
             // 
             // showFolderToolStripMenuItem
             // 
             this.showFolderToolStripMenuItem.Name = "showFolderToolStripMenuItem";
-            this.showFolderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.showFolderToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.showFolderToolStripMenuItem.Text = "Show folder";
             this.showFolderToolStripMenuItem.Click += new System.EventHandler(this.showFolderToolStripMenuItem_Click);
             // 
@@ -121,24 +143,187 @@
             this.resultsToolStripMenuItem.Name = "resultsToolStripMenuItem";
             this.resultsToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.resultsToolStripMenuItem.Text = "Results";
+            this.resultsToolStripMenuItem.Click += new System.EventHandler(this.resultsToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem1
             // 
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-            this.openToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(128, 26);
             this.openToolStripMenuItem1.Text = "Open";
+            this.openToolStripMenuItem1.Click += new System.EventHandler(this.openToolStripMenuItem1_Click);
+            // 
+            // workplace_panel
+            // 
+            this.workplace_panel.AutoScroll = true;
+            this.workplace_panel.BackColor = System.Drawing.SystemColors.Window;
+            this.workplace_panel.Controls.Add(this.panelDrawWorkspace);
+            this.workplace_panel.Controls.Add(this.panel2);
+            this.workplace_panel.Controls.Add(this.panel1);
+            this.workplace_panel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.workplace_panel.Location = new System.Drawing.Point(0, 28);
+            this.workplace_panel.Name = "workplace_panel";
+            this.workplace_panel.Size = new System.Drawing.Size(1262, 645);
+            this.workplace_panel.TabIndex = 2;
+            this.workplace_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.workplace_panel_Paint);
+            // 
+            // menuStripTargets
+            // 
+            this.menuStripTargets.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStripTargets.Name = "menuStripTargets";
+            this.menuStripTargets.Size = new System.Drawing.Size(61, 4);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.treeView1);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.labelWorkspaceName);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(292, 645);
+            this.panel1.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.SystemColors.Menu;
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.btnSaveImage);
+            this.panel2.Controls.Add(this.btnStraight);
+            this.panel2.Controls.Add(this.btn4way);
+            this.panel2.Controls.Add(this.btnBezier);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.btnAutoLayout);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(292, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(970, 56);
+            this.panel2.TabIndex = 1;
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(11, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(134, 29);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Workspace";
+            // 
+            // labelWorkspaceName
+            // 
+            this.labelWorkspaceName.AutoSize = true;
+            this.labelWorkspaceName.Location = new System.Drawing.Point(13, 38);
+            this.labelWorkspaceName.Name = "labelWorkspaceName";
+            this.labelWorkspaceName.Size = new System.Drawing.Size(56, 17);
+            this.labelWorkspaceName.TabIndex = 1;
+            this.labelWorkspaceName.Text = "Untitled";
+            // 
+            // btnAutoLayout
+            // 
+            this.btnAutoLayout.Location = new System.Drawing.Point(653, 7);
+            this.btnAutoLayout.Name = "btnAutoLayout";
+            this.btnAutoLayout.Size = new System.Drawing.Size(169, 31);
+            this.btnAutoLayout.TabIndex = 0;
+            this.btnAutoLayout.Text = "Auto Layout";
+            this.btnAutoLayout.UseVisualStyleBackColor = true;
+            this.btnAutoLayout.Click += new System.EventHandler(this.btnAutoLayout_Click);
+            // 
+            // panelDrawWorkspace
+            // 
+            this.panelDrawWorkspace.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelDrawWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDrawWorkspace.Location = new System.Drawing.Point(292, 56);
+            this.panelDrawWorkspace.Name = "panelDrawWorkspace";
+            this.panelDrawWorkspace.Size = new System.Drawing.Size(970, 589);
+            this.panelDrawWorkspace.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 17);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Line Type";
+            // 
+            // btnBezier
+            // 
+            this.btnBezier.Location = new System.Drawing.Point(82, 9);
+            this.btnBezier.Name = "btnBezier";
+            this.btnBezier.Size = new System.Drawing.Size(129, 29);
+            this.btnBezier.TabIndex = 2;
+            this.btnBezier.Text = "Bezier";
+            this.btnBezier.UseVisualStyleBackColor = true;
+            this.btnBezier.Click += new System.EventHandler(this.btnBezier_Click);
+            // 
+            // btn4way
+            // 
+            this.btn4way.Location = new System.Drawing.Point(217, 9);
+            this.btn4way.Name = "btn4way";
+            this.btn4way.Size = new System.Drawing.Size(129, 29);
+            this.btn4way.TabIndex = 3;
+            this.btn4way.Text = "4 Way Links";
+            this.btn4way.UseVisualStyleBackColor = true;
+            this.btn4way.Click += new System.EventHandler(this.btn4way_Click);
+            // 
+            // btnStraight
+            // 
+            this.btnStraight.Location = new System.Drawing.Point(352, 9);
+            this.btnStraight.Name = "btnStraight";
+            this.btnStraight.Size = new System.Drawing.Size(129, 29);
+            this.btnStraight.TabIndex = 4;
+            this.btnStraight.Text = "Straight";
+            this.btnStraight.UseVisualStyleBackColor = true;
+            this.btnStraight.Click += new System.EventHandler(this.btnStraight_Click);
+            // 
+            // btnSaveImage
+            // 
+            this.btnSaveImage.Location = new System.Drawing.Point(828, 7);
+            this.btnSaveImage.Name = "btnSaveImage";
+            this.btnSaveImage.Size = new System.Drawing.Size(129, 31);
+            this.btnSaveImage.TabIndex = 5;
+            this.btnSaveImage.Text = "Image";
+            this.btnSaveImage.UseVisualStyleBackColor = true;
+            this.btnSaveImage.Click += new System.EventHandler(this.btnSaveImage_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(229, 64);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(56, 17);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Objects";
+            // 
+            // treeView1
+            // 
+            this.treeView1.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.treeView1.Location = new System.Drawing.Point(-1, 98);
+            this.treeView1.Name = "treeView1";
+            this.treeView1.Size = new System.Drawing.Size(292, 256);
+            this.treeView1.TabIndex = 3;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(982, 553);
+            this.ClientSize = new System.Drawing.Size(1262, 673);
+            this.Controls.Add(this.workplace_panel);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "FREE-OSINT";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.workplace_panel.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -156,6 +341,21 @@
         private System.Windows.Forms.ToolStripMenuItem showFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem resultsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem1;
+        private System.Windows.Forms.Panel workplace_panel;
+        private System.Windows.Forms.ContextMenuStrip menuStripTargets;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label labelWorkspaceName;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnAutoLayout;
+        private System.Windows.Forms.Panel panelDrawWorkspace;
+        private System.Windows.Forms.Button btnStraight;
+        private System.Windows.Forms.Button btn4way;
+        private System.Windows.Forms.Button btnBezier;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btnSaveImage;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TreeView treeView1;
     }
 }
 

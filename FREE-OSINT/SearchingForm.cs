@@ -69,6 +69,13 @@ namespace FREE_OSINT
             this.DialogResult = DialogResult.OK;
             this.Close();
         }
+        private void Form_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Escape)
+            {
+                this.Close();
+            }
+        }
         private class ThreadWithState
         {
             // State information used in the task.
@@ -108,8 +115,6 @@ namespace FREE_OSINT
                     {
                         searchingForm.addtoResults(result);
                     });
-
-
                         searchingForm.listViewModules.Invoke((MethodInvoker)delegate {
                         searchingForm.listViewModules.Items[modules.IndexOf(module)].SubItems[0].Font = new Font(FontFamily.GenericSansSerif, 7.8f, FontStyle.Regular);
                     });
