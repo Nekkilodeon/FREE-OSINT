@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResultsForm));
             this.treeViewResults = new System.Windows.Forms.TreeView();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -42,31 +43,39 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnSendToGraph = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.labelNodeCount = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.cmbTargets = new System.Windows.Forms.ComboBox();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeViewResults
             // 
-            this.treeViewResults.BackColor = System.Drawing.SystemColors.Menu;
-            this.treeViewResults.Location = new System.Drawing.Point(3, 66);
+            this.treeViewResults.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.treeViewResults.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.treeViewResults.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.treeViewResults.Location = new System.Drawing.Point(0, 63);
             this.treeViewResults.Name = "treeViewResults";
-            this.treeViewResults.Size = new System.Drawing.Size(332, 685);
+            this.treeViewResults.Size = new System.Drawing.Size(342, 668);
             this.treeViewResults.TabIndex = 0;
             this.treeViewResults.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewResults_AfterSelect);
             this.treeViewResults.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.mouseClick);
             // 
             // webBrowser1
             // 
-            this.webBrowser1.Location = new System.Drawing.Point(350, 121);
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 30);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1220, 607);
+            this.webBrowser1.Size = new System.Drawing.Size(1582, 823);
             this.webBrowser1.TabIndex = 1;
-            this.webBrowser1.Url = new System.Uri("http://google.com", System.UriKind.Absolute);
+            this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
+            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
             // menuStrip1
             // 
@@ -114,26 +123,29 @@
             // 
             // btnBrowser
             // 
-            this.btnBrowser.Location = new System.Drawing.Point(58, 27);
+            this.btnBrowser.Image = ((System.Drawing.Image)(resources.GetObject("btnBrowser.Image")));
+            this.btnBrowser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBrowser.Location = new System.Drawing.Point(5, 3);
             this.btnBrowser.Name = "btnBrowser";
-            this.btnBrowser.Size = new System.Drawing.Size(159, 27);
+            this.btnBrowser.Size = new System.Drawing.Size(159, 50);
             this.btnBrowser.TabIndex = 4;
-            this.btnBrowser.Text = "Web";
+            this.btnBrowser.Text = "Browser";
             this.btnBrowser.UseVisualStyleBackColor = true;
             this.btnBrowser.Click += new System.EventHandler(this.btnBrowser_Click);
             // 
             // txtURL
             // 
-            this.txtURL.Location = new System.Drawing.Point(58, 63);
+            this.txtURL.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtURL.Location = new System.Drawing.Point(0, 76);
             this.txtURL.Name = "txtURL";
             this.txtURL.ReadOnly = true;
-            this.txtURL.Size = new System.Drawing.Size(1168, 22);
+            this.txtURL.Size = new System.Drawing.Size(1236, 22);
             this.txtURL.TabIndex = 5;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 66);
+            this.label2.Location = new System.Drawing.Point(6, 56);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 17);
             this.label2.TabIndex = 6;
@@ -141,18 +153,19 @@
             // 
             // txtLogs
             // 
-            this.txtLogs.Location = new System.Drawing.Point(350, 751);
+            this.txtLogs.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtLogs.Location = new System.Drawing.Point(0, 763);
             this.txtLogs.Multiline = true;
             this.txtLogs.Name = "txtLogs";
             this.txtLogs.ReadOnly = true;
             this.txtLogs.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLogs.Size = new System.Drawing.Size(1220, 90);
+            this.txtLogs.Size = new System.Drawing.Size(1582, 90);
             this.txtLogs.TabIndex = 7;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(350, 731);
+            this.label3.Location = new System.Drawing.Point(5, 766);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(51, 17);
             this.label3.TabIndex = 8;
@@ -170,17 +183,29 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.label4);
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.labelNodeCount);
             this.panel1.Controls.Add(this.treeViewResults);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 30);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(344, 823);
+            this.panel1.Size = new System.Drawing.Size(344, 733);
             this.panel1.TabIndex = 10;
+            // 
+            // labelNodeCount
+            // 
+            this.labelNodeCount.AutoSize = true;
+            this.labelNodeCount.Location = new System.Drawing.Point(5, 43);
+            this.labelNodeCount.Name = "labelNodeCount";
+            this.labelNodeCount.Size = new System.Drawing.Size(91, 17);
+            this.labelNodeCount.TabIndex = 4;
+            this.labelNodeCount.Text = "Total nodes: ";
             // 
             // panel2
             // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.panel3);
             this.panel2.Controls.Add(this.btnBrowser);
             this.panel2.Controls.Add(this.txtURL);
             this.panel2.Controls.Add(this.label2);
@@ -190,14 +215,33 @@
             this.panel2.Size = new System.Drawing.Size(1238, 100);
             this.panel2.TabIndex = 11;
             // 
-            // label4
+            // button1
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(5, 43);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(91, 17);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Total nodes: ";
+            this.button1.Location = new System.Drawing.Point(3, 46);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(69, 24);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "Add to";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // cmbTargets
+            // 
+            this.cmbTargets.FormattingEnabled = true;
+            this.cmbTargets.Location = new System.Drawing.Point(78, 46);
+            this.cmbTargets.Name = "cmbTargets";
+            this.cmbTargets.Size = new System.Drawing.Size(289, 24);
+            this.cmbTargets.TabIndex = 8;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.button1);
+            this.panel3.Controls.Add(this.cmbTargets);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel3.Location = new System.Drawing.Point(860, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(376, 76);
+            this.panel3.TabIndex = 9;
             // 
             // ResultsForm
             // 
@@ -220,6 +264,7 @@
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -242,6 +287,9 @@
         private System.Windows.Forms.Button btnSendToGraph;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label labelNodeCount;
+        private System.Windows.Forms.ComboBox cmbTargets;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Panel panel3;
     }
 }

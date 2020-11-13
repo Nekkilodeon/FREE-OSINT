@@ -37,6 +37,10 @@ namespace FREE_OSINT_Lib
         {
             treeNodes.RemoveAt(index);
         }
+        public override string ToString()
+        {
+            return Title;
+        }
 
         public string Title { get => title; set => title = value; }
         public List<TreeNode> TreeNodes { get => treeNodes; set => treeNodes = value; }

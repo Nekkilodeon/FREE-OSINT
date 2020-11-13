@@ -3,9 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -26,12 +28,24 @@ namespace FREE_OSINT
         public ResultsForm()
         {
             InitializeComponent();
+            populateCmbTargets();
         }
+
+        private void populateCmbTargets()
+        {
+            cmbTargets.Items.Clear();
+            cmbTargets.Items.AddRange(Main_Instance.Instance.Workspace.Targets.ToArray());
+            if(cmbTargets.Items.Count > 0)
+            cmbTargets.SelectedIndex = 0;
+        }
+
         public ResultsForm(string file)
         {
             results = new List<TreeNode>();
             InitializeComponent();
+            this.btnBrowser.Image = (Image)(new Bitmap(btnBrowser.Image, new Size(15, 15)));
             populateTreeview();
+            populateCmbTargets();
         }
 
         /*
@@ -136,11 +150,48 @@ namespace FREE_OSINT
                     treeViewResults.Nodes.Add(result.Treenode);
                 }
             }
+            labelNodeCount.Text = "Total nodes: " + treeViewResults.GetNodeCount(true);
         }
 
         private void btnBrowser_Click(object sender, EventArgs e)
         {
+            try
+            {
+                OpenUrl(txtURL.Text);
+            }
+            catch (Exception ex)
+            {
+                log(ex.Message);
+            }
             //txtURL.Text
+        }
+        public static void OpenUrl(string url)
+        {
+            try
+            {
+                Process.Start(url);
+            }
+            catch
+            {
+                // hack because of this: https://github.com/dotnet/corefx/issues/10361
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    url = url.Replace("&", "^&");
+                    Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+                {
+                    Process.Start("xdg-open", url);
+                }
+                else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+                {
+                    Process.Start("open", url);
+                }
+                else
+                {
+                    throw;
+                }
+            }
         }
 
         private void treeViewResults_AfterSelect(object sender, TreeViewEventArgs e)
@@ -305,7 +356,8 @@ namespace FREE_OSINT
                     //where we'll add all of our nodes
                     addTreeNode(xDoc.DocumentElement, tNode);
                     //Expand the treeview to show all nodes
-                    treeViewResults.ExpandAll();
+                    labelNodeCount.Text = "Total nodes: " + treeViewResults.GetNodeCount(true);
+                    //treeViewResults.ExpandAll();
                 }
                 catch (XmlException xExc)
                 //Exception is thrown is there is an error in the Xml
@@ -413,13 +465,41 @@ namespace FREE_OSINT
                 if (newTargetForm.DialogResult == DialogResult.OK)
                 {
                     if(newTargetForm.title != "")
-                    Main_Instance.Instance.Workspace.Targets.Add(new Target(newTargetForm.title, selectedNode));
+                    {
+                        Main_Instance.Instance.Workspace.Targets.Add(new Target(newTargetForm.title, selectedNode));
+                        populateCmbTargets();
+                    }
                     //Main_Instance.Instance.Workspace.
                 }
             }
             else
             {
                 Main_Instance.Instance.Workspace.findTarget(((MenuItem)sender).Text).TreeNodes.Add(selectedNode);
+            }
+        }
+
+        private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)
+        {
+            txtURL.Text = ((WebBrowser)sender).Url.ToString();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            SimpleInputForm newTargetForm = new SimpleInputForm("Intel");
+            newTargetForm.Location = selectedLocation;
+            newTargetForm.ShowDialog();
+            if (newTargetForm.DialogResult == DialogResult.OK)
+            {
+                if (newTargetForm.title != "")
+                {
+                    TreeNode link = new TreeNode(txtURL.Text);
+                    List<TreeNode> nodes = new List<TreeNode>();
+                    nodes.Add(link);
+                    ((Target)cmbTargets.SelectedItem).TreeNodes.Add(new TreeNode(newTargetForm.title, nodes.ToArray()));
+                    
+                }
+                //Main_Instance.Instance.Workspace.
+
             }
         }
     }
