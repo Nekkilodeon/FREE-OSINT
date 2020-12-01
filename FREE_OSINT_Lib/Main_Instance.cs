@@ -99,6 +99,27 @@ namespace FREE_OSINT
                 drawTreeNodes();
 
             }
+            else if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.EDIT)
+            {
+                ConditionNode node = (ConditionNode)diagramEventArgs.SelectedObjects.First();
+                ConditionNode node_new = (ConditionNode)diagramEventArgs.SelectedObjects.Last();
+
+                TreeNode node1 = (TreeNode)Workspace.find_node(node.Text);
+                node1.Text = node_new.Text;
+                if (node_new.LinksTo.Count > 0)
+                {
+                    List<TreeNode> treeNodes = new List<TreeNode>();
+                    foreach (Condition condition in node_new.LinksTo)
+                    {
+                        treeNodes.Add(new TreeNode(condition.Text));
+                    }
+                    node1.Nodes.Clear();
+                    node1.Nodes.AddRange(treeNodes.ToArray());
+                }
+                Workspace.reloadTargetsFromTreeView();
+                drawTreeNodes();
+
+            }
 
 
         }
@@ -126,7 +147,7 @@ namespace FREE_OSINT
                 ConditionNode node = prevNode;
                 if (prevNode == null)
                 {
-                    node = new ConditionNode(nodeDiagram, Color.Red) { Text = treeNode.Text };
+                    node = new ConditionNode(nodeDiagram, Color.Orange, true) { Text = treeNode.Text };
                 }
 
                 foreach (TreeNode subnode in treeNode.Nodes)
@@ -135,7 +156,7 @@ namespace FREE_OSINT
                     {
                         var node2 = new ConditionNode(nodeDiagram,
                             level == 0 ? Color.Cyan : level == 1 ? Color.DarkGray : Color.Gray
-                            )
+                            , false)
                         { Text = subnode.Text };
                         node.LinksTo.Add(new Condition() { LinksTo = node2 });
                         nodeDiagram.Nodes.Add(node2);
@@ -155,7 +176,7 @@ namespace FREE_OSINT
             {
                 if (prevNode == null)
                 {
-                    ConditionNode node = new ConditionNode(nodeDiagram, Color.Red) { Text = treeNode.Text };
+                    ConditionNode node = new ConditionNode(nodeDiagram, Color.Orange, true) { Text = treeNode.Text };
                     nodeDiagram.Nodes.Add(node);
                 }
             }

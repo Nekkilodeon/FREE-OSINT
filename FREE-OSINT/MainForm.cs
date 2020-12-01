@@ -87,11 +87,12 @@ namespace FREE_OSINT
                 {
                     targetNode.Nodes.Add((TreeNode)draggedNode.Clone());
                 }
-
                 // Expand the node at the location 
                 // to show the dropped node.
                 targetNode.Expand();
             }
+            Main_Instance.Instance.Workspace.reloadTargetsFromTreeView();
+            reloadWorkspace();
         }
 
         // Determine whether one node is a parent 
@@ -258,6 +259,8 @@ namespace FREE_OSINT
             Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
             labelWorkspaceName.Text = Main_Instance.Instance.Workspace.Title;
             Main_Instance.Instance.drawTreeNodes();
+            treeViewTargets.ExpandAll();
+
         }
 
         private void addTreeNode(XmlNode xmlNode, TreeNode treeNode)
@@ -468,6 +471,11 @@ namespace FREE_OSINT
                 }
                 return null;
             }
+        }
+
+        private void treeViewTargets_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
         }
     }
 }
