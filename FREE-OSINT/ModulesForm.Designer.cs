@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModulesForm));
             this.btnInteract = new System.Windows.Forms.Button();
             this.listModules = new System.Windows.Forms.CheckedListBox();
             this.btnSearchModules = new System.Windows.Forms.Button();
@@ -36,11 +37,13 @@
             // 
             // btnInteract
             // 
+            this.btnInteract.Image = ((System.Drawing.Image)(resources.GetObject("btnInteract.Image")));
+            this.btnInteract.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInteract.Location = new System.Drawing.Point(393, 13);
             this.btnInteract.Name = "btnInteract";
             this.btnInteract.Size = new System.Drawing.Size(395, 47);
             this.btnInteract.TabIndex = 1;
-            this.btnInteract.Text = "Interact";
+            this.btnInteract.Text = "     Interact";
             this.btnInteract.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInteract.UseVisualStyleBackColor = true;
             this.btnInteract.Click += new System.EventHandler(this.btnInteract_Click);
@@ -56,22 +59,26 @@
             // 
             // btnSearchModules
             // 
+            this.btnSearchModules.Image = ((System.Drawing.Image)(resources.GetObject("btnSearchModules.Image")));
+            this.btnSearchModules.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearchModules.Location = new System.Drawing.Point(393, 382);
             this.btnSearchModules.Name = "btnSearchModules";
             this.btnSearchModules.Size = new System.Drawing.Size(395, 43);
             this.btnSearchModules.TabIndex = 3;
-            this.btnSearchModules.Text = "Search using 0 modules";
+            this.btnSearchModules.Text = "     Search using 0 modules";
             this.btnSearchModules.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSearchModules.UseVisualStyleBackColor = true;
             this.btnSearchModules.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnConfigure
             // 
+            this.btnConfigure.Image = ((System.Drawing.Image)(resources.GetObject("btnConfigure.Image")));
+            this.btnConfigure.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfigure.Location = new System.Drawing.Point(392, 66);
             this.btnConfigure.Name = "btnConfigure";
             this.btnConfigure.Size = new System.Drawing.Size(395, 47);
             this.btnConfigure.TabIndex = 4;
-            this.btnConfigure.Text = "Configure";
+            this.btnConfigure.Text = "     Configure";
             this.btnConfigure.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnConfigure.UseVisualStyleBackColor = true;
             this.btnConfigure.Click += new System.EventHandler(this.btnConfigure_Click);

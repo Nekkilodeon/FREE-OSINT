@@ -41,24 +41,24 @@
             this.resultsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.workplace_panel = new System.Windows.Forms.Panel();
-            this.menuStripTargets = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.labelWorkspaceName = new System.Windows.Forms.Label();
-            this.btnAutoLayout = new System.Windows.Forms.Button();
             this.panelDrawWorkspace = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnBezier = new System.Windows.Forms.Button();
-            this.btn4way = new System.Windows.Forms.Button();
-            this.btnStraight = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.btnSaveImage = new System.Windows.Forms.Button();
+            this.btnStraight = new System.Windows.Forms.Button();
+            this.btn4way = new System.Windows.Forms.Button();
+            this.btnBezier = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.btnAutoLayout = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.labelWorkspaceName = new System.Windows.Forms.Label();
+            this.treeViewTargets = new System.Windows.Forms.TreeView();
             this.label3 = new System.Windows.Forms.Label();
-            this.treeView1 = new System.Windows.Forms.TreeView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.menuStripTargets = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1.SuspendLayout();
             this.workplace_panel.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -84,6 +84,7 @@
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
+            this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
             // 
             // newToolStripMenuItem
             // 
@@ -166,25 +167,15 @@
             this.workplace_panel.TabIndex = 2;
             this.workplace_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.workplace_panel_Paint);
             // 
-            // menuStripTargets
+            // panelDrawWorkspace
             // 
-            this.menuStripTargets.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStripTargets.Name = "menuStripTargets";
-            this.menuStripTargets.Size = new System.Drawing.Size(61, 4);
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.treeView1);
-            this.panel1.Controls.Add(this.label3);
-            this.panel1.Controls.Add(this.labelWorkspaceName);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(292, 645);
-            this.panel1.TabIndex = 0;
+            this.panelDrawWorkspace.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelDrawWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDrawWorkspace.Location = new System.Drawing.Point(292, 50);
+            this.panelDrawWorkspace.Name = "panelDrawWorkspace";
+            this.panelDrawWorkspace.Size = new System.Drawing.Size(970, 595);
+            this.panelDrawWorkspace.TabIndex = 2;
+            this.panelDrawWorkspace.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDrawWorkspace_Paint);
             // 
             // panel2
             // 
@@ -199,76 +190,20 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(292, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(970, 56);
+            this.panel2.Size = new System.Drawing.Size(970, 50);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
-            // label1
+            // btnSaveImage
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(11, 9);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(134, 29);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Workspace";
-            // 
-            // labelWorkspaceName
-            // 
-            this.labelWorkspaceName.AutoSize = true;
-            this.labelWorkspaceName.Location = new System.Drawing.Point(13, 38);
-            this.labelWorkspaceName.Name = "labelWorkspaceName";
-            this.labelWorkspaceName.Size = new System.Drawing.Size(56, 17);
-            this.labelWorkspaceName.TabIndex = 1;
-            this.labelWorkspaceName.Text = "Untitled";
-            // 
-            // btnAutoLayout
-            // 
-            this.btnAutoLayout.Location = new System.Drawing.Point(653, 7);
-            this.btnAutoLayout.Name = "btnAutoLayout";
-            this.btnAutoLayout.Size = new System.Drawing.Size(169, 31);
-            this.btnAutoLayout.TabIndex = 0;
-            this.btnAutoLayout.Text = "Auto Layout";
-            this.btnAutoLayout.UseVisualStyleBackColor = true;
-            this.btnAutoLayout.Click += new System.EventHandler(this.btnAutoLayout_Click);
-            // 
-            // panelDrawWorkspace
-            // 
-            this.panelDrawWorkspace.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panelDrawWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDrawWorkspace.Location = new System.Drawing.Point(292, 56);
-            this.panelDrawWorkspace.Name = "panelDrawWorkspace";
-            this.panelDrawWorkspace.Size = new System.Drawing.Size(970, 589);
-            this.panelDrawWorkspace.TabIndex = 2;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(5, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 17);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Line Type";
-            // 
-            // btnBezier
-            // 
-            this.btnBezier.Location = new System.Drawing.Point(82, 9);
-            this.btnBezier.Name = "btnBezier";
-            this.btnBezier.Size = new System.Drawing.Size(129, 29);
-            this.btnBezier.TabIndex = 2;
-            this.btnBezier.Text = "Bezier";
-            this.btnBezier.UseVisualStyleBackColor = true;
-            this.btnBezier.Click += new System.EventHandler(this.btnBezier_Click);
-            // 
-            // btn4way
-            // 
-            this.btn4way.Location = new System.Drawing.Point(217, 9);
-            this.btn4way.Name = "btn4way";
-            this.btn4way.Size = new System.Drawing.Size(129, 29);
-            this.btn4way.TabIndex = 3;
-            this.btn4way.Text = "4 Way Links";
-            this.btn4way.UseVisualStyleBackColor = true;
-            this.btn4way.Click += new System.EventHandler(this.btn4way_Click);
+            this.btnSaveImage.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSaveImage.Location = new System.Drawing.Point(828, 7);
+            this.btnSaveImage.Name = "btnSaveImage";
+            this.btnSaveImage.Size = new System.Drawing.Size(129, 31);
+            this.btnSaveImage.TabIndex = 5;
+            this.btnSaveImage.Text = "Image";
+            this.btnSaveImage.UseVisualStyleBackColor = true;
+            this.btnSaveImage.Click += new System.EventHandler(this.btnSaveImage_Click);
             // 
             // btnStraight
             // 
@@ -280,32 +215,109 @@
             this.btnStraight.UseVisualStyleBackColor = true;
             this.btnStraight.Click += new System.EventHandler(this.btnStraight_Click);
             // 
-            // btnSaveImage
+            // btn4way
             // 
-            this.btnSaveImage.Location = new System.Drawing.Point(828, 7);
-            this.btnSaveImage.Name = "btnSaveImage";
-            this.btnSaveImage.Size = new System.Drawing.Size(129, 31);
-            this.btnSaveImage.TabIndex = 5;
-            this.btnSaveImage.Text = "Image";
-            this.btnSaveImage.UseVisualStyleBackColor = true;
-            this.btnSaveImage.Click += new System.EventHandler(this.btnSaveImage_Click);
+            this.btn4way.Location = new System.Drawing.Point(217, 9);
+            this.btn4way.Name = "btn4way";
+            this.btn4way.Size = new System.Drawing.Size(129, 29);
+            this.btn4way.TabIndex = 3;
+            this.btn4way.Text = "4 Way Links";
+            this.btn4way.UseVisualStyleBackColor = true;
+            this.btn4way.Click += new System.EventHandler(this.btn4way_Click);
+            // 
+            // btnBezier
+            // 
+            this.btnBezier.Location = new System.Drawing.Point(82, 9);
+            this.btnBezier.Name = "btnBezier";
+            this.btnBezier.Size = new System.Drawing.Size(129, 29);
+            this.btnBezier.TabIndex = 2;
+            this.btnBezier.Text = "Bezier";
+            this.btnBezier.UseVisualStyleBackColor = true;
+            this.btnBezier.Click += new System.EventHandler(this.btnBezier_Click);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(5, 15);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(71, 17);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Line Type";
+            // 
+            // btnAutoLayout
+            // 
+            this.btnAutoLayout.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnAutoLayout.Location = new System.Drawing.Point(653, 7);
+            this.btnAutoLayout.Name = "btnAutoLayout";
+            this.btnAutoLayout.Size = new System.Drawing.Size(169, 31);
+            this.btnAutoLayout.TabIndex = 0;
+            this.btnAutoLayout.Text = "Auto Layout";
+            this.btnAutoLayout.UseVisualStyleBackColor = true;
+            this.btnAutoLayout.Click += new System.EventHandler(this.btnAutoLayout_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.labelWorkspaceName);
+            this.panel1.Controls.Add(this.treeViewTargets);
+            this.panel1.Controls.Add(this.label3);
+            this.panel1.Controls.Add(this.label1);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(292, 645);
+            this.panel1.TabIndex = 0;
+            // 
+            // labelWorkspaceName
+            // 
+            this.labelWorkspaceName.AutoSize = true;
+            this.labelWorkspaceName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.labelWorkspaceName.Location = new System.Drawing.Point(0, 29);
+            this.labelWorkspaceName.Name = "labelWorkspaceName";
+            this.labelWorkspaceName.Size = new System.Drawing.Size(56, 17);
+            this.labelWorkspaceName.TabIndex = 1;
+            this.labelWorkspaceName.Text = "Untitled";
+            this.labelWorkspaceName.Click += new System.EventHandler(this.labelWorkspaceName_Click);
+            // 
+            // treeViewTargets
+            // 
+            this.treeViewTargets.AllowDrop = true;
+            this.treeViewTargets.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.treeViewTargets.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.treeViewTargets.FullRowSelect = true;
+            this.treeViewTargets.Location = new System.Drawing.Point(0, 127);
+            this.treeViewTargets.Name = "treeViewTargets";
+            this.treeViewTargets.ShowNodeToolTips = true;
+            this.treeViewTargets.Size = new System.Drawing.Size(290, 516);
+            this.treeViewTargets.TabIndex = 3;
+            this.treeViewTargets.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.nodeClick);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(229, 64);
+            this.label3.Location = new System.Drawing.Point(3, 107);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(56, 17);
+            this.label3.Size = new System.Drawing.Size(57, 17);
             this.label3.TabIndex = 2;
-            this.label3.Text = "Objects";
+            this.label3.Text = "Targets";
             // 
-            // treeView1
+            // label1
             // 
-            this.treeView1.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.treeView1.Location = new System.Drawing.Point(-1, 98);
-            this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(292, 256);
-            this.treeView1.TabIndex = 3;
+            this.label1.AutoSize = true;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(134, 29);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Workspace";
+            // 
+            // menuStripTargets
+            // 
+            this.menuStripTargets.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStripTargets.Name = "menuStripTargets";
+            this.menuStripTargets.Size = new System.Drawing.Size(61, 4);
             // 
             // MainForm
             // 
@@ -320,10 +332,10 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.workplace_panel.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -355,7 +367,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSaveImage;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TreeView treeView1;
+        private System.Windows.Forms.TreeView treeViewTargets;
     }
 }
 

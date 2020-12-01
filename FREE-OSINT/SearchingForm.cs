@@ -16,7 +16,6 @@ namespace FREE_OSINT
     {
         List<ISearchable_module> modules;
         public List<SearchResult> searchResults;
-        Action action;
 
         public SearchingForm()
         {

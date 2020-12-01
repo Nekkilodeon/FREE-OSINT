@@ -28,16 +28,9 @@ namespace FREE_OSINT
         public ResultsForm()
         {
             InitializeComponent();
-            populateCmbTargets();
         }
 
-        private void populateCmbTargets()
-        {
-            cmbTargets.Items.Clear();
-            cmbTargets.Items.AddRange(Main_Instance.Instance.Workspace.Targets.ToArray());
-            if(cmbTargets.Items.Count > 0)
-            cmbTargets.SelectedIndex = 0;
-        }
+        
 
         public ResultsForm(string file)
         {
@@ -45,7 +38,10 @@ namespace FREE_OSINT
             InitializeComponent();
             this.btnBrowser.Image = (Image)(new Bitmap(btnBrowser.Image, new Size(15, 15)));
             populateTreeview();
-            populateCmbTargets();
+            if (this.DialogResult == DialogResult.Cancel)
+            {
+                this.Close();
+            }
         }
 
         /*
@@ -314,18 +310,13 @@ namespace FREE_OSINT
         {
             foreach (TreeNode node in tnc)
             {
-                //If we have child nodes, we'll write 
-                //a parent node, then iterrate through
-                //the children
-
-
                 if (node.Nodes.Count > 0)
                 {
                     sr.WriteLine("<Node value=\"" + HttpUtility.HtmlEncode(node.Text) + "\">");
                     saveNode(node.Nodes);
                     sr.WriteLine("</Node>");
                 }
-                else //No child nodes, so we just write the text
+                else
                     sr.WriteLine("<Node value=\"" + HttpUtility.HtmlEncode(node.Text) + "\"></Node>");
             }
         }
@@ -333,13 +324,14 @@ namespace FREE_OSINT
         private void populateTreeview()
         {
             OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Title = "Open XML Document";
+            dlg.Title = "Open Results XML Document";
             dlg.Filter = "XML Files (*.xml)|*.xml";
             dlg.FileName = Application.StartupPath + "\\..\\..\\example.xml";
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
+                    this.DialogResult = DialogResult.Retry;
                     //Just a good practice -- change the cursor to a 
                     //wait cursor while the nodes populate
                     this.Cursor = Cursors.WaitCursor;
@@ -372,6 +364,10 @@ namespace FREE_OSINT
                 {
                     this.Cursor = Cursors.Default; //Change the cursor back
                 }
+            }
+            else
+            {
+                this.DialogResult = DialogResult.Cancel;
             }
         }
         //This function is called recursively until all nodes are loaded
@@ -467,7 +463,6 @@ namespace FREE_OSINT
                     if(newTargetForm.title != "")
                     {
                         Main_Instance.Instance.Workspace.Targets.Add(new Target(newTargetForm.title, selectedNode));
-                        populateCmbTargets();
                     }
                     //Main_Instance.Instance.Workspace.
                 }
@@ -485,22 +480,36 @@ namespace FREE_OSINT
 
         private void button1_Click(object sender, EventArgs e)
         {
-            SimpleInputForm newTargetForm = new SimpleInputForm("Intel");
-            newTargetForm.Location = selectedLocation;
-            newTargetForm.ShowDialog();
-            if (newTargetForm.DialogResult == DialogResult.OK)
+            if (webBrowser1.Document.Title == null)
             {
-                if (newTargetForm.title != "")
-                {
-                    TreeNode link = new TreeNode(txtURL.Text);
-                    List<TreeNode> nodes = new List<TreeNode>();
-                    nodes.Add(link);
-                    ((Target)cmbTargets.SelectedItem).TreeNodes.Add(new TreeNode(newTargetForm.title, nodes.ToArray()));
-                    
-                }
-                //Main_Instance.Instance.Workspace.
-
+                MessageBox.Show("Invalid URL");
             }
+            else
+            {
+                SimpleInputForm newTargetForm = new SimpleInputForm(webBrowser1.Document.Title, webBrowser1.Url.ToString());
+                newTargetForm.Location = selectedLocation;
+                newTargetForm.ShowDialog();
+                if (newTargetForm.DialogResult == DialogResult.OK)
+                {
+                    if (newTargetForm.title != "")
+                    {
+
+
+                    }
+                    //Main_Instance.Instance.Workspace.
+                }
+            }
+        }
+
+
+        private void ResultsForm_Load(object sender, EventArgs e)
+        {
+
+        }
+        private void formClosing(object sender, FormClosingEventArgs e)
+        {
+            this.DialogResult = DialogResult.OK;
+            this.treeViewResults.Nodes.Clear();
         }
     }
 

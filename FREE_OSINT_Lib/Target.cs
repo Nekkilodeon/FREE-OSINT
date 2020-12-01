@@ -44,5 +44,15 @@ namespace FREE_OSINT_Lib
 
         public string Title { get => title; set => title = value; }
         public List<TreeNode> TreeNodes { get => treeNodes; set => treeNodes = value; }
+
+        public List<TreeNode> TreeNodesCloned()
+        {
+            List<TreeNode> cloned = new List<TreeNode>();
+            foreach(TreeNode treeNode in TreeNodes)
+            {
+                cloned.Add((TreeNode)treeNode.Clone());
+            }
+            return cloned;
+        }
     }
 }

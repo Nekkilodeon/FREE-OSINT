@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FREE_OSINT_Lib;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,6 +14,8 @@ namespace FREE_OSINT
     public partial class SimpleInputForm : Form
     {
         public string title;
+        private string url;
+
         public SimpleInputForm()
         {
             InitializeComponent();
@@ -20,14 +23,57 @@ namespace FREE_OSINT
         }
         public SimpleInputForm(string name)
         {
-            this.Text = name;
             InitializeComponent();
+
+            this.Text = name;
+            this.txtDescription.Visible = false;
+            this.label2.Visible = false;
+            this.labelURL.Visible = false;
+            this.label3.Visible = false;
+            this.cmbTargets.Visible = false;
+            this.btnNewTarget.Visible = false;
+        }
+        public SimpleInputForm(string name, string url)
+        {            
+            InitializeComponent();
+            populateCmbTargets();
+
+            this.Text = "New Intel";
+            this.txtTitle.Text = name;
+            this.labelURL.Text = url;
+            this.url = url;
+        }
+        private void populateCmbTargets()
+        {
+            cmbTargets.Items.Clear();
+            cmbTargets.Items.AddRange(Main_Instance.Instance.Workspace.Targets.ToArray());
+            if (cmbTargets.Items.Count > 0)
+                cmbTargets.SelectedIndex = 0;
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
             this.title = txtTitle.Text;
+            if (txtDescription.Visible)
+            {
+                TreeNode link = new TreeNode(url);
+                List<TreeNode> nodes = new List<TreeNode>();
+                nodes.Add(link);
+                if (txtDescription.Text != String.Empty)
+                {
+                    nodes.Add(new TreeNode(txtDescription.Text));
+                }
+                TreeNode node = new TreeNode(title, nodes.ToArray());
+                try
+                {
+                    ((Target)cmbTargets.SelectedItem).TreeNodes.Add(node);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
             this.Close();
         }
 
@@ -36,6 +82,22 @@ namespace FREE_OSINT
             this.DialogResult = DialogResult.Cancel;
             this.Close();
 
+        }
+
+        private void btnNewTarget_Click(object sender, EventArgs e)
+        {
+            SimpleInputForm newTargetForm = new SimpleInputForm("New Target");
+            newTargetForm.Location = ((Button)sender).Location;
+            newTargetForm.ShowDialog();
+            if (newTargetForm.DialogResult == DialogResult.OK)
+            {
+                if (newTargetForm.title != "")
+                {
+                    Main_Instance.Instance.Workspace.Targets.Add(new Target(newTargetForm.title));
+                    populateCmbTargets();
+                }
+                //Main_Instance.Instance.Workspace.
+            }
         }
     }
 }
