@@ -31,7 +31,15 @@ namespace FREE_OSINT
         {
             //NodeDiagram nodeDiagram = sender as NodeDiagram;
             NodeDiagram.DiagramEventArgs diagramEventArgs = e as NodeDiagram.DiagramEventArgs;
-            if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.REMOVE)
+            if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.DRAG)
+            {
+                foreach (INodeObject node in diagramEventArgs.SelectedObjects)
+                {
+                    ConditionNode conditionNode = node as ConditionNode;
+                    Workspace.TreeViewPositions[conditionNode.Text] = conditionNode.Position;
+                }
+            }
+            else if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.REMOVE)
             {
                 foreach (INodeObject node in diagramEventArgs.SelectedObjects)
                 {
@@ -118,7 +126,6 @@ namespace FREE_OSINT
                 }
                 Workspace.reloadTargetsFromTreeView();
                 drawTreeNodes();
-
             }
 
 
@@ -131,11 +138,12 @@ namespace FREE_OSINT
             {
                 drawSubNodes(treeNode, null, nodeDiagram, 0);
             }
+            /*
             foreach (var node in nodeDiagram.Nodes)
             {
                 node.Direction = Node.DirectionEnum.Vertical;
-            }
-            nodeDiagram.AutoLayout(true);
+            }*/
+            //nodeDiagram.AutoLayout(true);
             nodeDiagram.Redraw();
         }
 
@@ -148,6 +156,8 @@ namespace FREE_OSINT
                 if (prevNode == null)
                 {
                     node = new ConditionNode(nodeDiagram, Color.Orange, true) { Text = treeNode.Text };
+                    if(Main_Instance.Instance.Workspace.TreeViewPositions.ContainsKey(node.Text))
+                    node.Position = Main_Instance.Instance.Workspace.TreeViewPositions[node.Text];
                 }
 
                 foreach (TreeNode subnode in treeNode.Nodes)
@@ -158,6 +168,9 @@ namespace FREE_OSINT
                             level == 0 ? Color.Cyan : level == 1 ? Color.DarkGray : Color.Gray
                             , false)
                         { Text = subnode.Text };
+
+                        if (Main_Instance.Instance.Workspace.TreeViewPositions.ContainsKey(node2.Text))
+                            node2.Position = Main_Instance.Instance.Workspace.TreeViewPositions[node2.Text];
                         node.LinksTo.Add(new Condition() { LinksTo = node2 });
                         nodeDiagram.Nodes.Add(node2);
                         drawSubNodes(subnode, node2, nodeDiagram, level + 1);
@@ -177,7 +190,10 @@ namespace FREE_OSINT
                 if (prevNode == null)
                 {
                     ConditionNode node = new ConditionNode(nodeDiagram, Color.Orange, true) { Text = treeNode.Text };
+                    if (Main_Instance.Instance.Workspace.TreeViewPositions.ContainsKey(node.Text))
+                        node.Position = Main_Instance.Instance.Workspace.TreeViewPositions[node.Text];
                     nodeDiagram.Nodes.Add(node);
+
                 }
             }
             return;
@@ -201,5 +217,25 @@ namespace FREE_OSINT
         public Workspace Workspace { get => workspace; set => workspace = value; }
         public NodeDiagram NodeDiagram { get => nodeDiagram; set => nodeDiagram = value; }
         public General_Config Config { get => config; set => config = value; }
+
+        public void sync_diagram_positions()
+        {
+            if (Workspace.TreeViewPositions.Count > 0)
+            {
+                foreach (Node node in nodeDiagram.Nodes)
+                {
+                    Point point = Workspace.TreeViewPositions[node.Text];
+                    node.Position = point;
+                }
+            }
+        }
+
+        public void populate_position_dictionary()
+        {
+            foreach (Node node in nodeDiagram.Nodes)
+            {
+                workspace.TreeViewPositions.Add(node.Text, node.Position);
+            }
+        }
     }
 }

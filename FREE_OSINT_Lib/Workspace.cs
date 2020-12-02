@@ -13,11 +13,13 @@ namespace FREE_OSINT_Lib
 
         string title;
         TreeView targetTreeView;
+        Dictionary<String, Point> treeViewPositions;
         public Workspace()
         {
             Targets = new List<Target>();
             Targets.Add(new Target("Unassigned"));
             TargetTreeView = new TreeView();
+            TreeViewPositions = new Dictionary<String, Point>();
             Title = "Untitled";
            
         }
@@ -26,6 +28,7 @@ namespace FREE_OSINT_Lib
         public List<Target> Targets { get => targets; set => targets = value; }
         public string Title { get => title; set => title = value; }
         public TreeView TargetTreeView { get => targetTreeView; set => targetTreeView = value; }
+        public Dictionary<String, Point> TreeViewPositions { get => treeViewPositions; set => treeViewPositions = value; }
 
         public void reloadTargetsFromTreeView()
         {
@@ -106,7 +109,8 @@ namespace FREE_OSINT_Lib
             targetTreeView.Nodes.Clear();
             foreach (Target target in Targets)
             {
-                targetTreeView.Nodes.Add(new TreeNode(target.Title, target.TreeNodesCloned().ToArray()));
+                TreeNode node = new TreeNode(target.Title, target.TreeNodesCloned().ToArray());
+                targetTreeView.Nodes.Add(node);
             }
             foreach (TreeNode child in targetTreeView.Nodes)
             {

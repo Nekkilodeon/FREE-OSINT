@@ -169,10 +169,12 @@ namespace FREE_OSINT
             sr.WriteLine("<Workplace>");
             foreach (Target target in Main_Instance.Instance.Workspace.Targets)
             {
-                sr.WriteLine("<Target value=\"" + target.Title + "\">");
+                Point point = Main_Instance.Instance.Workspace.TreeViewPositions[target.Title];
+                sr.WriteLine("<Target value=\"" + target.Title + "\" x=\"" + point.X + "\" y=\""+ point.Y + "\">");
                 foreach (TreeNode node in target.TreeNodes)
                 {
-                    sr.WriteLine("<Node value=\"" + node.Text + "\">");
+                    Point subpoint = Main_Instance.Instance.Workspace.TreeViewPositions[node.Text];
+                    sr.WriteLine("<Node value=\"" + node.Text + "\" x=\"" + subpoint.X + "\" y=\"" + subpoint.Y + "\">");
                     saveNode(node.Nodes);
                     sr.WriteLine("</Node>");
 
@@ -190,7 +192,8 @@ namespace FREE_OSINT
             {
                 if (node.Nodes.Count > 0)
                 {
-                    sr.WriteLine("<Node value=\"" + HttpUtility.HtmlEncode(node.Text) + "\">");
+                    Point subpoint = Main_Instance.Instance.Workspace.TreeViewPositions[node.Text];
+                    sr.WriteLine("<Node value=\"" + HttpUtility.HtmlEncode(node.Text) + "\" x=\"" + subpoint.X + "\" y=\"" + subpoint.Y + "\">");
                     saveNode(node.Nodes);
                     sr.WriteLine("</Node>");
                 }
@@ -221,11 +224,22 @@ namespace FREE_OSINT
                     foreach (XmlNode target_node in target_elements)
                     {
                         string title = target_node.Attributes.GetNamedItem("value").Value;
+                        int x = Int16.Parse(target_node.Attributes.GetNamedItem("x").Value);
+                        int y = Int16.Parse(target_node.Attributes.GetNamedItem("y").Value);
+
+                        Main_Instance.Instance.Workspace.TreeViewPositions.Add(title, new Point(x,y));
+
                         Target target = new Target(title);
                         XmlNodeList childNodes = target_node.ChildNodes;
                         foreach (XmlNode node in childNodes)
                         {
                             TreeNode tNode = new TreeNode(node.Attributes.GetNamedItem("value").Value);
+                            /*
+                            x = Int16.Parse(node.Attributes.GetNamedItem("x").Value);
+                            y = Int16.Parse(node.Attributes.GetNamedItem("y").Value);
+
+                            Main_Instance.Instance.Workspace.TreeViewPositions.Add(tNode.Text, new Point(x, y));
+                            */
                             addTreeNode(node, tNode);
                             target.addNode(tNode);
                         }
@@ -247,6 +261,8 @@ namespace FREE_OSINT
                 {
                     Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
                     reloadWorkspace();
+                    Main_Instance.Instance.sync_diagram_positions();
+                    //Main_Instance.Instance.populate_position_dictionary();
                     this.Cursor = Cursors.Default; //Change the cursor back
                 }
             }
@@ -257,6 +273,7 @@ namespace FREE_OSINT
             treeViewTargets.Nodes.Clear();
             Main_Instance.Instance.Workspace.TargetTreeView = treeViewTargets;
             Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
+            Main_Instance.Instance.sync_diagram_positions();
             labelWorkspaceName.Text = Main_Instance.Instance.Workspace.Title;
             Main_Instance.Instance.drawTreeNodes();
             treeViewTargets.ExpandAll();
@@ -271,11 +288,20 @@ namespace FREE_OSINT
             if (xmlNode.HasChildNodes)
             {
                 xNodeList = xmlNode.ChildNodes;
+
+
+                int xx = Int16.Parse(xmlNode.Attributes.GetNamedItem("x").Value);
+                int y = Int16.Parse(xmlNode.Attributes.GetNamedItem("y").Value);
+
+                Main_Instance.Instance.Workspace.TreeViewPositions.Add(treeNode.Text, new Point(xx, y));
+
                 for (int x = 0; x <= xNodeList.Count - 1; x++)
                 {
                     xNode = xmlNode.ChildNodes[x];
                     treeNode.Nodes.Add(new TreeNode(HttpUtility.HtmlDecode(xNode.Attributes[0].Value)));
                     tNode = treeNode.Nodes[x];
+
+
                     addTreeNode(xNode, tNode);
                 }
             }
@@ -364,6 +390,9 @@ namespace FREE_OSINT
 
         private void btnSaveImage_Click(object sender, EventArgs e)
         {
+            ConditionNode node = (ConditionNode)Main_Instance.Instance.NodeDiagram.Nodes.First();
+            node.Position = new Point(0,0);
+            /*
             try
             {
                 using (Form frm = new Form())
@@ -376,7 +405,7 @@ namespace FREE_OSINT
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-            }
+            }*/
         }
 
         private void labelWorkspaceName_Click(object sender, EventArgs e)

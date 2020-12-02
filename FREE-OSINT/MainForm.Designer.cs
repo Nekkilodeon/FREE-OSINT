@@ -50,12 +50,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnAutoLayout = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.labelWorkspaceName = new System.Windows.Forms.Label();
             this.treeViewTargets = new System.Windows.Forms.TreeView();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.menuStripTargets = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
+            this.labelWorkspaceName = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.menuStripTargets = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1.SuspendLayout();
             this.workplace_panel.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -171,7 +171,7 @@
             // 
             // panelDrawWorkspace
             // 
-            this.panelDrawWorkspace.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelDrawWorkspace.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelDrawWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDrawWorkspace.Location = new System.Drawing.Point(292, 50);
             this.panelDrawWorkspace.Name = "panelDrawWorkspace";
@@ -182,7 +182,6 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Menu;
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.btnSaveImage);
             this.panel2.Controls.Add(this.btnStraight);
             this.panel2.Controls.Add(this.btn4way);
@@ -199,7 +198,7 @@
             // btnSaveImage
             // 
             this.btnSaveImage.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSaveImage.Location = new System.Drawing.Point(828, 7);
+            this.btnSaveImage.Location = new System.Drawing.Point(830, 8);
             this.btnSaveImage.Name = "btnSaveImage";
             this.btnSaveImage.Size = new System.Drawing.Size(129, 31);
             this.btnSaveImage.TabIndex = 5;
@@ -249,7 +248,7 @@
             // btnAutoLayout
             // 
             this.btnAutoLayout.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnAutoLayout.Location = new System.Drawing.Point(653, 7);
+            this.btnAutoLayout.Location = new System.Drawing.Point(655, 8);
             this.btnAutoLayout.Name = "btnAutoLayout";
             this.btnAutoLayout.Size = new System.Drawing.Size(169, 31);
             this.btnAutoLayout.TabIndex = 0;
@@ -260,7 +259,6 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.treeViewTargets);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -268,6 +266,34 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(292, 645);
             this.panel1.TabIndex = 0;
+            // 
+            // treeViewTargets
+            // 
+            this.treeViewTargets.AllowDrop = true;
+            this.treeViewTargets.BackColor = System.Drawing.SystemColors.Window;
+            this.treeViewTargets.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.treeViewTargets.FullRowSelect = true;
+            this.treeViewTargets.Location = new System.Drawing.Point(0, 102);
+            this.treeViewTargets.Margin = new System.Windows.Forms.Padding(10);
+            this.treeViewTargets.Name = "treeViewTargets";
+            this.treeViewTargets.ShowLines = false;
+            this.treeViewTargets.ShowPlusMinus = false;
+            this.treeViewTargets.ShowRootLines = false;
+            this.treeViewTargets.Size = new System.Drawing.Size(292, 543);
+            this.treeViewTargets.TabIndex = 3;
+            this.treeViewTargets.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewTargets_AfterSelect);
+            this.treeViewTargets.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.nodeClick);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.labelWorkspaceName);
+            this.panel3.Controls.Add(this.label1);
+            this.panel3.Controls.Add(this.label3);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(292, 102);
+            this.panel3.TabIndex = 4;
             // 
             // labelWorkspaceName
             // 
@@ -279,31 +305,6 @@
             this.labelWorkspaceName.Text = "Untitled";
             this.labelWorkspaceName.Click += new System.EventHandler(this.labelWorkspaceName_Click);
             // 
-            // treeViewTargets
-            // 
-            this.treeViewTargets.AllowDrop = true;
-            this.treeViewTargets.BackColor = System.Drawing.SystemColors.Window;
-            this.treeViewTargets.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.treeViewTargets.FullRowSelect = true;
-            this.treeViewTargets.Location = new System.Drawing.Point(0, 100);
-            this.treeViewTargets.Name = "treeViewTargets";
-            this.treeViewTargets.ShowLines = false;
-            this.treeViewTargets.ShowPlusMinus = false;
-            this.treeViewTargets.ShowRootLines = false;
-            this.treeViewTargets.Size = new System.Drawing.Size(290, 543);
-            this.treeViewTargets.TabIndex = 3;
-            this.treeViewTargets.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewTargets_AfterSelect);
-            this.treeViewTargets.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.nodeClick);
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(3, 74);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(57, 17);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Targets";
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -314,22 +315,20 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Workspace";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(3, 74);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(57, 17);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Targets";
+            // 
             // menuStripTargets
             // 
             this.menuStripTargets.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStripTargets.Name = "menuStripTargets";
             this.menuStripTargets.Size = new System.Drawing.Size(61, 4);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.labelWorkspaceName);
-            this.panel3.Controls.Add(this.label1);
-            this.panel3.Controls.Add(this.label3);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(290, 100);
-            this.panel3.TabIndex = 4;
             // 
             // MainForm
             // 
