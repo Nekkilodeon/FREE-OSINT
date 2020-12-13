@@ -340,6 +340,8 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.Text = "FREE-OSINT";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.closingForm);
+            this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.workplace_panel.ResumeLayout(false);

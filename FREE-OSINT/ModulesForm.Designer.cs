@@ -94,6 +94,7 @@
             this.Controls.Add(this.btnInteract);
             this.Name = "ModulesForm";
             this.Text = "Modules";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.closingForm);
             this.Load += new System.EventHandler(this.ModulesForm_Load);
             this.ResumeLayout(false);
 

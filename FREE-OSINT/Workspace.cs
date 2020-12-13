@@ -138,7 +138,7 @@ namespace FREE_OSINT_Lib
             return null;
         }
 
-        internal Object find_node(string text)
+        public Object find_node(string text)
         {
             foreach (TreeNode node in TargetTreeView.Nodes)
             {

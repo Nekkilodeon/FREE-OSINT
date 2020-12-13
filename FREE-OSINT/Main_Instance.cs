@@ -18,6 +18,7 @@ namespace FREE_OSINT
         private static readonly object padlock = new object();
         private Workspace workspace;
         private General_Config config;
+        List<IGeneral_module> module_list;
 
         Main_Instance()
         {
@@ -217,6 +218,7 @@ namespace FREE_OSINT
         public Workspace Workspace { get => workspace; set => workspace = value; }
         public NodeDiagram NodeDiagram { get => nodeDiagram; set => nodeDiagram = value; }
         public General_Config Config { get => config; set => config = value; }
+        public List<IGeneral_module> Module_list { get => module_list; set => module_list = value; }
 
         public void sync_diagram_positions()
         {
@@ -224,8 +226,11 @@ namespace FREE_OSINT
             {
                 foreach (Node node in nodeDiagram.Nodes)
                 {
-                    Point point = Workspace.TreeViewPositions[node.Text];
-                    node.Position = point;
+                    if (Workspace.TreeViewPositions.ContainsKey(node.Text))
+                    {
+                        Point point = Workspace.TreeViewPositions[node.Text];
+                        node.Position = point;
+                    }
                 }
             }
         }

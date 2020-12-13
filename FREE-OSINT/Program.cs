@@ -16,7 +16,17 @@ namespace FREE_OSINT
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MainForm());
+            DialogResult dialogResult = MessageBox.Show("Load modules?", "Select", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                //load
+                Application.Run(new LoadingForm());
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                //just open main
+                Application.Run(new MainForm());
+            }
         }
     }
 }

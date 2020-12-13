@@ -39,8 +39,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\FREE_OSINT_Lib\bin\Debug\netstandard2.0\FREE_OSINT_Lib.dll</HintPath>
     </Reference>
-    <Reference Include="NodeControl">
-      <HintPath>..\..\drake7707\nodecontrol\NodeControl\bin\Debug\NodeControl.dll</HintPath>
+    <Reference Include="NodeControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\Nekkilodeon\FREE-OSINT_Node_Control\NodeControl\bin\Debug\NodeControl.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
@@ -64,12 +65,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="General_Config.cs" />
+    <Compile Include="LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoadingForm.Designer.cs">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Main_Instance.cs" />
     <Compile Include="ModulesForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +111,11 @@
     <Compile Include="SimpleInputForm.Designer.cs">
       <DependentUpon>SimpleInputForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Target.cs" />
+    <Compile Include="Workspace.cs" />
+    <EmbeddedResource Include="LoadingForm.resx">
+      <DependentUpon>LoadingForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>

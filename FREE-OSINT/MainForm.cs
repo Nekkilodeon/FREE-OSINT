@@ -129,7 +129,11 @@ namespace FREE_OSINT
         private void showToolStripMenuItem_Click(object sender, EventArgs e)
         {
             ModulesForm modulesForm = new ModulesForm();
-            modulesForm.Show();
+            var result = modulesForm.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                reloadWorkspace();
+            }
         }
 
         private void showFolderToolStripMenuItem_Click(object sender, EventArgs e)
@@ -333,7 +337,6 @@ namespace FREE_OSINT
             }
             if (resultsForm.DialogResult == DialogResult.OK)
             {
-                Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
                 reloadWorkspace();
             }
             //resultsForm.ShowDialog();
@@ -505,6 +508,25 @@ namespace FREE_OSINT
         private void treeViewTargets_AfterSelect(object sender, TreeViewEventArgs e)
         {
 
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void closingForm(object sender, FormClosingEventArgs e)
+        {
+            DialogResult dialogResult = MessageBox.Show("Are you sure?", "", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                this.DialogResult = DialogResult.OK;
+                return;
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
     }
 }

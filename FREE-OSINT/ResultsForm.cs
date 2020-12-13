@@ -508,7 +508,9 @@ namespace FREE_OSINT
         }
         private void formClosing(object sender, FormClosingEventArgs e)
         {
+            Workspace workspace = Main_Instance.Instance.Workspace;
             this.DialogResult = DialogResult.OK;
+            Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
             this.treeViewResults.Nodes.Clear();
         }
     }
