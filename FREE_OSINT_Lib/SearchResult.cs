@@ -11,7 +11,8 @@ namespace FREE_OSINT_Lib
         List<Intel> intels;
         int num_results;
         string title;
-        List<object> extras;
+
+        DateTime timestamp;
         Status_Code status;
         String message;
 
@@ -19,42 +20,56 @@ namespace FREE_OSINT_Lib
         {
             this.Status = status;
             this.Message = message;
+            this.timestamp = DateTime.Now;
         }
 
-        public SearchResult(TreeNode treeNode, List<Intel> intels, int num_results, string title, List<object> extras, Status_Code status, string message)
+        public SearchResult(TreeNode treeNode, DateTime timestamp, List<Intel> intels, int num_results, string title, Status_Code status, string message)
         {
             this.treeNode = treeNode;
+            if (timestamp == null)
+            {
+                this.timestamp = DateTime.Now;
+            }
+            else
+            {
+                this.timestamp = timestamp;
+            }
             this.intels = intels;
             this.num_results = num_results;
             this.title = title;
-            this.extras = extras;
             this.Status = status;
             this.Message = message;
         }
 
-        public SearchResult(TreeNode treeNode, List<Intel> intels, int num_results, string title, Status_Code status, string message)
+
+        public SearchResult(TreeNode treeNode, DateTime timestamp, int num_results, string title, Status_Code status, string message)
         {
             this.treeNode = treeNode;
-            this.intels = intels;
+            if(timestamp == null)
+            {
+                this.timestamp = DateTime.Now;
+            }
+            else
+            {
+                this.timestamp = timestamp;
+            }
             this.num_results = num_results;
             this.title = title;
             this.Status = status;
             this.Message = message;
         }
 
-        public SearchResult(TreeNode treeNode, int num_results, string title, List<object> extras, Status_Code status, string message)
-        {
-            this.treeNode = treeNode;
-            this.num_results = num_results;
-            this.title = title;
-            this.extras = extras;
-            this.Status = status;
-            this.Message = message;
-        }
-
-        public SearchResult(List<Intel> intels, int num_results, string title, Status_Code status, string message)
+        public SearchResult(List<Intel> intels, DateTime timestamp, int num_results, string title, Status_Code status, string message)
         {
             this.intels = intels;
+            if (timestamp == null)
+            {
+                this.timestamp = DateTime.Now;
+            }
+            else
+            {
+                this.timestamp = timestamp;
+            }
             this.num_results = num_results;
             this.title = title;
             this.Status = status;

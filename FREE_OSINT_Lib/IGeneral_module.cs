@@ -6,13 +6,10 @@ namespace FREE_OSINT_Lib
 {
     public interface IGeneral_module
     {
-
         String Title();
 
         String Description();
 
-        bool isInteractable();
-        bool isSearchable();
-        bool isConfigurable();
+
     }
 }

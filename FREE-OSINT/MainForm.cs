@@ -128,9 +128,9 @@ namespace FREE_OSINT
 
         private void showToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ModulesForm modulesForm = new ModulesForm();
+            SearchModulesForm modulesForm = new SearchModulesForm();
             var result = modulesForm.ShowDialog();
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 reloadWorkspace();
             }
@@ -167,21 +167,33 @@ namespace FREE_OSINT
         }
         public void exportToXml(string filename)
         {
-            sr = new StreamWriter(filename, false, System.Text.Encoding.UTF8);
+            String[] split = filename.Split('.');
+            string newFilename = "";
+            for (int i = 0; i < split.Length; i++)
+            {
+                if (i == split.Length - 1 && !split[i - 1].Equals("workspace"))
+                {
+                    newFilename += "workspace." + split[i];
+                }
+                else
+                {
+                    newFilename += split[i] + ".";
+                }
+            }
+            sr = new StreamWriter(newFilename, false, System.Text.Encoding.UTF8);
             //Write the header
             sr.WriteLine("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
             sr.WriteLine("<Workplace>");
             foreach (Target target in Main_Instance.Instance.Workspace.Targets)
             {
                 Point point = Main_Instance.Instance.Workspace.TreeViewPositions[target.Title];
-                sr.WriteLine("<Target value=\"" + target.Title + "\" x=\"" + point.X + "\" y=\""+ point.Y + "\">");
+                sr.WriteLine("<Target value=\"" + target.Title + "\" x=\"" + point.X + "\" y=\"" + point.Y + "\">");
                 foreach (TreeNode node in target.TreeNodes)
                 {
                     Point subpoint = Main_Instance.Instance.Workspace.TreeViewPositions[node.Text];
                     sr.WriteLine("<Node value=\"" + node.Text + "\" x=\"" + subpoint.X + "\" y=\"" + subpoint.Y + "\">");
                     saveNode(node.Nodes);
                     sr.WriteLine("</Node>");
-
                 }
                 sr.WriteLine("</Target>");
             }
@@ -231,7 +243,7 @@ namespace FREE_OSINT
                         int x = Int16.Parse(target_node.Attributes.GetNamedItem("x").Value);
                         int y = Int16.Parse(target_node.Attributes.GetNamedItem("y").Value);
 
-                        Main_Instance.Instance.Workspace.TreeViewPositions.Add(title, new Point(x,y));
+                        Main_Instance.Instance.Workspace.TreeViewPositions.Add(title, new Point(x, y));
 
                         Target target = new Target(title);
                         XmlNodeList childNodes = target_node.ChildNodes;
@@ -394,7 +406,7 @@ namespace FREE_OSINT
         private void btnSaveImage_Click(object sender, EventArgs e)
         {
             ConditionNode node = (ConditionNode)Main_Instance.Instance.NodeDiagram.Nodes.First();
-            node.Position = new Point(0,0);
+            node.Position = new Point(0, 0);
             /*
             try
             {
@@ -527,6 +539,35 @@ namespace FREE_OSINT
             {
                 e.Cancel = true;
             }
+        }
+
+        private void modulesToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Report_Modules report_Modules = new Report_Modules();
+            var result = report_Modules.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                IReport_module report_Module = (IReport_module)report_Modules.selected_module;
+                Select_Nodes select_Nodes = new Select_Nodes(treeViewTargets);
+                var result_nodes = select_Nodes.ShowDialog();
+                if (result_nodes == DialogResult.OK)
+                {
+                    report_Module.GenerateDocument(select_Nodes.selected_nodes);
+                }
+                else
+                {
+                    select_Nodes.Hide();
+                }
+            }
+            else
+            {
+                report_Modules.Hide();
+            }
+        }
+
+        private void showFolderToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            Process.Start("explorer.exe", General_Config.modules_directory);
         }
     }
 }

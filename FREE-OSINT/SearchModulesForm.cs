@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace FREE_OSINT
 {
-    public partial class ModulesForm : Form
+    public partial class SearchModulesForm : Form
     {
-        public ModulesForm()
+        public SearchModulesForm()
         {
             InitializeComponent();
             loadModules();
@@ -22,10 +22,12 @@ namespace FREE_OSINT
         private void loadModules()
         {
             listModules.Items.Clear();
-
-            foreach (IGeneral_module module in Main_Instance.Instance.Module_list)
+            if (Main_Instance.Instance.Module_list.Count > 0)
             {
-                listModules.Items.Add(module.Title());
+                foreach (IGeneral_module module in Main_Instance.Instance.Module_list[General_Config.Module_Type.Search])
+                {
+                    listModules.Items.Add(module.Title());
+                }
             }
             /*
             listModules.Items.Add("Default Google");
@@ -34,10 +36,10 @@ namespace FREE_OSINT
 
         private void listModules_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if(listModules.SelectedIndex > 0)
+            if (listModules.SelectedIndex >= 0)
             {
-                btnInteract.Enabled = Main_Instance.Instance.Module_list[listModules.SelectedIndex].isInteractable();
-                btnConfigure.Enabled = Main_Instance.Instance.Module_list[listModules.SelectedIndex].isConfigurable();
+                btnInteract.Enabled = Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex].GetType().GetInterfaces().Contains(typeof(IInteractable_module));
+                btnConfigure.Enabled = Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex].GetType().GetInterfaces().Contains(typeof(IConfigurable_module));
                 btnInteract.Text = "     Interact with " + listModules.Items[listModules.SelectedIndex];
                 btnSearchModules.Text = "     Search using " + listModules.CheckedIndices.Count + " modules";
             }
@@ -45,21 +47,44 @@ namespace FREE_OSINT
 
         private void btnInteract_Click(object sender, EventArgs e)
         {
-            if (Main_Instance.Instance.Module_list[listModules.SelectedIndex].isInteractable())
+            if (listModules.SelectedIndex >= 0 && Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex].GetType().GetInterfaces().Contains(typeof(IInteractable_module)))
             {
                 try
                 {
-                    ((IInteractable_module)Main_Instance.Instance.Module_list[listModules.SelectedIndex]).Interact();
+                    ((IInteractable_module)Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex]).Interact();
+                    ((IInteractable_module)Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex]).InteractEvent += InteractEventTriggered;
                 }
                 catch (ObjectDisposedException ex)
                 {
-                    int index = listModules.SelectedIndex;
-                    loadModules();
-                    ((IInteractable_module)Main_Instance.Instance.Module_list[index]).Interact();
+                    MessageBox.Show("Malformed module, disposed after closing");
+                    //int index = listModules.SelectedIndex;
+                    //loadModules();
+                    //((IInteractable_module)Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex]).Interact();
                     //((IInteractable_module)o).Interact();
                 }
             }
         }
+
+        private void InteractEventTriggered(object sender, EventArgs e)
+        {
+            InteractEventArgs interactEventArgs = e as InteractEventArgs;
+            if (interactEventArgs.Operation.Equals(InteractEventArgs.Operation_Type.Insert))
+            {
+                SimpleInputForm simpleInputForm = new SimpleInputForm(interactEventArgs.SelectedObjects);
+                var result = simpleInputForm.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+
+                }
+                else
+                {
+
+                }
+
+            }
+
+        }
+
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -75,9 +100,9 @@ namespace FREE_OSINT
             List<ISearchable_module> searchables = new List<ISearchable_module>();
             foreach (string module in listModules.CheckedItems)
             {
-                if (Main_Instance.Instance.Module_list[listModules.Items.IndexOf(module)].isSearchable())
+                if (Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.Items.IndexOf(module)].GetType().GetInterfaces().Contains(typeof(IInteractable_module)))
                 {
-                    searchables.Add((ISearchable_module)Main_Instance.Instance.Module_list[listModules.Items.IndexOf(module)]);
+                    searchables.Add((ISearchable_module)Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.Items.IndexOf(module)]);
                 }
             }
 
@@ -111,9 +136,9 @@ namespace FREE_OSINT
 
         private void btnConfigure_Click(object sender, EventArgs e)
         {
-            if (Main_Instance.Instance.Module_list[listModules.SelectedIndex].isConfigurable())
+            if (Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex].GetType().GetInterfaces().Contains(typeof(IInteractable_module)))
             {
-                ((IConfigurable_module)Main_Instance.Instance.Module_list[listModules.SelectedIndex]).Configure();
+                ((IConfigurable_module)Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex]).Configure();
             }
         }
 

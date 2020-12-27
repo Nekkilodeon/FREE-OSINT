@@ -18,12 +18,17 @@ namespace FREE_OSINT
         private static readonly object padlock = new object();
         private Workspace workspace;
         private General_Config config;
-        List<IGeneral_module> module_list;
+        Dictionary<General_Config.Module_Type, List<IGeneral_module>> module_list;
 
         Main_Instance()
         {
             workspace = new Workspace();
             NodeDiagram = new NodeDiagram();
+            Module_list = new Dictionary<General_Config.Module_Type, List<IGeneral_module>>();
+            foreach (General_Config.Module_Type key in Enum.GetValues(typeof(General_Config.Module_Type)))
+            {
+                Module_list.Add(key, new List<IGeneral_module>());
+            }
             NodeDiagram.DiagramEvent += NodeDiagram_DiagramEvent;
             Config = new General_Config();
         }
@@ -57,7 +62,7 @@ namespace FREE_OSINT
                 if (diagramEventArgs.SelectedObjects.First().GetType().Equals(typeof(ConditionNode)))
                 {
                     ConditionNode node = (ConditionNode)diagramEventArgs.SelectedObjects.First();
-                    if (node.Container_color.Equals(Color.Red))
+                    if (node.Container_color.Equals(Color.Orange))
                     {
                         Target target = new Target(node.Text);
                         if (node.LinksTo.Count > 0)
@@ -157,8 +162,8 @@ namespace FREE_OSINT
                 if (prevNode == null)
                 {
                     node = new ConditionNode(nodeDiagram, Color.Orange, true) { Text = treeNode.Text };
-                    if(Main_Instance.Instance.Workspace.TreeViewPositions.ContainsKey(node.Text))
-                    node.Position = Main_Instance.Instance.Workspace.TreeViewPositions[node.Text];
+                    if (Main_Instance.Instance.Workspace.TreeViewPositions.ContainsKey(node.Text))
+                        node.Position = Main_Instance.Instance.Workspace.TreeViewPositions[node.Text];
                 }
 
                 foreach (TreeNode subnode in treeNode.Nodes)
@@ -218,7 +223,7 @@ namespace FREE_OSINT
         public Workspace Workspace { get => workspace; set => workspace = value; }
         public NodeDiagram NodeDiagram { get => nodeDiagram; set => nodeDiagram = value; }
         public General_Config Config { get => config; set => config = value; }
-        public List<IGeneral_module> Module_list { get => module_list; set => module_list = value; }
+        public Dictionary<General_Config.Module_Type, List<IGeneral_module>> Module_list { get => module_list; set => module_list = value; }
 
         public void sync_diagram_positions()
         {

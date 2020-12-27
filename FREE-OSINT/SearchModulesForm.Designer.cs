@@ -1,6 +1,6 @@
 ﻿namespace FREE_OSINT
 {
-    partial class ModulesForm
+    partial class SearchModulesForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ModulesForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SearchModulesForm));
             this.btnInteract = new System.Windows.Forms.Button();
             this.listModules = new System.Windows.Forms.CheckedListBox();
             this.btnSearchModules = new System.Windows.Forms.Button();

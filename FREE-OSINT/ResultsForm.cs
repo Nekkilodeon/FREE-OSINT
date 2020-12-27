@@ -30,7 +30,7 @@ namespace FREE_OSINT
             InitializeComponent();
         }
 
-        
+
 
         public ResultsForm(string file)
         {
@@ -292,7 +292,20 @@ namespace FREE_OSINT
 
         public void exportToXml(TreeView tv, string filename)
         {
-            sr = new StreamWriter(filename, false, System.Text.Encoding.UTF8);
+            String[] split = filename.Split('.');
+            string newFilename = "";
+            for (int i = 0; i < split.Length; i++)
+            {
+                if(i == split.Length - 1 && !split[i-1].Equals("result"))
+                {
+                    newFilename += "result." + split[i];
+                }
+                else
+                {
+                    newFilename += split[i] + ".";
+                }
+            }
+            sr = new StreamWriter(newFilename, false, System.Text.Encoding.UTF8);
             //Write the header
             sr.WriteLine("<?xml version=\"1.0\" encoding=\"utf-8\" ?>");
             //Write our root node
@@ -323,6 +336,7 @@ namespace FREE_OSINT
 
         private void populateTreeview()
         {
+            results = new List<TreeNode>();
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Title = "Open Results XML Document";
             dlg.Filter = "XML Files (*.xml)|*.xml";
@@ -426,6 +440,9 @@ namespace FREE_OSINT
                     mnu.MenuItems.Add(myMenuItem);
                     myMenuItem.Click += new EventHandler(myMenuItem_Click);
 
+                    MenuItem myMenuItem3 = new MenuItem("Open URL");
+                    myMenuItem3.Click += new EventHandler(myMenuItem_Click);
+                    mnu.MenuItems.Add(myMenuItem3);
 
                     (mnu.MenuItems[0] as MenuItem).MenuItems.Add("New Target");
                     (mnu.MenuItems[0] as MenuItem).MenuItems[0].Click += new EventHandler(myMenuItem_Click);
@@ -439,6 +456,7 @@ namespace FREE_OSINT
                     MenuItem myMenuItem2 = new MenuItem("Remove");
                     myMenuItem2.Click += new EventHandler(myMenuItem_Click);
                     mnu.MenuItems.Add(myMenuItem2);
+                    
                     mnu.Show(treeViewResults, e.Location);
                     selectedLocation = e.Location;
                 }
@@ -460,11 +478,21 @@ namespace FREE_OSINT
                 newTargetForm.ShowDialog();
                 if (newTargetForm.DialogResult == DialogResult.OK)
                 {
-                    if(newTargetForm.title != "")
+                    if (newTargetForm.title != "")
                     {
                         Main_Instance.Instance.Workspace.Targets.Add(new Target(newTargetForm.title, selectedNode));
                     }
                     //Main_Instance.Instance.Workspace.
+                }
+            }
+            else if (((MenuItem)sender).Text == "Open URL" && selectedNode != null)
+            {
+                if (selectedNode.Text.Contains("http:") || selectedNode.Text.Contains("https:"))
+                {
+                    //webBrowser1.Url = new Uri(selectedNode.Text);
+                    //txtURL.Text = selectedNode.Text;
+                    OpenUrl(selectedNode.Text);
+                    //MessageBox.Show(e.Node.Nodes.Count + "");
                 }
             }
             else

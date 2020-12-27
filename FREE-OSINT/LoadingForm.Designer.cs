@@ -47,11 +47,13 @@
             // 
             // txtCurrentModule
             // 
+            this.txtCurrentModule.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtCurrentModule.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtCurrentModule.Enabled = false;
-            this.txtCurrentModule.Location = new System.Drawing.Point(0, 428);
+            this.txtCurrentModule.Location = new System.Drawing.Point(0, 429);
+            this.txtCurrentModule.Multiline = true;
             this.txtCurrentModule.Name = "txtCurrentModule";
-            this.txtCurrentModule.Size = new System.Drawing.Size(800, 22);
+            this.txtCurrentModule.Size = new System.Drawing.Size(800, 21);
             this.txtCurrentModule.TabIndex = 1;
             this.txtCurrentModule.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 

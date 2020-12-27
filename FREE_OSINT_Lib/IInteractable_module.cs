@@ -7,6 +7,10 @@ namespace FREE_OSINT_Lib
 {
     public interface IInteractable_module
     {
-        void Interact(); 
+        event EventHandler InteractEvent;
+
+        void Interact();
+
+        
     }
 }

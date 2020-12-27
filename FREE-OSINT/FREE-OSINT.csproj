@@ -43,6 +43,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Nekkilodeon\FREE-OSINT_Node_Control\NodeControl\bin\Debug\NodeControl.dll</HintPath>
     </Reference>
+    <Reference Include="PdfSharp, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.Charting.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
@@ -79,11 +85,17 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Main_Instance.cs" />
-    <Compile Include="ModulesForm.cs">
+    <Compile Include="Report_Modules.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ModulesForm.Designer.cs">
-      <DependentUpon>ModulesForm.cs</DependentUpon>
+    <Compile Include="Report_Modules.Designer.cs">
+      <DependentUpon>Report_Modules.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SearchModulesForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SearchModulesForm.Designer.cs">
+      <DependentUpon>SearchModulesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,6 +117,12 @@
     <Compile Include="SearchingForm.Designer.cs">
       <DependentUpon>SearchingForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Select_Nodes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Select_Nodes.Designer.cs">
+      <DependentUpon>Select_Nodes.cs</DependentUpon>
+    </Compile>
     <Compile Include="SimpleInputForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -119,8 +137,11 @@
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ModulesForm.resx">
-      <DependentUpon>ModulesForm.cs</DependentUpon>
+    <EmbeddedResource Include="Report_Modules.resx">
+      <DependentUpon>Report_Modules.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SearchModulesForm.resx">
+      <DependentUpon>SearchModulesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -139,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SearchingForm.resx">
       <DependentUpon>SearchingForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Select_Nodes.resx">
+      <DependentUpon>Select_Nodes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SimpleInputForm.resx">
       <DependentUpon>SimpleInputForm.cs</DependentUpon>

@@ -15,6 +15,7 @@ namespace FREE_OSINT
     {
         public string title;
         private string url;
+        private HashSet<TreeNode> treeNodes;
 
         public SimpleInputForm()
         {
@@ -33,8 +34,20 @@ namespace FREE_OSINT
             this.cmbTargets.Visible = false;
             this.btnNewTarget.Visible = false;
         }
+        public SimpleInputForm(HashSet<TreeNode> treeNodes)
+        {
+            InitializeComponent();
+            populateCmbTargets();
+            this.Text = "Select Target";
+            this.txtTitle.Enabled = false;
+            this.txtDescription.Enabled = false;
+            this.labelURL.Enabled = false;
+            this.label3.Enabled = false;
+            this.btnNewTarget.Enabled = false;
+            this.treeNodes = treeNodes;
+        }
         public SimpleInputForm(string name, string url)
-        {            
+        {
             InitializeComponent();
             populateCmbTargets();
 
@@ -55,7 +68,14 @@ namespace FREE_OSINT
         {
             this.DialogResult = DialogResult.OK;
             this.title = txtTitle.Text;
-            if (txtDescription.Visible)
+            if (treeNodes != null)
+            {
+                foreach (TreeNode node in treeNodes)
+                {
+                    ((Target)cmbTargets.SelectedItem).TreeNodes.Add(node);
+                }
+            }
+            else if (txtDescription.Visible)
             {
                 TreeNode link = new TreeNode(url);
                 List<TreeNode> nodes = new List<TreeNode>();

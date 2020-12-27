@@ -12,6 +12,7 @@ namespace FREE_OSINT_Lib
         String description = "";
         Uri uri;
         ArrayList extras;
+        DateTime timestamp;
 
 
         public string From_module { get => from_module; set => from_module = value; }
@@ -19,5 +20,6 @@ namespace FREE_OSINT_Lib
         public string Description { get => description; set => description = value; }
         public Uri Uri { get => uri; set => uri = value; }
         public ArrayList Extras { get => extras; set => extras = value; }
+        public DateTime Timestamp { get => timestamp; set => timestamp = value; }
     }
 }

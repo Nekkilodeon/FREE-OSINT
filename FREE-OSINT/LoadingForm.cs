@@ -16,7 +16,7 @@ namespace FREE_OSINT
     {
         public LoadingForm()
         {
-            ThreadWithState tws = new ThreadWithState( this);
+            ThreadWithState tws = new ThreadWithState(this);
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.CenterToScreen();
@@ -28,7 +28,7 @@ namespace FREE_OSINT
         {
             MainForm mainForm = new MainForm();
             var dialogResult = mainForm.ShowDialog();
-            if(dialogResult == DialogResult.OK)
+            if (dialogResult == DialogResult.OK)
             {
                 Application.Exit();
             }
@@ -43,7 +43,6 @@ namespace FREE_OSINT
         {
             // State information used in the task.
             private LoadingForm loadingForm;
-            public EventHandler LoadingEvent;
 
             List<IGeneral_module> module_list;
             IEnumerable<IGeneral_module> modules;
@@ -68,23 +67,47 @@ namespace FREE_OSINT
                 string[] module_directories = System.IO.Directory.GetDirectories(General_Config.modules_directory);
                 for (int i = 0; i < module_directories.Length; i++)
                 {
-                    var moduleAssembly = System.Reflection.Assembly.LoadFrom(module_directories[i] + "/" + module_directories[i].Split('\\')[1] + ".exe");
-                    var moduleTypes = moduleAssembly.GetTypes().Where(t =>
-                       t.GetInterfaces().Contains(typeof(IGeneral_module)));
-                    modules = moduleTypes.Select(type =>
+                    try
                     {
-                        loadingForm.txtCurrentModule.Invoke((MethodInvoker)delegate {
-                            loadingForm.txtCurrentModule.Text = "Loading: " + type.FullName;
+
+                        var moduleAssembly = System.Reflection.Assembly.LoadFrom(module_directories[i] + "/" + module_directories[i].Split('\\')[1] + ".exe");
+                        var moduleTypes = moduleAssembly.GetTypes().Where(t =>
+                           t.GetInterfaces().Contains(typeof(IGeneral_module)));
+                        modules = moduleTypes.Select(type =>
+                        {
+                            loadingForm.txtCurrentModule.Invoke((MethodInvoker)delegate
+                            {
+                                loadingForm.txtCurrentModule.Text = " Loading: " + type.FullName;
+                            });
+                            return (IGeneral_module)Activator.CreateInstance(type);
                         });
-                        return (IGeneral_module)Activator.CreateInstance(type);
-                    });
-                    module_list.AddRange(this.modules.ToList());
+                        module_list.AddRange(this.modules.ToList());
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.Message);
+                    }
                 }
 
-                loadingForm.txtCurrentModule.Invoke((MethodInvoker)delegate {
+                loadingForm.txtCurrentModule.Invoke((MethodInvoker)delegate
+                {
                     loadingForm.txtCurrentModule.Text = "Done";
                 });
-                Main_Instance.Instance.Module_list = module_list;
+                foreach (IGeneral_module module in module_list)
+                {
+                    if (module.GetType().GetInterfaces().Contains(typeof(IInteractable_module)) || module.GetType().GetInterfaces().Contains(typeof(ISearchable_module)))
+                    {
+                        Main_Instance.Instance.Module_list[General_Config.Module_Type.Search].Add(module);
+                    }
+                    else if (module.GetType().GetInterfaces().Contains(typeof(IProcessing_Module)))
+                    {
+                        Main_Instance.Instance.Module_list[General_Config.Module_Type.Process].Add(module);
+                    }
+                    else if (module.GetType().GetInterfaces().Contains(typeof(IReport_module)))
+                    {
+                        Main_Instance.Instance.Module_list[General_Config.Module_Type.Report].Add(module);
+                    }
+                }
                 loadingForm.Invoke(new MethodInvoker(loadingForm.Hide));
                 loadingForm.Invoke(new MethodInvoker(loadingForm.LoadingDone));
 
