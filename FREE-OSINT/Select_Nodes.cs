@@ -40,7 +40,6 @@ namespace FREE_OSINT
         {
             this.DialogResult = DialogResult.OK;
             GetCheckedNodes(treeViewNodes.Nodes);
-            MessageBox.Show("Checked " + selected_nodes.Count);
         }
 
         public void GetCheckedNodes(TreeNodeCollection nodes)

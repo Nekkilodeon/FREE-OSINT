@@ -50,7 +50,6 @@
             this.listReportModules.TabIndex = 0;
             this.listReportModules.UseCompatibleStateImageBehavior = false;
             this.listReportModules.View = System.Windows.Forms.View.Details;
-            this.listReportModules.SelectedIndexChanged += new System.EventHandler(this.listReportModules_SelectedIndexChanged);
             // 
             // btnOk
             // 

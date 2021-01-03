@@ -60,6 +60,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.menuStripTargets = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.label4 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.workplace_panel.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -133,14 +134,14 @@
             // showToolStripMenuItem
             // 
             this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.showToolStripMenuItem.Text = "Modules";
             this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
             // 
             // showFolderToolStripMenuItem
             // 
             this.showFolderToolStripMenuItem.Name = "showFolderToolStripMenuItem";
-            this.showFolderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.showFolderToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.showFolderToolStripMenuItem.Text = "Show folder";
             this.showFolderToolStripMenuItem.Click += new System.EventHandler(this.showFolderToolStripMenuItem_Click);
             // 
@@ -173,21 +174,21 @@
             // modulesToolStripMenuItem1
             // 
             this.modulesToolStripMenuItem1.Name = "modulesToolStripMenuItem1";
-            this.modulesToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.modulesToolStripMenuItem1.Size = new System.Drawing.Size(174, 26);
             this.modulesToolStripMenuItem1.Text = "Modules";
             this.modulesToolStripMenuItem1.Click += new System.EventHandler(this.modulesToolStripMenuItem1_Click);
             // 
             // showFolderToolStripMenuItem1
             // 
             this.showFolderToolStripMenuItem1.Name = "showFolderToolStripMenuItem1";
-            this.showFolderToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.showFolderToolStripMenuItem1.Size = new System.Drawing.Size(174, 26);
             this.showFolderToolStripMenuItem1.Text = "Show Folder";
             this.showFolderToolStripMenuItem1.Click += new System.EventHandler(this.showFolderToolStripMenuItem1_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(174, 26);
             this.editToolStripMenuItem.Text = "Edit";
             // 
             // workplace_panel
@@ -217,6 +218,7 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Menu;
+            this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.btnSaveImage);
             this.panel2.Controls.Add(this.btnStraight);
             this.panel2.Controls.Add(this.btn4way);
@@ -237,7 +239,7 @@
             this.btnSaveImage.Name = "btnSaveImage";
             this.btnSaveImage.Size = new System.Drawing.Size(129, 31);
             this.btnSaveImage.TabIndex = 5;
-            this.btnSaveImage.Text = "Image";
+            this.btnSaveImage.Text = "Horizontal";
             this.btnSaveImage.UseVisualStyleBackColor = true;
             this.btnSaveImage.Click += new System.EventHandler(this.btnSaveImage_Click);
             // 
@@ -283,11 +285,11 @@
             // btnAutoLayout
             // 
             this.btnAutoLayout.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnAutoLayout.Location = new System.Drawing.Point(655, 8);
+            this.btnAutoLayout.Location = new System.Drawing.Point(692, 8);
             this.btnAutoLayout.Name = "btnAutoLayout";
-            this.btnAutoLayout.Size = new System.Drawing.Size(169, 31);
+            this.btnAutoLayout.Size = new System.Drawing.Size(132, 31);
             this.btnAutoLayout.TabIndex = 0;
-            this.btnAutoLayout.Text = "Auto Layout";
+            this.btnAutoLayout.Text = "Vertical";
             this.btnAutoLayout.UseVisualStyleBackColor = true;
             this.btnAutoLayout.Click += new System.EventHandler(this.btnAutoLayout_Click);
             // 
@@ -365,6 +367,15 @@
             this.menuStripTargets.Name = "menuStripTargets";
             this.menuStripTargets.Size = new System.Drawing.Size(61, 4);
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(615, 15);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(70, 17);
+            this.label4.TabIndex = 6;
+            this.label4.Text = "Alignment";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -422,6 +433,7 @@
         private System.Windows.Forms.ToolStripMenuItem modulesToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem showFolderToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.Label label4;
     }
 }
 

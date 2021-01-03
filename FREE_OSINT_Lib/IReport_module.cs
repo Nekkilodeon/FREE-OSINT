@@ -8,6 +8,6 @@ namespace FREE_OSINT_Lib
 {
     public interface IReport_module
     {
-        public PdfDocument GenerateDocument(object infoToPdf);
+        public PdfDocument GenerateDocument(object toReport);
     }
 }

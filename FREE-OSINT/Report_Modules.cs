@@ -14,7 +14,6 @@ namespace FREE_OSINT
     public partial class Report_Modules : Form
     {
         public IGeneral_module selected_module;
-        private string selected_module_str;
 
         public Report_Modules()
         {
@@ -26,7 +25,7 @@ namespace FREE_OSINT
         private void btnOk_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-            selected_module = Main_Instance.Instance.Module_list[General_Config.Module_Type.Report].Find(x => x.Title().Equals(selected_module_str));
+            selected_module = Main_Instance.Instance.Module_list[General_Config.Module_Type.Report].Find(x => x.Title().Equals(listReportModules.Items[listReportModules.SelectedIndices[0]].Text));
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -68,9 +67,5 @@ namespace FREE_OSINT
             }
         }
 
-        private void listReportModules_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            selected_module_str = listReportModules.SelectedItems[0].Text;
-        }
     }
 }

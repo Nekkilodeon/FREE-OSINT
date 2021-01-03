@@ -43,7 +43,6 @@ namespace FREE_OSINT
             this.txtDescription.Enabled = false;
             this.labelURL.Enabled = false;
             this.label3.Enabled = false;
-            this.btnNewTarget.Enabled = false;
             this.treeNodes = treeNodes;
         }
         public SimpleInputForm(string name, string url)

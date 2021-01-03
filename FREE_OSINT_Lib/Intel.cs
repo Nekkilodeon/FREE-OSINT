@@ -21,5 +21,22 @@ namespace FREE_OSINT_Lib
         public Uri Uri { get => uri; set => uri = value; }
         public ArrayList Extras { get => extras; set => extras = value; }
         public DateTime Timestamp { get => timestamp; set => timestamp = value; }
+        
+        public void Fix_Characters()
+        {
+            if(title != null && title.Contains("\n"))
+            {
+                title.Replace(System.Environment.NewLine, "");
+            }
+            if (Description != null && Description.Contains("\n"))
+            {
+                String backup = Description;
+                Description = "";
+                foreach(String value in backup.Split('\n'))
+                {
+                    Description += value;
+                }
+            }
+        }
     }
 }
