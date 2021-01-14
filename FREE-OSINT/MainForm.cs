@@ -22,7 +22,6 @@ namespace FREE_OSINT
         private StreamWriter sr;
         private TreeNode selectedNode;
         private Point selectedLocation;
-        private bool autolayout = true;
 
         private void treeView1_ItemDrag(object sender, ItemDragEventArgs e)
         {
@@ -312,7 +311,7 @@ namespace FREE_OSINT
             Main_Instance.Instance.sync_diagram_positions();
             labelWorkspaceName.Text = Main_Instance.Instance.Workspace.Title;
             Main_Instance.Instance.drawTreeNodes();
-            treeViewTargets.ExpandAll();
+            //treeViewTargets.ExpandAll();
 
         }
 
@@ -581,6 +580,17 @@ namespace FREE_OSINT
         private void showFolderToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             Process.Start("explorer.exe", General_Config.modules_directory);
+        }
+
+        private void btnColapse_Click(object sender, EventArgs e)
+        {
+            treeViewTargets.CollapseAll();
+        }
+
+        private void btnExpand_Click(object sender, EventArgs e)
+        {
+            treeViewTargets.ExpandAll();
+
         }
     }
 }

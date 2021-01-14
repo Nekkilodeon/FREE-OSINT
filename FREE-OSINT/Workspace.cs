@@ -1,4 +1,5 @@
-﻿using NodeControl.Nodes;
+﻿using FREE_OSINT;
+using NodeControl.Nodes;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -21,7 +22,7 @@ namespace FREE_OSINT_Lib
             TargetTreeView = new TreeView();
             TreeViewPositions = new Dictionary<String, Point>();
             Title = "Untitled";
-           
+
         }
 
 
@@ -119,9 +120,20 @@ namespace FREE_OSINT_Lib
                 {
                     foreach (TreeNode subchild in child.Nodes)
                     {
-                        subchild.BackColor = Color.Aqua;
+                        fill_subnode_colors(subchild, 0);
                     }
+                }
+            }
+        }
 
+        private void fill_subnode_colors(TreeNode subchild, int level)
+        {
+            subchild.BackColor = General_Config.SubNodes[level];
+            foreach (TreeNode node in subchild.Nodes)
+            {
+                if (node.Nodes.Count > 0)
+                {
+                    fill_subnode_colors(node, level + 1);
                 }
             }
         }
@@ -157,12 +169,12 @@ namespace FREE_OSINT_Lib
             {
                 return node;
             }
-            if(node.Nodes.Count > 0)
+            if (node.Nodes.Count > 0)
             {
-                foreach(TreeNode subnode in node.Nodes)
+                foreach (TreeNode subnode in node.Nodes)
                 {
                     TreeNode sub = recursive_find_node(subnode, text);
-                    if(sub != null)
+                    if (sub != null)
                     {
                         return sub;
                     }

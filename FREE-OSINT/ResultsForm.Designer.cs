@@ -58,6 +58,7 @@
             this.treeViewResults.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeViewResults.Location = new System.Drawing.Point(0, 65);
             this.treeViewResults.Name = "treeViewResults";
+            this.treeViewResults.ShowPlusMinus = false;
             this.treeViewResults.Size = new System.Drawing.Size(342, 668);
             this.treeViewResults.TabIndex = 0;
             this.treeViewResults.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewResults_AfterSelect);

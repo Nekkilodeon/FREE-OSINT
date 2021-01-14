@@ -28,6 +28,7 @@ namespace FREE_OSINT
         public ResultsForm()
         {
             InitializeComponent();
+            DesignTreeView();
         }
 
 
@@ -38,10 +39,18 @@ namespace FREE_OSINT
             InitializeComponent();
             this.btnBrowser.Image = (Image)(new Bitmap(btnBrowser.Image, new Size(15, 15)));
             populateTreeview();
+            DesignTreeView();
+
             if (this.DialogResult == DialogResult.Cancel)
             {
                 this.Close();
             }
+
+        }
+
+        private void DesignTreeView()
+        {
+
         }
 
         /*
