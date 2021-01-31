@@ -9,7 +9,7 @@ namespace FREE_OSINT_Lib
     {
         event EventHandler InteractEvent;
 
-        void Interact();
+        void Interact(string query);
 
         
     }

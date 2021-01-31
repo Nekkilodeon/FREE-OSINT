@@ -55,6 +55,7 @@
             this.listModules.Name = "listModules";
             this.listModules.Size = new System.Drawing.Size(373, 412);
             this.listModules.TabIndex = 2;
+            this.listModules.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.listModulesItemChecked);
             this.listModules.SelectedIndexChanged += new System.EventHandler(this.listModules_SelectedIndexChanged);
             // 
             // btnSearchModules
@@ -83,7 +84,7 @@
             this.btnConfigure.UseVisualStyleBackColor = true;
             this.btnConfigure.Click += new System.EventHandler(this.btnConfigure_Click);
             // 
-            // ModulesForm
+            // SearchModulesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -92,7 +93,7 @@
             this.Controls.Add(this.btnSearchModules);
             this.Controls.Add(this.listModules);
             this.Controls.Add(this.btnInteract);
-            this.Name = "ModulesForm";
+            this.Name = "SearchModulesForm";
             this.Text = "Modules";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.closingForm);
             this.Load += new System.EventHandler(this.ModulesForm_Load);

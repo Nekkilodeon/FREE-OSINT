@@ -13,10 +13,18 @@ namespace FREE_OSINT
 {
     public partial class SearchModulesForm : Form
     {
+        private string premade_query;
+
         public SearchModulesForm()
         {
             InitializeComponent();
             loadModules();
+        }
+        public SearchModulesForm(string query)
+        {
+            InitializeComponent();
+            loadModules();
+            this.premade_query = query;
         }
 
         private void loadModules()
@@ -41,9 +49,9 @@ namespace FREE_OSINT
                 btnInteract.Enabled = Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex].GetType().GetInterfaces().Contains(typeof(IInteractable_module));
                 btnConfigure.Enabled = Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex].GetType().GetInterfaces().Contains(typeof(IConfigurable_module));
                 btnInteract.Text = "     Interact with " + listModules.Items[listModules.SelectedIndex];
-                btnSearchModules.Text = "     Search using " + listModules.CheckedIndices.Count + " modules";
             }
         }
+
 
         private void btnInteract_Click(object sender, EventArgs e)
         {
@@ -51,7 +59,7 @@ namespace FREE_OSINT
             {
                 try
                 {
-                    ((IInteractable_module)Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex]).Interact();
+                    ((IInteractable_module)Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex]).Interact(premade_query != null ? premade_query : "");
                     ((IInteractable_module)Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex]).InteractEvent += InteractEventTriggered;
                 }
                 catch (ObjectDisposedException ex)
@@ -100,13 +108,20 @@ namespace FREE_OSINT
             List<ISearchable_module> searchables = new List<ISearchable_module>();
             foreach (string module in listModules.CheckedItems)
             {
-                if (Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.Items.IndexOf(module)].GetType().GetInterfaces().Contains(typeof(IInteractable_module)))
+                if (Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.Items.IndexOf(module)].GetType().GetInterfaces().Contains(typeof(ISearchable_module)))
                 {
                     searchables.Add((ISearchable_module)Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.Items.IndexOf(module)]);
                 }
             }
-
-            Query_InsertForm query_InsertForm = new Query_InsertForm(searchables);
+            Query_InsertForm query_InsertForm;
+            if (premade_query != null)
+            {
+                query_InsertForm = new Query_InsertForm(searchables, premade_query);
+            }
+            else
+            {
+                query_InsertForm = new Query_InsertForm(searchables);
+            }
             query_InsertForm.ShowDialog();
             var result = query_InsertForm.DialogResult;
             if (result == DialogResult.OK)
@@ -150,6 +165,20 @@ namespace FREE_OSINT
         private void closingForm(object sender, FormClosingEventArgs e)
         {
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void listModulesItemChecked(object sender, ItemCheckEventArgs e)
+        {
+            int value = 0;
+            if (e.NewValue == CheckState.Checked)
+            {
+                value = 1;
+            }
+            else if (e.NewValue == CheckState.Unchecked)
+            {
+                value = -1;
+            }
+            btnSearchModules.Text = "     Search using " + (((CheckedListBox)sender).CheckedItems.Count + value) + " modules";
         }
     }
 }

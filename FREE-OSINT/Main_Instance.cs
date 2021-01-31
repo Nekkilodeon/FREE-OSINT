@@ -45,6 +45,18 @@ namespace FREE_OSINT
                     Workspace.TreeViewPositions[conditionNode.Text] = conditionNode.Position;
                 }
             }
+            else if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.COMPOSE)
+            {
+                //COMPOSE
+                List<TreeNode> selectedNodes = new List<TreeNode>();
+                foreach (INodeObject node in diagramEventArgs.SelectedObjects)
+                {
+                    TreeNode selected_node = (TreeNode)Workspace.find_node(((ConditionNode)node).Text);
+                    selectedNodes.Add(selected_node);
+                    //Workspace.find_remove(((ConditionNode)node).Text);
+                }
+                compose_funcion(selectedNodes);
+            }
             else if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.REMOVE)
             {
                 foreach (INodeObject node in diagramEventArgs.SelectedObjects)
@@ -135,6 +147,120 @@ namespace FREE_OSINT
             }
 
 
+        }
+
+
+        public void compose_funcion(List<TreeNode> selectedNodes)
+        {
+
+            List<String> to_query = new List<string>();
+            List<TreeNode> targets = new List<TreeNode>();
+
+            DialogResult dialogResult = MessageBox.Show("Use intermediary nodes", "", MessageBoxButtons.YesNo);
+            if (dialogResult == DialogResult.Yes)
+            {
+                string query = "";
+                foreach (TreeNode treeNode in selectedNodes)
+                {
+                    TreeNode parent = treeNode;
+                    if (treeNode.Nodes.Count > 0)
+                    {
+                        foreach (TreeNode node in treeNode.Nodes)
+                        {
+                            to_query.Add(node.Text);
+                            query += node.Text + " ";
+                        }
+                    }
+                    do
+                    {
+                        if (!targets.Contains(parent))
+                        {
+                            query += parent.Text + " ";
+                            to_query.Add(parent.Text);
+                        }
+                        
+                        if (parent.Parent == null && !targets.Contains(parent))
+                        {
+                            targets.Add(parent);
+                        }
+                        parent = parent.Parent;
+                    } while (parent != null);
+                }
+                dialogResult = MessageBox.Show("Query generated " + query + ", do you wish to edit?", "", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //EDIT QUERY
+                    QueryConstructorForm queryConstructorForm = new QueryConstructorForm(to_query, targets);
+                    var result = queryConstructorForm.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        //SEND TO MODULE
+                        query = queryConstructorForm.final_query;
+                        SearchModulesForm searchModulesForm = new SearchModulesForm(query);
+                        searchModulesForm.ShowDialog();
+                    }
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //SEND QUERY TO MODULE
+                    SearchModulesForm searchModulesForm = new SearchModulesForm(query);
+                    searchModulesForm.ShowDialog();
+                }
+            }
+            else if (dialogResult == DialogResult.No)
+            {
+                string query = "";
+                foreach (TreeNode treeNode in selectedNodes)
+                {
+
+                    if (treeNode.Nodes.Count > 0)
+                    {
+                        foreach (TreeNode node in treeNode.Nodes)
+                        {
+                            to_query.Add(node.Text);
+                            query += node.Text + " ";
+                        }
+                    }
+                    else
+                    {
+                        query += treeNode.Text + " ";
+                        to_query.Add(treeNode.Text);
+                    }
+
+                    TreeNode parent = treeNode;
+                    do
+                    {
+                        if (parent.Parent == null && !targets.Contains(parent))
+                        {
+                            to_query.Add(parent.Text);
+                            query += parent.Text + " ";
+                            targets.Add(parent);
+                        }
+                        parent = parent.Parent;
+                    } while (parent != null);
+                }
+                dialogResult = MessageBox.Show("Query generated " + query + ", do you wish to edit?", "", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //EDIT QUERY
+                    QueryConstructorForm queryConstructorForm = new QueryConstructorForm(to_query, targets);
+                    var result = queryConstructorForm.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        //SEND TO MODULE
+                        query = queryConstructorForm.final_query;
+                        SearchModulesForm searchModulesForm = new SearchModulesForm(query);
+                        searchModulesForm.ShowDialog();
+                    }
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //SEND QUERY TO MODULE
+                    SearchModulesForm searchModulesForm = new SearchModulesForm(query);
+                    searchModulesForm.ShowDialog();
+
+                }
+            }
         }
 
         public void drawTreeNodes()

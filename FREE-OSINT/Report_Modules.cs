@@ -11,21 +11,23 @@ using FREE_OSINT_Lib;
 
 namespace FREE_OSINT
 {
-    public partial class Report_Modules : Form
+    public partial class Show_Modules : Form
     {
         public IGeneral_module selected_module;
+        private General_Config.Module_Type module_type;
 
-        public Report_Modules()
+        public Show_Modules(General_Config.Module_Type type)
         {
-            var module = Main_Instance.Instance.Module_list;
             InitializeComponent();
+            this.module_type = type;
             populateList(null);
+            this.Title.Text = type.ToString();
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-            selected_module = Main_Instance.Instance.Module_list[General_Config.Module_Type.Report].Find(x => x.Title().Equals(listReportModules.Items[listReportModules.SelectedIndices[0]].Text));
+            selected_module = Main_Instance.Instance.Module_list[module_type].Find(x => x.Title().Equals(listReportModules.Items[listReportModules.SelectedIndices[0]].Text));
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -50,14 +52,14 @@ namespace FREE_OSINT
             listReportModules.Items.Clear();
             if (text == null)
             {
-                foreach (IGeneral_module module in Main_Instance.Instance.Module_list[General_Config.Module_Type.Report])
+                foreach (IGeneral_module module in Main_Instance.Instance.Module_list[module_type])
                 {
                     listReportModules.Items.Add(module.Title());
                 }
             }
             else
             {
-                foreach (IGeneral_module module in Main_Instance.Instance.Module_list[General_Config.Module_Type.Report])
+                foreach (IGeneral_module module in Main_Instance.Instance.Module_list[module_type])
                 {
                     if (module.Title().ToLower().Contains(text.ToLower()))
                     {

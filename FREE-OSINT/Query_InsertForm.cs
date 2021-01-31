@@ -27,11 +27,19 @@ namespace FREE_OSINT
             InitializeComponent();
             populateListView();
         }
+        public Query_InsertForm(List<ISearchable_module> modules, string premade_query)
+        {
+            this.modules = modules;
+            InitializeComponent();
+            this.txtQuery.Text = premade_query;
+            populateListView();
+        }
 
         private void populateListView()
         {
             listViewModules.Columns.Add("Title", 250, HorizontalAlignment.Left);
-            foreach (ISearchable_module module in modules) {
+            foreach (ISearchable_module module in modules)
+            {
                 listViewModules.Items.Add(((IGeneral_module)module).Title());
             }
         }
@@ -39,8 +47,6 @@ namespace FREE_OSINT
         private void btnSearch_Click(object sender, EventArgs e)
         {
             query = txtQuery.Text;
-            extras = new List<object>();
-            extras.Add(Int16.Parse(txtLimitResults.Value + ""));
             this.DialogResult = DialogResult.OK;
             this.Close();
         }

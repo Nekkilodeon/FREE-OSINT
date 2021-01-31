@@ -305,7 +305,7 @@ namespace FREE_OSINT
             string newFilename = "";
             for (int i = 0; i < split.Length; i++)
             {
-                if(i == split.Length - 1 && !split[i-1].Equals("result"))
+                if (i == split.Length - 1 && !split[i - 1].Equals("result"))
                 {
                     newFilename += "result." + split[i];
                 }
@@ -452,6 +452,9 @@ namespace FREE_OSINT
                     MenuItem myMenuItem3 = new MenuItem("Open URL");
                     myMenuItem3.Click += new EventHandler(myMenuItem_Click);
                     mnu.MenuItems.Add(myMenuItem3);
+                    MenuItem myMenuItem4 = new MenuItem("Process Module");
+                    myMenuItem4.Click += new EventHandler(myMenuItem_Click);
+                    mnu.MenuItems.Add(myMenuItem4);
 
                     (mnu.MenuItems[0] as MenuItem).MenuItems.Add("New Target");
                     (mnu.MenuItems[0] as MenuItem).MenuItems[0].Click += new EventHandler(myMenuItem_Click);
@@ -465,7 +468,7 @@ namespace FREE_OSINT
                     MenuItem myMenuItem2 = new MenuItem("Remove");
                     myMenuItem2.Click += new EventHandler(myMenuItem_Click);
                     mnu.MenuItems.Add(myMenuItem2);
-                    
+
                     mnu.Show(treeViewResults, e.Location);
                     selectedLocation = e.Location;
                 }
@@ -492,6 +495,20 @@ namespace FREE_OSINT
                         Main_Instance.Instance.Workspace.Targets.Add(new Target(newTargetForm.title, selectedNode));
                     }
                     //Main_Instance.Instance.Workspace.
+                }
+            }
+            else if (((MenuItem)sender).Text == "Process Module" && selectedNode != null)
+            {
+                Show_Modules process_Modules = new Show_Modules(General_Config.Module_Type.Process);
+                var result = process_Modules.ShowDialog();
+                if (result == DialogResult.OK)
+                {
+                    IProcessing_Module process_Module = (IProcessing_Module)process_Modules.selected_module;
+                    treeViewResults.Nodes.Add(process_Module.Process(selectedNode));
+                }
+                else
+                {
+                    process_Modules.Hide();
                 }
             }
             else if (((MenuItem)sender).Text == "Open URL" && selectedNode != null)

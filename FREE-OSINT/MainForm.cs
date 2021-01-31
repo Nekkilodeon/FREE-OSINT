@@ -142,7 +142,7 @@ namespace FREE_OSINT
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
@@ -457,10 +457,13 @@ namespace FREE_OSINT
                 selectedNode = e.Node;
                 if (selectedNode != null)
                 {
-
                     ContextMenu mnu = new ContextMenu();
                     MenuItem myMenuItem2 = new MenuItem("Remove");
                     myMenuItem2.Click += new EventHandler(myMenuItem_Click);
+                    mnu.MenuItems.Add(myMenuItem2);
+                    MenuItem myMenuItem3 = new MenuItem("Compose Query");
+                    myMenuItem3.Click += new EventHandler(myMenuItem_Click);
+                    mnu.MenuItems.Add(myMenuItem3);
                     mnu.MenuItems.Add(myMenuItem2);
                     mnu.Show(treeViewTargets, e.Location);
                     selectedLocation = e.Location;
@@ -476,25 +479,20 @@ namespace FREE_OSINT
                 Main_Instance.Instance.Workspace.reloadTargetsFromTreeView();
                 reloadWorkspace();
             }
-            else if (((MenuItem)sender).Text == "New Target" && selectedNode != null)
+            else if (((MenuItem)sender).Text == "Compose Query" && selectedNode != null)
             {
-                SimpleInputForm newTargetForm = new SimpleInputForm("New Target");
-                newTargetForm.Location = selectedLocation;
-                newTargetForm.ShowDialog();
-                if (newTargetForm.DialogResult == DialogResult.OK)
-                {
-                    if (newTargetForm.title != "")
-                    {
-                        Main_Instance.Instance.Workspace.Targets.Add(new Target(newTargetForm.title, selectedNode));
-                    }
-                    //Main_Instance.Instance.Workspace.
-                }
+                List<TreeNode> selectedNodes = new List<TreeNode>();
+                selectedNodes.Add(selectedNode);
+                Main_Instance.Instance.compose_funcion(selectedNodes);
             }
             else
             {
-                Main_Instance.Instance.Workspace.findTarget(((MenuItem)sender).Text).TreeNodes.Add(selectedNode);
+                //Main_Instance.Instance.Workspace.findTarget(((MenuItem)sender).Text).TreeNodes.Add(selectedNode);
             }
         }
+
+        
+
         public class TreeSyncronizer
         {
             static public void SyncTreeNodes(TreeNodeCollection source, TreeNodeCollection target)
@@ -545,6 +543,11 @@ namespace FREE_OSINT
             if (dialogResult == DialogResult.Yes)
             {
                 this.DialogResult = DialogResult.OK;
+                for (int x = 0; x < Application.OpenForms.Count; x++)
+                {
+                    if (Application.OpenForms[x] != this)
+                        Application.OpenForms[x].Close();
+                }
                 return;
             }
             else if (dialogResult == DialogResult.No)
@@ -555,7 +558,7 @@ namespace FREE_OSINT
 
         private void modulesToolStripMenuItem1_Click(object sender, EventArgs e)
         {
-            Report_Modules report_Modules = new Report_Modules();
+            Show_Modules report_Modules = new Show_Modules(General_Config.Module_Type.Report);
             var result = report_Modules.ShowDialog();
             if (result == DialogResult.OK)
             {

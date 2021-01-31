@@ -1,6 +1,6 @@
 ﻿namespace FREE_OSINT
 {
-    partial class Report_Modules
+    partial class Show_Modules
     {
         /// <summary>
         /// Required designer variable.
@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.listReportModules = new System.Windows.Forms.ListView();
+            this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.txtSearch = new System.Windows.Forms.TextBox();
-            this.Title = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // listReportModules
@@ -50,6 +50,11 @@
             this.listReportModules.TabIndex = 0;
             this.listReportModules.UseCompatibleStateImageBehavior = false;
             this.listReportModules.View = System.Windows.Forms.View.Details;
+            // 
+            // Title
+            // 
+            this.Title.Text = "Modules";
+            this.Title.Width = 500;
             // 
             // btnOk
             // 
@@ -79,12 +84,7 @@
             this.txtSearch.TabIndex = 3;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
-            // Title
-            // 
-            this.Title.Text = "Modules";
-            this.Title.Width = 500;
-            // 
-            // Report_Modules
+            // Show_Modules
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -93,8 +93,8 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.listReportModules);
-            this.Name = "Report_Modules";
-            this.Text = "Report_Modules";
+            this.Name = "Show_Modules";
+            this.Text = "Select Module";
             this.ResumeLayout(false);
             this.PerformLayout();
 
