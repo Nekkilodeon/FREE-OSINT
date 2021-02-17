@@ -60,7 +60,8 @@ namespace FREE_OSINT
 
         private void OnBrowserAddressChanged(object sender, AddressChangedEventArgs e)
         {
-            txtURL.Invoke((MethodInvoker)delegate {
+            txtURL.Invoke((MethodInvoker)delegate
+            {
                 // Running on the UI thread
                 txtURL.Text = e.Address;
 
@@ -182,7 +183,8 @@ namespace FREE_OSINT
 
         private void SetIsLoading(bool v)
         {
-            btnReload.Invoke((MethodInvoker)delegate {
+            btnReload.Invoke((MethodInvoker)delegate
+            {
                 // Running on the UI thread
                 btnReload.Enabled = v;
 
@@ -191,7 +193,8 @@ namespace FREE_OSINT
 
         private void SetCanGoForward(bool canGoForward)
         {
-            btnForward.Invoke((MethodInvoker)delegate {
+            btnForward.Invoke((MethodInvoker)delegate
+            {
                 // Running on the UI thread
                 btnForward.Enabled = canGoForward;
 
@@ -200,7 +203,8 @@ namespace FREE_OSINT
 
         private void SetCanGoBack(bool canGoBack)
         {
-            btnBack.Invoke((MethodInvoker)delegate {
+            btnBack.Invoke((MethodInvoker)delegate
+            {
                 // Running on the UI thread
                 btnBack.Enabled = canGoBack;
 
@@ -209,7 +213,8 @@ namespace FREE_OSINT
 
         private void OnBrowserTitleChanged(object sender, TitleChangedEventArgs e)
         {
-            labelURLTitle.Invoke((MethodInvoker)delegate {
+            labelURLTitle.Invoke((MethodInvoker)delegate
+            {
                 // Running on the UI thread
                 labelURLTitle.Text = e.Title;
 
@@ -237,25 +242,50 @@ namespace FREE_OSINT
                 {
                     result.Treenode.BackColor = Color.LightSlateGray;
                     result.Treenode.ForeColor = Color.White;
-                    if(result.Treenode.Nodes.Count > 0)
-                    foreach (TreeNode treeNode in result.Treenode.Nodes)
-                    {
-                        paintSubNodes(treeNode);
+                    if (result.Treenode.Nodes.Count > 0)
+                        foreach (TreeNode treeNode in result.Treenode.Nodes)
+                        {
+                            paintSubNodes(treeNode);
 
-                    }
+                        }
+                    if(result.Treenode.Nodes.Count > 0)
                     treeViewResults.Nodes.Add(result.Treenode);
-                    count += treeViewResults.GetNodeCount(true);
                 }
+                if (result.Intels != null && result.Intels.Count > 0)
+                {
+                    List<TreeNode> treeNodes = parseIntels(result.Intels);
+                    TreeNode node = new TreeNode(result.Title, treeNodes.ToArray());
+                    paintSubNodes(node);
+                    treeViewResults.Nodes.Add(node);
+
+                }
+                count += treeViewResults.GetNodeCount(true);
             }
             labelNodeCount.Text = "Total nodes: " + count;
         }
 
+        private List<TreeNode> parseIntels(List<Intel> intels)
+        {
+            List<TreeNode> nodes = new List<TreeNode>();
+            foreach (Intel intel in intels)
+            {
+                List<TreeNode> sub = new List<TreeNode>();
+                sub.Add(new TreeNode(intel.Description));
+                sub.Add(new TreeNode(intel.Uri.ToString()));
+                sub.Add(new TreeNode(intel.Timestamp.ToString()));
+                TreeNode node = new TreeNode(intel.Title, sub.ToArray());
+                nodes.Add(node);
+            }
+
+            return nodes;
+        }
+
         private void paintSubNodes(TreeNode treenode)
         {
-            if(treenode.Nodes.Count > 0)
+            if (treenode.Nodes.Count > 0)
             {
                 treenode.BackColor = Color.LightGray;
-                foreach(TreeNode node in treenode.Nodes)
+                foreach (TreeNode node in treenode.Nodes)
                 {
                     paintSubNodes(node);
                 }
@@ -658,13 +688,14 @@ namespace FREE_OSINT
         }
         private void formClosing(object sender, FormClosingEventArgs e)
         {
-            if(e.CloseReason == CloseReason.UserClosing)
+            if (e.CloseReason == CloseReason.UserClosing)
             {
                 Workspace workspace = Main_Instance.Instance.Workspace;
                 this.DialogResult = DialogResult.OK;
                 Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
                 this.treeViewResults.Nodes.Clear();
-            }else if (e.CloseReason == CloseReason.None)
+            }
+            else if (e.CloseReason == CloseReason.None)
             {
                 e.Cancel = true;
             }

@@ -53,10 +53,10 @@
             this.btnBack = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
             this.labelURLTitle = new System.Windows.Forms.Label();
             this.panelBrowser = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -65,8 +65,8 @@
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
-            this.panel7.SuspendLayout();
             this.panel8.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeViewResults
@@ -329,6 +329,24 @@
             this.panel4.Size = new System.Drawing.Size(1236, 28);
             this.panel4.TabIndex = 12;
             // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.txtURL);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(57, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1179, 28);
+            this.panel8.TabIndex = 8;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.label2);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(57, 28);
+            this.panel7.TabIndex = 7;
+            // 
             // labelURLTitle
             // 
             this.labelURLTitle.AutoSize = true;
@@ -345,24 +363,6 @@
             this.panelBrowser.Name = "panelBrowser";
             this.panelBrowser.Size = new System.Drawing.Size(1238, 635);
             this.panelBrowser.TabIndex = 12;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.label2);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel7.Location = new System.Drawing.Point(0, 0);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(57, 28);
-            this.panel7.TabIndex = 7;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.txtURL);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(57, 0);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1179, 28);
-            this.panel8.TabIndex = 8;
             // 
             // ResultsForm
             // 
@@ -392,10 +392,10 @@
             this.panel2.PerformLayout();
             this.panel5.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
