@@ -97,7 +97,7 @@
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.treeViewNodes);
             this.Name = "Select_Nodes";
-            this.Text = "Select_Nodes";
+            this.Text = "Select Nodes";
             this.ResumeLayout(false);
 
         }

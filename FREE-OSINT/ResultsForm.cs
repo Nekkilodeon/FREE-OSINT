@@ -1,4 +1,6 @@
-﻿using FREE_OSINT_Lib;
+﻿using CefSharp;
+using CefSharp.WinForms;
+using FREE_OSINT_Lib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +26,7 @@ namespace FREE_OSINT
         public List<TreeNode> results;
         private TreeNode selectedNode;
         private Point selectedLocation;
+        private ChromiumWebBrowser browser;
 
         public ResultsForm()
         {
@@ -40,12 +43,29 @@ namespace FREE_OSINT
             this.btnBrowser.Image = (Image)(new Bitmap(btnBrowser.Image, new Size(15, 15)));
             populateTreeview();
             DesignTreeView();
+            browser = new ChromiumWebBrowser("");
+            browser.Dock = DockStyle.Fill;
+            panelBrowser.Controls.Add(browser);
+            browser.LoadingStateChanged += OnLoadingStateChanged;
+            browser.ConsoleMessage += OnBrowserConsoleMessage;
+            browser.StatusMessage += OnBrowserStatusMessage;
+            browser.TitleChanged += OnBrowserTitleChanged;
+            browser.AddressChanged += OnBrowserAddressChanged;
 
             if (this.DialogResult == DialogResult.Cancel)
             {
                 this.Close();
             }
+        }
 
+        private void OnBrowserAddressChanged(object sender, AddressChangedEventArgs e)
+        {
+            txtURL.Invoke((MethodInvoker)delegate {
+                // Running on the UI thread
+                txtURL.Text = e.Address;
+
+            });
+            //throw new NotImplementedException();
         }
 
         private void DesignTreeView()
@@ -144,18 +164,83 @@ namespace FREE_OSINT
         {
             InitializeComponent();
             populateTreeView(searchResults);
+
+            browser = new ChromiumWebBrowser("");
+            panelBrowser.Controls.Add(browser);
+            browser.LoadingStateChanged += OnLoadingStateChanged;
+            browser.ConsoleMessage += OnBrowserConsoleMessage;
+            browser.StatusMessage += OnBrowserStatusMessage;
+            browser.TitleChanged += OnBrowserTitleChanged;
+            browser.AddressChanged += OnBrowserAddressChanged;
         }
+        private void OnLoadingStateChanged(object sender, LoadingStateChangedEventArgs args)
+        {
+            SetCanGoBack(args.CanGoBack);
+            SetCanGoForward(args.CanGoForward);
+            SetIsLoading(args.CanReload);
+        }
+
+        private void SetIsLoading(bool v)
+        {
+            btnReload.Invoke((MethodInvoker)delegate {
+                // Running on the UI thread
+                btnReload.Enabled = v;
+
+            });
+        }
+
+        private void SetCanGoForward(bool canGoForward)
+        {
+            btnForward.Invoke((MethodInvoker)delegate {
+                // Running on the UI thread
+                btnForward.Enabled = canGoForward;
+
+            });
+        }
+
+        private void SetCanGoBack(bool canGoBack)
+        {
+            btnBack.Invoke((MethodInvoker)delegate {
+                // Running on the UI thread
+                btnBack.Enabled = canGoBack;
+
+            });
+        }
+
+        private void OnBrowserTitleChanged(object sender, TitleChangedEventArgs e)
+        {
+            labelURLTitle.Invoke((MethodInvoker)delegate {
+                // Running on the UI thread
+                labelURLTitle.Text = e.Title;
+
+            });
+            //txtURL.Text = e.Title;
+        }
+
+        private void OnBrowserStatusMessage(object sender, StatusMessageEventArgs e)
+        {
+            //throw new NotImplementedException();
+        }
+
+        private void OnBrowserConsoleMessage(object sender, ConsoleMessageEventArgs e)
+        {
+            //throw new NotImplementedException();
+        }
+
 
         private void populateTreeView(List<SearchResult> searchResults)
         {
+            int count = 0;
             foreach (SearchResult result in searchResults)
             {
                 if (result.Treenode != null)
                 {
+                    result.Treenode.BackColor = Color.Orange;
                     treeViewResults.Nodes.Add(result.Treenode);
+                    count += treeViewResults.GetNodeCount(true);
                 }
             }
-            labelNodeCount.Text = "Total nodes: " + treeViewResults.GetNodeCount(true);
+            labelNodeCount.Text = "Total nodes: " + count;
         }
 
         private void btnBrowser_Click(object sender, EventArgs e)
@@ -205,7 +290,7 @@ namespace FREE_OSINT
             {
                 if (e.Node.Text.Contains("http:") || e.Node.Text.Contains("https:"))
                 {
-                    webBrowser1.Url = new Uri(e.Node.Text);
+                    browser.Load(e.Node.Text);
                     txtURL.Text = e.Node.Text;
                     //MessageBox.Show(e.Node.Nodes.Count + "");
                 }
@@ -348,7 +433,7 @@ namespace FREE_OSINT
             results = new List<TreeNode>();
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Title = "Open Results XML Document";
-            dlg.Filter = "XML Files (*.xml)|*.xml";
+            dlg.Filter = "XML Files (*.xml)|*result.xml";
             dlg.FileName = Application.StartupPath + "\\..\\..\\example.xml";
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -364,7 +449,10 @@ namespace FREE_OSINT
                     //Now, clear out the treeview, 
                     //and add the first (root) node
                     treeViewResults.Nodes.Clear();
-                    treeViewResults.Nodes.Add(new TreeNode(HttpUtility.HtmlDecode(xDoc.DocumentElement.GetAttribute("value"))));
+                    TreeNode result = new TreeNode(HttpUtility.HtmlDecode(xDoc.DocumentElement.GetAttribute("value")));
+                    result.BackColor = Color.LightSlateGray;
+                    result.ForeColor = Color.White;
+                    treeViewResults.Nodes.Add(result);
                     TreeNode tNode = new TreeNode();
                     tNode = (TreeNode)treeViewResults.Nodes[0];
                     //We make a call to addTreeNode, 
@@ -401,6 +489,7 @@ namespace FREE_OSINT
             XmlNodeList xNodeList;
             if (xmlNode.HasChildNodes) //The current node has children
             {
+
                 xNodeList = xmlNode.ChildNodes;
                 for (int x = 0; x <= xNodeList.Count - 1; x++)
                 //Loop through the child nodes
@@ -408,11 +497,15 @@ namespace FREE_OSINT
                     xNode = xmlNode.ChildNodes[x];
                     treeNode.Nodes.Add(new TreeNode(HttpUtility.HtmlDecode(xNode.Attributes[0].Value)));
                     tNode = treeNode.Nodes[x];
+                    tNode.BackColor = Color.LightGray;
                     addTreeNode(xNode, tNode);
                 }
             }
             else //No children, so add the outer xml (trimming off whitespace)
+            {
                 treeNode.Text = HttpUtility.HtmlDecode(xmlNode.Attributes[0].Value);
+                treeNode.BackColor = Color.White;
+            }
         }
 
         private void Form_KeyDown(object sender, KeyEventArgs e)
@@ -534,13 +627,13 @@ namespace FREE_OSINT
 
         private void button1_Click(object sender, EventArgs e)
         {
-            if (webBrowser1.Document.Title == null)
+            if (browser.Text == null)
             {
                 MessageBox.Show("Invalid URL");
             }
             else
             {
-                SimpleInputForm newTargetForm = new SimpleInputForm(webBrowser1.Document.Title, webBrowser1.Url.ToString());
+                SimpleInputForm newTargetForm = new SimpleInputForm(labelURLTitle.Text, txtURL.Text /*webBrowser1.Document.Title, webBrowser1.Url.ToString()*/);
                 newTargetForm.Location = selectedLocation;
                 newTargetForm.ShowDialog();
                 if (newTargetForm.DialogResult == DialogResult.OK)
@@ -566,6 +659,25 @@ namespace FREE_OSINT
             this.DialogResult = DialogResult.OK;
             Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
             this.treeViewResults.Nodes.Clear();
+        }
+
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            browser.Back();
+        }
+
+        private void btnReload_Click(object sender, EventArgs e)
+        {
+            browser.Reload();
+        }
+
+        private void btnForward_Click(object sender, EventArgs e)
+        {
+            browser.Forward();
+        }
+
+        private void panelBrowser_Paint(object sender, PaintEventArgs e)
+        {
         }
     }
 

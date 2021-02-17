@@ -49,6 +49,7 @@ namespace FREE_OSINT
                 btnInteract.Enabled = Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex].GetType().GetInterfaces().Contains(typeof(IInteractable_module));
                 btnConfigure.Enabled = Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex].GetType().GetInterfaces().Contains(typeof(IConfigurable_module));
                 btnInteract.Text = "     Interact with " + listModules.Items[listModules.SelectedIndex];
+                txtDescription.Text = Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex].Description();
             }
         }
 

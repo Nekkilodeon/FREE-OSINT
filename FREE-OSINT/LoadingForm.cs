@@ -69,7 +69,6 @@ namespace FREE_OSINT
                 {
                     try
                     {
-
                         var moduleAssembly = System.Reflection.Assembly.LoadFrom(module_directories[i] + "/" + module_directories[i].Split('\\')[1] + ".exe");
                         var moduleTypes = moduleAssembly.GetTypes().Where(t =>
                            t.GetInterfaces().Contains(typeof(IGeneral_module)));
@@ -118,7 +117,10 @@ namespace FREE_OSINT
             }
         }
 
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
 
+        }
     }
 }
 

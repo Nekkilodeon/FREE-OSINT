@@ -47,7 +47,7 @@ namespace FREE_OSINT
                 {
                     var list_item = new ListViewItem(new[] { ((IGeneral_module)module).Title(), "", ""});
                     listViewModules.Items.Add(list_item);
-                } 
+                }
             }
         }
 
@@ -144,11 +144,9 @@ namespace FREE_OSINT
                 {
                     searchingForm.btnDone.Enabled = true;
                 });
-
                     //Console.WriteLine(boilerplate, numberValue);
                 }
         }
-
         private void log(string v)
         {
             this.txtLog.AppendText(v);

@@ -11,6 +11,5 @@ namespace FREE_OSINT_Lib
 
         void Interact(string query);
 
-        
     }
 }

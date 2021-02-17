@@ -10,6 +10,5 @@ namespace FREE_OSINT_Lib
 
         String Description();
 
-
     }
 }

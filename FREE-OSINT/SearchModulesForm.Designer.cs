@@ -33,6 +33,8 @@
             this.listModules = new System.Windows.Forms.CheckedListBox();
             this.btnSearchModules = new System.Windows.Forms.Button();
             this.btnConfigure = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtDescription = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btnInteract
@@ -84,11 +86,34 @@
             this.btnConfigure.UseVisualStyleBackColor = true;
             this.btnConfigure.Click += new System.EventHandler(this.btnConfigure_Click);
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(393, 120);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 17);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Description";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.BackColor = System.Drawing.SystemColors.Menu;
+            this.txtDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtDescription.Location = new System.Drawing.Point(396, 141);
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtDescription.Size = new System.Drawing.Size(391, 235);
+            this.txtDescription.TabIndex = 6;
+            // 
             // SearchModulesForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.txtDescription);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnConfigure);
             this.Controls.Add(this.btnSearchModules);
             this.Controls.Add(this.listModules);
@@ -98,6 +123,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.closingForm);
             this.Load += new System.EventHandler(this.ModulesForm_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -107,5 +133,7 @@
         private System.Windows.Forms.CheckedListBox listModules;
         private System.Windows.Forms.Button btnSearchModules;
         private System.Windows.Forms.Button btnConfigure;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtDescription;
     }
 }

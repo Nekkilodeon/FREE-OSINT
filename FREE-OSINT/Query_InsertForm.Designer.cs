@@ -108,7 +108,7 @@
             this.Controls.Add(this.txtQuery);
             this.Controls.Add(this.label1);
             this.Name = "Query_InsertForm";
-            this.Text = "Query_InsertForm";
+            this.Text = "Insert Query";
             this.ResumeLayout(false);
             this.PerformLayout();
 

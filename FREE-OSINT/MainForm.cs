@@ -1,4 +1,5 @@
-﻿using FREE_OSINT_Lib;
+﻿using CefSharp;
+using FREE_OSINT_Lib;
 using NodeControl;
 using NodeControl.Nodes;
 using System;
@@ -236,7 +237,7 @@ namespace FREE_OSINT
             //OPEN WORKPLACE FILE
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Title = "Open Workspace XML Document";
-            dlg.Filter = "XML Files (*.xml)|*.xml";
+            dlg.Filter = "XML Files (*.workspace.xml)|*.workspace.xml";
             dlg.FileName = Application.StartupPath + "\\..\\..\\example.xml";
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -376,6 +377,11 @@ namespace FREE_OSINT
             if (resultsForm.DialogResult == DialogResult.OK)
             {
                 reloadWorkspace();
+                Main_Instance.Instance.NodeDiagram.AutoLayout(false);
+                foreach (ConditionNode conditionNode in Main_Instance.Instance.NodeDiagram.Nodes)
+                {
+                    Main_Instance.Instance.Workspace.TreeViewPositions[conditionNode.Text] = conditionNode.Position;
+                }
             }
             //resultsForm.ShowDialog();
         }
@@ -534,12 +540,13 @@ namespace FREE_OSINT
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            Cef.EnableHighDPISupport();
 
         }
 
         private void closingForm(object sender, FormClosingEventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure?", "", MessageBoxButtons.YesNo);
+            DialogResult dialogResult = MessageBox.Show("Are you sure?", "Exit", MessageBoxButtons.YesNo);
             if (dialogResult == DialogResult.Yes)
             {
                 this.DialogResult = DialogResult.OK;

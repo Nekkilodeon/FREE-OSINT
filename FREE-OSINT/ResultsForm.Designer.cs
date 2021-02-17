@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ResultsForm));
             this.treeViewResults = new System.Windows.Forms.TreeView();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.actionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,42 +42,43 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnSendToGraph = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.labelNodeCount = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.labelNodeCount = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnForward = new System.Windows.Forms.Button();
+            this.btnReload = new System.Windows.Forms.Button();
+            this.btnBack = new System.Windows.Forms.Button();
+            this.labelURLTitle = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.panelBrowser = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeViewResults
             // 
-            this.treeViewResults.Anchor = System.Windows.Forms.AnchorStyles.Top;
             this.treeViewResults.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.treeViewResults.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewResults.Font = new System.Drawing.Font("Microsoft Tai Le", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.treeViewResults.Location = new System.Drawing.Point(-1, 104);
-            this.treeViewResults.MaximumSize = new System.Drawing.Size(342, 1000);
+            this.treeViewResults.FullRowSelect = true;
+            this.treeViewResults.Location = new System.Drawing.Point(0, 0);
             this.treeViewResults.Name = "treeViewResults";
+            this.treeViewResults.ShowLines = false;
             this.treeViewResults.ShowPlusMinus = false;
-            this.treeViewResults.Size = new System.Drawing.Size(342, 709);
+            this.treeViewResults.Size = new System.Drawing.Size(342, 634);
             this.treeViewResults.TabIndex = 0;
             this.treeViewResults.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewResults_AfterSelect);
             this.treeViewResults.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.mouseClick);
-            // 
-            // webBrowser1
-            // 
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(0, 30);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
-            this.webBrowser1.Name = "webBrowser1";
-            this.webBrowser1.Size = new System.Drawing.Size(1582, 823);
-            this.webBrowser1.TabIndex = 1;
-            this.webBrowser1.Url = new System.Uri("", System.UriKind.Relative);
-            this.webBrowser1.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.webBrowser1_DocumentCompleted);
             // 
             // menuStrip1
             // 
@@ -87,7 +87,7 @@
             this.actionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1582, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1582, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -103,14 +103,14 @@
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // loadToolStripMenuItem
             // 
             this.loadToolStripMenuItem.Name = "loadToolStripMenuItem";
-            this.loadToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.loadToolStripMenuItem.Size = new System.Drawing.Size(125, 26);
             this.loadToolStripMenuItem.Text = "Load";
             this.loadToolStripMenuItem.Click += new System.EventHandler(this.loadToolStripMenuItem_Click);
             // 
@@ -128,9 +128,9 @@
             // 
             this.btnBrowser.Image = ((System.Drawing.Image)(resources.GetObject("btnBrowser.Image")));
             this.btnBrowser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBrowser.Location = new System.Drawing.Point(5, 3);
+            this.btnBrowser.Location = new System.Drawing.Point(3, 3);
             this.btnBrowser.Name = "btnBrowser";
-            this.btnBrowser.Size = new System.Drawing.Size(159, 50);
+            this.btnBrowser.Size = new System.Drawing.Size(159, 34);
             this.btnBrowser.TabIndex = 4;
             this.btnBrowser.Text = "Browser";
             this.btnBrowser.UseVisualStyleBackColor = true;
@@ -138,19 +138,21 @@
             // 
             // txtURL
             // 
-            this.txtURL.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtURL.Location = new System.Drawing.Point(0, 76);
+            this.txtURL.Dock = System.Windows.Forms.DockStyle.Right;
+            this.txtURL.Location = new System.Drawing.Point(57, 0);
             this.txtURL.Name = "txtURL";
             this.txtURL.ReadOnly = true;
-            this.txtURL.Size = new System.Drawing.Size(1236, 22);
+            this.txtURL.Size = new System.Drawing.Size(1179, 22);
             this.txtURL.TabIndex = 5;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 56);
+            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(9, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 17);
+            this.label2.Size = new System.Drawing.Size(48, 20);
             this.label2.TabIndex = 6;
             this.label2.Text = "URL:";
             // 
@@ -187,59 +189,13 @@
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.panel6);
             this.panel1.Controls.Add(this.panel3);
-            this.panel1.Controls.Add(this.treeViewResults);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 30);
+            this.panel1.Location = new System.Drawing.Point(0, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(344, 733);
+            this.panel1.Size = new System.Drawing.Size(344, 735);
             this.panel1.TabIndex = 10;
-            // 
-            // labelNodeCount
-            // 
-            this.labelNodeCount.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.labelNodeCount.AutoSize = true;
-            this.labelNodeCount.Location = new System.Drawing.Point(4, 78);
-            this.labelNodeCount.Name = "labelNodeCount";
-            this.labelNodeCount.Size = new System.Drawing.Size(91, 17);
-            this.labelNodeCount.TabIndex = 4;
-            this.labelNodeCount.Text = "Total nodes: ";
-            // 
-            // panel2
-            // 
-            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.button1);
-            this.panel2.Controls.Add(this.btnBrowser);
-            this.panel2.Controls.Add(this.txtURL);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(344, 30);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1238, 100);
-            this.panel2.TabIndex = 11;
-            // 
-            // button1
-            // 
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(170, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(148, 50);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "From URL";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(152, 70);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
             // 
             // panel3
             // 
@@ -252,17 +208,150 @@
             this.panel3.Size = new System.Drawing.Size(342, 99);
             this.panel3.TabIndex = 6;
             // 
+            // labelNodeCount
+            // 
+            this.labelNodeCount.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.labelNodeCount.AutoSize = true;
+            this.labelNodeCount.Location = new System.Drawing.Point(4, 78);
+            this.labelNodeCount.Name = "labelNodeCount";
+            this.labelNodeCount.Size = new System.Drawing.Size(91, 17);
+            this.labelNodeCount.TabIndex = 4;
+            this.labelNodeCount.Text = "Total nodes: ";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(152, 70);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.panel5);
+            this.panel2.Controls.Add(this.panel4);
+            this.panel2.Controls.Add(this.labelURLTitle);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(344, 28);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(1238, 100);
+            this.panel2.TabIndex = 11;
+            // 
+            // btnForward
+            // 
+            this.btnForward.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnForward.Image = ((System.Drawing.Image)(resources.GetObject("btnForward.Image")));
+            this.btnForward.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnForward.Location = new System.Drawing.Point(1085, 3);
+            this.btnForward.Name = "btnForward";
+            this.btnForward.Size = new System.Drawing.Size(148, 34);
+            this.btnForward.TabIndex = 11;
+            this.btnForward.Text = "Forward";
+            this.btnForward.UseVisualStyleBackColor = true;
+            this.btnForward.Click += new System.EventHandler(this.btnForward_Click);
+            // 
+            // btnReload
+            // 
+            this.btnReload.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
+            this.btnReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReload.Location = new System.Drawing.Point(934, 3);
+            this.btnReload.Name = "btnReload";
+            this.btnReload.Size = new System.Drawing.Size(148, 34);
+            this.btnReload.TabIndex = 10;
+            this.btnReload.Text = "Reload";
+            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
+            // 
+            // btnBack
+            // 
+            this.btnBack.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
+            this.btnBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBack.Location = new System.Drawing.Point(780, 3);
+            this.btnBack.Name = "btnBack";
+            this.btnBack.Size = new System.Drawing.Size(148, 34);
+            this.btnBack.TabIndex = 9;
+            this.btnBack.Text = "Back";
+            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
+            // 
+            // labelURLTitle
+            // 
+            this.labelURLTitle.AutoSize = true;
+            this.labelURLTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelURLTitle.Location = new System.Drawing.Point(6, 44);
+            this.labelURLTitle.Name = "labelURLTitle";
+            this.labelURLTitle.Size = new System.Drawing.Size(0, 20);
+            this.labelURLTitle.TabIndex = 8;
+            // 
+            // button1
+            // 
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(168, 3);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(148, 34);
+            this.button1.TabIndex = 7;
+            this.button1.Text = "From URL";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // panelBrowser
+            // 
+            this.panelBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelBrowser.Location = new System.Drawing.Point(344, 128);
+            this.panelBrowser.Name = "panelBrowser";
+            this.panelBrowser.Size = new System.Drawing.Size(1238, 635);
+            this.panelBrowser.TabIndex = 12;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.label2);
+            this.panel4.Controls.Add(this.txtURL);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 70);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1236, 28);
+            this.panel4.TabIndex = 12;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.btnForward);
+            this.panel5.Controls.Add(this.btnReload);
+            this.panel5.Controls.Add(this.btnBack);
+            this.panel5.Controls.Add(this.btnBrowser);
+            this.panel5.Controls.Add(this.button1);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1236, 41);
+            this.panel5.TabIndex = 13;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.treeViewResults);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(0, 99);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(342, 634);
+            this.panel6.TabIndex = 7;
+            // 
             // ResultsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1582, 853);
+            this.Controls.Add(this.panelBrowser);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnSendToGraph);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtLogs);
-            this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "ResultsForm";
@@ -272,11 +361,15 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -285,7 +378,6 @@
         #endregion
 
         private System.Windows.Forms.TreeView treeViewResults;
-        private System.Windows.Forms.WebBrowser webBrowser1;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem actionsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
@@ -303,5 +395,13 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Label labelURLTitle;
+        private System.Windows.Forms.Button btnBack;
+        private System.Windows.Forms.Button btnReload;
+        private System.Windows.Forms.Button btnForward;
+        private System.Windows.Forms.Panel panelBrowser;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel6;
     }
 }

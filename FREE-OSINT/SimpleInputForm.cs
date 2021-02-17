@@ -83,6 +83,7 @@ namespace FREE_OSINT
                 {
                     nodes.Add(new TreeNode(txtDescription.Text));
                 }
+                nodes.Add(new TreeNode(DateTime.Now.ToString()));
                 TreeNode node = new TreeNode(title, nodes.ToArray());
                 try
                 {
