@@ -42,27 +42,31 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnSendToGraph = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.labelNodeCount = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
             this.btnForward = new System.Windows.Forms.Button();
             this.btnReload = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            this.labelURLTitle = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
-            this.panelBrowser = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
+            this.labelURLTitle = new System.Windows.Forms.Label();
+            this.panelBrowser = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.menuStrip1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel2.SuspendLayout();
-            this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
-            this.panel6.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
             this.SuspendLayout();
             // 
             // treeViewResults
@@ -138,8 +142,9 @@
             // 
             // txtURL
             // 
-            this.txtURL.Dock = System.Windows.Forms.DockStyle.Right;
-            this.txtURL.Location = new System.Drawing.Point(57, 0);
+            this.txtURL.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtURL.Location = new System.Drawing.Point(0, 0);
+            this.txtURL.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.txtURL.Name = "txtURL";
             this.txtURL.ReadOnly = true;
             this.txtURL.Size = new System.Drawing.Size(1179, 22);
@@ -147,12 +152,12 @@
             // 
             // label2
             // 
+            this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(9, 0);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(0, 3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 20);
+            this.label2.Size = new System.Drawing.Size(40, 17);
             this.label2.TabIndex = 6;
             this.label2.Text = "URL:";
             // 
@@ -196,6 +201,15 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(344, 735);
             this.panel1.TabIndex = 10;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.treeViewResults);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel6.Location = new System.Drawing.Point(0, 99);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(342, 634);
+            this.panel6.TabIndex = 7;
             // 
             // panel3
             // 
@@ -241,6 +255,19 @@
             this.panel2.Size = new System.Drawing.Size(1238, 100);
             this.panel2.TabIndex = 11;
             // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.btnForward);
+            this.panel5.Controls.Add(this.btnReload);
+            this.panel5.Controls.Add(this.btnBack);
+            this.panel5.Controls.Add(this.btnBrowser);
+            this.panel5.Controls.Add(this.button1);
+            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel5.Location = new System.Drawing.Point(0, 0);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(1236, 41);
+            this.panel5.TabIndex = 13;
+            // 
             // btnForward
             // 
             this.btnForward.Anchor = System.Windows.Forms.AnchorStyles.Right;
@@ -280,15 +307,6 @@
             this.btnBack.UseVisualStyleBackColor = true;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
-            // labelURLTitle
-            // 
-            this.labelURLTitle.AutoSize = true;
-            this.labelURLTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelURLTitle.Location = new System.Drawing.Point(6, 44);
-            this.labelURLTitle.Name = "labelURLTitle";
-            this.labelURLTitle.Size = new System.Drawing.Size(0, 20);
-            this.labelURLTitle.TabIndex = 8;
-            // 
             // button1
             // 
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
@@ -301,6 +319,25 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.panel8);
+            this.panel4.Controls.Add(this.panel7);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 70);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1236, 28);
+            this.panel4.TabIndex = 12;
+            // 
+            // labelURLTitle
+            // 
+            this.labelURLTitle.AutoSize = true;
+            this.labelURLTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelURLTitle.Location = new System.Drawing.Point(6, 44);
+            this.labelURLTitle.Name = "labelURLTitle";
+            this.labelURLTitle.Size = new System.Drawing.Size(0, 20);
+            this.labelURLTitle.TabIndex = 8;
+            // 
             // panelBrowser
             // 
             this.panelBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -309,37 +346,23 @@
             this.panelBrowser.Size = new System.Drawing.Size(1238, 635);
             this.panelBrowser.TabIndex = 12;
             // 
-            // panel4
+            // panel7
             // 
-            this.panel4.Controls.Add(this.label2);
-            this.panel4.Controls.Add(this.txtURL);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 70);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1236, 28);
-            this.panel4.TabIndex = 12;
+            this.panel7.Controls.Add(this.label2);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel7.Location = new System.Drawing.Point(0, 0);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(57, 28);
+            this.panel7.TabIndex = 7;
             // 
-            // panel5
+            // panel8
             // 
-            this.panel5.Controls.Add(this.btnForward);
-            this.panel5.Controls.Add(this.btnReload);
-            this.panel5.Controls.Add(this.btnBack);
-            this.panel5.Controls.Add(this.btnBrowser);
-            this.panel5.Controls.Add(this.button1);
-            this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(0, 0);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1236, 41);
-            this.panel5.TabIndex = 13;
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.treeViewResults);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel6.Location = new System.Drawing.Point(0, 99);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(342, 634);
-            this.panel6.TabIndex = 7;
+            this.panel8.Controls.Add(this.txtURL);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel8.Location = new System.Drawing.Point(57, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1179, 28);
+            this.panel8.TabIndex = 8;
             // 
             // ResultsForm
             // 
@@ -361,15 +384,18 @@
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel6.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.panel5.ResumeLayout(false);
-            this.panel6.ResumeLayout(false);
+            this.panel4.ResumeLayout(false);
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -403,5 +429,7 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.Panel panel7;
     }
 }

@@ -54,7 +54,7 @@ namespace FREE_OSINT
 
             if (this.DialogResult == DialogResult.Cancel)
             {
-                this.Close();
+                //this.Close();
             }
         }
 
@@ -235,12 +235,31 @@ namespace FREE_OSINT
             {
                 if (result.Treenode != null)
                 {
-                    result.Treenode.BackColor = Color.Orange;
+                    result.Treenode.BackColor = Color.LightSlateGray;
+                    result.Treenode.ForeColor = Color.White;
+                    if(result.Treenode.Nodes.Count > 0)
+                    foreach (TreeNode treeNode in result.Treenode.Nodes)
+                    {
+                        paintSubNodes(treeNode);
+
+                    }
                     treeViewResults.Nodes.Add(result.Treenode);
                     count += treeViewResults.GetNodeCount(true);
                 }
             }
             labelNodeCount.Text = "Total nodes: " + count;
+        }
+
+        private void paintSubNodes(TreeNode treenode)
+        {
+            if(treenode.Nodes.Count > 0)
+            {
+                treenode.BackColor = Color.LightGray;
+                foreach(TreeNode node in treenode.Nodes)
+                {
+                    paintSubNodes(node);
+                }
+            }
         }
 
         private void btnBrowser_Click(object sender, EventArgs e)
@@ -358,23 +377,6 @@ namespace FREE_OSINT
         private void loadToolStripMenuItem_Click(object sender, EventArgs e)
         {
             populateTreeview();
-            /*
-
-            using (OpenFileDialog openFileDialog = new OpenFileDialog())
-            {
-                openFileDialog.InitialDirectory = "c:\\";
-                openFileDialog.Filter = "txt files (*.txt)|*.txt|All files (*.*)|*.*";
-                openFileDialog.FilterIndex = 2;
-                openFileDialog.RestoreDirectory = true;
-
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    //Get the path of specified file
-                    filePath = openFileDialog.FileName;
-
-                }
-            }
-            */
         }
         /// <summary>
         /// 
@@ -465,11 +467,12 @@ namespace FREE_OSINT
                 catch (XmlException xExc)
                 //Exception is thrown is there is an error in the Xml
                 {
-                    MessageBox.Show(xExc.Message);
+                    //MessageBox.Show();
+                    txtLogs.AppendText(xExc.Message);
                 }
                 catch (Exception ex) //General exception
                 {
-                    MessageBox.Show(ex.Message);
+                    txtLogs.AppendText(ex.Message);
                 }
                 finally
                 {
@@ -478,7 +481,7 @@ namespace FREE_OSINT
             }
             else
             {
-                this.DialogResult = DialogResult.Cancel;
+                //this.DialogResult = DialogResult.Cancel;
             }
         }
         //This function is called recursively until all nodes are loaded
@@ -655,10 +658,16 @@ namespace FREE_OSINT
         }
         private void formClosing(object sender, FormClosingEventArgs e)
         {
-            Workspace workspace = Main_Instance.Instance.Workspace;
-            this.DialogResult = DialogResult.OK;
-            Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
-            this.treeViewResults.Nodes.Clear();
+            if(e.CloseReason == CloseReason.UserClosing)
+            {
+                Workspace workspace = Main_Instance.Instance.Workspace;
+                this.DialogResult = DialogResult.OK;
+                Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
+                this.treeViewResults.Nodes.Clear();
+            }else if (e.CloseReason == CloseReason.None)
+            {
+                e.Cancel = true;
+            }
         }
 
         private void btnBack_Click(object sender, EventArgs e)
