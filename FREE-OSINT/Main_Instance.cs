@@ -62,6 +62,7 @@ namespace FREE_OSINT
                 foreach (INodeObject node in diagramEventArgs.SelectedObjects)
                 {
                     TreeNode selected_node = (TreeNode)Workspace.find_node(((ConditionNode)node).Text);
+                    if(selected_node != null)
                     Workspace.TargetTreeView.Nodes.Remove(selected_node);
                     //Workspace.find_remove(((ConditionNode)node).Text);
 

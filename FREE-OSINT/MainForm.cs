@@ -76,7 +76,12 @@ namespace FREE_OSINT
             {
                 // If it is a move operation, remove the node from its current 
                 // location and add it to the node at the drop location.
-                if (e.Effect == DragDropEffects.Move)
+                if (targetNode == null)
+                {
+                    draggedNode.Remove();
+                    ((TreeView)sender).Nodes.Add(draggedNode);
+                }
+                else if (e.Effect == DragDropEffects.Move)
                 {
                     draggedNode.Remove();
                     targetNode.Nodes.Add(draggedNode);
@@ -90,7 +95,8 @@ namespace FREE_OSINT
                 }
                 // Expand the node at the location 
                 // to show the dropped node.
-                targetNode.Expand();
+                if (targetNode != null)
+                    targetNode.Expand();
             }
             Main_Instance.Instance.Workspace.reloadTargetsFromTreeView();
             reloadWorkspace();
@@ -101,7 +107,7 @@ namespace FREE_OSINT
         private bool ContainsNode(TreeNode node1, TreeNode node2)
         {
             // Check the parent node of the second node.
-            if (node2.Parent == null) return false;
+            if (node2 == null || node2.Parent == null) return false;
             if (node2.Parent.Equals(node1)) return true;
 
             // If the parent node is not null or equal to the first node, 
@@ -499,7 +505,7 @@ namespace FREE_OSINT
             }
         }
 
-        
+
 
         public class TreeSyncronizer
         {
@@ -537,13 +543,30 @@ namespace FREE_OSINT
 
         private void treeViewTargets_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            List<Node> selected = new List<Node>();
+            Node node = Main_Instance.Instance.NodeDiagram.Nodes.Where(x => x.Text.Equals(e.Node.Text)).FirstOrDefault();
+            selected.Add(node);
+            selected = iterate_parents(node, selected);
 
+            Main_Instance.Instance.NodeDiagram.SelectedObjects.Clear();
+            Main_Instance.Instance.NodeDiagram.SelectedObjects.UnionWith(selected);
+            Main_Instance.Instance.NodeDiagram.Redraw();
+        }
+
+        private List<Node> iterate_parents(Node node, List<Node> selected)
+        {
+            if (node != null && node.ParentNodes.Count > 0)
+            {
+                selected.Add(node.ParentNodes.FirstOrDefault());
+                selected = iterate_parents(node.ParentNodes.FirstOrDefault(), selected);
+            }
+            return selected;
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
         }
-        
+
         private void closingForm(object sender, FormClosingEventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure?", "Exit", MessageBoxButtons.YesNo);
