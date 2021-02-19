@@ -23,6 +23,7 @@ namespace FREE_OSINT
         private StreamWriter sr;
         private TreeNode selectedNode;
         private Point selectedLocation;
+        private Size Base_Box_Size;
 
         private void treeView1_ItemDrag(object sender, ItemDragEventArgs e)
         {
@@ -114,6 +115,7 @@ namespace FREE_OSINT
             InitializeComponent();
             Main_Instance.Instance.NodeDiagram.Dock = DockStyle.Fill;
             Main_Instance.Instance.Workspace.TargetTreeView = treeViewTargets;
+            Base_Box_Size = Main_Instance.Instance.NodeDiagram.NodeSize;
             panelDrawWorkspace.Controls.Add(Main_Instance.Instance.NodeDiagram);
             treeViewTargets.ItemDrag += new ItemDragEventHandler(treeView1_ItemDrag);
             treeViewTargets.DragEnter += new DragEventHandler(treeView1_DragEnter);
@@ -540,10 +542,8 @@ namespace FREE_OSINT
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            Cef.EnableHighDPISupport();
-
         }
-
+        
         private void closingForm(object sender, FormClosingEventArgs e)
         {
             DialogResult dialogResult = MessageBox.Show("Are you sure?", "Exit", MessageBoxButtons.YesNo);
@@ -601,6 +601,53 @@ namespace FREE_OSINT
         {
             treeViewTargets.ExpandAll();
 
+        }
+
+        private void btnHDPIEnable_Click(object sender, EventArgs e)
+        {
+            Cef.EnableHighDPISupport();
+        }
+
+        private void btnSelectFont_Click(object sender, EventArgs e)
+        {
+            FontDialog fontDialog1 = new FontDialog();
+            fontDialog1.ShowColor = true;
+
+            fontDialog1.Font = Main_Instance.Instance.NodeDiagram.Font;
+            //fontDialog1.Color = Main_Instance.Instance.NodeDiagram.Font.ForeColor;
+
+            if (fontDialog1.ShowDialog() != DialogResult.Cancel)
+            {
+                Main_Instance.Instance.NodeDiagram.Font = fontDialog1.Font;
+                Main_Instance.Instance.NodeDiagram.Redraw();
+                //textBox1.ForeColor = fontDialog1.Color;
+            }
+        }
+
+        private void slideWidth_Scroll(object sender, EventArgs e)
+        {
+            Size size = Main_Instance.Instance.NodeDiagram.NodeSize;
+            size.Width = Base_Box_Size.Width + ((TrackBar)sender).Value;
+            Main_Instance.Instance.NodeDiagram.NodeSize = size;
+            Main_Instance.Instance.NodeDiagram.Redraw();
+
+
+        }
+
+        private void slideHeight_Scroll(object sender, EventArgs e)
+        {
+            Size size = Main_Instance.Instance.NodeDiagram.NodeSize;
+            size.Height = Base_Box_Size.Height + ((TrackBar)sender).Value;
+            Main_Instance.Instance.NodeDiagram.NodeSize = size;
+            Main_Instance.Instance.NodeDiagram.Redraw();
+        }
+
+        private void btnResetBoxes_Click(object sender, EventArgs e)
+        {
+            Main_Instance.Instance.NodeDiagram.NodeSize = Base_Box_Size;
+            Main_Instance.Instance.NodeDiagram.Redraw();
+            slideHeight.Value = 0;
+            slideWidth.Value = 0;
         }
     }
 }

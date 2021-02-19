@@ -248,14 +248,21 @@ namespace FREE_OSINT
                             paintSubNodes(treeNode);
 
                         }
-                    if(result.Treenode.Nodes.Count > 0)
-                    treeViewResults.Nodes.Add(result.Treenode);
+                    if (result.Treenode.Nodes.Count > 0)
+                        treeViewResults.Nodes.Add(result.Treenode);
                 }
                 if (result.Intels != null && result.Intels.Count > 0)
                 {
                     List<TreeNode> treeNodes = parseIntels(result.Intels);
                     TreeNode node = new TreeNode(result.Title, treeNodes.ToArray());
-                    paintSubNodes(node);
+                    node.BackColor = Color.LightSlateGray;
+                    node.ForeColor = Color.White;
+                    if (node.Nodes.Count > 0)
+                        foreach (TreeNode treeNode in node.Nodes)
+                        {
+                            paintSubNodes(treeNode);
+
+                        }
                     treeViewResults.Nodes.Add(node);
 
                 }
@@ -578,6 +585,15 @@ namespace FREE_OSINT
                     MenuItem myMenuItem3 = new MenuItem("Open URL");
                     myMenuItem3.Click += new EventHandler(myMenuItem_Click);
                     mnu.MenuItems.Add(myMenuItem3);
+
+                    MenuItem mnuItemChromium = new MenuItem("Chromium");
+                    mnuItemChromium.Click += new EventHandler(myMenuItem_Click);
+                    myMenuItem3.MenuItems.Add(mnuItemChromium);
+                    MenuItem mnuPredefinedBrowser = new MenuItem("Predefined Browser");
+                    mnuPredefinedBrowser.Click += new EventHandler(myMenuItem_Click);
+                    myMenuItem3.MenuItems.Add(mnuPredefinedBrowser);
+
+
                     MenuItem myMenuItem4 = new MenuItem("Process Module");
                     myMenuItem4.Click += new EventHandler(myMenuItem_Click);
                     mnu.MenuItems.Add(myMenuItem4);
@@ -637,7 +653,7 @@ namespace FREE_OSINT
                     process_Modules.Hide();
                 }
             }
-            else if (((MenuItem)sender).Text == "Open URL" && selectedNode != null)
+            else if (((MenuItem)sender).Text == "Predefined Browser" && selectedNode != null)
             {
                 if (selectedNode.Text.Contains("http:") || selectedNode.Text.Contains("https:"))
                 {
@@ -646,11 +662,55 @@ namespace FREE_OSINT
                     OpenUrl(selectedNode.Text);
                     //MessageBox.Show(e.Node.Nodes.Count + "");
                 }
+                else
+                {
+                    string url = dig_node_for_url(selectedNode);
+                    if (url != null)
+                    {
+                        OpenUrl(url);
+                    }
+                }
+            }
+            else if (((MenuItem)sender).Text == "Chromium" && selectedNode != null)
+            {
+                if (selectedNode.Text.Contains("http:") || selectedNode.Text.Contains("https:"))
+                {
+                    browser.Load(selectedNode.Text);
+                }
+                else
+                {
+                    string url = dig_node_for_url(selectedNode);
+                    if (url != null)
+                    {
+                        browser.Load(url);
+                    }
+                }
             }
             else
             {
                 Main_Instance.Instance.Workspace.findTarget(((MenuItem)sender).Text).TreeNodes.Add(selectedNode);
             }
+        }
+
+        private string dig_node_for_url(TreeNode selectedNode)
+        {
+            if ((selectedNode.Text.Contains("http:") || selectedNode.Text.Contains("https:")))
+            {
+                return selectedNode.Text;
+            }
+            else if (selectedNode.Nodes.Count > 0)
+            {
+                foreach (TreeNode treeNode in selectedNode.Nodes)
+                {
+                    string url = dig_node_for_url(treeNode);
+                    if (url != null)
+                    {
+                        return url;
+                    }
+                }
+            }
+            return null;
+
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)

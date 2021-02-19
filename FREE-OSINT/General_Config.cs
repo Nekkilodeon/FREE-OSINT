@@ -17,9 +17,14 @@ namespace FREE_OSINT
         public General_Config()
         {
             SubNodes = new Dictionary<int, Color>();
+            SubNodes.Add(0, Color.LightGray);
+            SubNodes.Add(1, Color.LightGray);
+            SubNodes.Add(2, Color.LightGray);
+
+            /*
             SubNodes.Add(0, Color.FromArgb(0, 247, 250));
             SubNodes.Add(1, Color.FromArgb(150, 247, 250));
-            SubNodes.Add(2, Color.FromArgb(213, 213, 213));
+            SubNodes.Add(2, Color.FromArgb(213, 213, 213));*/
         }
 
         public Color Target_color { get => target_color; set => target_color = value; }
