@@ -48,6 +48,12 @@
             this.workplace_panel = new System.Windows.Forms.Panel();
             this.panelDrawWorkspace = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnResetBoxes = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.slideWidth = new System.Windows.Forms.TrackBar();
+            this.slideHeight = new System.Windows.Forms.TrackBar();
             this.label6 = new System.Windows.Forms.Label();
             this.btnSelectFont = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
@@ -70,21 +76,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStripTargets = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.slideHeight = new System.Windows.Forms.TrackBar();
-            this.slideWidth = new System.Windows.Forms.TrackBar();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.btnResetBoxes = new System.Windows.Forms.Button();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabPageWorspace = new System.Windows.Forms.TabPage();
             this.menuStrip1.SuspendLayout();
             this.workplace_panel.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.slideWidth)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slideHeight)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slideHeight)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slideWidth)).BeginInit();
+            this.tabControl.SuspendLayout();
+            this.tabPageWorspace.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -97,7 +101,7 @@
             this.reportToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1262, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1262, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -214,13 +218,13 @@
             // 
             this.workplace_panel.AutoScroll = true;
             this.workplace_panel.BackColor = System.Drawing.SystemColors.Window;
-            this.workplace_panel.Controls.Add(this.panelDrawWorkspace);
+            this.workplace_panel.Controls.Add(this.tabControl);
             this.workplace_panel.Controls.Add(this.panel2);
             this.workplace_panel.Controls.Add(this.panel1);
             this.workplace_panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workplace_panel.Location = new System.Drawing.Point(0, 28);
+            this.workplace_panel.Location = new System.Drawing.Point(0, 30);
             this.workplace_panel.Name = "workplace_panel";
-            this.workplace_panel.Size = new System.Drawing.Size(1262, 645);
+            this.workplace_panel.Size = new System.Drawing.Size(1262, 643);
             this.workplace_panel.TabIndex = 2;
             this.workplace_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.workplace_panel_Paint);
             // 
@@ -228,9 +232,9 @@
             // 
             this.panelDrawWorkspace.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelDrawWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDrawWorkspace.Location = new System.Drawing.Point(335, 85);
+            this.panelDrawWorkspace.Location = new System.Drawing.Point(3, 3);
             this.panelDrawWorkspace.Name = "panelDrawWorkspace";
-            this.panelDrawWorkspace.Size = new System.Drawing.Size(927, 560);
+            this.panelDrawWorkspace.Size = new System.Drawing.Size(913, 523);
             this.panelDrawWorkspace.TabIndex = 2;
             this.panelDrawWorkspace.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDrawWorkspace_Paint);
             // 
@@ -260,6 +264,66 @@
             this.panel2.Size = new System.Drawing.Size(927, 85);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // btnResetBoxes
+            // 
+            this.btnResetBoxes.Location = new System.Drawing.Point(79, 3);
+            this.btnResetBoxes.Name = "btnResetBoxes";
+            this.btnResetBoxes.Size = new System.Drawing.Size(95, 23);
+            this.btnResetBoxes.TabIndex = 19;
+            this.btnResetBoxes.Text = "Reset";
+            this.btnResetBoxes.UseVisualStyleBackColor = true;
+            this.btnResetBoxes.Click += new System.EventHandler(this.btnResetBoxes_Click);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(149, 33);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(49, 17);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Height";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(53, 33);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(44, 17);
+            this.label8.TabIndex = 17;
+            this.label8.Text = "Width";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(3, 53);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(31, 17);
+            this.label7.TabIndex = 16;
+            this.label7.Text = "Box";
+            // 
+            // slideWidth
+            // 
+            this.slideWidth.Location = new System.Drawing.Point(26, 53);
+            this.slideWidth.Maximum = 100;
+            this.slideWidth.Minimum = -99;
+            this.slideWidth.Name = "slideWidth";
+            this.slideWidth.Size = new System.Drawing.Size(95, 56);
+            this.slideWidth.TabIndex = 15;
+            this.slideWidth.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.slideWidth.Scroll += new System.EventHandler(this.slideWidth_Scroll);
+            // 
+            // slideHeight
+            // 
+            this.slideHeight.Location = new System.Drawing.Point(127, 53);
+            this.slideHeight.Maximum = 100;
+            this.slideHeight.Minimum = -99;
+            this.slideHeight.Name = "slideHeight";
+            this.slideHeight.Size = new System.Drawing.Size(95, 56);
+            this.slideHeight.SmallChange = 10;
+            this.slideHeight.TabIndex = 14;
+            this.slideHeight.TickStyle = System.Windows.Forms.TickStyle.None;
+            this.slideHeight.Scroll += new System.EventHandler(this.slideHeight_Scroll);
             // 
             // label6
             // 
@@ -386,7 +450,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(335, 645);
+            this.panel1.Size = new System.Drawing.Size(335, 643);
             this.panel1.TabIndex = 0;
             // 
             // treeViewTargets
@@ -403,7 +467,7 @@
             this.treeViewTargets.ShowLines = false;
             this.treeViewTargets.ShowPlusMinus = false;
             this.treeViewTargets.ShowRootLines = false;
-            this.treeViewTargets.Size = new System.Drawing.Size(335, 560);
+            this.treeViewTargets.Size = new System.Drawing.Size(335, 558);
             this.treeViewTargets.TabIndex = 3;
             this.treeViewTargets.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewTargets_AfterSelect);
             this.treeViewTargets.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.nodeClick);
@@ -504,65 +568,32 @@
             this.menuStripTargets.Name = "menuStripTargets";
             this.menuStripTargets.Size = new System.Drawing.Size(61, 4);
             // 
-            // slideHeight
+            // tabControl
             // 
-            this.slideHeight.Location = new System.Drawing.Point(127, 53);
-            this.slideHeight.Maximum = 100;
-            this.slideHeight.Minimum = -99;
-            this.slideHeight.Name = "slideHeight";
-            this.slideHeight.Size = new System.Drawing.Size(95, 56);
-            this.slideHeight.SmallChange = 10;
-            this.slideHeight.TabIndex = 14;
-            this.slideHeight.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.slideHeight.Scroll += new System.EventHandler(this.slideHeight_Scroll);
+            this.tabControl.Controls.Add(this.tabPageWorspace);
+            this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabControl.Location = new System.Drawing.Point(335, 85);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(927, 558);
+            this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControl.TabIndex = 0;
+            this.tabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.onDrawTabs);
+            this.tabControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDownTabs);
             // 
-            // slideWidth
+            // tabPageWorspace
             // 
-            this.slideWidth.Location = new System.Drawing.Point(26, 53);
-            this.slideWidth.Maximum = 100;
-            this.slideWidth.Minimum = -99;
-            this.slideWidth.Name = "slideWidth";
-            this.slideWidth.Size = new System.Drawing.Size(95, 56);
-            this.slideWidth.TabIndex = 15;
-            this.slideWidth.TickStyle = System.Windows.Forms.TickStyle.None;
-            this.slideWidth.Scroll += new System.EventHandler(this.slideWidth_Scroll);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 53);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(31, 17);
-            this.label7.TabIndex = 16;
-            this.label7.Text = "Box";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(53, 33);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(44, 17);
-            this.label8.TabIndex = 17;
-            this.label8.Text = "Width";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(149, 33);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(49, 17);
-            this.label9.TabIndex = 18;
-            this.label9.Text = "Height";
-            // 
-            // btnResetBoxes
-            // 
-            this.btnResetBoxes.Location = new System.Drawing.Point(79, 3);
-            this.btnResetBoxes.Name = "btnResetBoxes";
-            this.btnResetBoxes.Size = new System.Drawing.Size(95, 23);
-            this.btnResetBoxes.TabIndex = 19;
-            this.btnResetBoxes.Text = "Reset";
-            this.btnResetBoxes.UseVisualStyleBackColor = true;
-            this.btnResetBoxes.Click += new System.EventHandler(this.btnResetBoxes_Click);
+            this.tabPageWorspace.BackColor = System.Drawing.Color.White;
+            this.tabPageWorspace.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tabPageWorspace.Controls.Add(this.panelDrawWorkspace);
+            this.tabPageWorspace.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.tabPageWorspace.Location = new System.Drawing.Point(4, 25);
+            this.tabPageWorspace.Name = "tabPageWorspace";
+            this.tabPageWorspace.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageWorspace.Size = new System.Drawing.Size(919, 529);
+            this.tabPageWorspace.TabIndex = 0;
+            this.tabPageWorspace.Text = "Workspace";
             // 
             // MainForm
             // 
@@ -582,14 +613,16 @@
             this.workplace_panel.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.slideWidth)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.slideHeight)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slideHeight)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.slideWidth)).EndInit();
+            this.tabControl.ResumeLayout(false);
+            this.tabPageWorspace.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -642,6 +675,8 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnResetBoxes;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabPageWorspace;
     }
 }
 

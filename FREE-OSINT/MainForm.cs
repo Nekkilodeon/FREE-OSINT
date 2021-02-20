@@ -1,4 +1,5 @@
 ﻿using CefSharp;
+using CefSharp.WinForms;
 using FREE_OSINT_Lib;
 using NodeControl;
 using NodeControl.Nodes;
@@ -472,6 +473,9 @@ namespace FREE_OSINT
                 if (selectedNode != null)
                 {
                     ContextMenu mnu = new ContextMenu();
+                    MenuItem myMenuItemUrl = new MenuItem("Open URL");
+                    myMenuItemUrl.Click += new EventHandler(myMenuItem_Click);
+                    mnu.MenuItems.Add(myMenuItemUrl);
                     MenuItem myMenuItem2 = new MenuItem("Remove");
                     myMenuItem2.Click += new EventHandler(myMenuItem_Click);
                     mnu.MenuItems.Add(myMenuItem2);
@@ -486,8 +490,14 @@ namespace FREE_OSINT
         }
         private void myMenuItem_Click(object sender, EventArgs e)
         {
-
-            if (((MenuItem)sender).Text == "Remove" && selectedNode != null)
+            if (((MenuItem)sender).Text == "Open URL" && selectedNode != null)
+            {
+                if (selectedNode.Text.Contains("http:") || selectedNode.Text.Contains("https:"))
+                {
+                    addNewTab(selectedNode.Parent != null ? selectedNode.Parent.Text.Substring(0, 8) : selectedNode.Text.Split(':')[1].Substring(2, 10), selectedNode.Text);
+                }
+            }
+            else if (((MenuItem)sender).Text == "Remove" && selectedNode != null)
             {
                 treeViewTargets.Nodes.Remove(selectedNode);
                 Main_Instance.Instance.Workspace.reloadTargetsFromTreeView();
@@ -671,6 +681,47 @@ namespace FREE_OSINT
             Main_Instance.Instance.NodeDiagram.Redraw();
             slideHeight.Value = 0;
             slideWidth.Value = 0;
+        }
+
+        private void onDrawTabs(object sender, DrawItemEventArgs e)
+        {
+            e.Graphics.DrawString(this.tabControl.TabPages[e.Index].Text, e.Font, Brushes.Black, e.Bounds.Left + 12, e.Bounds.Top + 4);
+            if (e.Index > 0)
+            {
+                e.Graphics.DrawString("x", e.Font, Brushes.Black, e.Bounds.Right - 15, e.Bounds.Top + 4);
+                e.DrawFocusRectangle();
+            }
+        }
+
+        private void mouseDownTabs(object sender, MouseEventArgs e)
+        {
+            for (int i = 1; i < this.tabControl.TabPages.Count; i++)
+            {
+                Rectangle r = tabControl.GetTabRect(i);
+                //Getting the position of the "x" mark.
+                Rectangle closeButton = new Rectangle(r.Right - 15, r.Top + 4, 9, 7);
+                if (closeButton.Contains(e.Location))
+                {
+                    if (MessageBox.Show("Would you like to Close this Tab?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                    {
+                        ChromiumWebBrowser browser = (ChromiumWebBrowser)this.tabControl.TabPages[i].Controls[0];
+                        browser.Dispose();
+                        this.tabControl.TabPages.RemoveAt(i);
+                        break;
+                    }
+                }
+            }
+        }
+        private void addNewTab(string title_str, string url)
+        {
+            string title = title_str;// + (tabControl.TabCount + 1).ToString();
+            TabPage myTabPage = new TabPage(title);
+            tabControl.TabPages.Add(myTabPage);
+
+            var browser = new ChromiumWebBrowser(url);
+            browser.Dock = DockStyle.Fill;
+            myTabPage.Controls.Add(browser);
+            //browser.Load(e.Node.Text);
         }
     }
 }
