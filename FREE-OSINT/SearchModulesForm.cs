@@ -77,7 +77,7 @@ namespace FREE_OSINT
         private void InteractEventTriggered(object sender, EventArgs e)
         {
             InteractEventArgs interactEventArgs = e as InteractEventArgs;
-            if (interactEventArgs.Operation.Equals(InteractEventArgs.Operation_Type.Insert))
+            if (interactEventArgs.Operation.Equals(InteractEventArgs.Operation_Type.INSERT))
             {
                 SimpleInputForm simpleInputForm = new SimpleInputForm(interactEventArgs.SelectedObjects);
                 var result = simpleInputForm.ShowDialog();
@@ -90,6 +90,11 @@ namespace FREE_OSINT
 
                 }
 
+            }else if (interactEventArgs.Operation.Equals(InteractEventArgs.Operation_Type.OPEN_URL))
+            {
+                HashSet<TreeNode> selectedObjects = interactEventArgs.SelectedObjects;
+                Open_Url_Form open_Url_Form = new Open_Url_Form(selectedObjects.FirstOrDefault().Text);
+                open_Url_Form.Show();
             }
 
         }

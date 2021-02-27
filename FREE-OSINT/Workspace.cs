@@ -15,14 +15,17 @@ namespace FREE_OSINT_Lib
         string title;
         TreeView targetTreeView;
         Dictionary<String, Point> treeViewPositions;
+        Dictionary<String, Int32> treeViewColors;
+
         public Workspace()
         {
             Targets = new List<Target>();
             Targets.Add(new Target("Unassigned"));
             TargetTreeView = new TreeView();
             TreeViewPositions = new Dictionary<String, Point>();
+            TreeViewColors = new Dictionary<String, Int32>();
             Title = "Untitled";
-
+            this.generateTreeViewFromTargets();
         }
 
 
@@ -30,6 +33,7 @@ namespace FREE_OSINT_Lib
         public string Title { get => title; set => title = value; }
         public TreeView TargetTreeView { get => targetTreeView; set => targetTreeView = value; }
         public Dictionary<String, Point> TreeViewPositions { get => treeViewPositions; set => treeViewPositions = value; }
+        public Dictionary<string, int> TreeViewColors { get => treeViewColors; set => treeViewColors = value; }
 
         public void reloadTargetsFromTreeView()
         {

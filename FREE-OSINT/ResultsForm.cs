@@ -46,11 +46,8 @@ namespace FREE_OSINT
             browser = new ChromiumWebBrowser("");
             browser.Dock = DockStyle.Fill;
             panelBrowser.Controls.Add(browser);
-            browser.LoadingStateChanged += OnLoadingStateChanged;
-            browser.ConsoleMessage += OnBrowserConsoleMessage;
-            browser.StatusMessage += OnBrowserStatusMessage;
-            browser.TitleChanged += OnBrowserTitleChanged;
-            browser.AddressChanged += OnBrowserAddressChanged;
+            setupBrowser();
+
 
             if (this.DialogResult == DialogResult.Cancel)
             {
@@ -168,12 +165,26 @@ namespace FREE_OSINT
 
             browser = new ChromiumWebBrowser("");
             panelBrowser.Controls.Add(browser);
+            setupBrowser();
+
+        }
+
+        private void setupBrowser()
+        {
             browser.LoadingStateChanged += OnLoadingStateChanged;
             browser.ConsoleMessage += OnBrowserConsoleMessage;
             browser.StatusMessage += OnBrowserStatusMessage;
             browser.TitleChanged += OnBrowserTitleChanged;
             browser.AddressChanged += OnBrowserAddressChanged;
+            add_browser_menu_options();
         }
+
+        private void add_browser_menu_options()
+        {
+            browser.MenuHandler = new MyCustomMenuHandler(this);
+        }
+
+
         private void OnLoadingStateChanged(object sender, LoadingStateChangedEventArgs args)
         {
             SetCanGoBack(args.CanGoBack);
@@ -281,6 +292,20 @@ namespace FREE_OSINT
                 sub.Add(new TreeNode(intel.Uri.ToString()));
                 sub.Add(new TreeNode(intel.Timestamp.ToString()));
                 TreeNode node = new TreeNode(intel.Title, sub.ToArray());
+                if (intel.Extras != null && intel.Extras.Count > 0)
+                {
+                    try
+                    {
+                        foreach (object extra in intel.Extras)
+                        {
+                            sub.Add((TreeNode)extra);
+                        }
+                    }
+                    catch (Exception e)
+                    {
+                        log("\nExtras parsing failed \n" + e.Message);
+                    }
+                }
                 nodes.Add(node);
             }
 
@@ -778,6 +803,11 @@ namespace FREE_OSINT
 
         private void panelBrowser_Paint(object sender, PaintEventArgs e)
         {
+        }
+
+        private void panelBrowser_Paint_1(object sender, PaintEventArgs e)
+        {
+
         }
     }
 

@@ -363,6 +363,7 @@
             this.panelBrowser.Name = "panelBrowser";
             this.panelBrowser.Size = new System.Drawing.Size(1238, 635);
             this.panelBrowser.TabIndex = 12;
+            this.panelBrowser.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBrowser_Paint_1);
             // 
             // ResultsForm
             // 

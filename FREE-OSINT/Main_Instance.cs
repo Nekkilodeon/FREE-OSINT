@@ -365,6 +365,17 @@ namespace FREE_OSINT
                     }
                 }
             }
+            if (Workspace.TreeViewColors.Count > 0)
+            {
+                foreach (Node node in nodeDiagram.Nodes)
+                {
+                    if (Workspace.TreeViewColors.ContainsKey(node.Text))
+                    {
+                        Color container = Color.FromArgb(Workspace.TreeViewColors[node.Text]);
+                        ((ConditionNode)node).Container_color = container;
+                    }
+                }
+            }
         }
 
         public void populate_position_dictionary()

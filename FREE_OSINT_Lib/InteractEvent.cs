@@ -12,7 +12,7 @@ namespace FREE_OSINT_Lib
 
         public enum Operation_Type
         {
-            Insert
+            INSERT, OPEN_URL
         }
     }
 }

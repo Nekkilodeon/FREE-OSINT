@@ -25,6 +25,7 @@ namespace FREE_OSINT
         private TreeNode selectedNode;
         private Point selectedLocation;
         private Size Base_Box_Size;
+        private Dictionary<string, List<string>> ViewState;
 
         private void treeView1_ItemDrag(object sender, ItemDragEventArgs e)
         {
@@ -100,7 +101,7 @@ namespace FREE_OSINT
                     targetNode.Expand();
             }
             Main_Instance.Instance.Workspace.reloadTargetsFromTreeView();
-            reloadWorkspace();
+            reloadWorkspace(true);
         }
 
         // Determine whether one node is a parent 
@@ -122,6 +123,7 @@ namespace FREE_OSINT
             InitializeComponent();
             Main_Instance.Instance.NodeDiagram.Dock = DockStyle.Fill;
             Main_Instance.Instance.Workspace.TargetTreeView = treeViewTargets;
+            Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
             Base_Box_Size = Main_Instance.Instance.NodeDiagram.NodeSize;
             panelDrawWorkspace.Controls.Add(Main_Instance.Instance.NodeDiagram);
             treeViewTargets.ItemDrag += new ItemDragEventHandler(treeView1_ItemDrag);
@@ -141,7 +143,7 @@ namespace FREE_OSINT
             var result = modulesForm.ShowDialog();
             if (result == DialogResult.OK)
             {
-                reloadWorkspace();
+                reloadWorkspace(false);
             }
         }
 
@@ -158,7 +160,7 @@ namespace FREE_OSINT
         private void newToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Main_Instance.Instance.Workspace = new Workspace();
-            reloadWorkspace();
+            reloadWorkspace(false);
             treeViewTargets.Nodes.Clear();
         }
 
@@ -200,7 +202,7 @@ namespace FREE_OSINT
                 {
                     point = Main_Instance.Instance.Workspace.TreeViewPositions[target.Title];
                 }
-                sr.WriteLine("<Target value=\"" + target.Title + "\" x=\"" + point.X + "\" y=\"" + point.Y + "\">");
+                sr.WriteLine("<Target value=\"" + target.Title + "\" x=\"" + point.X + "\" y=\"" + point.Y + "\" color=\"" + ((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(point.X, point.Y)).Container_color.ToArgb() + "\">");
                 foreach (TreeNode node in target.TreeNodes)
                 {
                     Point subpoint = new Point(0, 0);
@@ -209,7 +211,7 @@ namespace FREE_OSINT
                         subpoint = Main_Instance.Instance.Workspace.TreeViewPositions[node.Text];
                     }
 
-                    sr.WriteLine("<Node value=\"" + node.Text + "\" x=\"" + subpoint.X + "\" y=\"" + subpoint.Y + "\">");
+                    sr.WriteLine("<Node value=\"" + node.Text + "\" x=\"" + subpoint.X + "\" y=\"" + subpoint.Y + "\" color=\"" + ((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(subpoint.X, subpoint.Y)).Container_color.ToArgb() + "\">");
                     saveNode(node.Nodes);
                     sr.WriteLine("</Node>");
                 }
@@ -232,7 +234,7 @@ namespace FREE_OSINT
                         subpoint = Main_Instance.Instance.Workspace.TreeViewPositions[node.Text];
 
                     }
-                    sr.WriteLine("<Node value=\"" + HttpUtility.HtmlEncode(node.Text) + "\" x=\"" + subpoint.X + "\" y=\"" + subpoint.Y + "\">");
+                    sr.WriteLine("<Node value=\"" + HttpUtility.HtmlEncode(node.Text) + "\" x=\"" + subpoint.X + "\" y=\"" + subpoint.Y + "\" color=\"" + ((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(subpoint.X, subpoint.Y)).Container_color.ToArgb() + "\">");
                     saveNode(node.Nodes);
                     sr.WriteLine("</Node>");
                 }
@@ -265,13 +267,17 @@ namespace FREE_OSINT
                         string title = target_node.Attributes.GetNamedItem("value").Value;
                         int x = Int16.Parse(target_node.Attributes.GetNamedItem("x").Value);
                         int y = Int16.Parse(target_node.Attributes.GetNamedItem("y").Value);
+                        int colorARGB = Int32.Parse(target_node.Attributes.GetNamedItem("color").Value);
                         try
                         {
                             Main_Instance.Instance.Workspace.TreeViewPositions.Add(title, new Point(x, y));
+                            Main_Instance.Instance.Workspace.TreeViewColors.Add(title, colorARGB);
                         }
                         catch (Exception)
                         {
                             Main_Instance.Instance.Workspace.TreeViewPositions.Add(title + " (1)", new Point(x, y));
+                            Main_Instance.Instance.Workspace.TreeViewColors.Add(title + " (1)", colorARGB);
+
                         }
 
                         Target target = new Target(title);
@@ -305,22 +311,65 @@ namespace FREE_OSINT
                 finally
                 {
                     Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
-                    reloadWorkspace();
+                    reloadWorkspace(false);
                     Main_Instance.Instance.sync_diagram_positions();
                     //Main_Instance.Instance.populate_position_dictionary();
                     this.Cursor = Cursors.Default; //Change the cursor back
                 }
             }
         }
-
-        public void reloadWorkspace()
+        public void GetExpandedStatus(TreeNode node, List<string> ExpandedNodes)
         {
+            //check if node is expanded
+            if (node.IsExpanded)
+                ExpandedNodes.Add(node.FullPath);
+            node.Nodes.Cast<TreeNode>().ToList().ForEach(a => GetExpandedStatus(a, ExpandedNodes));
+        }
+
+        public void reloadWorkspace(bool save_state)
+        {
+            if (save_state)
+            {
+                ViewState = new Dictionary<string, List<string>>();
+                List<string> expandedNodes = new List<string>();
+                //get all expanded nodes
+                treeViewTargets.Nodes.Cast<TreeNode>().ToList().ForEach(a => GetExpandedStatus(a, expandedNodes));
+                //collapse all to reset the treeview
+                treeViewTargets.CollapseAll();
+                //save expanded node value paths
+                ViewState["ExpandedNodes"] = expandedNodes;
+
+            }
+
             treeViewTargets.Nodes.Clear();
             Main_Instance.Instance.Workspace.TargetTreeView = treeViewTargets;
             Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
             Main_Instance.Instance.sync_diagram_positions();
             labelWorkspaceName.Text = Main_Instance.Instance.Workspace.Title;
             Main_Instance.Instance.drawTreeNodes();
+            if (save_state && ViewState["ExpandedNodes"] != null)
+            {
+
+                foreach (string str in (List<string>)ViewState["ExpandedNodes"])
+                {
+                    String[] fullPath = str.Split(new string[] { treeViewTargets.PathSeparator }, StringSplitOptions.None);
+                    TreeNode selected = null;
+                    for (int i = 0; i < fullPath.Length; i++)
+                    {
+                        if (i == 0)
+                        {
+                            selected = treeViewTargets.Nodes.Cast<TreeNode>().Where(a => a.Text == fullPath[i]).FirstOrDefault();
+                        }
+                        else
+                        {
+                            selected = selected.Nodes.Cast<TreeNode>().Where(a => a.Text == fullPath[i]).FirstOrDefault();
+                        }
+                    }
+                    selected.Expand();
+
+                }
+
+            }
             //treeViewTargets.ExpandAll();
 
         }
@@ -337,10 +386,13 @@ namespace FREE_OSINT
 
                 int xx = Int16.Parse(xmlNode.Attributes.GetNamedItem("x").Value);
                 int y = Int16.Parse(xmlNode.Attributes.GetNamedItem("y").Value);
+                int colorARGB = Int32.Parse(xmlNode.Attributes.GetNamedItem("color").Value);
 
                 try
                 {
                     Main_Instance.Instance.Workspace.TreeViewPositions.Add(treeNode.Text, new Point(xx, y));
+                    Main_Instance.Instance.Workspace.TreeViewColors.Add(treeNode.Text, colorARGB);
+
                 }
                 catch (Exception)
                 {
@@ -385,7 +437,7 @@ namespace FREE_OSINT
             }
             if (resultsForm.DialogResult == DialogResult.OK)
             {
-                reloadWorkspace();
+                reloadWorkspace(false);
                 Main_Instance.Instance.NodeDiagram.AutoLayout(false);
                 foreach (ConditionNode conditionNode in Main_Instance.Instance.NodeDiagram.Nodes)
                 {
@@ -501,7 +553,7 @@ namespace FREE_OSINT
             {
                 treeViewTargets.Nodes.Remove(selectedNode);
                 Main_Instance.Instance.Workspace.reloadTargetsFromTreeView();
-                reloadWorkspace();
+                reloadWorkspace(true);
             }
             else if (((MenuItem)sender).Text == "Compose Query" && selectedNode != null)
             {
@@ -723,5 +775,6 @@ namespace FREE_OSINT
             myTabPage.Controls.Add(browser);
             //browser.Load(e.Node.Text);
         }
+
     }
 }
