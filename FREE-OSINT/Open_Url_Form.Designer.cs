@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Open_Url_Form));
             this.panelOptions = new System.Windows.Forms.Panel();
-            this.panelBrowser = new System.Windows.Forms.Panel();
-            this.txtURL = new System.Windows.Forms.TextBox();
+            this.labelURLTitle = new System.Windows.Forms.Label();
             this.btnForward = new System.Windows.Forms.Button();
             this.btnReload = new System.Windows.Forms.Button();
             this.btnBack = new System.Windows.Forms.Button();
-            this.labelURLTitle = new System.Windows.Forms.Label();
+            this.txtURL = new System.Windows.Forms.TextBox();
+            this.panelBrowser = new System.Windows.Forms.Panel();
             this.panelOptions.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,22 +52,14 @@
             this.panelOptions.Size = new System.Drawing.Size(1582, 67);
             this.panelOptions.TabIndex = 0;
             // 
-            // panelBrowser
+            // labelURLTitle
             // 
-            this.panelBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBrowser.Location = new System.Drawing.Point(0, 67);
-            this.panelBrowser.Name = "panelBrowser";
-            this.panelBrowser.Size = new System.Drawing.Size(1582, 786);
-            this.panelBrowser.TabIndex = 1;
-            this.panelBrowser.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBrowser_Paint);
-            // 
-            // txtURL
-            // 
-            this.txtURL.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtURL.Location = new System.Drawing.Point(0, 45);
-            this.txtURL.Name = "txtURL";
-            this.txtURL.Size = new System.Drawing.Size(1582, 22);
-            this.txtURL.TabIndex = 0;
+            this.labelURLTitle.AutoSize = true;
+            this.labelURLTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelURLTitle.Location = new System.Drawing.Point(12, 11);
+            this.labelURLTitle.Name = "labelURLTitle";
+            this.labelURLTitle.Size = new System.Drawing.Size(0, 23);
+            this.labelURLTitle.TabIndex = 15;
             // 
             // btnForward
             // 
@@ -105,13 +97,22 @@
             this.btnBack.Text = "Back";
             this.btnBack.UseVisualStyleBackColor = true;
             // 
-            // labelURLTitle
+            // txtURL
             // 
-            this.labelURLTitle.AutoSize = true;
-            this.labelURLTitle.Location = new System.Drawing.Point(13, 22);
-            this.labelURLTitle.Name = "labelURLTitle";
-            this.labelURLTitle.Size = new System.Drawing.Size(0, 17);
-            this.labelURLTitle.TabIndex = 15;
+            this.txtURL.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.txtURL.Location = new System.Drawing.Point(0, 45);
+            this.txtURL.Name = "txtURL";
+            this.txtURL.Size = new System.Drawing.Size(1582, 22);
+            this.txtURL.TabIndex = 0;
+            // 
+            // panelBrowser
+            // 
+            this.panelBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelBrowser.Location = new System.Drawing.Point(0, 67);
+            this.panelBrowser.Name = "panelBrowser";
+            this.panelBrowser.Size = new System.Drawing.Size(1582, 786);
+            this.panelBrowser.TabIndex = 1;
+            this.panelBrowser.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBrowser_Paint);
             // 
             // Open_Url_Form
             // 

@@ -102,6 +102,12 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Main_Instance.cs" />
+    <Compile Include="Modules_All_Form.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Modules_All_Form.Designer.cs">
+      <DependentUpon>Modules_All_Form.cs</DependentUpon>
+    </Compile>
     <Compile Include="MyCustomMenuHandler.cs" />
     <Compile Include="Open_Url_Form.cs">
       <SubType>Form</SubType>
@@ -166,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Modules_All_Form.resx">
+      <DependentUpon>Modules_All_Form.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Open_Url_Form.resx">
       <DependentUpon>Open_Url_Form.cs</DependentUpon>

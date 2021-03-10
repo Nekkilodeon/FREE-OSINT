@@ -37,7 +37,23 @@ namespace FREE_OSINT
         {
             //NodeDiagram nodeDiagram = sender as NodeDiagram;
             NodeDiagram.DiagramEventArgs diagramEventArgs = e as NodeDiagram.DiagramEventArgs;
-            if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.DRAG)
+            if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.COLOR)
+            {
+                foreach (INodeObject node in diagramEventArgs.SelectedObjects)
+                {
+                    ConditionNode conditionNode = node as ConditionNode;
+                    if (Workspace.TreeViewColors.ContainsKey(conditionNode.Text))
+                    {
+                        Workspace.TreeViewColors[conditionNode.Text] =  ((Color)diagramEventArgs.operation_attribute).ToArgb();
+                    }
+                    else
+                    {
+                        Workspace.TreeViewColors.Add(conditionNode.Text, ((Color)diagramEventArgs.operation_attribute).ToArgb());
+
+                    }
+                }
+            }
+            else if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.DRAG)
             {
                 foreach (INodeObject node in diagramEventArgs.SelectedObjects)
                 {
@@ -62,8 +78,8 @@ namespace FREE_OSINT
                 foreach (INodeObject node in diagramEventArgs.SelectedObjects)
                 {
                     TreeNode selected_node = (TreeNode)Workspace.find_node(((ConditionNode)node).Text);
-                    if(selected_node != null)
-                    Workspace.TargetTreeView.Nodes.Remove(selected_node);
+                    if (selected_node != null)
+                        Workspace.TargetTreeView.Nodes.Remove(selected_node);
                     //Workspace.find_remove(((ConditionNode)node).Text);
 
                 }
@@ -179,7 +195,7 @@ namespace FREE_OSINT
                             query += parent.Text + " ";
                             to_query.Add(parent.Text);
                         }
-                        
+
                         if (parent.Parent == null && !targets.Contains(parent))
                         {
                             targets.Add(parent);
@@ -271,12 +287,6 @@ namespace FREE_OSINT
             {
                 drawSubNodes(treeNode, null, nodeDiagram, 0);
             }
-            /*
-            foreach (var node in nodeDiagram.Nodes)
-            {
-                node.Direction = Node.DirectionEnum.Vertical;
-            }*/
-            //nodeDiagram.AutoLayout(true);
             nodeDiagram.Redraw();
         }
 
@@ -291,6 +301,10 @@ namespace FREE_OSINT
                     node = new ConditionNode(nodeDiagram, Color.Orange, true) { Text = treeNode.Text };
                     if (Main_Instance.Instance.Workspace.TreeViewPositions.ContainsKey(node.Text))
                         node.Position = Main_Instance.Instance.Workspace.TreeViewPositions[node.Text];
+                    if (Main_Instance.Instance.Workspace.TreeViewColors.ContainsKey(node.Text))
+                    {
+                        node.Container_color = Color.FromArgb(Main_Instance.Instance.Workspace.TreeViewColors[node.Text]);
+                    }
                 }
 
                 foreach (TreeNode subnode in treeNode.Nodes)
@@ -304,6 +318,10 @@ namespace FREE_OSINT
 
                         if (Main_Instance.Instance.Workspace.TreeViewPositions.ContainsKey(node2.Text))
                             node2.Position = Main_Instance.Instance.Workspace.TreeViewPositions[node2.Text];
+                        if (Main_Instance.Instance.Workspace.TreeViewColors.ContainsKey(node2.Text))
+                        {
+                            node2.Container_color = Color.FromArgb(Main_Instance.Instance.Workspace.TreeViewColors[node2.Text]);
+                        }
                         node.LinksTo.Add(new Condition() { LinksTo = node2 });
                         nodeDiagram.Nodes.Add(node2);
                         drawSubNodes(subnode, node2, nodeDiagram, level + 1);

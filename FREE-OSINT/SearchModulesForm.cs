@@ -90,7 +90,8 @@ namespace FREE_OSINT
 
                 }
 
-            }else if (interactEventArgs.Operation.Equals(InteractEventArgs.Operation_Type.OPEN_URL))
+            }
+            else if (interactEventArgs.Operation.Equals(InteractEventArgs.Operation_Type.OPEN_URL))
             {
                 HashSet<TreeNode> selectedObjects = interactEventArgs.SelectedObjects;
                 Open_Url_Form open_Url_Form = new Open_Url_Form(selectedObjects.FirstOrDefault().Text);
@@ -185,6 +186,19 @@ namespace FREE_OSINT
                 value = -1;
             }
             btnSearchModules.Text = "     Search using " + (((CheckedListBox)sender).CheckedItems.Count + value) + " modules";
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+            listModules.Items.Clear();
+            if (Main_Instance.Instance.Module_list[General_Config.Module_Type.Search].Count > 0)
+            {
+                foreach (IGeneral_module module in Main_Instance.Instance.Module_list[General_Config.Module_Type.Search])
+                {
+                    if (module.Title().ToLower().Contains(txtSearch.Text.ToLower()))
+                        listModules.Items.Add(module.Title());
+                }
+            }
         }
     }
 }

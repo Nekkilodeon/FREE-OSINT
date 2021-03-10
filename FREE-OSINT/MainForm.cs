@@ -344,9 +344,10 @@ namespace FREE_OSINT
             treeViewTargets.Nodes.Clear();
             Main_Instance.Instance.Workspace.TargetTreeView = treeViewTargets;
             Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
+            Main_Instance.Instance.drawTreeNodes();
             Main_Instance.Instance.sync_diagram_positions();
             labelWorkspaceName.Text = Main_Instance.Instance.Workspace.Title;
-            Main_Instance.Instance.drawTreeNodes();
+
             if (save_state && ViewState["ExpandedNodes"] != null)
             {
 
@@ -366,7 +367,6 @@ namespace FREE_OSINT
                         }
                     }
                     selected.Expand();
-
                 }
 
             }
@@ -438,11 +438,7 @@ namespace FREE_OSINT
             if (resultsForm.DialogResult == DialogResult.OK)
             {
                 reloadWorkspace(false);
-                Main_Instance.Instance.NodeDiagram.AutoLayout(false);
-                foreach (ConditionNode conditionNode in Main_Instance.Instance.NodeDiagram.Nodes)
-                {
-                    Main_Instance.Instance.Workspace.TreeViewPositions[conditionNode.Text] = conditionNode.Position;
-                }
+                //Main_Instance.Instance.NodeDiagram.AutoLayout(false);
             }
             //resultsForm.ShowDialog();
         }
@@ -499,7 +495,6 @@ namespace FREE_OSINT
             {
                 Main_Instance.Instance.Workspace.TreeViewPositions[conditionNode.Text] = conditionNode.Position;
             }
-
         }
 
         private void labelWorkspaceName_Click(object sender, EventArgs e)
@@ -776,5 +771,11 @@ namespace FREE_OSINT
             //browser.Load(e.Node.Text);
         }
 
+        private void allModulesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Modules_All_Form modules_All_Form = new Modules_All_Form();
+            modules_All_Form.ShowDialog();
+
+        }
     }
 }
