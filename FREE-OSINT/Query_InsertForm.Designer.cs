@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Query_InsertForm));
             this.label1 = new System.Windows.Forms.Label();
             this.txtQuery = new System.Windows.Forms.TextBox();
             this.listViewModules = new System.Windows.Forms.ListView();
@@ -107,6 +108,7 @@
             this.Controls.Add(this.listViewModules);
             this.Controls.Add(this.txtQuery);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Query_InsertForm";
             this.Text = "Insert Query";
             this.ResumeLayout(false);

@@ -79,7 +79,7 @@
             this.treeViewResults.Name = "treeViewResults";
             this.treeViewResults.ShowLines = false;
             this.treeViewResults.ShowPlusMinus = false;
-            this.treeViewResults.Size = new System.Drawing.Size(342, 632);
+            this.treeViewResults.Size = new System.Drawing.Size(342, 634);
             this.treeViewResults.TabIndex = 0;
             this.treeViewResults.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewResults_AfterSelect);
             this.treeViewResults.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.mouseClick);
@@ -91,7 +91,7 @@
             this.actionsToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1582, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1582, 28);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -197,9 +197,9 @@
             this.panel1.Controls.Add(this.panel6);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 30);
+            this.panel1.Location = new System.Drawing.Point(0, 28);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(344, 733);
+            this.panel1.Size = new System.Drawing.Size(344, 735);
             this.panel1.TabIndex = 10;
             // 
             // panel6
@@ -208,7 +208,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 99);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(342, 632);
+            this.panel6.Size = new System.Drawing.Size(342, 634);
             this.panel6.TabIndex = 7;
             // 
             // panel3
@@ -250,7 +250,7 @@
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.labelURLTitle);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(344, 30);
+            this.panel2.Location = new System.Drawing.Point(344, 28);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1238, 100);
             this.panel2.TabIndex = 11;
@@ -359,9 +359,9 @@
             // panelBrowser
             // 
             this.panelBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBrowser.Location = new System.Drawing.Point(344, 130);
+            this.panelBrowser.Location = new System.Drawing.Point(344, 128);
             this.panelBrowser.Name = "panelBrowser";
-            this.panelBrowser.Size = new System.Drawing.Size(1238, 633);
+            this.panelBrowser.Size = new System.Drawing.Size(1238, 635);
             this.panelBrowser.TabIndex = 12;
             this.panelBrowser.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBrowser_Paint_1);
             // 
@@ -377,6 +377,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtLogs);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "ResultsForm";
             this.Text = "Results";

@@ -626,20 +626,27 @@ namespace FREE_OSINT
 
         private void closingForm(object sender, FormClosingEventArgs e)
         {
-            DialogResult dialogResult = MessageBox.Show("Are you sure?", "Exit", MessageBoxButtons.YesNo);
-            if (dialogResult == DialogResult.Yes)
-            {
-                this.DialogResult = DialogResult.OK;
-                for (int x = 0; x < Application.OpenForms.Count; x++)
-                {
-                    if (Application.OpenForms[x] != this)
-                        Application.OpenForms[x].Close();
-                }
-                return;
-            }
-            else if (dialogResult == DialogResult.No)
+            if (((MainForm)sender).ActiveControl.GetType() == typeof(TabControl))
             {
                 e.Cancel = true;
+            }
+            else
+            {
+                DialogResult dialogResult = MessageBox.Show("Are you sure?", "Exit", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    this.DialogResult = DialogResult.OK;
+                    for (int x = 0; x < Application.OpenForms.Count; x++)
+                    {
+                        if (Application.OpenForms[x] != this)
+                            Application.OpenForms[x].Close();
+                    }
+                    return;
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    e.Cancel = true;
+                }
             }
         }
 

@@ -129,6 +129,7 @@
             this.Controls.Add(this.btnSearchModules);
             this.Controls.Add(this.listModules);
             this.Controls.Add(this.btnInteract);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SearchModulesForm";
             this.Text = "Modules";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.closingForm);

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QueryConstructorForm));
             this.listQueryParams = new System.Windows.Forms.CheckedListBox();
             this.txtQuery = new System.Windows.Forms.TextBox();
             this.btnOK = new System.Windows.Forms.Button();
@@ -112,6 +113,7 @@
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.txtQuery);
             this.Controls.Add(this.listQueryParams);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "QueryConstructorForm";
             this.Text = "QueryConstructor";
             this.ResumeLayout(false);

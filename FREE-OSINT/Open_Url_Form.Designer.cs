@@ -121,6 +121,7 @@
             this.ClientSize = new System.Drawing.Size(1582, 853);
             this.Controls.Add(this.panelBrowser);
             this.Controls.Add(this.panelOptions);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Open_Url_Form";
             this.Text = "Open_Url_Form";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.onFormClosing);

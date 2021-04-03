@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Modules_All_Form));
             this.listModules = new System.Windows.Forms.ListBox();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.btnInteract = new System.Windows.Forms.Button();
@@ -118,6 +119,7 @@
             this.Controls.Add(this.btnInteract);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.listModules);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Modules_All_Form";
             this.Text = "Modules_All_Form";
             this.ResumeLayout(false);
