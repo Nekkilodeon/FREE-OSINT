@@ -45,6 +45,8 @@
             this.modulesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.showFolderToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.modulesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.allModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.workplace_panel = new System.Windows.Forms.Panel();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageWorspace = new System.Windows.Forms.TabPage();
@@ -78,8 +80,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStripTargets = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.modulesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
-            this.allModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.workplace_panel.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -104,7 +104,7 @@
             this.modulesToolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1262, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1262, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -116,7 +116,7 @@
             this.saveToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
             this.fileToolStripMenuItem.Text = "File";
             this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
             // 
@@ -154,20 +154,20 @@
             this.showToolStripMenuItem,
             this.showFolderToolStripMenuItem});
             this.modulesToolStripMenuItem.Name = "modulesToolStripMenuItem";
-            this.modulesToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
+            this.modulesToolStripMenuItem.Size = new System.Drawing.Size(67, 26);
             this.modulesToolStripMenuItem.Text = "Search";
             // 
             // showToolStripMenuItem
             // 
             this.showToolStripMenuItem.Name = "showToolStripMenuItem";
-            this.showToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.showToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.showToolStripMenuItem.Text = "Modules";
             this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
             // 
             // showFolderToolStripMenuItem
             // 
             this.showFolderToolStripMenuItem.Name = "showFolderToolStripMenuItem";
-            this.showFolderToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.showFolderToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.showFolderToolStripMenuItem.Text = "Show folder";
             this.showFolderToolStripMenuItem.Click += new System.EventHandler(this.showFolderToolStripMenuItem_Click);
             // 
@@ -176,14 +176,14 @@
             this.resultsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem1});
             this.resultsToolStripMenuItem.Name = "resultsToolStripMenuItem";
-            this.resultsToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
+            this.resultsToolStripMenuItem.Size = new System.Drawing.Size(69, 26);
             this.resultsToolStripMenuItem.Text = "Results";
             this.resultsToolStripMenuItem.Click += new System.EventHandler(this.resultsToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem1
             // 
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
-            this.openToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.openToolStripMenuItem1.Size = new System.Drawing.Size(128, 26);
             this.openToolStripMenuItem1.Text = "Open";
             this.openToolStripMenuItem1.Click += new System.EventHandler(this.openToolStripMenuItem1_Click);
             // 
@@ -194,28 +194,43 @@
             this.showFolderToolStripMenuItem1,
             this.editToolStripMenuItem});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(68, 26);
             this.reportToolStripMenuItem.Text = "Report";
             // 
             // modulesToolStripMenuItem1
             // 
             this.modulesToolStripMenuItem1.Name = "modulesToolStripMenuItem1";
-            this.modulesToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.modulesToolStripMenuItem1.Size = new System.Drawing.Size(174, 26);
             this.modulesToolStripMenuItem1.Text = "Modules";
             this.modulesToolStripMenuItem1.Click += new System.EventHandler(this.modulesToolStripMenuItem1_Click);
             // 
             // showFolderToolStripMenuItem1
             // 
             this.showFolderToolStripMenuItem1.Name = "showFolderToolStripMenuItem1";
-            this.showFolderToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.showFolderToolStripMenuItem1.Size = new System.Drawing.Size(174, 26);
             this.showFolderToolStripMenuItem1.Text = "Show Folder";
             this.showFolderToolStripMenuItem1.Click += new System.EventHandler(this.showFolderToolStripMenuItem1_Click);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(174, 26);
             this.editToolStripMenuItem.Text = "Edit";
+            // 
+            // modulesToolStripMenuItem2
+            // 
+            this.modulesToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.allModulesToolStripMenuItem});
+            this.modulesToolStripMenuItem2.Name = "modulesToolStripMenuItem2";
+            this.modulesToolStripMenuItem2.Size = new System.Drawing.Size(80, 26);
+            this.modulesToolStripMenuItem2.Text = "Modules";
+            // 
+            // allModulesToolStripMenuItem
+            // 
+            this.allModulesToolStripMenuItem.Name = "allModulesToolStripMenuItem";
+            this.allModulesToolStripMenuItem.Size = new System.Drawing.Size(171, 26);
+            this.allModulesToolStripMenuItem.Text = "All modules";
+            this.allModulesToolStripMenuItem.Click += new System.EventHandler(this.allModulesToolStripMenuItem_Click);
             // 
             // workplace_panel
             // 
@@ -225,9 +240,9 @@
             this.workplace_panel.Controls.Add(this.panel2);
             this.workplace_panel.Controls.Add(this.panel1);
             this.workplace_panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workplace_panel.Location = new System.Drawing.Point(0, 28);
+            this.workplace_panel.Location = new System.Drawing.Point(0, 30);
             this.workplace_panel.Name = "workplace_panel";
-            this.workplace_panel.Size = new System.Drawing.Size(1262, 645);
+            this.workplace_panel.Size = new System.Drawing.Size(1262, 643);
             this.workplace_panel.TabIndex = 2;
             this.workplace_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.workplace_panel_Paint);
             // 
@@ -239,7 +254,7 @@
             this.tabControl.Location = new System.Drawing.Point(335, 85);
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(927, 560);
+            this.tabControl.Size = new System.Drawing.Size(927, 558);
             this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.TabIndex = 0;
             this.tabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.onDrawTabs);
@@ -254,7 +269,7 @@
             this.tabPageWorspace.Location = new System.Drawing.Point(4, 25);
             this.tabPageWorspace.Name = "tabPageWorspace";
             this.tabPageWorspace.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageWorspace.Size = new System.Drawing.Size(919, 531);
+            this.tabPageWorspace.Size = new System.Drawing.Size(919, 529);
             this.tabPageWorspace.TabIndex = 0;
             this.tabPageWorspace.Text = "Workspace";
             // 
@@ -264,7 +279,7 @@
             this.panelDrawWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDrawWorkspace.Location = new System.Drawing.Point(3, 3);
             this.panelDrawWorkspace.Name = "panelDrawWorkspace";
-            this.panelDrawWorkspace.Size = new System.Drawing.Size(913, 525);
+            this.panelDrawWorkspace.Size = new System.Drawing.Size(913, 523);
             this.panelDrawWorkspace.TabIndex = 2;
             this.panelDrawWorkspace.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDrawWorkspace_Paint);
             // 
@@ -480,7 +495,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(335, 645);
+            this.panel1.Size = new System.Drawing.Size(335, 643);
             this.panel1.TabIndex = 0;
             // 
             // treeViewTargets
@@ -497,7 +512,7 @@
             this.treeViewTargets.ShowLines = false;
             this.treeViewTargets.ShowPlusMinus = false;
             this.treeViewTargets.ShowRootLines = false;
-            this.treeViewTargets.Size = new System.Drawing.Size(335, 560);
+            this.treeViewTargets.Size = new System.Drawing.Size(335, 558);
             this.treeViewTargets.TabIndex = 3;
             this.treeViewTargets.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewTargets_AfterSelect);
             this.treeViewTargets.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.nodeClick);
@@ -597,21 +612,6 @@
             this.menuStripTargets.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStripTargets.Name = "menuStripTargets";
             this.menuStripTargets.Size = new System.Drawing.Size(61, 4);
-            // 
-            // modulesToolStripMenuItem2
-            // 
-            this.modulesToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.allModulesToolStripMenuItem});
-            this.modulesToolStripMenuItem2.Name = "modulesToolStripMenuItem2";
-            this.modulesToolStripMenuItem2.Size = new System.Drawing.Size(80, 24);
-            this.modulesToolStripMenuItem2.Text = "Modules";
-            // 
-            // allModulesToolStripMenuItem
-            // 
-            this.allModulesToolStripMenuItem.Name = "allModulesToolStripMenuItem";
-            this.allModulesToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.allModulesToolStripMenuItem.Text = "All modules";
-            this.allModulesToolStripMenuItem.Click += new System.EventHandler(this.allModulesToolStripMenuItem_Click);
             // 
             // MainForm
             // 

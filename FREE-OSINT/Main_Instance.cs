@@ -140,7 +140,6 @@ namespace FREE_OSINT
 
                 Workspace.reloadTargetsFromTreeView();
                 drawTreeNodes();
-
             }
             else if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.EDIT)
             {

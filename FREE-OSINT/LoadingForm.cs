@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -69,24 +70,29 @@ namespace FREE_OSINT
                 {
                     try
                     {
-                        var moduleAssembly = System.Reflection.Assembly.LoadFrom(module_directories[i] + "/" + module_directories[i].Split('\\')[1] + ".exe");
-                        var moduleTypes = moduleAssembly.GetTypes().Where(t =>
-                           t.GetInterfaces().Contains(typeof(IGeneral_module)));
-                        modules = moduleTypes.Select(type =>
+                        if (!module_directories[i].Contains(General_Config.lib_directory))
                         {
-                            loadingForm.txtCurrentModule.Invoke((MethodInvoker)delegate
+
+                            var moduleAssembly = System.Reflection.Assembly.LoadFrom(module_directories[i] + "/" + module_directories[i].Split('\\')[1] + ".exe");
+                            var moduleTypes = moduleAssembly.GetTypes().Where(t =>
+                               t.GetInterfaces().Contains(typeof(IGeneral_module)));
+                            modules = moduleTypes.Select(type =>
                             {
-                                loadingForm.txtCurrentModule.Text = " Loading: " + type.FullName;
+                                loadingForm.txtCurrentModule.Invoke((MethodInvoker)delegate
+                                {
+                                    loadingForm.txtCurrentModule.Text = " Loading: " + type.FullName;
+                                });
+                                return (IGeneral_module)Activator.CreateInstance(type);
                             });
-                            return (IGeneral_module)Activator.CreateInstance(type);
-                        });
-                        module_list.AddRange(this.modules.ToList());
+                            module_list.AddRange(this.modules.ToList());
+                        }
                     }
                     catch (Exception e)
                     {
                         MessageBox.Show(e.Message);
                     }
                 }
+                module_list = ReadDlls(module_list);
 
                 loadingForm.txtCurrentModule.Invoke((MethodInvoker)delegate
                 {
@@ -114,6 +120,35 @@ namespace FREE_OSINT
                 /*
                 listModules.Items.Add("Default Google");
                 listModules.Items.Add("Default Bing");*/
+            }
+
+            private List<IGeneral_module> ReadDlls(List<IGeneral_module> module_list)
+            {
+                string[] fileEntries = Directory.GetFiles(General_Config.modules_directory + "/" + General_Config.lib_directory);
+                for (int i = 0; i < fileEntries.Length; i++)
+                {
+                    try
+                    {
+                        var moduleAssembly = System.Reflection.Assembly.LoadFrom(fileEntries[i]);
+                        var moduleTypes = moduleAssembly.GetTypes().Where(t =>
+                           t.GetInterfaces().Contains(typeof(IGeneral_module)));
+                        modules = moduleTypes.Select(type =>
+                        {
+                            loadingForm.txtCurrentModule.Invoke((MethodInvoker)delegate
+                            {
+                                loadingForm.txtCurrentModule.Text = " Loading: " + type.FullName;
+                            });
+                            return (IGeneral_module)Activator.CreateInstance(type);
+                        });
+                        module_list.AddRange(this.modules.ToList());
+                    }
+                    catch (Exception e)
+                    {
+                        MessageBox.Show(e.Message);
+                    }
+                }
+
+                return module_list;
             }
         }
 

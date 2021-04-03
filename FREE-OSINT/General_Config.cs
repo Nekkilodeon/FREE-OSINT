@@ -11,6 +11,7 @@ namespace FREE_OSINT
     {
         public static string modules_directory = "modules";
         static internal Dictionary<int, Color> SubNodes;
+        internal static string lib_directory = "libs";
         private Color target_color = Color.Aqua;
         private Color sub_node_color = Color.Aquamarine;
 
