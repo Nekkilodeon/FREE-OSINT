@@ -123,7 +123,7 @@
             this.Controls.Add(this.panelOptions);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Open_Url_Form";
-            this.Text = "Open_Url_Form";
+            this.Text = "Open URL";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.onFormClosing);
             this.Load += new System.EventHandler(this.Open_Url_Form_Load);
             this.panelOptions.ResumeLayout(false);

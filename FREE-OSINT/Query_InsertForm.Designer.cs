@@ -110,7 +110,7 @@
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Query_InsertForm";
-            this.Text = "Insert Query";
+            this.Text = "Query";
             this.ResumeLayout(false);
             this.PerformLayout();
 

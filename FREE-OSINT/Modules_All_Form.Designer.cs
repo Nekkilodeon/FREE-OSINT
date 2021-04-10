@@ -121,7 +121,7 @@
             this.Controls.Add(this.listModules);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Modules_All_Form";
-            this.Text = "Modules_All_Form";
+            this.Text = "All Modules";
             this.ResumeLayout(false);
             this.PerformLayout();
 

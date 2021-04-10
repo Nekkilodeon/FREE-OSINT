@@ -115,7 +115,7 @@
             this.Controls.Add(this.listQueryParams);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "QueryConstructorForm";
-            this.Text = "QueryConstructor";
+            this.Text = "Query Builder";
             this.ResumeLayout(false);
             this.PerformLayout();
 

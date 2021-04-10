@@ -166,7 +166,6 @@ namespace FREE_OSINT
             browser = new ChromiumWebBrowser("");
             panelBrowser.Controls.Add(browser);
             setupBrowser();
-
         }
 
         private void setupBrowser()
