@@ -263,71 +263,76 @@ namespace FREE_OSINT
             dlg.FileName = Application.StartupPath + "\\..\\..\\example.xml";
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                try
+                openFile(dlg.FileName);
+            }
+        }
+        private void openFile(string fileName)
+        {
+            try
+            {
+                this.Cursor = Cursors.WaitCursor;
+                XmlDocument xDoc = new XmlDocument();
+                xDoc.Load(fileName);
+                Main_Instance.Instance.Workspace = new Workspace();
+                Main_Instance.Instance.Workspace.Targets.Clear();
+                Main_Instance.Instance.Workspace.Title = fileName;
+                XmlNodeList target_elements = xDoc.DocumentElement.GetElementsByTagName("Target");
+
+                foreach (XmlNode target_node in target_elements)
                 {
-                    this.Cursor = Cursors.WaitCursor;
-                    XmlDocument xDoc = new XmlDocument();
-                    xDoc.Load(dlg.FileName);
-                    Main_Instance.Instance.Workspace = new Workspace();
-                    Main_Instance.Instance.Workspace.Targets.Clear();
-                    Main_Instance.Instance.Workspace.Title = dlg.SafeFileName;
-                    XmlNodeList target_elements = xDoc.DocumentElement.GetElementsByTagName("Target");
-
-                    foreach (XmlNode target_node in target_elements)
+                    string title = target_node.Attributes.GetNamedItem("value").Value;
+                    int x = Int16.Parse(target_node.Attributes.GetNamedItem("x").Value);
+                    int y = Int16.Parse(target_node.Attributes.GetNamedItem("y").Value);
+                    int colorARGB = Int32.Parse(target_node.Attributes.GetNamedItem("color").Value);
+                    try
                     {
-                        string title = target_node.Attributes.GetNamedItem("value").Value;
-                        int x = Int16.Parse(target_node.Attributes.GetNamedItem("x").Value);
-                        int y = Int16.Parse(target_node.Attributes.GetNamedItem("y").Value);
-                        int colorARGB = Int32.Parse(target_node.Attributes.GetNamedItem("color").Value);
-                        try
-                        {
-                            Main_Instance.Instance.Workspace.TreeViewPositions.Add(title, new Point(x, y));
-                            Main_Instance.Instance.Workspace.TreeViewColors.Add(title, colorARGB);
-                        }
-                        catch (Exception)
-                        {
-                            Main_Instance.Instance.Workspace.TreeViewPositions.Add(title + " (1)", new Point(x, y));
-                            Main_Instance.Instance.Workspace.TreeViewColors.Add(title + " (1)", colorARGB);
+                        Main_Instance.Instance.Workspace.TreeViewPositions.Add(title, new Point(x, y));
+                        Main_Instance.Instance.Workspace.TreeViewColors.Add(title, colorARGB);
+                    }
+                    catch (Exception)
+                    {
+                        Main_Instance.Instance.Workspace.TreeViewPositions.Add(title + " (1)", new Point(x, y));
+                        Main_Instance.Instance.Workspace.TreeViewColors.Add(title + " (1)", colorARGB);
 
-                        }
-
-                        Target target = new Target(title);
-                        XmlNodeList childNodes = target_node.ChildNodes;
-                        foreach (XmlNode node in childNodes)
-                        {
-                            TreeNode tNode = new TreeNode(node.Attributes.GetNamedItem("value").Value);
-                            /*
-                            x = Int16.Parse(node.Attributes.GetNamedItem("x").Value);
-                            y = Int16.Parse(node.Attributes.GetNamedItem("y").Value);
-
-                            Main_Instance.Instance.Workspace.TreeViewPositions.Add(tNode.Text, new Point(x, y));
-                            */
-                            addTreeNode(node, tNode);
-                            target.addNode(tNode);
-                        }
-                        Main_Instance.Instance.Workspace.Targets.Add(target);
                     }
 
+                    Target target = new Target(title);
+                    XmlNodeList childNodes = target_node.ChildNodes;
+                    foreach (XmlNode node in childNodes)
+                    {
+                        TreeNode tNode = new TreeNode(node.Attributes.GetNamedItem("value").Value);
+                        /*
+                        x = Int16.Parse(node.Attributes.GetNamedItem("x").Value);
+                        y = Int16.Parse(node.Attributes.GetNamedItem("y").Value);
 
+                        Main_Instance.Instance.Workspace.TreeViewPositions.Add(tNode.Text, new Point(x, y));
+                        */
+                        addTreeNode(node, tNode);
+                        target.addNode(tNode);
+                    }
+                    Main_Instance.Instance.Workspace.Targets.Add(target);
                 }
-                catch (XmlException xExc)
-                //Exception is thrown is there is an error in the Xml
-                {
-                    MessageBox.Show(xExc.Message);
-                }
-                catch (Exception ex) //General exception
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                finally
-                {
-                    Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
-                    reloadWorkspace(false);
-                    Main_Instance.Instance.sync_diagram_positions();
-                    //Main_Instance.Instance.populate_position_dictionary();
-                    this.Cursor = Cursors.Default; //Change the cursor back
-                }
+
+
             }
+            catch (XmlException xExc)
+            //Exception is thrown is there is an error in the Xml
+            {
+                MessageBox.Show(xExc.Message);
+            }
+            catch (Exception ex) //General exception
+            {
+                MessageBox.Show(ex.Message);
+            }
+            finally
+            {
+                Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
+                reloadWorkspace(false);
+                Main_Instance.Instance.sync_diagram_positions();
+                //Main_Instance.Instance.populate_position_dictionary();
+                this.Cursor = Cursors.Default; //Change the cursor back
+            }
+
         }
         public void GetExpandedStatus(TreeNode node, List<string> ExpandedNodes)
         {
@@ -472,7 +477,7 @@ namespace FREE_OSINT
 
         private void btnAutoLayout_Click(object sender, EventArgs e)
         {
-            Main_Instance.Instance.NodeDiagram.AutoLayout(true);
+            Main_Instance.Instance.NodeDiagram.AutoLayout(true, false);
             foreach (ConditionNode conditionNode in Main_Instance.Instance.NodeDiagram.Nodes)
             {
                 Main_Instance.Instance.Workspace.TreeViewPositions[conditionNode.Text] = conditionNode.Position;
@@ -505,7 +510,7 @@ namespace FREE_OSINT
 
         private void btnSaveImage_Click(object sender, EventArgs e)
         {
-            Main_Instance.Instance.NodeDiagram.AutoLayout(false);
+            Main_Instance.Instance.NodeDiagram.AutoLayout(false, false);
             foreach (ConditionNode conditionNode in Main_Instance.Instance.NodeDiagram.Nodes)
             {
                 Main_Instance.Instance.Workspace.TreeViewPositions[conditionNode.Text] = conditionNode.Position;
@@ -569,7 +574,7 @@ namespace FREE_OSINT
         }
         private void myMenuItem_Click(object sender, EventArgs e)
         {
-            if (((MenuItem)sender).Text == "Imbedded Browser" && selectedNode != null)
+            if (((MenuItem)sender).Text == "Embedded Browser" && selectedNode != null)
             {
                 if (selectedNode.Text.Contains("http:") || selectedNode.Text.Contains("https:"))
                 {
@@ -594,7 +599,8 @@ namespace FREE_OSINT
                 List<TreeNode> selectedNodes = new List<TreeNode>();
                 selectedNodes.Add(selectedNode);
                 Main_Instance.Instance.compose_funcion(selectedNodes);
-            } else if (((MenuItem)sender).Text == "New Empty Child" && selectedNode != null)
+            }
+            else if (((MenuItem)sender).Text == "New Empty Child" && selectedNode != null)
             {
                 selectedNode.Nodes.Add(new TreeNode("Empty"));
                 selectedNode.Expand();
@@ -667,32 +673,30 @@ namespace FREE_OSINT
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            openFile("MCIF.workspace.xml");
         }
 
         private void closingForm(object sender, FormClosingEventArgs e)
         {
-            if (((MainForm)sender).ActiveControl.GetType() == typeof(TabControl))
-            {
-                e.Cancel = true;
-            }
-            else
+            if(e.CloseReason == CloseReason.UserClosing)
             {
                 DialogResult dialogResult = MessageBox.Show("Are you sure?", "Exit", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    this.DialogResult = DialogResult.OK;
+                    /*this.DialogResult = DialogResult.OK;
                     for (int x = 0; x < Application.OpenForms.Count; x++)
                     {
                         if (Application.OpenForms[x] != this)
                             Application.OpenForms[x].Close();
                     }
-                    return;
+                    return;*/
                 }
                 else if (dialogResult == DialogResult.No)
                 {
                     e.Cancel = true;
                 }
             }
+
         }
 
         private void modulesToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -762,8 +766,6 @@ namespace FREE_OSINT
             size.Width = Base_Box_Size.Width + ((TrackBar)sender).Value;
             Main_Instance.Instance.NodeDiagram.NodeSize = size;
             Main_Instance.Instance.NodeDiagram.Redraw();
-
-
         }
 
         private void slideHeight_Scroll(object sender, EventArgs e)
@@ -806,7 +808,7 @@ namespace FREE_OSINT
                         ChromiumWebBrowser browser = (ChromiumWebBrowser)this.tabControl.TabPages[i].Controls[0];
                         browser.Dispose();
                         this.tabControl.TabPages.RemoveAt(i);
-                        break;
+                        //break;
                     }
                 }
             }
@@ -840,7 +842,7 @@ namespace FREE_OSINT
                 e.SuppressKeyPress = true;
                 e.Handled = true;
             }
-            if(e.KeyCode == Keys.N)
+            if (e.KeyCode == Keys.N)
             {
                 if (Control.ModifierKeys == Keys.Control && treeViewTargets.SelectedNode != null)
                 {
@@ -854,7 +856,20 @@ namespace FREE_OSINT
 
                 }
             }
-            if(e.KeyCode == Keys.Q && Control.ModifierKeys == Keys.Control && treeViewTargets.SelectedNode != null)
+            if (e.KeyCode == Keys.C)
+            {
+                if (Control.ModifierKeys == Keys.Control && treeViewTargets.SelectedNode != null)
+                {
+                    //Copy text CTRL+C
+                    Clipboard.SetText(treeViewTargets.SelectedNode.Text);
+
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                    
+
+                }
+            }
+            if (e.KeyCode == Keys.Q && Control.ModifierKeys == Keys.Control && treeViewTargets.SelectedNode != null)
             {
                 //CTRL + Q
                 List<TreeNode> selectedNodes = new List<TreeNode>();
@@ -863,6 +878,24 @@ namespace FREE_OSINT
 
                 e.Handled = true;
                 e.SuppressKeyPress = true;
+            }
+        }
+
+        private void btnHorizontalIntuitive_Click(object sender, EventArgs e)
+        {
+            Main_Instance.Instance.NodeDiagram.AutoLayout(false, true);
+            foreach (ConditionNode conditionNode in Main_Instance.Instance.NodeDiagram.Nodes)
+            {
+                Main_Instance.Instance.Workspace.TreeViewPositions[conditionNode.Text] = conditionNode.Position;
+            }
+        }
+
+        private void doubleClickTreeView(object sender, MouseEventArgs e)
+        {
+            selectedNode = treeViewTargets.SelectedNode;
+            if (selectedNode != null && (selectedNode.Text.Contains("http:") || selectedNode.Text.Contains("https:")))
+            {
+                addNewTab(selectedNode.Parent != null ? selectedNode.Parent.Text.Substring(0, 8) : selectedNode.Text.Split(':')[1].Substring(2, 10), selectedNode.Text);
             }
         }
     }

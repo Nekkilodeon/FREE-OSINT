@@ -28,11 +28,9 @@ namespace FREE_OSINT
         private void LoadingDone()
         {
             MainForm mainForm = new MainForm();
-            var dialogResult = mainForm.ShowDialog();
-            if (dialogResult == DialogResult.OK)
-            {
-                Application.Exit();
-            }
+            mainForm.Closed += (s, args) => this.Close();
+            mainForm.Show();
+
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -153,6 +151,11 @@ namespace FREE_OSINT
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoadingForm_Load(object sender, EventArgs e)
         {
 
         }

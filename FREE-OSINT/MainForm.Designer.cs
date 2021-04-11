@@ -1,4 +1,6 @@
-﻿namespace FREE_OSINT
+﻿using System.Windows.Forms;
+
+namespace FREE_OSINT
 {
     partial class MainForm
     {
@@ -104,7 +106,7 @@
             this.modulesToolStripMenuItem2});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1262, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1582, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -123,28 +125,28 @@
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -242,7 +244,7 @@
             this.workplace_panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.workplace_panel.Location = new System.Drawing.Point(0, 28);
             this.workplace_panel.Name = "workplace_panel";
-            this.workplace_panel.Size = new System.Drawing.Size(1262, 645);
+            this.workplace_panel.Size = new System.Drawing.Size(1582, 825);
             this.workplace_panel.TabIndex = 2;
             this.workplace_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.workplace_panel_Paint);
             // 
@@ -252,9 +254,10 @@
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl.Location = new System.Drawing.Point(335, 85);
+            this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(927, 560);
+            this.tabControl.Size = new System.Drawing.Size(1247, 740);
             this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.TabIndex = 0;
             this.tabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.onDrawTabs);
@@ -269,7 +272,7 @@
             this.tabPageWorspace.Location = new System.Drawing.Point(4, 25);
             this.tabPageWorspace.Name = "tabPageWorspace";
             this.tabPageWorspace.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageWorspace.Size = new System.Drawing.Size(919, 531);
+            this.tabPageWorspace.Size = new System.Drawing.Size(1239, 711);
             this.tabPageWorspace.TabIndex = 0;
             this.tabPageWorspace.Text = "Workspace";
             // 
@@ -279,7 +282,7 @@
             this.panelDrawWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDrawWorkspace.Location = new System.Drawing.Point(3, 3);
             this.panelDrawWorkspace.Name = "panelDrawWorkspace";
-            this.panelDrawWorkspace.Size = new System.Drawing.Size(913, 525);
+            this.panelDrawWorkspace.Size = new System.Drawing.Size(1233, 705);
             this.panelDrawWorkspace.TabIndex = 2;
             this.panelDrawWorkspace.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDrawWorkspace_Paint);
             // 
@@ -306,7 +309,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(335, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(927, 85);
+            this.panel2.Size = new System.Drawing.Size(1247, 85);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
             // 
@@ -374,7 +377,7 @@
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(439, 11);
+            this.label6.Location = new System.Drawing.Point(759, 11);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 17);
             this.label6.TabIndex = 13;
@@ -383,7 +386,7 @@
             // btnSelectFont
             // 
             this.btnSelectFont.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSelectFont.Location = new System.Drawing.Point(515, 4);
+            this.btnSelectFont.Location = new System.Drawing.Point(835, 4);
             this.btnSelectFont.Name = "btnSelectFont";
             this.btnSelectFont.Size = new System.Drawing.Size(129, 31);
             this.btnSelectFont.TabIndex = 12;
@@ -395,7 +398,7 @@
             // 
             this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(675, 11);
+            this.label5.Location = new System.Drawing.Point(995, 11);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(92, 17);
             this.label5.TabIndex = 10;
@@ -404,7 +407,7 @@
             // btnHDPIEnable
             // 
             this.btnHDPIEnable.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnHDPIEnable.Location = new System.Drawing.Point(786, 4);
+            this.btnHDPIEnable.Location = new System.Drawing.Point(1106, 4);
             this.btnHDPIEnable.Name = "btnHDPIEnable";
             this.btnHDPIEnable.Size = new System.Drawing.Size(129, 31);
             this.btnHDPIEnable.TabIndex = 8;
@@ -436,7 +439,7 @@
             // btnStraight
             // 
             this.btnStraight.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnStraight.Location = new System.Drawing.Point(786, 47);
+            this.btnStraight.Location = new System.Drawing.Point(1106, 47);
             this.btnStraight.Name = "btnStraight";
             this.btnStraight.Size = new System.Drawing.Size(129, 29);
             this.btnStraight.TabIndex = 4;
@@ -447,7 +450,7 @@
             // btn4way
             // 
             this.btn4way.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btn4way.Location = new System.Drawing.Point(651, 47);
+            this.btn4way.Location = new System.Drawing.Point(971, 47);
             this.btn4way.Name = "btn4way";
             this.btn4way.Size = new System.Drawing.Size(129, 29);
             this.btn4way.TabIndex = 3;
@@ -458,7 +461,7 @@
             // btnBezier
             // 
             this.btnBezier.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnBezier.Location = new System.Drawing.Point(516, 47);
+            this.btnBezier.Location = new System.Drawing.Point(836, 47);
             this.btnBezier.Name = "btnBezier";
             this.btnBezier.Size = new System.Drawing.Size(129, 29);
             this.btnBezier.TabIndex = 2;
@@ -470,7 +473,7 @@
             // 
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(439, 53);
+            this.label2.Location = new System.Drawing.Point(759, 53);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(71, 17);
             this.label2.TabIndex = 1;
@@ -495,7 +498,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(335, 645);
+            this.panel1.Size = new System.Drawing.Size(335, 825);
             this.panel1.TabIndex = 0;
             // 
             // treeViewTargets
@@ -512,11 +515,12 @@
             this.treeViewTargets.ShowLines = false;
             this.treeViewTargets.ShowPlusMinus = false;
             this.treeViewTargets.ShowRootLines = false;
-            this.treeViewTargets.Size = new System.Drawing.Size(335, 560);
+            this.treeViewTargets.Size = new System.Drawing.Size(335, 740);
             this.treeViewTargets.TabIndex = 3;
             this.treeViewTargets.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewTargets_AfterSelect);
             this.treeViewTargets.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.nodeClick);
             this.treeViewTargets.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDownTreeView);
+            this.treeViewTargets.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.doubleClickTreeView);
             // 
             // panel3
             // 
@@ -600,7 +604,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.InitialImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.InitialImage")));
+            this.pictureBox1.InitialImage = null;
             this.pictureBox1.Location = new System.Drawing.Point(6, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(104, 55);
@@ -618,7 +622,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1262, 673);
+            this.AutoSize = true;
+            this.ClientSize = new System.Drawing.Size(1582, 853);
             this.Controls.Add(this.workplace_panel);
             this.Controls.Add(this.menuStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));

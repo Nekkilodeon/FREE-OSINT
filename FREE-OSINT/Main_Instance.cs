@@ -44,7 +44,7 @@ namespace FREE_OSINT
                     ConditionNode conditionNode = node as ConditionNode;
                     if (Workspace.TreeViewColors.ContainsKey(conditionNode.Text))
                     {
-                        Workspace.TreeViewColors[conditionNode.Text] =  ((Color)diagramEventArgs.operation_attribute).ToArgb();
+                        Workspace.TreeViewColors[conditionNode.Text] = ((Color)diagramEventArgs.operation_attribute).ToArgb();
                     }
                     else
                     {
@@ -81,7 +81,6 @@ namespace FREE_OSINT
                     if (selected_node != null)
                         Workspace.TargetTreeView.Nodes.Remove(selected_node);
                     //Workspace.find_remove(((ConditionNode)node).Text);
-
                 }
                 Workspace.reloadTargetsFromTreeView();
                 drawTreeNodes();
@@ -317,6 +316,16 @@ namespace FREE_OSINT
 
                         if (Main_Instance.Instance.Workspace.TreeViewPositions.ContainsKey(node2.Text))
                             node2.Position = Main_Instance.Instance.Workspace.TreeViewPositions[node2.Text];
+                        else
+                        {
+                            if (subnode.Parent != null && Main_Instance.Instance.Workspace.TreeViewPositions.ContainsKey(subnode.Parent.Text))
+                            {
+                                node2.Position = Main_Instance.Instance.Workspace.TreeViewPositions[subnode.Parent.Text];
+                                node2.Position = new Point(node2.Position.X, node2.Position.Y + node2.NodeSize.Height);
+                                Main_Instance.Instance.Workspace.TreeViewPositions.Add(node2.Text, node2.Position);
+                            }
+                            // 
+                        }
                         if (Main_Instance.Instance.Workspace.TreeViewColors.ContainsKey(node2.Text))
                         {
                             node2.Container_color = Color.FromArgb(Main_Instance.Instance.Workspace.TreeViewColors[node2.Text]);
@@ -332,7 +341,6 @@ namespace FREE_OSINT
                 }
                 if (prevNode == null)
                     nodeDiagram.Nodes.Add(node);
-
                 return;
             }
             else
