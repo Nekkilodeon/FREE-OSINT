@@ -120,7 +120,7 @@ namespace FREE_OSINT
                         Target unassigned = Workspace.findTarget("Unassigned");
                         unassigned.addNode(treeNode);
                     }
-                    Workspace.generateTreeViewFromTargets();
+                    Workspace.reloadTreeViewFromTargets();
                     drawTreeNodes();
                 }
             }

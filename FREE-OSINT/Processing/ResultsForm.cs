@@ -776,7 +776,7 @@ namespace FREE_OSINT
             {
                 Workspace workspace = Main_Instance.Instance.Workspace;
                 this.DialogResult = DialogResult.OK;
-                Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
+                Main_Instance.Instance.Workspace.reloadTreeViewFromTargets();
                 this.treeViewResults.Nodes.Clear();
             }
             else if (e.CloseReason == CloseReason.None)

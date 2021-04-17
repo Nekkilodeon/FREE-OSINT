@@ -1,5 +1,6 @@
 ﻿using CefSharp;
 using CefSharp.WinForms;
+using FREE_OSINT.Main;
 using FREE_OSINT_Lib;
 using NodeControl;
 using NodeControl.Nodes;
@@ -123,7 +124,7 @@ namespace FREE_OSINT
             InitializeComponent();
             Main_Instance.Instance.NodeDiagram.Dock = DockStyle.Fill;
             Main_Instance.Instance.Workspace.TargetTreeView = treeViewTargets;
-            Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
+            Main_Instance.Instance.Workspace.reloadTreeViewFromTargets();
             Base_Box_Size = Main_Instance.Instance.NodeDiagram.NodeSize;
             panelDrawWorkspace.Controls.Add(Main_Instance.Instance.NodeDiagram);
             treeViewTargets.ItemDrag += new ItemDragEventHandler(treeView1_ItemDrag);
@@ -326,7 +327,7 @@ namespace FREE_OSINT
             }
             finally
             {
-                Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
+                Main_Instance.Instance.Workspace.reloadTreeViewFromTargets();
                 reloadWorkspace(false);
                 Main_Instance.Instance.sync_diagram_positions();
                 //Main_Instance.Instance.populate_position_dictionary();
@@ -363,7 +364,7 @@ namespace FREE_OSINT
 
             treeViewTargets.Nodes.Clear();
             Main_Instance.Instance.Workspace.TargetTreeView = treeViewTargets;
-            Main_Instance.Instance.Workspace.generateTreeViewFromTargets();
+            Main_Instance.Instance.Workspace.reloadTreeViewFromTargets();
             Main_Instance.Instance.drawTreeNodes();
             Main_Instance.Instance.sync_diagram_positions();
             labelWorkspaceName.Text = Main_Instance.Instance.Workspace.Title;
@@ -388,7 +389,6 @@ namespace FREE_OSINT
                     }
                     selected.Expand();
                 }
-
             }
             //treeViewTargets.ExpandAll();
 
@@ -673,12 +673,12 @@ namespace FREE_OSINT
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            openFile("MCIF.workspace.xml");
+            //openFile("MCIF.workspace.xml");
         }
 
         private void closingForm(object sender, FormClosingEventArgs e)
         {
-            if(e.CloseReason == CloseReason.UserClosing)
+            if (e.CloseReason == CloseReason.UserClosing)
             {
                 DialogResult dialogResult = MessageBox.Show("Are you sure?", "Exit", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
@@ -865,7 +865,7 @@ namespace FREE_OSINT
 
                     e.Handled = true;
                     e.SuppressKeyPress = true;
-                    
+
 
                 }
             }
@@ -897,6 +897,26 @@ namespace FREE_OSINT
             {
                 addNewTab(selectedNode.Parent != null ? selectedNode.Parent.Text.Substring(0, 8) : selectedNode.Text.Split(':')[1].Substring(2, 10), selectedNode.Text);
             }
+        }
+
+        private void configToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ConfigurationsForm configurationsForm = new ConfigurationsForm();
+            var result = configurationsForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+
+            }
+            else
+            {
+
+            }
+        }
+
+        private void btnRecolor_Click(object sender, EventArgs e)
+        {
+            General_Config.Recolor(Main_Instance.Instance.Workspace.TargetTreeView, true, true);
+            reloadWorkspace(true);
         }
     }
 }

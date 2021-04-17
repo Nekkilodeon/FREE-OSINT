@@ -89,103 +89,112 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="General_Config.cs" />
-    <Compile Include="LoadingForm.cs">
+    <Compile Include="Main\ConfigurationsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoadingForm.Designer.cs">
+    <Compile Include="Main\ConfigurationsForm.Designer.cs">
+      <DependentUpon>ConfigurationsForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\LoadingForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\LoadingForm.Designer.cs">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="MainForm.cs">
+    <Compile Include="Main\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="MainForm.Designer.cs">
+    <Compile Include="Main\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Main_Instance.cs" />
-    <Compile Include="Modules_All_Form.cs">
+    <Compile Include="Main\Modules_All_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Modules_All_Form.Designer.cs">
+    <Compile Include="Main\Modules_All_Form.Designer.cs">
       <DependentUpon>Modules_All_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="MyCustomMenuHandler.cs" />
-    <Compile Include="Open_Url_Form.cs">
+    <Compile Include="Processing\MyCustomMenuHandler.cs" />
+    <Compile Include="Processing\Open_Url_Form.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Open_Url_Form.Designer.cs">
+    <Compile Include="Processing\Open_Url_Form.Designer.cs">
       <DependentUpon>Open_Url_Form.cs</DependentUpon>
     </Compile>
-    <Compile Include="QueryConstructorForm.cs">
+    <Compile Include="Main\QueryConstructorForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="QueryConstructorForm.Designer.cs">
+    <Compile Include="Main\QueryConstructorForm.Designer.cs">
       <DependentUpon>QueryConstructorForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Report_Modules.cs">
+    <Compile Include="Report\Report_Modules.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Report_Modules.Designer.cs">
+    <Compile Include="Report\Report_Modules.Designer.cs">
       <DependentUpon>Report_Modules.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchModulesForm.cs">
+    <Compile Include="Search\SearchModulesForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchModulesForm.Designer.cs">
+    <Compile Include="Search\SearchModulesForm.Designer.cs">
       <DependentUpon>SearchModulesForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Query_InsertForm.cs">
+    <Compile Include="Search\Query_InsertForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Query_InsertForm.Designer.cs">
+    <Compile Include="Search\Query_InsertForm.Designer.cs">
       <DependentUpon>Query_InsertForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="ResultsForm.cs">
+    <Compile Include="Processing\ResultsForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ResultsForm.Designer.cs">
+    <Compile Include="Processing\ResultsForm.Designer.cs">
       <DependentUpon>ResultsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="SearchingForm.cs">
+    <Compile Include="Search\SearchingForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SearchingForm.Designer.cs">
+    <Compile Include="Search\SearchingForm.Designer.cs">
       <DependentUpon>SearchingForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Select_Nodes.cs">
+    <Compile Include="Report\Select_Nodes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Select_Nodes.Designer.cs">
+    <Compile Include="Report\Select_Nodes.Designer.cs">
       <DependentUpon>Select_Nodes.cs</DependentUpon>
     </Compile>
-    <Compile Include="SimpleInputForm.cs">
+    <Compile Include="Main\SimpleInputForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="SimpleInputForm.Designer.cs">
+    <Compile Include="Main\SimpleInputForm.Designer.cs">
       <DependentUpon>SimpleInputForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Target.cs" />
     <Compile Include="Workspace.cs" />
-    <EmbeddedResource Include="LoadingForm.resx">
+    <EmbeddedResource Include="Main\ConfigurationsForm.resx">
+      <DependentUpon>ConfigurationsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\LoadingForm.resx">
       <DependentUpon>LoadingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="MainForm.resx">
+    <EmbeddedResource Include="Main\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Modules_All_Form.resx">
+    <EmbeddedResource Include="Main\Modules_All_Form.resx">
       <DependentUpon>Modules_All_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Open_Url_Form.resx">
+    <EmbeddedResource Include="Processing\Open_Url_Form.resx">
       <DependentUpon>Open_Url_Form.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="QueryConstructorForm.resx">
+    <EmbeddedResource Include="Main\QueryConstructorForm.resx">
       <DependentUpon>QueryConstructorForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Report_Modules.resx">
+    <EmbeddedResource Include="Report\Report_Modules.resx">
       <DependentUpon>Report_Modules.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchModulesForm.resx">
+    <EmbeddedResource Include="Search\SearchModulesForm.resx">
       <DependentUpon>SearchModulesForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
@@ -197,19 +206,19 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Query_InsertForm.resx">
+    <EmbeddedResource Include="Search\Query_InsertForm.resx">
       <DependentUpon>Query_InsertForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ResultsForm.resx">
+    <EmbeddedResource Include="Processing\ResultsForm.resx">
       <DependentUpon>ResultsForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SearchingForm.resx">
+    <EmbeddedResource Include="Search\SearchingForm.resx">
       <DependentUpon>SearchingForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Select_Nodes.resx">
+    <EmbeddedResource Include="Report\Select_Nodes.resx">
       <DependentUpon>Select_Nodes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="SimpleInputForm.resx">
+    <EmbeddedResource Include="Main\SimpleInputForm.resx">
       <DependentUpon>SimpleInputForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
@@ -226,9 +235,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="search_modules\FREE-OSINT-Google\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
       <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>

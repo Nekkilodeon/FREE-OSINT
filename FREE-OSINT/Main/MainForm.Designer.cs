@@ -49,11 +49,14 @@ namespace FREE_OSINT
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modulesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.allModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.configToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.workplace_panel = new System.Windows.Forms.Panel();
             this.tabControl = new System.Windows.Forms.TabControl();
             this.tabPageWorspace = new System.Windows.Forms.TabPage();
             this.panelDrawWorkspace = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnRecolor = new System.Windows.Forms.Button();
             this.btnResetBoxes = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
@@ -62,7 +65,6 @@ namespace FREE_OSINT
             this.slideHeight = new System.Windows.Forms.TrackBar();
             this.label6 = new System.Windows.Forms.Label();
             this.btnSelectFont = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
             this.btnHDPIEnable = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.btnSaveImage = new System.Windows.Forms.Button();
@@ -103,7 +105,8 @@ namespace FREE_OSINT
             this.modulesToolStripMenuItem,
             this.resultsToolStripMenuItem,
             this.reportToolStripMenuItem,
-            this.modulesToolStripMenuItem2});
+            this.modulesToolStripMenuItem2,
+            this.configToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1582, 28);
@@ -125,28 +128,28 @@ namespace FREE_OSINT
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
-            this.newToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.newToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.newToolStripMenuItem.Text = "New";
             this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.saveToolStripMenuItem.Text = "Save";
             this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.quitToolStripMenuItem.Text = "Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -234,6 +237,23 @@ namespace FREE_OSINT
             this.allModulesToolStripMenuItem.Text = "All modules";
             this.allModulesToolStripMenuItem.Click += new System.EventHandler(this.allModulesToolStripMenuItem_Click);
             // 
+            // configToolStripMenuItem
+            // 
+            this.configToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.configToolStripMenuItem1});
+            this.configToolStripMenuItem.Name = "configToolStripMenuItem";
+            this.configToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
+            this.configToolStripMenuItem.Text = "Tools";
+            // 
+            // configToolStripMenuItem1
+            // 
+            this.configToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("configToolStripMenuItem1.Image")));
+            this.configToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
+            this.configToolStripMenuItem1.Name = "configToolStripMenuItem1";
+            this.configToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.configToolStripMenuItem1.Text = "Options";
+            this.configToolStripMenuItem1.Click += new System.EventHandler(this.configToolStripMenuItem1_Click);
+            // 
             // workplace_panel
             // 
             this.workplace_panel.AutoScroll = true;
@@ -289,6 +309,7 @@ namespace FREE_OSINT
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Menu;
+            this.panel2.Controls.Add(this.btnRecolor);
             this.panel2.Controls.Add(this.btnResetBoxes);
             this.panel2.Controls.Add(this.label9);
             this.panel2.Controls.Add(this.label8);
@@ -297,7 +318,6 @@ namespace FREE_OSINT
             this.panel2.Controls.Add(this.slideHeight);
             this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.btnSelectFont);
-            this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.btnHDPIEnable);
             this.panel2.Controls.Add(this.label4);
             this.panel2.Controls.Add(this.btnSaveImage);
@@ -312,6 +332,17 @@ namespace FREE_OSINT
             this.panel2.Size = new System.Drawing.Size(1247, 85);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            // 
+            // btnRecolor
+            // 
+            this.btnRecolor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRecolor.Location = new System.Drawing.Point(971, 4);
+            this.btnRecolor.Name = "btnRecolor";
+            this.btnRecolor.Size = new System.Drawing.Size(129, 31);
+            this.btnRecolor.TabIndex = 20;
+            this.btnRecolor.Text = "Recolor";
+            this.btnRecolor.UseVisualStyleBackColor = true;
+            this.btnRecolor.Click += new System.EventHandler(this.btnRecolor_Click);
             // 
             // btnResetBoxes
             // 
@@ -377,7 +408,7 @@ namespace FREE_OSINT
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(759, 11);
+            this.label6.Location = new System.Drawing.Point(548, 53);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 17);
             this.label6.TabIndex = 13;
@@ -386,23 +417,13 @@ namespace FREE_OSINT
             // btnSelectFont
             // 
             this.btnSelectFont.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSelectFont.Location = new System.Drawing.Point(835, 4);
+            this.btnSelectFont.Location = new System.Drawing.Point(624, 46);
             this.btnSelectFont.Name = "btnSelectFont";
             this.btnSelectFont.Size = new System.Drawing.Size(129, 31);
             this.btnSelectFont.TabIndex = 12;
             this.btnSelectFont.Text = "Change";
             this.btnSelectFont.UseVisualStyleBackColor = true;
             this.btnSelectFont.Click += new System.EventHandler(this.btnSelectFont_Click);
-            // 
-            // label5
-            // 
-            this.label5.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(995, 11);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(92, 17);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "HDPI support";
             // 
             // btnHDPIEnable
             // 
@@ -411,7 +432,7 @@ namespace FREE_OSINT
             this.btnHDPIEnable.Name = "btnHDPIEnable";
             this.btnHDPIEnable.Size = new System.Drawing.Size(129, 31);
             this.btnHDPIEnable.TabIndex = 8;
-            this.btnHDPIEnable.Text = "Enable";
+            this.btnHDPIEnable.Text = "HDPI support";
             this.btnHDPIEnable.UseVisualStyleBackColor = true;
             this.btnHDPIEnable.Click += new System.EventHandler(this.btnHDPIEnable_Click);
             // 
@@ -629,6 +650,7 @@ namespace FREE_OSINT
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FREE-OSINT";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.closingForm);
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -689,7 +711,6 @@ namespace FREE_OSINT
         private System.Windows.Forms.Button btnExpand;
         private System.Windows.Forms.Button btnColapse;
         private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnHDPIEnable;
         private System.Windows.Forms.Button btnSelectFont;
         private System.Windows.Forms.Label label6;
@@ -703,6 +724,9 @@ namespace FREE_OSINT
         private System.Windows.Forms.TabPage tabPageWorspace;
         private System.Windows.Forms.ToolStripMenuItem modulesToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem allModulesToolStripMenuItem;
+        private ToolStripMenuItem configToolStripMenuItem;
+        private ToolStripMenuItem configToolStripMenuItem1;
+        private Button btnRecolor;
     }
 }
 

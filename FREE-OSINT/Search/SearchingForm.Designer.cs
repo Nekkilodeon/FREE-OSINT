@@ -47,6 +47,7 @@
             this.listViewModules.TabIndex = 0;
             this.listViewModules.UseCompatibleStateImageBehavior = false;
             this.listViewModules.View = System.Windows.Forms.View.Details;
+            this.listViewModules.SelectedIndexChanged += new System.EventHandler(this.listViewModules_SelectedIndexChanged);
             // 
             // label1
             // 

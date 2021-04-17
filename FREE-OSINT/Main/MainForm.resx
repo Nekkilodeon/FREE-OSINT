@@ -121,6 +121,16 @@
     <value>17, 11</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="configToolStripMenuItem1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAOxJREFUOE+1ki0SgzAQhTkCR+kROnjugOAA1SgUHs9MJRKBpzqeA8RFIGL4kem+
+        TtIhIWmnneHNrEhmv5fN7kanaNu267Isj3VdlQmc53m+6JSwCM6maVJVVakkSV6RpqnCHYxgrlOPklLG
+        QgiZ57kFj+P4roSC0mSsEVtU5q1t2yDc971ijKGKTCO2KKkrisJrABh3TdOgH6VGbLkGxgSQOX81qOva
+        MnBjGAb/F8j1bsoMBZpLjxyb6INR+v6MsWJCh10Iwc7oEJ13kbAg+9cMDGOd8lmc8/9hCMlYDoznZ9gI
+        YyGwDG7YeYqiJyyaXLCfOTeyAAAAAElFTkSuQmCC
+</value>
+  </data>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAANUAAAB0CAYAAAASAHfIAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL

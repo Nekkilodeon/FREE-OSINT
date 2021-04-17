@@ -59,7 +59,7 @@ namespace FREE_OSINT
             // start the thread.
             Thread t = new Thread(new ThreadStart(tws.ThreadProc));
             t.Start();
-            Console.WriteLine("Main thread does some work, then waits.");
+            //Console.WriteLine("Main thread does some work, then waits.");
             //t.Join();
         }
 
@@ -151,6 +151,11 @@ namespace FREE_OSINT
         {
             this.txtLog.AppendText(v);
             this.txtLog.AppendText(Environment.NewLine);
+
+        }
+
+        private void listViewModules_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

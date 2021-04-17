@@ -25,7 +25,7 @@ namespace FREE_OSINT_Lib
             TreeViewPositions = new Dictionary<String, Point>();
             TreeViewColors = new Dictionary<String, Int32>();
             Title = "Untitled";
-            this.generateTreeViewFromTargets();
+            this.reloadTreeViewFromTargets();
         }
 
 
@@ -51,65 +51,7 @@ namespace FREE_OSINT_Lib
             }
         }
 
-        internal void find_remove(string text)
-        {
-            foreach (Target target in targets)
-            {
-                if (target.Title == text)
-                {
-                    targets.Remove(target);
-                    return;
-                }
-                if (target.TreeNodes.Count > 0)
-                {
-                    if (find_remove_iterator(target.TreeNodes, text))
-                    {
-                        return;
-                    }
-                }
-            }
-        }
-
-        private bool find_remove_iterator(List<TreeNode> treeNodes, string text)
-        {
-            foreach (TreeNode treeNode in treeNodes)
-            {
-                if (treeNode.Text == text)
-                {
-                    treeNodes.Remove(treeNode);
-                    return true;
-                }
-                if (treeNode.Nodes.Count > 0)
-                {
-                    if (find_remove_iterator_collection(treeNode.Nodes, text))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-        private bool find_remove_iterator_collection(TreeNodeCollection treeNodes, string text)
-        {
-            foreach (TreeNode treeNode in treeNodes)
-            {
-                if (treeNode.Text == text)
-                {
-                    treeNodes.Remove(treeNode);
-                    return true;
-                }
-                if (treeNode.Nodes.Count > 0)
-                {
-                    if (find_remove_iterator_collection(treeNode.Nodes, text))
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        public void generateTreeViewFromTargets()
+        public void reloadTreeViewFromTargets()
         {
             targetTreeView.Nodes.Clear();
             foreach (Target target in Targets)
@@ -117,30 +59,10 @@ namespace FREE_OSINT_Lib
                 TreeNode node = new TreeNode(target.Title, target.TreeNodesCloned().ToArray());
                 targetTreeView.Nodes.Add(node);
             }
-            foreach (TreeNode child in targetTreeView.Nodes)
-            {
-                child.BackColor = Color.Orange;
-                if (child.Nodes != null && child.Nodes.Count > 0)
-                {
-                    foreach (TreeNode subchild in child.Nodes)
-                    {
-                        fill_subnode_colors(subchild, 0);
-                    }
-                }
-            }
+            targetTreeView = General_Config.Recolor(targetTreeView, true);
         }
 
-        private void fill_subnode_colors(TreeNode subchild, int level)
-        {
-            subchild.BackColor = General_Config.SubNodes[level];
-            foreach (TreeNode node in subchild.Nodes)
-            {
-                if (node.Nodes.Count > 0)
-                {
-                    fill_subnode_colors(node, level + 1);
-                }
-            }
-        }
+        
 
         public Target findTarget(string name)
         {
