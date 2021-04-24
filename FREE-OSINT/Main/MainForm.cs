@@ -261,22 +261,21 @@ namespace FREE_OSINT
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Title = "Open Workspace XML Document";
             dlg.Filter = "XML Files (*.workspace.xml)|*.workspace.xml";
-            dlg.FileName = Application.StartupPath + "\\..\\..\\example.xml";
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                openFile(dlg.FileName);
+                openFile(dlg);
             }
         }
-        private void openFile(string fileName)
+        private void openFile(OpenFileDialog dlg)
         {
             try
             {
                 this.Cursor = Cursors.WaitCursor;
                 XmlDocument xDoc = new XmlDocument();
-                xDoc.Load(fileName);
+                xDoc.Load(dlg.FileName);
                 Main_Instance.Instance.Workspace = new Workspace();
                 Main_Instance.Instance.Workspace.Targets.Clear();
-                Main_Instance.Instance.Workspace.Title = fileName;
+                Main_Instance.Instance.Workspace.Title = dlg.SafeFileName;
                 XmlNodeList target_elements = xDoc.DocumentElement.GetElementsByTagName("Target");
 
                 foreach (XmlNode target_node in target_elements)
