@@ -83,6 +83,7 @@
             this.treeViewResults.TabIndex = 0;
             this.treeViewResults.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewResults_AfterSelect);
             this.treeViewResults.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.mouseClick);
+            this.treeViewResults.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDownTreeViewResults);
             // 
             // menuStrip1
             // 

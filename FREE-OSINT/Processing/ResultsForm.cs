@@ -1,6 +1,7 @@
 ﻿using CefSharp;
 using CefSharp.WinForms;
 using FREE_OSINT_Lib;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,6 +14,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
+using System.Windows;
 using System.Windows.Forms;
 using System.Xml;
 
@@ -610,7 +612,7 @@ namespace FREE_OSINT
                     myMenuItem3.Click += new EventHandler(myMenuItem_Click);
                     mnu.MenuItems.Add(myMenuItem3);
 
-                    MenuItem mnuItemChromium = new MenuItem("Chromium");
+                    MenuItem mnuItemChromium = new MenuItem("Embedded Browser");
                     mnuItemChromium.Click += new EventHandler(myMenuItem_Click);
                     myMenuItem3.MenuItems.Add(mnuItemChromium);
                     MenuItem mnuPredefinedBrowser = new MenuItem("Predefined Browser");
@@ -784,7 +786,6 @@ namespace FREE_OSINT
                 e.Cancel = true;
             }
         }
-
         private void btnBack_Click(object sender, EventArgs e)
         {
             browser.Back();
@@ -808,6 +809,22 @@ namespace FREE_OSINT
         {
 
         }
+
+        private void OnKeyDownTreeViewResults(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.C)
+            {
+                if (Control.ModifierKeys == Keys.Control && treeViewResults.SelectedNode != null)
+                {
+                    //Copy text CTRL+C
+                    System.Windows.Clipboard.SetText(treeViewResults.SelectedNode.Text);
+
+                    e.Handled = true;
+                    e.SuppressKeyPress = true;
+                }
+            }
+        }
+
     }
 
 }
