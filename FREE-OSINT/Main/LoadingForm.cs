@@ -17,6 +17,17 @@ namespace FREE_OSINT
     {
         public LoadingForm()
         {
+            string path = System.IO.Path.Combine(Environment.GetFolderPath(
+    Environment.SpecialFolder.MyDoc‌​uments), "FREE-OSINT");
+
+            if (Directory.Exists(path))
+            {
+                //Exists
+            }
+            else
+            {
+                System.IO.Directory.CreateDirectory(path);
+            }
             ThreadWithState tws = new ThreadWithState(this);
             InitializeComponent();
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

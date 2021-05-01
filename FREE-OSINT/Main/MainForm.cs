@@ -101,7 +101,7 @@ namespace FREE_OSINT
                 if (targetNode != null)
                     targetNode.Expand();
             }
-            Main_Instance.Instance.Workspace.reloadTargetsFromTreeView();
+            Main_Instance.Instance.Workspace.ReloadTargetsFromTreeView();
             reloadWorkspace(true);
         }
 
@@ -124,7 +124,7 @@ namespace FREE_OSINT
             InitializeComponent();
             Main_Instance.Instance.NodeDiagram.Dock = DockStyle.Fill;
             Main_Instance.Instance.Workspace.TargetTreeView = treeViewTargets;
-            Main_Instance.Instance.Workspace.reloadTreeViewFromTargets();
+            Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
             Base_Box_Size = Main_Instance.Instance.NodeDiagram.NodeSize;
             panelDrawWorkspace.Controls.Add(Main_Instance.Instance.NodeDiagram);
             treeViewTargets.ItemDrag += new ItemDragEventHandler(treeView1_ItemDrag);
@@ -168,13 +168,38 @@ namespace FREE_OSINT
         private void saveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.InitialDirectory = General_Config.Documents_Path;
             saveFileDialog1.Filter = "XML File xml|*.workspace.xml";
             saveFileDialog1.Title = "Save results to XML file";
-            var filePath = string.Empty;
+
             saveFileDialog1.FileName = labelWorkspaceName.Text;
+
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                exportToXml(saveFileDialog1.FileName);
+                var split = saveFileDialog1.FileName.Split('\\');
+                var proj_name = split[split.Length - 1];
+                var sub_dir = proj_name.Split('.')[0];
+                var result = saveFileDialog1.FileName;
+
+                string path = System.IO.Path.Combine(General_Config.Documents_Path, sub_dir);
+                if (!Directory.Exists(path))
+                {
+                    //Exists
+                    DialogResult res = MessageBox.Show($"Do you want to place file in a {sub_dir} subfolder?", "Subfolder", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (res == DialogResult.Yes)
+                    {
+                        DirectoryInfo info = new DirectoryInfo(General_Config.Documents_Path);
+                        DirectoryInfo dis = info.CreateSubdirectory(sub_dir);
+                        result = dis.FullName + "\\" + proj_name;
+                    }
+                    if (res == DialogResult.No)
+                    {
+
+                    }
+                }
+                labelWorkspaceName.Text = proj_name;
+                //labelWorkspaceName.Text = saveFileDialog1.FileName;
+                exportToXml(result);
             }
             //EXPORT WORKPLACE TO FILE
         }
@@ -259,6 +284,7 @@ namespace FREE_OSINT
             Main_Instance.Instance.Workspace = new Workspace();
             //OPEN WORKPLACE FILE
             OpenFileDialog dlg = new OpenFileDialog();
+            dlg.InitialDirectory = General_Config.Documents_Path;
             dlg.Title = "Open Workspace XML Document";
             dlg.Filter = "XML Files (*.workspace.xml)|*.workspace.xml";
             if (dlg.ShowDialog() == DialogResult.OK)
@@ -308,7 +334,7 @@ namespace FREE_OSINT
                         Main_Instance.Instance.Workspace.TreeViewPositions.Add(tNode.Text, new Point(x, y));
                         */
                         addTreeNode(node, tNode);
-                        target.addNode(tNode);
+                        target.AddNode(tNode);
                     }
                     Main_Instance.Instance.Workspace.Targets.Add(target);
                 }
@@ -326,7 +352,7 @@ namespace FREE_OSINT
             }
             finally
             {
-                Main_Instance.Instance.Workspace.reloadTreeViewFromTargets();
+                Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
                 reloadWorkspace(false);
                 Main_Instance.Instance.sync_diagram_positions();
                 //Main_Instance.Instance.populate_position_dictionary();
@@ -363,7 +389,7 @@ namespace FREE_OSINT
 
             treeViewTargets.Nodes.Clear();
             Main_Instance.Instance.Workspace.TargetTreeView = treeViewTargets;
-            Main_Instance.Instance.Workspace.reloadTreeViewFromTargets();
+            Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
             Main_Instance.Instance.drawTreeNodes();
             Main_Instance.Instance.sync_diagram_positions();
             labelWorkspaceName.Text = Main_Instance.Instance.Workspace.Title;
@@ -590,7 +616,7 @@ namespace FREE_OSINT
             else if (((MenuItem)sender).Text == "Delete" && selectedNode != null)
             {
                 treeViewTargets.Nodes.Remove(selectedNode);
-                Main_Instance.Instance.Workspace.reloadTargetsFromTreeView();
+                Main_Instance.Instance.Workspace.ReloadTargetsFromTreeView();
                 reloadWorkspace(true);
             }
             else if (((MenuItem)sender).Text == "Compose Query" && selectedNode != null)
@@ -603,7 +629,7 @@ namespace FREE_OSINT
             {
                 selectedNode.Nodes.Add(new TreeNode("Empty"));
                 selectedNode.Expand();
-                Main_Instance.Instance.Workspace.reloadTargetsFromTreeView();
+                Main_Instance.Instance.Workspace.ReloadTargetsFromTreeView();
                 reloadWorkspace(true);
             }
             else
@@ -836,7 +862,7 @@ namespace FREE_OSINT
             if (e.KeyCode == Keys.Delete && treeViewTargets.SelectedNode != null)
             {
                 treeViewTargets.Nodes.Remove(treeViewTargets.SelectedNode);
-                Main_Instance.Instance.Workspace.reloadTargetsFromTreeView();
+                Main_Instance.Instance.Workspace.ReloadTargetsFromTreeView();
                 reloadWorkspace(true);
                 e.SuppressKeyPress = true;
                 e.Handled = true;
@@ -848,7 +874,7 @@ namespace FREE_OSINT
                     //New Child
                     treeViewTargets.SelectedNode.Nodes.Add(new TreeNode("Empty"));
                     treeViewTargets.SelectedNode.Expand();
-                    Main_Instance.Instance.Workspace.reloadTargetsFromTreeView();
+                    Main_Instance.Instance.Workspace.ReloadTargetsFromTreeView();
                     reloadWorkspace(true);
                     e.Handled = true;
                     e.SuppressKeyPress = true;

@@ -13,9 +13,8 @@ namespace FREE_OSINT
         public static string modules_directory = "modules";
         static internal Dictionary<int, Color> ColorsHierarchy;
         internal static string lib_directory = "libs";
-        private Color target_color = Color.Aqua;
-        private Color sub_node_color = Color.Aquamarine;
-
+        public static string Documents_Path = System.IO.Path.Combine(Environment.GetFolderPath(
+    Environment.SpecialFolder.MyDoc‌​uments), "FREE-OSINT");
         public General_Config()
         {
             ColorsHierarchy = new Dictionary<int, Color>();
@@ -85,9 +84,6 @@ namespace FREE_OSINT
 
             return subchild;
         }
-        public Color Target_color { get => target_color; set => target_color = value; }
-        public Color Sub_node_color { get => sub_node_color; set => sub_node_color = value; }
-
         public enum Module_Type
         {
             Search, Process, Report

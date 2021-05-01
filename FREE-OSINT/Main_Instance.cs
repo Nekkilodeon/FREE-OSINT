@@ -67,7 +67,7 @@ namespace FREE_OSINT
                 List<TreeNode> selectedNodes = new List<TreeNode>();
                 foreach (INodeObject node in diagramEventArgs.SelectedObjects)
                 {
-                    TreeNode selected_node = (TreeNode)Workspace.find_node(((ConditionNode)node).Text);
+                    TreeNode selected_node = (TreeNode)Workspace.Find_node(((ConditionNode)node).Text);
                     selectedNodes.Add(selected_node);
                     //Workspace.find_remove(((ConditionNode)node).Text);
                 }
@@ -77,12 +77,12 @@ namespace FREE_OSINT
             {
                 foreach (INodeObject node in diagramEventArgs.SelectedObjects)
                 {
-                    TreeNode selected_node = (TreeNode)Workspace.find_node(((ConditionNode)node).Text);
+                    TreeNode selected_node = (TreeNode)Workspace.Find_node(((ConditionNode)node).Text);
                     if (selected_node != null)
                         Workspace.TargetTreeView.Nodes.Remove(selected_node);
                     //Workspace.find_remove(((ConditionNode)node).Text);
                 }
-                Workspace.reloadTargetsFromTreeView();
+                Workspace.ReloadTargetsFromTreeView();
                 drawTreeNodes();
             }
             else if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.ADD)
@@ -117,10 +117,10 @@ namespace FREE_OSINT
                             }
                             treeNode = new TreeNode(node.Text, treeNodes.ToArray());
                         }
-                        Target unassigned = Workspace.findTarget("Unassigned");
-                        unassigned.addNode(treeNode);
+                        Target unassigned = Workspace.FindTarget("Unassigned");
+                        unassigned.AddNode(treeNode);
                     }
-                    Workspace.reloadTreeViewFromTargets();
+                    Workspace.ReloadTreeViewFromTargets();
                     drawTreeNodes();
                 }
             }
@@ -129,15 +129,15 @@ namespace FREE_OSINT
                 ConditionNode first = (ConditionNode)diagramEventArgs.SelectedObjects.First();
                 ConditionNode last = (ConditionNode)diagramEventArgs.SelectedObjects.Last();
 
-                TreeNode node1 = (TreeNode)Workspace.find_node(first.Text);
-                TreeNode node2 = (TreeNode)Workspace.find_node(last.Text);
+                TreeNode node1 = (TreeNode)Workspace.Find_node(first.Text);
+                TreeNode node2 = (TreeNode)Workspace.Find_node(last.Text);
 
                 TreeNode backup = (TreeNode)node2.Clone();
                 Workspace.TargetTreeView.Nodes.Remove(node2);
                 node1.Nodes.Add(backup);
                 //node2.
 
-                Workspace.reloadTargetsFromTreeView();
+                Workspace.ReloadTargetsFromTreeView();
                 drawTreeNodes();
             }
             else if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.EDIT)
@@ -145,7 +145,7 @@ namespace FREE_OSINT
                 ConditionNode node = (ConditionNode)diagramEventArgs.SelectedObjects.First();
                 ConditionNode node_new = (ConditionNode)diagramEventArgs.SelectedObjects.Last();
 
-                TreeNode node1 = (TreeNode)Workspace.find_node(node.Text);
+                TreeNode node1 = (TreeNode)Workspace.Find_node(node.Text);
                 node1.Text = node_new.Text;
                 if (node_new.LinksTo.Count > 0)
                 {
@@ -157,7 +157,7 @@ namespace FREE_OSINT
                     node1.Nodes.Clear();
                     node1.Nodes.AddRange(treeNodes.ToArray());
                 }
-                Workspace.reloadTargetsFromTreeView();
+                Workspace.ReloadTargetsFromTreeView();
                 drawTreeNodes();
             }
 
@@ -228,19 +228,8 @@ namespace FREE_OSINT
                 foreach (TreeNode treeNode in selectedNodes)
                 {
 
-                    if (treeNode.Nodes.Count > 0)
-                    {
-                        foreach (TreeNode node in treeNode.Nodes)
-                        {
-                            to_query.Add(node.Text);
-                            query += node.Text + " ";
-                        }
-                    }
-                    else
-                    {
-                        query += treeNode.Text + " ";
-                        to_query.Add(treeNode.Text);
-                    }
+                    query += treeNode.Text + " ";
+                    to_query.Add(treeNode.Text);
 
                     TreeNode parent = treeNode;
                     do

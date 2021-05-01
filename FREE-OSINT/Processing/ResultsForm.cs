@@ -712,7 +712,7 @@ namespace FREE_OSINT
             }
             else
             {
-                Main_Instance.Instance.Workspace.findTarget(((MenuItem)sender).Text).TreeNodes.Add(selectedNode);
+                Main_Instance.Instance.Workspace.FindTarget(((MenuItem)sender).Text).TreeNodes.Add(selectedNode);
             }
         }
 
@@ -776,7 +776,7 @@ namespace FREE_OSINT
             {
                 Workspace workspace = Main_Instance.Instance.Workspace;
                 this.DialogResult = DialogResult.OK;
-                Main_Instance.Instance.Workspace.reloadTreeViewFromTargets();
+                Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
                 this.treeViewResults.Nodes.Clear();
             }
             else if (e.CloseReason == CloseReason.None)

@@ -95,7 +95,7 @@ namespace FREE_OSINT
                         resultsForm.Invoke((MethodInvoker)delegate
                         {
                             Main_Instance.Instance.Workspace.TargetTreeView.Nodes[index].Nodes["From Browser"].Nodes.Add(new TreeNode(parameters.SelectionText));
-                            Main_Instance.Instance.Workspace.reloadTargetsFromTreeView();
+                            Main_Instance.Instance.Workspace.ReloadTargetsFromTreeView();
 
                         });
                     }
@@ -107,7 +107,7 @@ namespace FREE_OSINT
                         {
                             // Running on the UI thread
                             Main_Instance.Instance.Workspace.TargetTreeView.Nodes[index].Nodes.Add(treeNode);
-                            Main_Instance.Instance.Workspace.reloadTargetsFromTreeView();
+                            Main_Instance.Instance.Workspace.ReloadTargetsFromTreeView();
                         });
                     }
 

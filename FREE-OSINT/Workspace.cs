@@ -25,7 +25,7 @@ namespace FREE_OSINT_Lib
             TreeViewPositions = new Dictionary<String, Point>();
             TreeViewColors = new Dictionary<String, Int32>();
             Title = "Untitled";
-            this.reloadTreeViewFromTargets();
+            this.ReloadTreeViewFromTargets();
         }
 
 
@@ -35,7 +35,7 @@ namespace FREE_OSINT_Lib
         public Dictionary<String, Point> TreeViewPositions { get => treeViewPositions; set => treeViewPositions = value; }
         public Dictionary<string, int> TreeViewColors { get => treeViewColors; set => treeViewColors = value; }
 
-        public void reloadTargetsFromTreeView()
+        public void ReloadTargetsFromTreeView()
         {
             targets = new List<Target>();
             foreach (TreeNode target_node in targetTreeView.Nodes)
@@ -51,7 +51,7 @@ namespace FREE_OSINT_Lib
             }
         }
 
-        public void reloadTreeViewFromTargets()
+        public void ReloadTreeViewFromTargets()
         {
             targetTreeView.Nodes.Clear();
             foreach (Target target in Targets)
@@ -62,9 +62,7 @@ namespace FREE_OSINT_Lib
             targetTreeView = General_Config.Recolor(targetTreeView, true);
         }
 
-        
-
-        public Target findTarget(string name)
+        public Target FindTarget(string name)
         {
             foreach (Target target in this.targets)
             {
@@ -76,11 +74,11 @@ namespace FREE_OSINT_Lib
             return null;
         }
 
-        public Object find_node(string text)
+        public Object Find_node(string text)
         {
             foreach (TreeNode node in TargetTreeView.Nodes)
             {
-                TreeNode found = recursive_find_node(node, text);
+                TreeNode found = Recursive_find_node(node, text);
                 if (found != null)
                 {
                     return found;
@@ -89,7 +87,7 @@ namespace FREE_OSINT_Lib
             return null;
         }
 
-        private TreeNode recursive_find_node(TreeNode node, string text)
+        private TreeNode Recursive_find_node(TreeNode node, string text)
         {
             if (node.Text == text)
             {
@@ -99,7 +97,7 @@ namespace FREE_OSINT_Lib
             {
                 foreach (TreeNode subnode in node.Nodes)
                 {
-                    TreeNode sub = recursive_find_node(subnode, text);
+                    TreeNode sub = Recursive_find_node(subnode, text);
                     if (sub != null)
                     {
                         return sub;

@@ -158,9 +158,16 @@ namespace FREE_OSINT
 
         private void btnConfigure_Click(object sender, EventArgs e)
         {
-            if (Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex].GetType().GetInterfaces().Contains(typeof(IInteractable_module)))
+            try
             {
-                ((IConfigurable_module)Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex]).Configure();
+                if (listModules.SelectedIndex > -1 && Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex].GetType().GetInterfaces().Contains(typeof(IInteractable_module)))
+                {
+                    ((IConfigurable_module)Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex]).Configure();
+                }
+            }
+            catch (Exception ex)
+            {
+
             }
         }
 

@@ -25,15 +25,15 @@ namespace FREE_OSINT_Lib
             this.Title = title;
         }
 
-        public void addNode(TreeNode node)
+        public void AddNode(TreeNode node)
         {
             treeNodes.Add(node);
         }
-        public void removeNode(TreeNode node)
+        public void RemoveNode(TreeNode node)
         {
             treeNodes.Remove(node);
         }
-        public void removeNode(int index)
+        public void RemoveNode(int index)
         {
             treeNodes.RemoveAt(index);
         }
