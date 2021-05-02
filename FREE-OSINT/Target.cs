@@ -25,10 +25,40 @@ namespace FREE_OSINT_Lib
             this.Title = title;
         }
 
-        public void AddNode(TreeNode node)
+        public bool AddNode(TreeNode node)
         {
+            foreach (TreeNode sub in treeNodes)
+            {
+                if (FindNode(node, sub) != null)
+                {
+                    return false;
+                }
+            }
             treeNodes.Add(node);
+            return true;
         }
+
+        private TreeNode FindNode(TreeNode node, TreeNode sub)
+        {
+            TreeNode found = null;
+            if (sub.Text.Equals(node.Text))
+            {
+                return sub;
+            }
+            if (sub.Nodes.Count > 0)
+            {
+                foreach (TreeNode treeNode in sub.Nodes)
+                {
+                    found = FindNode(node, treeNode);
+                    if (found != null)
+                    {
+                        return found;
+                    }
+                }
+            }
+            return found;
+        }
+
         public void RemoveNode(TreeNode node)
         {
             treeNodes.Remove(node);
@@ -48,7 +78,7 @@ namespace FREE_OSINT_Lib
         public List<TreeNode> TreeNodesCloned()
         {
             List<TreeNode> cloned = new List<TreeNode>();
-            foreach(TreeNode treeNode in TreeNodes)
+            foreach (TreeNode treeNode in TreeNodes)
             {
                 cloned.Add((TreeNode)treeNode.Clone());
             }

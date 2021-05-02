@@ -229,7 +229,12 @@ namespace FREE_OSINT
                 {
                     point = Main_Instance.Instance.Workspace.TreeViewPositions[target.Title];
                 }
-                sr.WriteLine("<Target value=\"" + fixUnwantedCharacters(target.Title) + "\" x=\"" + point.X + "\" y=\"" + point.Y + "\" color=\"" + ((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(point.X, point.Y)).Container_color.ToArgb() + "\">");
+                Color color = Color.AliceBlue;
+                if (((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(point.X, point.Y)) != null)
+                {
+                    color = ((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(point.X, point.Y)).Container_color;
+                }
+                sr.WriteLine("<Target value=\"" + fixUnwantedCharacters(target.Title) + "\" x=\"" + point.X + "\" y=\"" + point.Y + "\" color=\"" + color.ToArgb() + "\">");
                 foreach (TreeNode node in target.TreeNodes)
                 {
                     Point subpoint = new Point(0, 0);
@@ -237,8 +242,12 @@ namespace FREE_OSINT
                     {
                         subpoint = Main_Instance.Instance.Workspace.TreeViewPositions[node.Text];
                     }
-
-                    sr.WriteLine("<Node value=\"" + fixUnwantedCharacters(node.Text) + "\" x=\"" + subpoint.X + "\" y=\"" + subpoint.Y + "\" color=\"" + ((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(subpoint.X, subpoint.Y)).Container_color.ToArgb() + "\">");
+                    Color subcolor = Color.AliceBlue;
+                    if (((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(subpoint.X, subpoint.Y)) != null)
+                    {
+                        subcolor = ((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(subpoint.X, subpoint.Y)).Container_color;
+                    }
+                    sr.WriteLine("<Node value=\"" + fixUnwantedCharacters(node.Text) + "\" x=\"" + subpoint.X + "\" y=\"" + subpoint.Y + "\" color=\"" + subcolor.ToArgb() + "\">");
                     saveNode(node.Nodes);
                     sr.WriteLine("</Node>");
                 }
@@ -261,7 +270,12 @@ namespace FREE_OSINT
                         subpoint = Main_Instance.Instance.Workspace.TreeViewPositions[node.Text];
 
                     }
-                    sr.WriteLine("<Node value=\"" + fixUnwantedCharacters(HttpUtility.HtmlEncode(node.Text)) + "\" x=\"" + subpoint.X + "\" y=\"" + subpoint.Y + "\" color=\"" + ((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(subpoint.X, subpoint.Y)).Container_color.ToArgb() + "\">");
+                    Color subcolor = Color.AliceBlue;
+                    if (((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(subpoint.X, subpoint.Y)) != null)
+                    {
+                        subcolor = ((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(subpoint.X, subpoint.Y)).Container_color;
+                    }
+                    sr.WriteLine("<Node value=\"" + fixUnwantedCharacters(HttpUtility.HtmlEncode(node.Text)) + "\" x=\"" + subpoint.X + "\" y=\"" + subpoint.Y + "\" color=\"" + subcolor.ToArgb() + "\">");
                     saveNode(node.Nodes);
                     sr.WriteLine("</Node>");
                 }
@@ -941,6 +955,11 @@ namespace FREE_OSINT
         private void btnRecolor_Click(object sender, EventArgs e)
         {
             General_Config.Recolor(Main_Instance.Instance.Workspace.TargetTreeView, true, true);
+            reloadWorkspace(true);
+        }
+
+        private void btnPerformance_Click(object sender, EventArgs e)
+        {
             reloadWorkspace(true);
         }
     }

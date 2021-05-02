@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NodeControl;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,7 @@ namespace FREE_OSINT.Main
         {
             InitializeComponent();
             PopulateListBoxColors();
+            numericUpDown1.Value = Main_Instance.Instance.NodeDiagram.SubsPerLine;
         }
 
         private void PopulateListBoxColors()
@@ -113,6 +115,26 @@ namespace FREE_OSINT.Main
         private void btnDone_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
+        }
+
+        private void numericUpDown1_ValueChanged(object sender, EventArgs e)
+        {
+            Main_Instance.Instance.NodeDiagram.SubsPerLine = (int)numericUpDown1.Value;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkPerformance.Checked)
+            {
+                Main_Instance.Instance.NodeDiagram.PerformanceMode = true;
+                Main_Instance.Instance.NodeDiagram.LineType = LineTypeEnum.Straight;
+                Main_Instance.Instance.NodeDiagram.Redraw();
+            }
+            else
+            {
+                Main_Instance.Instance.NodeDiagram.PerformanceMode = false;
+                Main_Instance.Instance.NodeDiagram.Redraw();
+            }
         }
     }
 }

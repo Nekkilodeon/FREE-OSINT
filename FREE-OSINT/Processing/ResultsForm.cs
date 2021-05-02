@@ -714,7 +714,10 @@ namespace FREE_OSINT
             }
             else
             {
-                Main_Instance.Instance.Workspace.FindTarget(((MenuItem)sender).Text).TreeNodes.Add(selectedNode);
+                if (!Main_Instance.Instance.Workspace.FindTarget(((MenuItem)sender).Text).AddNode(selectedNode))
+                {
+                    MessageBox.Show("Current node already exists!");
+                }
             }
         }
 
@@ -736,7 +739,6 @@ namespace FREE_OSINT
                 }
             }
             return null;
-
         }
 
         private void webBrowser1_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e)

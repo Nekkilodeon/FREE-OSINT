@@ -84,6 +84,7 @@ namespace FREE_OSINT
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStripTargets = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnPerformance = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.workplace_panel.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -250,7 +251,7 @@ namespace FREE_OSINT
             this.configToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("configToolStripMenuItem1.Image")));
             this.configToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.configToolStripMenuItem1.Name = "configToolStripMenuItem1";
-            this.configToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.configToolStripMenuItem1.Size = new System.Drawing.Size(144, 26);
             this.configToolStripMenuItem1.Text = "Options";
             this.configToolStripMenuItem1.Click += new System.EventHandler(this.configToolStripMenuItem1_Click);
             // 
@@ -309,6 +310,7 @@ namespace FREE_OSINT
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.Menu;
+            this.panel2.Controls.Add(this.btnPerformance);
             this.panel2.Controls.Add(this.btnRecolor);
             this.panel2.Controls.Add(this.btnResetBoxes);
             this.panel2.Controls.Add(this.label9);
@@ -408,7 +410,7 @@ namespace FREE_OSINT
             // 
             this.label6.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(548, 53);
+            this.label6.Location = new System.Drawing.Point(785, 11);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(36, 17);
             this.label6.TabIndex = 13;
@@ -417,7 +419,7 @@ namespace FREE_OSINT
             // btnSelectFont
             // 
             this.btnSelectFont.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.btnSelectFont.Location = new System.Drawing.Point(624, 46);
+            this.btnSelectFont.Location = new System.Drawing.Point(836, 4);
             this.btnSelectFont.Name = "btnSelectFont";
             this.btnSelectFont.Size = new System.Drawing.Size(129, 31);
             this.btnSelectFont.TabIndex = 12;
@@ -639,6 +641,17 @@ namespace FREE_OSINT
             this.menuStripTargets.Name = "menuStripTargets";
             this.menuStripTargets.Size = new System.Drawing.Size(61, 4);
             // 
+            // btnPerformance
+            // 
+            this.btnPerformance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPerformance.Location = new System.Drawing.Point(531, 4);
+            this.btnPerformance.Name = "btnPerformance";
+            this.btnPerformance.Size = new System.Drawing.Size(203, 31);
+            this.btnPerformance.TabIndex = 21;
+            this.btnPerformance.Text = "Refresh";
+            this.btnPerformance.UseVisualStyleBackColor = true;
+            this.btnPerformance.Click += new System.EventHandler(this.btnPerformance_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -727,6 +740,7 @@ namespace FREE_OSINT
         private ToolStripMenuItem configToolStripMenuItem;
         private ToolStripMenuItem configToolStripMenuItem1;
         private Button btnRecolor;
+        private Button btnPerformance;
     }
 }
 
