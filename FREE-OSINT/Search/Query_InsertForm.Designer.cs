@@ -40,7 +40,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 51);
+            this.label1.Location = new System.Drawing.Point(12, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(47, 17);
             this.label1.TabIndex = 0;
@@ -48,7 +48,7 @@
             // 
             // txtQuery
             // 
-            this.txtQuery.Location = new System.Drawing.Point(13, 71);
+            this.txtQuery.Location = new System.Drawing.Point(13, 29);
             this.txtQuery.Name = "txtQuery";
             this.txtQuery.Size = new System.Drawing.Size(775, 22);
             this.txtQuery.TabIndex = 1;
@@ -60,9 +60,9 @@
             this.listViewModules.GridLines = true;
             this.listViewModules.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listViewModules.HideSelection = false;
-            this.listViewModules.Location = new System.Drawing.Point(400, 141);
+            this.listViewModules.Location = new System.Drawing.Point(13, 84);
             this.listViewModules.Name = "listViewModules";
-            this.listViewModules.Size = new System.Drawing.Size(386, 251);
+            this.listViewModules.Size = new System.Drawing.Size(775, 251);
             this.listViewModules.TabIndex = 2;
             this.listViewModules.UseCompatibleStateImageBehavior = false;
             this.listViewModules.View = System.Windows.Forms.View.Details;
@@ -71,7 +71,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(397, 116);
+            this.label2.Location = new System.Drawing.Point(14, 64);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(120, 17);
             this.label2.TabIndex = 3;
@@ -79,7 +79,7 @@
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(400, 398);
+            this.btnSearch.Location = new System.Drawing.Point(402, 341);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(386, 40);
             this.btnSearch.TabIndex = 5;
@@ -89,7 +89,7 @@
             // 
             // btnCancel
             // 
-            this.btnCancel.Location = new System.Drawing.Point(15, 398);
+            this.btnCancel.Location = new System.Drawing.Point(17, 341);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(379, 40);
             this.btnCancel.TabIndex = 6;
@@ -101,7 +101,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(796, 387);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.label2);
