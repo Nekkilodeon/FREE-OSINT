@@ -27,8 +27,9 @@ namespace FREE_OSINT
         private Point selectedLocation;
         private Size Base_Box_Size;
         private Dictionary<string, List<string>> ViewState;
+        private bool TabClosing = false;
 
-        private void treeView1_ItemDrag(object sender, ItemDragEventArgs e)
+        private void TreeView1_ItemDrag(object sender, ItemDragEventArgs e)
         {
             // Move the dragged node when the left mouse button is used.
             if (e.Button == MouseButtons.Left)
@@ -46,14 +47,14 @@ namespace FREE_OSINT
 
         // Set the target drop effect to the effect 
         // specified in the ItemDrag event handler.
-        private void treeView1_DragEnter(object sender, DragEventArgs e)
+        private void TreeView1_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = e.AllowedEffect;
         }
 
         // Select the node under the mouse pointer to indicate the 
         // expected drop location.
-        private void treeView1_DragOver(object sender, DragEventArgs e)
+        private void TreeView1_DragOver(object sender, DragEventArgs e)
         {
             // Retrieve the client coordinates of the mouse position.
             Point targetPoint = treeViewTargets.PointToClient(new Point(e.X, e.Y));
@@ -62,7 +63,7 @@ namespace FREE_OSINT
             treeViewTargets.SelectedNode = treeViewTargets.GetNodeAt(targetPoint);
         }
 
-        private void treeView1_DragDrop(object sender, DragEventArgs e)
+        private void TreeView1_DragDrop(object sender, DragEventArgs e)
         {
             // Retrieve the client coordinates of the drop location.
             Point targetPoint = treeViewTargets.PointToClient(new Point(e.X, e.Y));
@@ -102,7 +103,7 @@ namespace FREE_OSINT
                     targetNode.Expand();
             }
             Main_Instance.Instance.Workspace.ReloadTargetsFromTreeView();
-            reloadWorkspace(true);
+            ReloadWorkspace(true);
         }
 
         // Determine whether one node is a parent 
@@ -127,45 +128,45 @@ namespace FREE_OSINT
             Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
             Base_Box_Size = Main_Instance.Instance.NodeDiagram.NodeSize;
             panelDrawWorkspace.Controls.Add(Main_Instance.Instance.NodeDiagram);
-            treeViewTargets.ItemDrag += new ItemDragEventHandler(treeView1_ItemDrag);
-            treeViewTargets.DragEnter += new DragEventHandler(treeView1_DragEnter);
-            treeViewTargets.DragOver += new DragEventHandler(treeView1_DragOver);
-            treeViewTargets.DragDrop += new DragEventHandler(treeView1_DragDrop);
+            treeViewTargets.ItemDrag += new ItemDragEventHandler(TreeView1_ItemDrag);
+            treeViewTargets.DragEnter += new DragEventHandler(TreeView1_DragEnter);
+            treeViewTargets.DragOver += new DragEventHandler(TreeView1_DragOver);
+            treeViewTargets.DragDrop += new DragEventHandler(TreeView1_DragDrop);
         }
 
-        private void btnModules_Click(object sender, EventArgs e)
+        private void BtnModules_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void showToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ShowToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SearchModulesForm modulesForm = new SearchModulesForm();
             var result = modulesForm.ShowDialog();
             if (result == DialogResult.OK)
             {
-                reloadWorkspace(false);
+                ReloadWorkspace(false);
             }
         }
 
-        private void showFolderToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ShowFolderToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Process.Start("explorer.exe", General_Config.modules_directory);
         }
 
-        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        private void QuitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void newToolStripMenuItem_Click(object sender, EventArgs e)
+        private void NewToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Main_Instance.Instance.Workspace = new Workspace();
-            reloadWorkspace(false);
+            ReloadWorkspace(false);
             treeViewTargets.Nodes.Clear();
         }
 
-        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        private void SaveToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
             saveFileDialog1.InitialDirectory = General_Config.Documents_Path;
@@ -199,11 +200,11 @@ namespace FREE_OSINT
                 }
                 labelWorkspaceName.Text = proj_name;
                 //labelWorkspaceName.Text = saveFileDialog1.FileName;
-                exportToXml(result);
+                ExportToXml(result);
             }
             //EXPORT WORKPLACE TO FILE
         }
-        public void exportToXml(string filename)
+        public void ExportToXml(string filename)
         {
             String[] split = filename.Split('.');
             string newFilename = "";
@@ -234,7 +235,7 @@ namespace FREE_OSINT
                 {
                     color = ((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(point.X, point.Y)).Container_color;
                 }
-                sr.WriteLine("<Target value=\"" + fixUnwantedCharacters(target.Title) + "\" x=\"" + point.X + "\" y=\"" + point.Y + "\" color=\"" + color.ToArgb() + "\">");
+                sr.WriteLine("<Target value=\"" + FixUnwantedCharacters(target.Title) + "\" x=\"" + point.X + "\" y=\"" + point.Y + "\" color=\"" + color.ToArgb() + "\">");
                 foreach (TreeNode node in target.TreeNodes)
                 {
                     Point subpoint = new Point(0, 0);
@@ -247,8 +248,8 @@ namespace FREE_OSINT
                     {
                         subcolor = ((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(subpoint.X, subpoint.Y)).Container_color;
                     }
-                    sr.WriteLine("<Node value=\"" + fixUnwantedCharacters(node.Text) + "\" x=\"" + subpoint.X + "\" y=\"" + subpoint.Y + "\" color=\"" + subcolor.ToArgb() + "\">");
-                    saveNode(node.Nodes);
+                    sr.WriteLine("<Node value=\"" + FixUnwantedCharacters(node.Text) + "\" x=\"" + subpoint.X + "\" y=\"" + subpoint.Y + "\" color=\"" + subcolor.ToArgb() + "\">");
+                    SaveNode(node.Nodes);
                     sr.WriteLine("</Node>");
                 }
                 sr.WriteLine("</Target>");
@@ -258,7 +259,7 @@ namespace FREE_OSINT
             sr.Close();
         }
 
-        private void saveNode(TreeNodeCollection tnc)
+        private void SaveNode(TreeNodeCollection tnc)
         {
             foreach (TreeNode node in tnc)
             {
@@ -275,16 +276,16 @@ namespace FREE_OSINT
                     {
                         subcolor = ((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(subpoint.X, subpoint.Y)).Container_color;
                     }
-                    sr.WriteLine("<Node value=\"" + fixUnwantedCharacters(HttpUtility.HtmlEncode(node.Text)) + "\" x=\"" + subpoint.X + "\" y=\"" + subpoint.Y + "\" color=\"" + subcolor.ToArgb() + "\">");
-                    saveNode(node.Nodes);
+                    sr.WriteLine("<Node value=\"" + FixUnwantedCharacters(HttpUtility.HtmlEncode(node.Text)) + "\" x=\"" + subpoint.X + "\" y=\"" + subpoint.Y + "\" color=\"" + subcolor.ToArgb() + "\">");
+                    SaveNode(node.Nodes);
                     sr.WriteLine("</Node>");
                 }
                 else
-                    sr.WriteLine("<Node value=\"" + fixUnwantedCharacters(HttpUtility.HtmlEncode(node.Text)) + "\"></Node>");
+                    sr.WriteLine("<Node value=\"" + FixUnwantedCharacters(HttpUtility.HtmlEncode(node.Text)) + "\"></Node>");
             }
         }
 
-        private string fixUnwantedCharacters(string v)
+        private string FixUnwantedCharacters(string v)
         {
             if (v.Contains('"'))
             {
@@ -293,7 +294,7 @@ namespace FREE_OSINT
             return v;
         }
 
-        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        private void OpenToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Main_Instance.Instance.Workspace = new Workspace();
             //OPEN WORKPLACE FILE
@@ -303,10 +304,10 @@ namespace FREE_OSINT
             dlg.Filter = "XML Files (*.workspace.xml)|*.workspace.xml";
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                openFile(dlg);
+                OpenFile(dlg);
             }
         }
-        private void openFile(OpenFileDialog dlg)
+        private void OpenFile(OpenFileDialog dlg)
         {
             try
             {
@@ -347,7 +348,7 @@ namespace FREE_OSINT
 
                         Main_Instance.Instance.Workspace.TreeViewPositions.Add(tNode.Text, new Point(x, y));
                         */
-                        addTreeNode(node, tNode);
+                        AddTreeNode(node, tNode);
                         target.AddNode(tNode);
                     }
                     Main_Instance.Instance.Workspace.Targets.Add(target);
@@ -367,7 +368,7 @@ namespace FREE_OSINT
             finally
             {
                 Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
-                reloadWorkspace(false);
+                ReloadWorkspace(false);
                 Main_Instance.Instance.sync_diagram_positions();
                 //Main_Instance.Instance.populate_position_dictionary();
                 this.Cursor = Cursors.Default; //Change the cursor back
@@ -386,7 +387,7 @@ namespace FREE_OSINT
         /// Reloads workpace node environment
         /// </summary>
         /// <param name="save_state"> determines wether the treeview expanded state is preserved</param>
-        public void reloadWorkspace(bool save_state)
+        public void ReloadWorkspace(bool save_state)
         {
             if (save_state)
             {
@@ -433,7 +434,7 @@ namespace FREE_OSINT
 
         }
 
-        private void addTreeNode(XmlNode xmlNode, TreeNode treeNode)
+        private void AddTreeNode(XmlNode xmlNode, TreeNode treeNode)
         {
             XmlNode xNode;
             TreeNode tNode;
@@ -465,28 +466,28 @@ namespace FREE_OSINT
                     tNode = treeNode.Nodes[x];
 
 
-                    addTreeNode(xNode, tNode);
+                    AddTreeNode(xNode, tNode);
                 }
             }
             else //No children, so add the outer xml (trimming off whitespace)
                 treeNode.Text = HttpUtility.HtmlDecode(xmlNode.Attributes[0].Value);
         }
 
-        private void workplace_panel_Paint(object sender, PaintEventArgs e)
+        private void Workplace_panel_Paint(object sender, PaintEventArgs e)
         {
 
         }
-        private void paint_workplace()
-        {
-
-        }
-
-        private void resultsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Paint_workplace()
         {
 
         }
 
-        private void openToolStripMenuItem1_Click(object sender, EventArgs e)
+        private void ResultsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void OpenToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             ResultsForm resultsForm = new ResultsForm("File");
             if (!resultsForm.IsDisposed && resultsForm.DialogResult == DialogResult.Retry)
@@ -496,7 +497,7 @@ namespace FREE_OSINT
             }
             if (resultsForm.DialogResult == DialogResult.OK)
             {
-                reloadWorkspace(false);
+                ReloadWorkspace(false);
                 //Main_Instance.Instance.NodeDiagram.AutoLayout(false);
             }
             //resultsForm.ShowDialog();
@@ -514,7 +515,7 @@ namespace FREE_OSINT
             }
         }
 
-        private void btnAutoLayout_Click(object sender, EventArgs e)
+        private void BtnAutoLayout_Click(object sender, EventArgs e)
         {
             Main_Instance.Instance.NodeDiagram.AutoLayout(true, false);
             foreach (ConditionNode conditionNode in Main_Instance.Instance.NodeDiagram.Nodes)
@@ -524,30 +525,30 @@ namespace FREE_OSINT
 
         }
 
-        private void btnBezier_Click(object sender, EventArgs e)
+        private void BtnBezier_Click(object sender, EventArgs e)
         {
             Main_Instance.Instance.NodeDiagram.LineType = LineTypeEnum.Bezier;
             Main_Instance.Instance.NodeDiagram.Redraw();
         }
 
-        private void btn4way_Click(object sender, EventArgs e)
+        private void Btn4way_Click(object sender, EventArgs e)
         {
             Main_Instance.Instance.NodeDiagram.LineType = LineTypeEnum.FourWay;
             Main_Instance.Instance.NodeDiagram.Redraw();
         }
 
-        private void btnStraight_Click(object sender, EventArgs e)
+        private void BtnStraight_Click(object sender, EventArgs e)
         {
             Main_Instance.Instance.NodeDiagram.LineType = LineTypeEnum.Straight;
             Main_Instance.Instance.NodeDiagram.Redraw();
         }
 
-        private void panel2_Paint(object sender, PaintEventArgs e)
+        private void Panel2_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void btnSaveImage_Click(object sender, EventArgs e)
+        private void BtnSaveImage_Click(object sender, EventArgs e)
         {
             Main_Instance.Instance.NodeDiagram.AutoLayout(false, false);
             foreach (ConditionNode conditionNode in Main_Instance.Instance.NodeDiagram.Nodes)
@@ -556,22 +557,22 @@ namespace FREE_OSINT
             }
         }
 
-        private void labelWorkspaceName_Click(object sender, EventArgs e)
+        private void LabelWorkspaceName_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void panelDrawWorkspace_Paint(object sender, PaintEventArgs e)
+        private void PanelDrawWorkspace_Paint(object sender, PaintEventArgs e)
         {
 
         }
 
-        private void fileToolStripMenuItem_Click(object sender, EventArgs e)
+        private void FileToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        private void nodeClick(object sender, TreeNodeMouseClickEventArgs e)
+        private void NodeClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Button == MouseButtons.Right)
             {
@@ -580,7 +581,7 @@ namespace FREE_OSINT
                 {
                     ContextMenu mnu = new ContextMenu();
                     MenuItem myMenuItemChild = new MenuItem("New Empty Child");
-                    myMenuItemChild.Click += new EventHandler(myMenuItem_Click);
+                    myMenuItemChild.Click += new EventHandler(MyMenuItem_Click);
                     myMenuItemChild.Shortcut = Shortcut.CtrlN;
                     mnu.MenuItems.Add(myMenuItemChild);
                     if (selectedNode.Text.Contains("http:") || selectedNode.Text.Contains("https:"))
@@ -588,20 +589,20 @@ namespace FREE_OSINT
                         MenuItem myMenuItemUrl = new MenuItem("Open using");
                         //myMenuItemUrl.Click += new EventHandler(myMenuItem_Click);
                         MenuItem imbedded = new MenuItem("Embedded Browser");
-                        imbedded.Click += new EventHandler(myMenuItem_Click);
+                        imbedded.Click += new EventHandler(MyMenuItem_Click);
                         myMenuItemUrl.MenuItems.Add(imbedded);
                         MenuItem defaultb = new MenuItem("Default Browser");
-                        defaultb.Click += new EventHandler(myMenuItem_Click);
+                        defaultb.Click += new EventHandler(MyMenuItem_Click);
                         myMenuItemUrl.MenuItems.Add(defaultb);
                         mnu.MenuItems.Add(myMenuItemUrl);
                     }
 
                     MenuItem myMenuItem2 = new MenuItem("Delete");
-                    myMenuItem2.Click += new EventHandler(myMenuItem_Click);
+                    myMenuItem2.Click += new EventHandler(MyMenuItem_Click);
                     myMenuItem2.Shortcut = Shortcut.Del;
                     mnu.MenuItems.Add(myMenuItem2);
                     MenuItem myMenuItem3 = new MenuItem("Compose Query");
-                    myMenuItem3.Click += new EventHandler(myMenuItem_Click);
+                    myMenuItem3.Click += new EventHandler(MyMenuItem_Click);
                     myMenuItem3.Shortcut = Shortcut.CtrlQ;
 
                     mnu.MenuItems.Add(myMenuItem3);
@@ -611,7 +612,7 @@ namespace FREE_OSINT
                 }
             }
         }
-        private void myMenuItem_Click(object sender, EventArgs e)
+        private void MyMenuItem_Click(object sender, EventArgs e)
         {
             if (((MenuItem)sender).Text == "Embedded Browser" && selectedNode != null)
             {
@@ -631,7 +632,7 @@ namespace FREE_OSINT
             {
                 treeViewTargets.Nodes.Remove(selectedNode);
                 Main_Instance.Instance.Workspace.ReloadTargetsFromTreeView();
-                reloadWorkspace(true);
+                ReloadWorkspace(true);
             }
             else if (((MenuItem)sender).Text == "Compose Query" && selectedNode != null)
             {
@@ -644,7 +645,7 @@ namespace FREE_OSINT
                 selectedNode.Nodes.Add(new TreeNode("Empty"));
                 selectedNode.Expand();
                 Main_Instance.Instance.Workspace.ReloadTargetsFromTreeView();
-                reloadWorkspace(true);
+                ReloadWorkspace(true);
             }
             else
             {
@@ -688,24 +689,24 @@ namespace FREE_OSINT
             }
         }
 
-        private void treeViewTargets_AfterSelect(object sender, TreeViewEventArgs e)
+        private void TreeViewTargets_AfterSelect(object sender, TreeViewEventArgs e)
         {
             List<Node> selected = new List<Node>();
             Node node = Main_Instance.Instance.NodeDiagram.Nodes.Where(x => x.Text.Equals(e.Node.Text)).FirstOrDefault();
             selected.Add(node);
-            selected = iterate_parents(node, selected);
+            selected = Iterate_parents(node, selected);
 
             Main_Instance.Instance.NodeDiagram.SelectedObjects.Clear();
             Main_Instance.Instance.NodeDiagram.SelectedObjects.UnionWith(selected);
             Main_Instance.Instance.NodeDiagram.Redraw();
         }
 
-        private List<Node> iterate_parents(Node node, List<Node> selected)
+        private List<Node> Iterate_parents(Node node, List<Node> selected)
         {
             if (node != null && node.ParentNodes.Count > 0)
             {
                 selected.Add(node.ParentNodes.FirstOrDefault());
-                selected = iterate_parents(node.ParentNodes.FirstOrDefault(), selected);
+                selected = Iterate_parents(node.ParentNodes.FirstOrDefault(), selected);
             }
             return selected;
         }
@@ -715,9 +716,14 @@ namespace FREE_OSINT
             //openFile("MCIF.workspace.xml");
         }
 
-        private void closingForm(object sender, FormClosingEventArgs e)
+        private void ClosingForm(object sender, FormClosingEventArgs e)
         {
-            if (e.CloseReason == CloseReason.UserClosing)
+            if (TabClosing)
+            {
+                TabClosing = false;
+                e.Cancel = true;
+            }
+            else if (e.CloseReason == CloseReason.UserClosing)
             {
                 DialogResult dialogResult = MessageBox.Show("Are you sure?", "Exit", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
@@ -845,6 +851,7 @@ namespace FREE_OSINT
                     if (MessageBox.Show("Would you like to Close this Tab?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
                         ChromiumWebBrowser browser = (ChromiumWebBrowser)this.tabControl.TabPages[i].Controls[0];
+                        this.TabClosing = true;
                         browser.Dispose();
                         this.tabControl.TabPages.RemoveAt(i);
                         //break;
@@ -855,6 +862,8 @@ namespace FREE_OSINT
         private void addNewTab(string title_str, string url)
         {
             string title = title_str;// + (tabControl.TabCount + 1).ToString();
+            if (title.Length > 10)
+                title = title.Substring(0, 10);
             TabPage myTabPage = new TabPage(title);
             tabControl.TabPages.Add(myTabPage);
 
@@ -877,7 +886,7 @@ namespace FREE_OSINT
             {
                 treeViewTargets.Nodes.Remove(treeViewTargets.SelectedNode);
                 Main_Instance.Instance.Workspace.ReloadTargetsFromTreeView();
-                reloadWorkspace(true);
+                ReloadWorkspace(true);
                 e.SuppressKeyPress = true;
                 e.Handled = true;
             }
@@ -889,7 +898,7 @@ namespace FREE_OSINT
                     treeViewTargets.SelectedNode.Nodes.Add(new TreeNode("Empty"));
                     treeViewTargets.SelectedNode.Expand();
                     Main_Instance.Instance.Workspace.ReloadTargetsFromTreeView();
-                    reloadWorkspace(true);
+                    ReloadWorkspace(true);
                     e.Handled = true;
                     e.SuppressKeyPress = true;
 
@@ -934,7 +943,16 @@ namespace FREE_OSINT
             selectedNode = treeViewTargets.SelectedNode;
             if (selectedNode != null && (selectedNode.Text.Contains("http:") || selectedNode.Text.Contains("https:")))
             {
-                addNewTab(selectedNode.Parent != null ? selectedNode.Parent.Text.Substring(0, 8) : selectedNode.Text.Split(':')[1].Substring(2, 10), selectedNode.Text);
+                string tab_title = selectedNode.Parent != null ? selectedNode.Parent.Text : "";
+                try
+                {
+                    //tab_title = selectedNode.Parent != null ? selectedNode.Parent.Text.Substring(0, 8) : selectedNode.Text.Split(':')[1].Substring(2, 10);
+                }
+                catch (Exception ex)
+                {
+
+                }
+                addNewTab(tab_title, selectedNode.Text);
             }
         }
 
@@ -955,12 +973,12 @@ namespace FREE_OSINT
         private void btnRecolor_Click(object sender, EventArgs e)
         {
             General_Config.Recolor(Main_Instance.Instance.Workspace.TargetTreeView, true, true);
-            reloadWorkspace(true);
+            ReloadWorkspace(true);
         }
 
         private void btnPerformance_Click(object sender, EventArgs e)
         {
-            reloadWorkspace(true);
+            ReloadWorkspace(true);
         }
     }
 }

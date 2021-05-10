@@ -124,35 +124,35 @@ namespace FREE_OSINT
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
-            this.fileToolStripMenuItem.Click += new System.EventHandler(this.fileToolStripMenuItem_Click);
+            this.fileToolStripMenuItem.Click += new System.EventHandler(this.FileToolStripMenuItem_Click);
             // 
             // newToolStripMenuItem
             // 
             this.newToolStripMenuItem.Name = "newToolStripMenuItem";
             this.newToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.newToolStripMenuItem.Text = "New";
-            this.newToolStripMenuItem.Click += new System.EventHandler(this.newToolStripMenuItem_Click);
+            this.newToolStripMenuItem.Click += new System.EventHandler(this.NewToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.openToolStripMenuItem.Text = "Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // saveToolStripMenuItem
             // 
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.saveToolStripMenuItem.Text = "Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
             this.quitToolStripMenuItem.Size = new System.Drawing.Size(128, 26);
             this.quitToolStripMenuItem.Text = "Quit";
-            this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
+            this.quitToolStripMenuItem.Click += new System.EventHandler(this.QuitToolStripMenuItem_Click);
             // 
             // modulesToolStripMenuItem
             // 
@@ -168,14 +168,14 @@ namespace FREE_OSINT
             this.showToolStripMenuItem.Name = "showToolStripMenuItem";
             this.showToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.showToolStripMenuItem.Text = "Modules";
-            this.showToolStripMenuItem.Click += new System.EventHandler(this.showToolStripMenuItem_Click);
+            this.showToolStripMenuItem.Click += new System.EventHandler(this.ShowToolStripMenuItem_Click);
             // 
             // showFolderToolStripMenuItem
             // 
             this.showFolderToolStripMenuItem.Name = "showFolderToolStripMenuItem";
             this.showFolderToolStripMenuItem.Size = new System.Drawing.Size(172, 26);
             this.showFolderToolStripMenuItem.Text = "Show folder";
-            this.showFolderToolStripMenuItem.Click += new System.EventHandler(this.showFolderToolStripMenuItem_Click);
+            this.showFolderToolStripMenuItem.Click += new System.EventHandler(this.ShowFolderToolStripMenuItem_Click);
             // 
             // resultsToolStripMenuItem
             // 
@@ -184,14 +184,14 @@ namespace FREE_OSINT
             this.resultsToolStripMenuItem.Name = "resultsToolStripMenuItem";
             this.resultsToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.resultsToolStripMenuItem.Text = "Results";
-            this.resultsToolStripMenuItem.Click += new System.EventHandler(this.resultsToolStripMenuItem_Click);
+            this.resultsToolStripMenuItem.Click += new System.EventHandler(this.ResultsToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem1
             // 
             this.openToolStripMenuItem1.Name = "openToolStripMenuItem1";
             this.openToolStripMenuItem1.Size = new System.Drawing.Size(128, 26);
             this.openToolStripMenuItem1.Text = "Open";
-            this.openToolStripMenuItem1.Click += new System.EventHandler(this.openToolStripMenuItem1_Click);
+            this.openToolStripMenuItem1.Click += new System.EventHandler(this.OpenToolStripMenuItem1_Click);
             // 
             // reportToolStripMenuItem
             // 
@@ -267,7 +267,7 @@ namespace FREE_OSINT
             this.workplace_panel.Name = "workplace_panel";
             this.workplace_panel.Size = new System.Drawing.Size(1582, 825);
             this.workplace_panel.TabIndex = 2;
-            this.workplace_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.workplace_panel_Paint);
+            this.workplace_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Workplace_panel_Paint);
             // 
             // tabControl
             // 
@@ -305,7 +305,7 @@ namespace FREE_OSINT
             this.panelDrawWorkspace.Name = "panelDrawWorkspace";
             this.panelDrawWorkspace.Size = new System.Drawing.Size(1233, 705);
             this.panelDrawWorkspace.TabIndex = 2;
-            this.panelDrawWorkspace.Paint += new System.Windows.Forms.PaintEventHandler(this.panelDrawWorkspace_Paint);
+            this.panelDrawWorkspace.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelDrawWorkspace_Paint);
             // 
             // panel2
             // 
@@ -333,7 +333,7 @@ namespace FREE_OSINT
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1247, 85);
             this.panel2.TabIndex = 1;
-            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.panel2_Paint);
+            this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel2_Paint);
             // 
             // btnRecolor
             // 
@@ -457,7 +457,7 @@ namespace FREE_OSINT
             this.btnSaveImage.TabIndex = 5;
             this.btnSaveImage.Text = "Horizontal";
             this.btnSaveImage.UseVisualStyleBackColor = true;
-            this.btnSaveImage.Click += new System.EventHandler(this.btnSaveImage_Click);
+            this.btnSaveImage.Click += new System.EventHandler(this.BtnSaveImage_Click);
             // 
             // btnStraight
             // 
@@ -468,7 +468,7 @@ namespace FREE_OSINT
             this.btnStraight.TabIndex = 4;
             this.btnStraight.Text = "Straight";
             this.btnStraight.UseVisualStyleBackColor = true;
-            this.btnStraight.Click += new System.EventHandler(this.btnStraight_Click);
+            this.btnStraight.Click += new System.EventHandler(this.BtnStraight_Click);
             // 
             // btn4way
             // 
@@ -479,7 +479,7 @@ namespace FREE_OSINT
             this.btn4way.TabIndex = 3;
             this.btn4way.Text = "4 Way Links";
             this.btn4way.UseVisualStyleBackColor = true;
-            this.btn4way.Click += new System.EventHandler(this.btn4way_Click);
+            this.btn4way.Click += new System.EventHandler(this.Btn4way_Click);
             // 
             // btnBezier
             // 
@@ -490,7 +490,7 @@ namespace FREE_OSINT
             this.btnBezier.TabIndex = 2;
             this.btnBezier.Text = "Bezier";
             this.btnBezier.UseVisualStyleBackColor = true;
-            this.btnBezier.Click += new System.EventHandler(this.btnBezier_Click);
+            this.btnBezier.Click += new System.EventHandler(this.BtnBezier_Click);
             // 
             // label2
             // 
@@ -511,7 +511,7 @@ namespace FREE_OSINT
             this.btnAutoLayout.TabIndex = 0;
             this.btnAutoLayout.Text = "Vertical";
             this.btnAutoLayout.UseVisualStyleBackColor = true;
-            this.btnAutoLayout.Click += new System.EventHandler(this.btnAutoLayout_Click);
+            this.btnAutoLayout.Click += new System.EventHandler(this.BtnAutoLayout_Click);
             // 
             // panel1
             // 
@@ -540,8 +540,8 @@ namespace FREE_OSINT
             this.treeViewTargets.ShowRootLines = false;
             this.treeViewTargets.Size = new System.Drawing.Size(335, 740);
             this.treeViewTargets.TabIndex = 3;
-            this.treeViewTargets.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewTargets_AfterSelect);
-            this.treeViewTargets.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.nodeClick);
+            this.treeViewTargets.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeViewTargets_AfterSelect);
+            this.treeViewTargets.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.NodeClick);
             this.treeViewTargets.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDownTreeView);
             this.treeViewTargets.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.doubleClickTreeView);
             // 
@@ -612,7 +612,7 @@ namespace FREE_OSINT
             this.labelWorkspaceName.Size = new System.Drawing.Size(56, 17);
             this.labelWorkspaceName.TabIndex = 1;
             this.labelWorkspaceName.Text = "Untitled";
-            this.labelWorkspaceName.Click += new System.EventHandler(this.labelWorkspaceName_Click);
+            this.labelWorkspaceName.Click += new System.EventHandler(this.LabelWorkspaceName_Click);
             // 
             // label1
             // 
@@ -665,7 +665,7 @@ namespace FREE_OSINT
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FREE-OSINT";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.closingForm);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.ClosingForm);
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
