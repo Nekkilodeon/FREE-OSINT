@@ -144,19 +144,43 @@ namespace FREE_OSINT
             {
                 ConditionNode node = (ConditionNode)diagramEventArgs.SelectedObjects.First();
                 ConditionNode node_new = (ConditionNode)diagramEventArgs.SelectedObjects.Last();
-
+                Point backup = Main_Instance.Instance.Workspace.TreeViewPositions[node.Text];
+                int backup_color = 0;
+                if (Main_Instance.Instance.Workspace.TreeViewColors.ContainsKey(node.Text))
+                    backup_color = Main_Instance.Instance.Workspace.TreeViewColors[node.Text];
                 TreeNode node1 = (TreeNode)Workspace.Find_node(node.Text);
                 node1.Text = node_new.Text;
-                if (node_new.LinksTo.Count > 0)
+                if (node_new.LinksTo.Count == node1.Nodes.Count)
                 {
-                    List<TreeNode> treeNodes = new List<TreeNode>();
-                    foreach (Condition condition in node_new.LinksTo)
-                    {
-                        treeNodes.Add(new TreeNode(condition.Text));
-                    }
-                    node1.Nodes.Clear();
-                    node1.Nodes.AddRange(treeNodes.ToArray());
+
                 }
+                else
+                {
+
+                    if (node_new.LinksTo.Count > 0)
+                    {
+                        List<TreeNode> treeNodes = new List<TreeNode>();
+                        foreach (Condition condition in node_new.LinksTo)
+                        {
+                            if (condition.Text.Length == 0)
+                            {
+                                treeNodes.Add((TreeNode)Workspace.Find_node(condition.LinksTo.Text));
+                            }
+                            else
+                            {
+                                treeNodes.Add(new TreeNode(condition.Text));
+                            }
+                        }
+                        node1.Nodes.Clear();
+                        node1.Nodes.AddRange(treeNodes.ToArray());
+                    }
+                }
+
+                Main_Instance.Instance.Workspace.TreeViewPositions.Remove(node.Text);
+                Main_Instance.Instance.Workspace.TreeViewPositions.Add(node1.Text, backup);
+                Main_Instance.Instance.Workspace.TreeViewColors.Remove(node.Text);
+                Main_Instance.Instance.Workspace.TreeViewColors.Add(node1.Text, backup_color);
+
                 Workspace.ReloadTargetsFromTreeView();
                 drawTreeNodes();
             }

@@ -128,6 +128,7 @@ namespace FREE_OSINT
             Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
             Base_Box_Size = Main_Instance.Instance.NodeDiagram.NodeSize;
             panelDrawWorkspace.Controls.Add(Main_Instance.Instance.NodeDiagram);
+            Main_Instance.Instance.NodeDiagram.LineType = LineTypeEnum.Straight;
             treeViewTargets.ItemDrag += new ItemDragEventHandler(TreeView1_ItemDrag);
             treeViewTargets.DragEnter += new DragEventHandler(TreeView1_DragEnter);
             treeViewTargets.DragOver += new DragEventHandler(TreeView1_DragOver);
@@ -456,16 +457,22 @@ namespace FREE_OSINT
                 }
                 catch (Exception)
                 {
-                    treeNode.Text += " (1)";
+                    //treeNode.Text += " (1)";
+                    int idx = 0;
+                    do
+                    {
+                        idx++;
+                    } while (Main_Instance.Instance.Workspace.TreeViewPositions.ContainsKey(treeNode.Text + $" ({idx})"));
+                    treeNode.Text += $" ({idx})";
                     Main_Instance.Instance.Workspace.TreeViewPositions.Add(treeNode.Text, new Point(xx, y + 50));
+                    Main_Instance.Instance.Workspace.TreeViewColors.Add(treeNode.Text, colorARGB);
+
                 }
                 for (int x = 0; x <= xNodeList.Count - 1; x++)
                 {
                     xNode = xmlNode.ChildNodes[x];
                     treeNode.Nodes.Add(new TreeNode(HttpUtility.HtmlDecode(xNode.Attributes[0].Value)));
                     tNode = treeNode.Nodes[x];
-
-
                     AddTreeNode(xNode, tNode);
                 }
             }

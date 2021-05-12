@@ -34,6 +34,29 @@ namespace FREE_OSINT_Lib
                     return false;
                 }
             }
+            List<TreeNode> toIgnore = new List<TreeNode>();
+            if (node.Nodes.Count > 0)
+            {
+                foreach (TreeNode subTree in treeNodes)
+                {
+                    foreach (TreeNode sub in node.Nodes)
+                    {
+                        if (DateTime.TryParse(sub.Text, out var date))
+                        { }
+                        else if (FindNode(sub, subTree) != null)
+                        {
+                            toIgnore.Add(sub);
+                        }
+                    }
+                }
+            }
+            
+            if (toIgnore.Count > 0)
+            {
+                MessageBox.Show($"Ignored {toIgnore.Count} subnodes for already existing in the workspace");
+                foreach (TreeNode sub in toIgnore)
+                    node.Nodes.Remove(sub);
+            }
             treeNodes.Add(node);
             return true;
         }
