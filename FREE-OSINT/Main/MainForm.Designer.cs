@@ -56,6 +56,7 @@ namespace FREE_OSINT
             this.tabPageWorspace = new System.Windows.Forms.TabPage();
             this.panelDrawWorkspace = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnPerformance = new System.Windows.Forms.Button();
             this.btnRecolor = new System.Windows.Forms.Button();
             this.btnResetBoxes = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
@@ -84,7 +85,6 @@ namespace FREE_OSINT
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStripTargets = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnPerformance = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.workplace_panel.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -110,7 +110,7 @@ namespace FREE_OSINT
             this.configToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1582, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1582, 30);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -122,7 +122,7 @@ namespace FREE_OSINT
             this.saveToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
             this.fileToolStripMenuItem.Text = "File";
             this.fileToolStripMenuItem.Click += new System.EventHandler(this.FileToolStripMenuItem_Click);
             // 
@@ -160,7 +160,7 @@ namespace FREE_OSINT
             this.showToolStripMenuItem,
             this.showFolderToolStripMenuItem});
             this.modulesToolStripMenuItem.Name = "modulesToolStripMenuItem";
-            this.modulesToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
+            this.modulesToolStripMenuItem.Size = new System.Drawing.Size(67, 26);
             this.modulesToolStripMenuItem.Text = "Search";
             // 
             // showToolStripMenuItem
@@ -182,7 +182,7 @@ namespace FREE_OSINT
             this.resultsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem1});
             this.resultsToolStripMenuItem.Name = "resultsToolStripMenuItem";
-            this.resultsToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
+            this.resultsToolStripMenuItem.Size = new System.Drawing.Size(69, 26);
             this.resultsToolStripMenuItem.Text = "Results";
             this.resultsToolStripMenuItem.Click += new System.EventHandler(this.ResultsToolStripMenuItem_Click);
             // 
@@ -200,7 +200,7 @@ namespace FREE_OSINT
             this.showFolderToolStripMenuItem1,
             this.editToolStripMenuItem});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(68, 26);
             this.reportToolStripMenuItem.Text = "Report";
             // 
             // modulesToolStripMenuItem1
@@ -228,7 +228,7 @@ namespace FREE_OSINT
             this.modulesToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.allModulesToolStripMenuItem});
             this.modulesToolStripMenuItem2.Name = "modulesToolStripMenuItem2";
-            this.modulesToolStripMenuItem2.Size = new System.Drawing.Size(80, 24);
+            this.modulesToolStripMenuItem2.Size = new System.Drawing.Size(80, 26);
             this.modulesToolStripMenuItem2.Text = "Modules";
             // 
             // allModulesToolStripMenuItem
@@ -243,7 +243,7 @@ namespace FREE_OSINT
             this.configToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.configToolStripMenuItem1});
             this.configToolStripMenuItem.Name = "configToolStripMenuItem";
-            this.configToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
+            this.configToolStripMenuItem.Size = new System.Drawing.Size(58, 26);
             this.configToolStripMenuItem.Text = "Tools";
             // 
             // configToolStripMenuItem1
@@ -263,9 +263,9 @@ namespace FREE_OSINT
             this.workplace_panel.Controls.Add(this.panel2);
             this.workplace_panel.Controls.Add(this.panel1);
             this.workplace_panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workplace_panel.Location = new System.Drawing.Point(0, 28);
+            this.workplace_panel.Location = new System.Drawing.Point(0, 30);
             this.workplace_panel.Name = "workplace_panel";
-            this.workplace_panel.Size = new System.Drawing.Size(1582, 825);
+            this.workplace_panel.Size = new System.Drawing.Size(1582, 823);
             this.workplace_panel.TabIndex = 2;
             this.workplace_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Workplace_panel_Paint);
             // 
@@ -278,7 +278,7 @@ namespace FREE_OSINT
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1247, 740);
+            this.tabControl.Size = new System.Drawing.Size(1247, 738);
             this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.TabIndex = 0;
             this.tabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.onDrawTabs);
@@ -293,7 +293,7 @@ namespace FREE_OSINT
             this.tabPageWorspace.Location = new System.Drawing.Point(4, 25);
             this.tabPageWorspace.Name = "tabPageWorspace";
             this.tabPageWorspace.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageWorspace.Size = new System.Drawing.Size(1239, 711);
+            this.tabPageWorspace.Size = new System.Drawing.Size(1239, 709);
             this.tabPageWorspace.TabIndex = 0;
             this.tabPageWorspace.Text = "Workspace";
             // 
@@ -303,7 +303,7 @@ namespace FREE_OSINT
             this.panelDrawWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDrawWorkspace.Location = new System.Drawing.Point(3, 3);
             this.panelDrawWorkspace.Name = "panelDrawWorkspace";
-            this.panelDrawWorkspace.Size = new System.Drawing.Size(1233, 705);
+            this.panelDrawWorkspace.Size = new System.Drawing.Size(1233, 703);
             this.panelDrawWorkspace.TabIndex = 2;
             this.panelDrawWorkspace.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelDrawWorkspace_Paint);
             // 
@@ -334,6 +334,17 @@ namespace FREE_OSINT
             this.panel2.Size = new System.Drawing.Size(1247, 85);
             this.panel2.TabIndex = 1;
             this.panel2.Paint += new System.Windows.Forms.PaintEventHandler(this.Panel2_Paint);
+            // 
+            // btnPerformance
+            // 
+            this.btnPerformance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPerformance.Location = new System.Drawing.Point(531, 4);
+            this.btnPerformance.Name = "btnPerformance";
+            this.btnPerformance.Size = new System.Drawing.Size(203, 31);
+            this.btnPerformance.TabIndex = 21;
+            this.btnPerformance.Text = "Refresh";
+            this.btnPerformance.UseVisualStyleBackColor = true;
+            this.btnPerformance.Click += new System.EventHandler(this.btnPerformance_Click);
             // 
             // btnRecolor
             // 
@@ -521,7 +532,7 @@ namespace FREE_OSINT
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(335, 825);
+            this.panel1.Size = new System.Drawing.Size(335, 823);
             this.panel1.TabIndex = 0;
             // 
             // treeViewTargets
@@ -538,7 +549,7 @@ namespace FREE_OSINT
             this.treeViewTargets.ShowLines = false;
             this.treeViewTargets.ShowPlusMinus = false;
             this.treeViewTargets.ShowRootLines = false;
-            this.treeViewTargets.Size = new System.Drawing.Size(335, 740);
+            this.treeViewTargets.Size = new System.Drawing.Size(335, 738);
             this.treeViewTargets.TabIndex = 3;
             this.treeViewTargets.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeViewTargets_AfterSelect);
             this.treeViewTargets.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.NodeClick);
@@ -640,17 +651,6 @@ namespace FREE_OSINT
             this.menuStripTargets.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStripTargets.Name = "menuStripTargets";
             this.menuStripTargets.Size = new System.Drawing.Size(61, 4);
-            // 
-            // btnPerformance
-            // 
-            this.btnPerformance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPerformance.Location = new System.Drawing.Point(531, 4);
-            this.btnPerformance.Name = "btnPerformance";
-            this.btnPerformance.Size = new System.Drawing.Size(203, 31);
-            this.btnPerformance.TabIndex = 21;
-            this.btnPerformance.Text = "Refresh";
-            this.btnPerformance.UseVisualStyleBackColor = true;
-            this.btnPerformance.Click += new System.EventHandler(this.btnPerformance_Click);
             // 
             // MainForm
             // 

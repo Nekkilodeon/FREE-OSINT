@@ -133,6 +133,7 @@ namespace FREE_OSINT
             treeViewTargets.DragEnter += new DragEventHandler(TreeView1_DragEnter);
             treeViewTargets.DragOver += new DragEventHandler(TreeView1_DragOver);
             treeViewTargets.DragDrop += new DragEventHandler(TreeView1_DragDrop);
+            Main_Instance.Instance.MainForm_Instance = this;
         }
 
         private void BtnModules_Click(object sender, EventArgs e)
@@ -603,7 +604,10 @@ namespace FREE_OSINT
                         myMenuItemUrl.MenuItems.Add(defaultb);
                         mnu.MenuItems.Add(myMenuItemUrl);
                     }
-
+                    MenuItem myMenuItemCtrC = new MenuItem("Copy");
+                    myMenuItemCtrC.Click += new EventHandler(MyMenuItem_Click);
+                    myMenuItemCtrC.Shortcut = Shortcut.CtrlC;
+                    mnu.MenuItems.Add(myMenuItemCtrC);
                     MenuItem myMenuItem2 = new MenuItem("Delete");
                     myMenuItem2.Click += new EventHandler(MyMenuItem_Click);
                     myMenuItem2.Shortcut = Shortcut.Del;
@@ -634,6 +638,9 @@ namespace FREE_OSINT
                 {
                     ResultsForm.OpenUrl(selectedNode.Text);
                 }
+            }else if (((MenuItem)sender).Text == "Copy" && selectedNode != null)
+            {
+                Clipboard.SetText(treeViewTargets.SelectedNode.Text);
             }
             else if (((MenuItem)sender).Text == "Delete" && selectedNode != null)
             {
@@ -866,7 +873,7 @@ namespace FREE_OSINT
                 }
             }
         }
-        private void addNewTab(string title_str, string url)
+        public void addNewTab(string title_str, string url)
         {
             string title = title_str;// + (tabControl.TabCount + 1).ToString();
             if (title.Length > 10)

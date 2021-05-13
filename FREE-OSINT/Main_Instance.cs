@@ -184,6 +184,26 @@ namespace FREE_OSINT
                 Workspace.ReloadTargetsFromTreeView();
                 drawTreeNodes();
             }
+            else if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.OPEN_URL)
+            {
+                ConditionNode node = (ConditionNode)diagramEventArgs.SelectedObjects.First();
+                if (node.Text.Contains("http://") || node.Text.Contains("https://"))
+                {
+                    MainForm_Instance.addNewTab(node.Text, node.Text);
+                }
+                else
+                {
+                    foreach (Condition cnd in node.LinksTo)
+                    {
+                        if (cnd.Text.Contains("http://") || cnd.Text.Contains("https://"))
+                        {
+                            MainForm_Instance.addNewTab(node.Text, cnd.Text);
+                            break;
+                        }
+
+                    }
+                }
+            }
 
 
         }
@@ -389,6 +409,7 @@ namespace FREE_OSINT
         public NodeDiagram NodeDiagram { get => nodeDiagram; set => nodeDiagram = value; }
         public General_Config Config { get => config; set => config = value; }
         public Dictionary<General_Config.Module_Type, List<IGeneral_module>> Module_list { get => module_list; set => module_list = value; }
+        public MainForm MainForm_Instance { get; set; }
 
         public void sync_diagram_positions()
         {
