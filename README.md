@@ -9,6 +9,12 @@ The project contains several libraries under their respective licenses:
  - [Node Control by Drake7707](https://github.com/drake7707/nodecontrol)
  - [CefSharp](https://github.com/cefsharp/CefSharp)
 
+Modules currently available for the application:
+ - [FREE-OSINT Google Custom Search](https://github.com/Nekkilodeon/FREE-OSINT_Google-Custom-Search)
+ - [FREE-OSINT Report Builder (Word Document)](https://github.com/Nekkilodeon/FREE-OSINT_Report_Builder)
+ - [FREE-OSINT LinkedIn Metadata Extractor](https://github.com/Nekkilodeon/FREE-OSINT_LinkedIn_Metadata_Extractor)
+
+
 ## License
 MIT License
 
