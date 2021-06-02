@@ -1,5 +1,6 @@
 # FREE-OSINT
 The goal of the following tool is to contribute to the intelligence community and aid in open source intelligence (OSINT) acquisition, using an open source modular application with intuitive design and drag & drop logic, with some prebuild modules to demonstrate the possibilities.
+To get up to speed on the features and working examples, see the Youtube [video](https://www.youtube.com/watch?v=m4O7V86rqA4).
 
 The tool separates aquisition subprocesses like: Retreiving Data, Analyzing Information, Pivoting and Reporting into distinct functionalities.
 Data retreival is done using search modules, Information analysis and Pivoting are done using the report window and the workspace environment, while Reporting is possible using the respective Reporting module.
