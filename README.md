@@ -1,5 +1,6 @@
 # FREE-OSINT
 The goal of the following tool is to contribute to the intelligence community and aid in open source intelligence (OSINT) acquisition, using an open source modular application with intuitive design and drag & drop logic, with some prebuild modules to demonstrate the possibilities.
+To get up to speed on the features and working examples, see the Youtube [video](https://www.youtube.com/watch?v=m4O7V86rqA4).
 
 The tool separates aquisition subprocesses like: Retreiving Data, Analyzing Information, Pivoting and Reporting into distinct functionalities.
 Data retreival is done using search modules, Information analysis and Pivoting are done using the report window and the workspace environment, while Reporting is possible using the respective Reporting module.
@@ -8,6 +9,12 @@ In order to achieve this functionality, a shared library containing several inte
 The project contains several libraries under their respective licenses:
  - [Node Control by Drake7707](https://github.com/drake7707/nodecontrol)
  - [CefSharp](https://github.com/cefsharp/CefSharp)
+
+Modules currently available for the application:
+ - [FREE-OSINT Google Custom Search](https://github.com/Nekkilodeon/FREE-OSINT_Google-Custom-Search)
+ - [FREE-OSINT Report Builder (Word Document)](https://github.com/Nekkilodeon/FREE-OSINT_Report_Builder)
+ - [FREE-OSINT LinkedIn Metadata Extractor](https://github.com/Nekkilodeon/FREE-OSINT_LinkedIn_Metadata_Extractor)
+
 
 ## License
 MIT License
