@@ -20,6 +20,8 @@ namespace FREE_OSINT
         public SearchingForm()
         {
             InitializeComponent();
+            this.CenterToScreen();
+
         }
 
         public SearchingForm(List<ISearchable_module> modules, string query, List<object> extras)
@@ -28,10 +30,13 @@ namespace FREE_OSINT
             this.modules = modules;
             this.searchResults = new List<SearchResult>();
             populateModuleList();
+            this.CenterToScreen();
+
             searchModules(query, extras);
         }
 
-        public void addtoResults(SearchResult result){
+        public void addtoResults(SearchResult result)
+        {
             searchResults.Add(result);
         }
 
@@ -45,7 +50,7 @@ namespace FREE_OSINT
             {
                 foreach (ISearchable_module module in modules)
                 {
-                    var list_item = new ListViewItem(new[] { ((IGeneral_module)module).Title(), "", ""});
+                    var list_item = new ListViewItem(new[] { ((IGeneral_module)module).Title(), "", "" });
                     listViewModules.Items.Add(list_item);
                 }
             }
@@ -53,7 +58,7 @@ namespace FREE_OSINT
 
         private void searchModules(string query, List<object> extras)
         {
-            ThreadWithState tws = new ThreadWithState(modules,query,extras, this);
+            ThreadWithState tws = new ThreadWithState(modules, query, extras, this);
 
             // Create a thread to execute the task, and then
             // start the thread.
@@ -66,7 +71,12 @@ namespace FREE_OSINT
         private void btnDone_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-            this.Close();
+            //this.Close();
+        }
+        private void Done()
+        {
+            this.DialogResult = DialogResult.OK;
+            //this.Close();
         }
         private void Form_KeyDown(object sender, KeyEventArgs e)
         {
@@ -98,13 +108,15 @@ namespace FREE_OSINT
             {
                 foreach (ISearchable_module module in modules)
                 {
-                    searchingForm.txtLog.Invoke((MethodInvoker)delegate {
+                    searchingForm.txtLog.Invoke((MethodInvoker)delegate
+                    {
                         // Running on the UI thread
                         searchingForm.txtLog.Text += "Executing: " + ((IGeneral_module)module).Title();
                         searchingForm.txtLog.Text += Environment.NewLine;
 
                     });
-                    searchingForm.listViewModules.Invoke((MethodInvoker)delegate {
+                    searchingForm.listViewModules.Invoke((MethodInvoker)delegate
+                    {
                         searchingForm.listViewModules.Items[modules.IndexOf(module)].SubItems[0].Font = new Font(FontFamily.GenericSansSerif, 7.8f, FontStyle.Bold);
                     });
 
@@ -114,22 +126,25 @@ namespace FREE_OSINT
                     {
                         searchingForm.addtoResults(result);
                     });
-                        searchingForm.listViewModules.Invoke((MethodInvoker)delegate {
+                    searchingForm.listViewModules.Invoke((MethodInvoker)delegate
+                    {
                         searchingForm.listViewModules.Items[modules.IndexOf(module)].SubItems[0].Font = new Font(FontFamily.GenericSansSerif, 7.8f, FontStyle.Regular);
                     });
-                    searchingForm.txtLog.Invoke((MethodInvoker)delegate {
+                    searchingForm.txtLog.Invoke((MethodInvoker)delegate
+                    {
                         // Running on the UI thread
                         searchingForm.txtLog.Text += Environment.NewLine;
                         searchingForm.txtLog.Text = result.Message;
                         searchingForm.txtLog.Text += Environment.NewLine;
                     });
 
-                    searchingForm.listViewModules.Invoke((MethodInvoker)delegate {
+                    searchingForm.listViewModules.Invoke((MethodInvoker)delegate
+                    {
                         searchingForm.listViewModules.Items[modules.IndexOf(module)].SubItems[1].Text = Enum.GetName(typeof(Status_Code), result.Status);
                         searchingForm.listViewModules.Items[modules.IndexOf(module)].SubItems[2].Text = result.Num_results.ToString();
                     });
 
-                   
+
                     /*
                     searchingForm.txtLog.Text += Environment.NewLine;
                     searchingForm.txtLog.Text = result.Message;
@@ -143,9 +158,14 @@ namespace FREE_OSINT
                 searchingForm.btnDone.Invoke((MethodInvoker)delegate
                 {
                     searchingForm.btnDone.Enabled = true;
+                    searchingForm.listViewModules.Invoke((MethodInvoker)delegate
+                    {
+                        searchingForm.Done();
+                    });
+
                 });
-                    //Console.WriteLine(boilerplate, numberValue);
-                }
+                //Console.WriteLine(boilerplate, numberValue);
+            }
         }
         private void log(string v)
         {

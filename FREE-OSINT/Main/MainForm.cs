@@ -134,6 +134,7 @@ namespace FREE_OSINT
             treeViewTargets.DragOver += new DragEventHandler(TreeView1_DragOver);
             treeViewTargets.DragDrop += new DragEventHandler(TreeView1_DragDrop);
             Main_Instance.Instance.MainForm_Instance = this;
+            SetTabHeader(tabControl.TabPages[0], Color.Orange);
         }
 
         private void BtnModules_Click(object sender, EventArgs e)
@@ -864,9 +865,12 @@ namespace FREE_OSINT
                 {
                     if (MessageBox.Show("Would you like to Close this Tab?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        ChromiumWebBrowser browser = (ChromiumWebBrowser)this.tabControl.TabPages[i].Controls[0];
+                        if(this.tabControl.TabPages[i].Controls[0] is ChromiumWebBrowser)
+                        {
+                            ChromiumWebBrowser browser = (ChromiumWebBrowser)this.tabControl.TabPages[i].Controls[0];
+                            browser.Dispose();
+                        }
                         this.TabClosing = true;
-                        browser.Dispose();
                         this.tabControl.TabPages.RemoveAt(i);
                         //break;
                     }
@@ -880,6 +884,7 @@ namespace FREE_OSINT
                 title = title.Substring(0, 10);
             TabPage myTabPage = new TabPage(title);
             tabControl.TabPages.Add(myTabPage);
+            SetTabHeader(myTabPage, Color.White);
 
             var browser = new ChromiumWebBrowser(url);
             browser.Dock = DockStyle.Fill;
@@ -989,10 +994,49 @@ namespace FREE_OSINT
             General_Config.Recolor(Main_Instance.Instance.Workspace.TargetTreeView, true, true);
             ReloadWorkspace(true);
         }
+        public void SetTabHeader(TabPage page, Color color)
+        {
+            TabColors[page] = color;
+            tabControl.Invalidate();
+        }
 
         private void btnPerformance_Click(object sender, EventArgs e)
         {
             ReloadWorkspace(true);
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            SearchModulesForm modulesForm = new SearchModulesForm();
+            var result = modulesForm.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                ReloadWorkspace(false);
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Show_Modules report_Modules = new Show_Modules(General_Config.Module_Type.Report);
+            var result = report_Modules.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                IReport_module report_Module = (IReport_module)report_Modules.selected_module;
+                Select_Nodes select_Nodes = new Select_Nodes(treeViewTargets);
+                var result_nodes = select_Nodes.ShowDialog();
+                if (result_nodes == DialogResult.OK)
+                {
+                    report_Module.GenerateDocument(select_Nodes.selected_nodes);
+                }
+                else
+                {
+                    select_Nodes.Hide();
+                }
+            }
+            else
+            {
+                report_Modules.Hide();
+            }
         }
     }
 }

@@ -662,6 +662,8 @@ namespace FREE_OSINT
                     {
                         Main_Instance.Instance.Workspace.Targets.Add(new Target(newTargetForm.title, selectedNode));
                     }
+                    Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
+                    Main_Instance.Instance.MainForm_Instance.ReloadWorkspace(true);
                     //Main_Instance.Instance.Workspace.
                 }
             }
@@ -718,6 +720,9 @@ namespace FREE_OSINT
                 {
                     MessageBox.Show("Current node already exists!");
                 }
+                Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
+                Main_Instance.Instance.MainForm_Instance.ReloadWorkspace(true);
+
             }
         }
 
@@ -827,6 +832,28 @@ namespace FREE_OSINT
             }
         }
 
+        private void saveToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "XML File xml|*.xml";
+            saveFileDialog1.Title = "Save results to XML file";
+            var filePath = string.Empty;
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                exportToXml(treeViewResults, saveFileDialog1.FileName);
+            }
+        }
+
+        private void loadToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            populateTreeview();
+
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
     }
 
 }

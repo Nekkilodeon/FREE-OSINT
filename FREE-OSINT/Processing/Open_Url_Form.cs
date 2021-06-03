@@ -19,6 +19,8 @@ namespace FREE_OSINT
         public Open_Url_Form()
         {
             InitializeComponent();
+            this.CenterToScreen();
+
             browser = new ChromiumWebBrowser("");
             browser.Dock = DockStyle.Fill;
             panelBrowser.Controls.Add(browser);
@@ -31,6 +33,8 @@ namespace FREE_OSINT
         public Open_Url_Form(string url)
         {
             InitializeComponent();
+            this.CenterToScreen();
+
             browser = new ChromiumWebBrowser(url);
             browser.Dock = DockStyle.Fill;
             panelBrowser.Controls.Add(browser);

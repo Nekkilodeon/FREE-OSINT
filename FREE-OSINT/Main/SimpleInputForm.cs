@@ -21,10 +21,13 @@ namespace FREE_OSINT
         {
             InitializeComponent();
             title = txtTitle.Text;
+            this.CenterToScreen();
+
         }
         public SimpleInputForm(string name)
         {
             InitializeComponent();
+            this.CenterToScreen();
 
             this.Text = name;
             this.txtDescription.Visible = false;
@@ -39,6 +42,8 @@ namespace FREE_OSINT
             InitializeComponent();
             populateCmbTargets();
             this.Text = "Select Target";
+            this.CenterToScreen();
+
             this.txtTitle.Enabled = false;
             this.txtDescription.Enabled = false;
             this.labelURL.Enabled = false;
@@ -47,6 +52,8 @@ namespace FREE_OSINT
         }
         public SimpleInputForm(string name, string url)
         {
+            this.CenterToScreen();
+
             InitializeComponent();
             populateCmbTargets();
 

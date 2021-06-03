@@ -19,12 +19,15 @@ namespace FREE_OSINT
 
         public QueryConstructorForm()
         {
+            this.CenterToScreen();
+
             InitializeComponent();
         }
 
         public QueryConstructorForm(List<string> to_query, List<TreeNode> targets)
         {
             InitializeComponent();
+            this.CenterToScreen();
             query = new List<string>();
             this.to_query = to_query;
             query.AddRange(to_query);

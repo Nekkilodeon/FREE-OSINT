@@ -19,12 +19,16 @@ namespace FREE_OSINT
         {
             InitializeComponent();
             loadModules();
+            this.CenterToScreen();
+
         }
         public SearchModulesForm(string query)
         {
             InitializeComponent();
             loadModules();
             this.premade_query = query;
+            txtQuery.Text = query;
+            this.CenterToScreen();
         }
 
         private void loadModules()
@@ -48,7 +52,7 @@ namespace FREE_OSINT
             {
                 btnInteract.Enabled = Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex].GetType().GetInterfaces().Contains(typeof(IInteractable_module));
                 btnConfigure.Enabled = Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex].GetType().GetInterfaces().Contains(typeof(IConfigurable_module));
-                btnInteract.Text = "     Interact with " + listModules.Items[listModules.SelectedIndex];
+                //btnInteract.Text = "     Interact with " + listModules.Items[listModules.SelectedIndex];
                 txtDescription.Text = Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.SelectedIndex].Description();
             }
         }
@@ -119,7 +123,7 @@ namespace FREE_OSINT
                 {
                     searchables.Add((ISearchable_module)Main_Instance.Instance.Module_list[General_Config.Module_Type.Search][listModules.Items.IndexOf(module)]);
                 }
-            }
+            }/*
             Query_InsertForm query_InsertForm;
             if (premade_query != null)
             {
@@ -152,8 +156,34 @@ namespace FREE_OSINT
             if (result == DialogResult.Cancel)
             {
                 query_InsertForm.Close();
-            }
+            }*/
 
+            SearchingForm searchingForm = new SearchingForm(searchables, txtQuery.Text, new List<object>());
+           
+            var result = searchingForm.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                List<SearchResult> searchResults = searchingForm.searchResults;
+                //ResultsForm resultsForm = new ResultsForm(searchResults);
+                //resultsForm.ShowDialog();
+                
+                ResultsForm frm = new ResultsForm(searchResults);
+                frm.TopLevel = false;
+                frm.Visible = true;
+                frm.FormBorderStyle = FormBorderStyle.None;
+                frm.Dock = DockStyle.Fill;
+                TabPage myTabPage = new TabPage("Results");
+                myTabPage.Controls.Add(frm);
+                myTabPage.Padding = new System.Windows.Forms.Padding(3);
+                myTabPage.BackColor = System.Drawing.Color.DodgerBlue;
+
+                Main_Instance.Instance.MainForm_Instance.tabControl.TabPages.Add(myTabPage);
+                Main_Instance.Instance.MainForm_Instance.SetTabHeader(myTabPage, Color.DodgerBlue);
+                this.DialogResult = DialogResult.OK;
+
+
+            }
         }
 
         private void btnConfigure_Click(object sender, EventArgs e)
@@ -206,6 +236,11 @@ namespace FREE_OSINT
                         listModules.Items.Add(module.Title());
                 }
             }
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

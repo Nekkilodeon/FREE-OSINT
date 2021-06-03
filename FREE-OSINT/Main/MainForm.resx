@@ -131,6 +131,24 @@
         YyGwDG7YeYqiJyyaXLCfOTeyAAAAAElFTkSuQmCC
 </value>
   </data>
+  <data name="button2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAAGtJREFUOE/lkjEOwCAIRTkbh+NCHqztwtqGBiJaCzp06k9eosT/WIQ+zHyuoLUa
+        GSLiFLfA23pKKcOiIW/CjUQUSlKBEEkegn07Gmz+JpkWCCNJKjB8wc52/6OgZ1mgP77GCzK+E6ygNQ3A
+        BRDeiWaT8fFAAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="btnSearch.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAO
+        wwAADsMBx2+oZAAAANJJREFUOE+dkrEOgyAQhn2kPgO7SVd21zpbpk6+nq/AYMvAQJuoK+UnnAELTemf
+        /DHc3Xd3qM03ret63rZtcraRJ8RDSVmu6CaltEIIyxjbjTPiyIfST2ECitq2TWAy4qFJfhOsSZOH4Wrv
+        88M+zcs/+0vv48ijLiCpcFeaRjAZZ8qhLiCp4gYxTK5qUL3BsiwnrbXlnPuiqncAWClluq7bp+Sc/Qol
+        +HjO/gcleBxHf8+D0z8RsAuWYIN8KM0r1+BnmBRfoRom0SZ/wSSAdXDTvAH7SKryO1HDdwAAAABJRU5E
+        rkJggg==
+</value>
+  </data>
   <data name="pictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAANUAAAB0CAYAAAASAHfIAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
@@ -368,6 +386,9 @@
   </data>
   <metadata name="menuStripTargets.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>152, 0</value>
+  </metadata>
+  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>329, 0</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>25</value>

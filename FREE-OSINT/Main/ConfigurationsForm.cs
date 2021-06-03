@@ -19,6 +19,8 @@ namespace FREE_OSINT.Main
         {
             InitializeComponent();
             PopulateListBoxColors();
+            this.CenterToScreen();
+
             numericUpDown1.Value = Main_Instance.Instance.NodeDiagram.SubsPerLine;
         }
 

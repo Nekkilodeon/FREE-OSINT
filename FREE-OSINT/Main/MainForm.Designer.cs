@@ -1,4 +1,7 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Windows.Forms;
 
 namespace FREE_OSINT
 {
@@ -46,7 +49,6 @@ namespace FREE_OSINT
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modulesToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.showFolderToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.modulesToolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.allModulesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -77,6 +79,8 @@ namespace FREE_OSINT
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeViewTargets = new System.Windows.Forms.TreeView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.button2 = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.btnExpand = new System.Windows.Forms.Button();
@@ -85,6 +89,7 @@ namespace FREE_OSINT
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStripTargets = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1.SuspendLayout();
             this.workplace_panel.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -110,7 +115,7 @@ namespace FREE_OSINT
             this.configToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1582, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1582, 28);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -122,7 +127,7 @@ namespace FREE_OSINT
             this.saveToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 26);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
             this.fileToolStripMenuItem.Click += new System.EventHandler(this.FileToolStripMenuItem_Click);
             // 
@@ -160,7 +165,7 @@ namespace FREE_OSINT
             this.showToolStripMenuItem,
             this.showFolderToolStripMenuItem});
             this.modulesToolStripMenuItem.Name = "modulesToolStripMenuItem";
-            this.modulesToolStripMenuItem.Size = new System.Drawing.Size(67, 26);
+            this.modulesToolStripMenuItem.Size = new System.Drawing.Size(67, 24);
             this.modulesToolStripMenuItem.Text = "Search";
             // 
             // showToolStripMenuItem
@@ -182,7 +187,7 @@ namespace FREE_OSINT
             this.resultsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem1});
             this.resultsToolStripMenuItem.Name = "resultsToolStripMenuItem";
-            this.resultsToolStripMenuItem.Size = new System.Drawing.Size(69, 26);
+            this.resultsToolStripMenuItem.Size = new System.Drawing.Size(69, 24);
             this.resultsToolStripMenuItem.Text = "Results";
             this.resultsToolStripMenuItem.Click += new System.EventHandler(this.ResultsToolStripMenuItem_Click);
             // 
@@ -197,10 +202,9 @@ namespace FREE_OSINT
             // 
             this.reportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.modulesToolStripMenuItem1,
-            this.showFolderToolStripMenuItem1,
-            this.editToolStripMenuItem});
+            this.showFolderToolStripMenuItem1});
             this.reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            this.reportToolStripMenuItem.Size = new System.Drawing.Size(68, 26);
+            this.reportToolStripMenuItem.Size = new System.Drawing.Size(68, 24);
             this.reportToolStripMenuItem.Text = "Report";
             // 
             // modulesToolStripMenuItem1
@@ -217,18 +221,12 @@ namespace FREE_OSINT
             this.showFolderToolStripMenuItem1.Text = "Show Folder";
             this.showFolderToolStripMenuItem1.Click += new System.EventHandler(this.showFolderToolStripMenuItem1_Click);
             // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(174, 26);
-            this.editToolStripMenuItem.Text = "Edit";
-            // 
             // modulesToolStripMenuItem2
             // 
             this.modulesToolStripMenuItem2.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.allModulesToolStripMenuItem});
             this.modulesToolStripMenuItem2.Name = "modulesToolStripMenuItem2";
-            this.modulesToolStripMenuItem2.Size = new System.Drawing.Size(80, 26);
+            this.modulesToolStripMenuItem2.Size = new System.Drawing.Size(80, 24);
             this.modulesToolStripMenuItem2.Text = "Modules";
             // 
             // allModulesToolStripMenuItem
@@ -243,7 +241,7 @@ namespace FREE_OSINT
             this.configToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.configToolStripMenuItem1});
             this.configToolStripMenuItem.Name = "configToolStripMenuItem";
-            this.configToolStripMenuItem.Size = new System.Drawing.Size(58, 26);
+            this.configToolStripMenuItem.Size = new System.Drawing.Size(58, 24);
             this.configToolStripMenuItem.Text = "Tools";
             // 
             // configToolStripMenuItem1
@@ -251,7 +249,7 @@ namespace FREE_OSINT
             this.configToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("configToolStripMenuItem1.Image")));
             this.configToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.configToolStripMenuItem1.Name = "configToolStripMenuItem1";
-            this.configToolStripMenuItem1.Size = new System.Drawing.Size(144, 26);
+            this.configToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.configToolStripMenuItem1.Text = "Options";
             this.configToolStripMenuItem1.Click += new System.EventHandler(this.configToolStripMenuItem1_Click);
             // 
@@ -263,9 +261,9 @@ namespace FREE_OSINT
             this.workplace_panel.Controls.Add(this.panel2);
             this.workplace_panel.Controls.Add(this.panel1);
             this.workplace_panel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workplace_panel.Location = new System.Drawing.Point(0, 30);
+            this.workplace_panel.Location = new System.Drawing.Point(0, 28);
             this.workplace_panel.Name = "workplace_panel";
-            this.workplace_panel.Size = new System.Drawing.Size(1582, 823);
+            this.workplace_panel.Size = new System.Drawing.Size(1582, 825);
             this.workplace_panel.TabIndex = 2;
             this.workplace_panel.Paint += new System.Windows.Forms.PaintEventHandler(this.Workplace_panel_Paint);
             // 
@@ -278,32 +276,31 @@ namespace FREE_OSINT
             this.tabControl.Multiline = true;
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1247, 738);
+            this.tabControl.Size = new System.Drawing.Size(1247, 740);
             this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.TabIndex = 0;
-            this.tabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.onDrawTabs);
+            this.tabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
             this.tabControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDownTabs);
             // 
             // tabPageWorspace
             // 
-            this.tabPageWorspace.BackColor = System.Drawing.Color.White;
-            this.tabPageWorspace.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.tabPageWorspace.BackColor = System.Drawing.Color.Orange;
             this.tabPageWorspace.Controls.Add(this.panelDrawWorkspace);
             this.tabPageWorspace.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.tabPageWorspace.Location = new System.Drawing.Point(4, 25);
             this.tabPageWorspace.Name = "tabPageWorspace";
             this.tabPageWorspace.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageWorspace.Size = new System.Drawing.Size(1239, 709);
+            this.tabPageWorspace.Size = new System.Drawing.Size(1239, 711);
             this.tabPageWorspace.TabIndex = 0;
             this.tabPageWorspace.Text = "Workspace";
             // 
             // panelDrawWorkspace
             // 
-            this.panelDrawWorkspace.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelDrawWorkspace.BackColor = System.Drawing.Color.WhiteSmoke;
             this.panelDrawWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelDrawWorkspace.Location = new System.Drawing.Point(3, 3);
             this.panelDrawWorkspace.Name = "panelDrawWorkspace";
-            this.panelDrawWorkspace.Size = new System.Drawing.Size(1233, 703);
+            this.panelDrawWorkspace.Size = new System.Drawing.Size(1233, 705);
             this.panelDrawWorkspace.TabIndex = 2;
             this.panelDrawWorkspace.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelDrawWorkspace_Paint);
             // 
@@ -532,24 +529,23 @@ namespace FREE_OSINT
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(335, 823);
+            this.panel1.Size = new System.Drawing.Size(335, 825);
             this.panel1.TabIndex = 0;
             // 
             // treeViewTargets
             // 
             this.treeViewTargets.AllowDrop = true;
             this.treeViewTargets.BackColor = System.Drawing.SystemColors.Window;
-            this.treeViewTargets.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeViewTargets.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewTargets.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeViewTargets.FullRowSelect = true;
-            this.treeViewTargets.Location = new System.Drawing.Point(0, 85);
+            this.treeViewTargets.Location = new System.Drawing.Point(0, 160);
             this.treeViewTargets.Margin = new System.Windows.Forms.Padding(10);
             this.treeViewTargets.Name = "treeViewTargets";
             this.treeViewTargets.ShowLines = false;
             this.treeViewTargets.ShowPlusMinus = false;
             this.treeViewTargets.ShowRootLines = false;
-            this.treeViewTargets.Size = new System.Drawing.Size(335, 738);
+            this.treeViewTargets.Size = new System.Drawing.Size(335, 665);
             this.treeViewTargets.TabIndex = 3;
             this.treeViewTargets.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeViewTargets_AfterSelect);
             this.treeViewTargets.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.NodeClick);
@@ -558,6 +554,8 @@ namespace FREE_OSINT
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.button2);
+            this.panel3.Controls.Add(this.btnSearch);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Controls.Add(this.labelWorkspaceName);
             this.panel3.Controls.Add(this.label1);
@@ -565,18 +563,42 @@ namespace FREE_OSINT
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(335, 85);
+            this.panel3.Size = new System.Drawing.Size(335, 160);
             this.panel3.TabIndex = 4;
+            // 
+            // button2
+            // 
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button2.Location = new System.Drawing.Point(172, 85);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(157, 34);
+            this.button2.TabIndex = 8;
+            this.button2.Text = "Report";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
+            this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnSearch.Location = new System.Drawing.Point(6, 85);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(163, 34);
+            this.btnSearch.TabIndex = 7;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panel4
             // 
-            this.panel4.BackColor = System.Drawing.Color.DimGray;
+            this.panel4.BackColor = System.Drawing.Color.Gray;
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.btnExpand);
             this.panel4.Controls.Add(this.btnColapse);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 60);
+            this.panel4.Location = new System.Drawing.Point(0, 135);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(335, 25);
             this.panel4.TabIndex = 6;
@@ -652,6 +674,12 @@ namespace FREE_OSINT
             this.menuStripTargets.Name = "menuStripTargets";
             this.menuStripTargets.Size = new System.Drawing.Size(61, 4);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -686,6 +714,41 @@ namespace FREE_OSINT
             this.PerformLayout();
 
         }
+        private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
+
+        private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            if (!TabColors.ContainsKey(tabControl.TabPages[e.Index]))
+            {
+
+            }
+            else
+            {
+                using (Brush br = new SolidBrush(TabColors[tabControl.TabPages[e.Index]]))
+                {
+                    Rectangle bonds = e.Bounds;
+                    bonds.X+=4;
+                    bonds.Width -= 4;
+                    e.Graphics.FillRectangle(br, bonds);
+                    SizeF sz = e.Graphics.MeasureString(tabControl.TabPages[e.Index].Text, e.Font);
+                    e.Graphics.DrawString(tabControl.TabPages[e.Index].Text, e.Font, TabColors[tabControl.TabPages[e.Index]].Equals(Color.DodgerBlue) ? Brushes.White : Brushes.Black, e.Bounds.Left + (e.Bounds.Width - sz.Width) / 2, e.Bounds.Top + (e.Bounds.Height - sz.Height) / 2 + 1);
+
+                    Rectangle rect = e.Bounds;
+                    rect.Offset(0, 1);
+                    rect.Inflate(0, -1);
+                    e.Graphics.DrawRectangle(Pens.DarkGray, rect);
+                    e.DrawFocusRectangle();
+                }
+                if (e.Index > 0)
+                {
+                    e.Graphics.DrawString("x", e.Font, TabColors[tabControl.TabPages[e.Index]].Equals(Color.DodgerBlue) ? Brushes.White : Brushes.Black, e.Bounds.Right - 15, e.Bounds.Top + 4);
+                    e.DrawFocusRectangle();
+                }
+            }
+            //e.Graphics.DrawString(this.tabControl.TabPages[e.Index].Text, e.Font, Brushes.Black, e.Bounds.Left + 12, e.Bounds.Top + 4);
+
+
+        }
 
         #endregion
         private System.Windows.Forms.MenuStrip menuStrip1;
@@ -718,7 +781,6 @@ namespace FREE_OSINT
         private System.Windows.Forms.ToolStripMenuItem reportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem modulesToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem showFolderToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnExpand;
@@ -733,7 +795,7 @@ namespace FREE_OSINT
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnResetBoxes;
-        private System.Windows.Forms.TabControl tabControl;
+        public System.Windows.Forms.TabControl tabControl;
         private System.Windows.Forms.TabPage tabPageWorspace;
         private System.Windows.Forms.ToolStripMenuItem modulesToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem allModulesToolStripMenuItem;
@@ -741,6 +803,9 @@ namespace FREE_OSINT
         private ToolStripMenuItem configToolStripMenuItem1;
         private Button btnRecolor;
         private Button btnPerformance;
+        private ContextMenuStrip contextMenuStrip1;
+        private Button button2;
+        private Button btnSearch;
     }
 }
 

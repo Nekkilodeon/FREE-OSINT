@@ -19,6 +19,8 @@ namespace FREE_OSINT
         public Modules_All_Form()
         {
             InitializeComponent();
+            this.CenterToScreen();
+
             populateList(null);
             listModules.Sorted = true;
         }
