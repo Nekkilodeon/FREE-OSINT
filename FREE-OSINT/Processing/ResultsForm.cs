@@ -631,6 +631,13 @@ namespace FREE_OSINT
                     {
                         (mnu.MenuItems[0] as MenuItem).MenuItems.Add(target.Title);
                         (mnu.MenuItems[0] as MenuItem).MenuItems[i].Click += new EventHandler(myMenuItem_Click);
+                        int j = 0;
+                        foreach (TreeNode treeNode in target.TreeNodes)
+                        {
+                            (mnu.MenuItems[0] as MenuItem).MenuItems[i].MenuItems.Add(treeNode.Text);
+                            (mnu.MenuItems[0] as MenuItem).MenuItems[i].MenuItems[j].Click += new EventHandler(myMenuItem2_Click);
+                            j++;
+                        }
                         i++;
                     }
                     MenuItem myMenuItem2 = new MenuItem("Remove");
@@ -644,9 +651,16 @@ namespace FREE_OSINT
             }
         }
 
+        private void myMenuItem2_Click(object sender, EventArgs e)
+        {
+            TreeNode node = (TreeNode)selectedNode.Clone();
+            Main_Instance.Instance.Workspace.FindTarget(((MenuItem)((MenuItem)sender).Parent).Text).TreeNodes.Find(x => x.Text == ((MenuItem)sender).Text).Nodes.Add(node);
+            Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
+            Main_Instance.Instance.MainForm_Instance.ReloadWorkspace(true);
+
+        }
         private void myMenuItem_Click(object sender, EventArgs e)
         {
-
             if (((MenuItem)sender).Text == "Remove" && selectedNode != null)
             {
                 treeViewResults.Nodes.Remove(selectedNode);

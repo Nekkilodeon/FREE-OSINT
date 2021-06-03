@@ -118,6 +118,7 @@ namespace FREE_OSINT
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 25F, System.Drawing.FontStyle.Bold);
+            this.label1.ForeColor = System.Drawing.SystemColors.Control;
             this.label1.Location = new System.Drawing.Point(-3, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(159, 57);
@@ -126,6 +127,7 @@ namespace FREE_OSINT
             // 
             // btnBrowser
             // 
+            this.btnBrowser.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnBrowser.Image = ((System.Drawing.Image)(resources.GetObject("btnBrowser.Image")));
             this.btnBrowser.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBrowser.Location = new System.Drawing.Point(3, 3);
@@ -133,7 +135,7 @@ namespace FREE_OSINT
             this.btnBrowser.Size = new System.Drawing.Size(159, 34);
             this.btnBrowser.TabIndex = 4;
             this.btnBrowser.Text = "Browser";
-            this.btnBrowser.UseVisualStyleBackColor = true;
+            this.btnBrowser.UseVisualStyleBackColor = false;
             this.btnBrowser.Click += new System.EventHandler(this.btnBrowser_Click);
             // 
             // txtURL
@@ -151,6 +153,7 @@ namespace FREE_OSINT
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.Control;
             this.label2.Location = new System.Drawing.Point(0, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 17);
@@ -209,6 +212,7 @@ namespace FREE_OSINT
             // 
             // panel3
             // 
+            this.panel3.BackColor = System.Drawing.Color.DodgerBlue;
             this.panel3.Controls.Add(this.labelNodeCount);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -221,6 +225,7 @@ namespace FREE_OSINT
             // 
             this.labelNodeCount.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labelNodeCount.AutoSize = true;
+            this.labelNodeCount.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.labelNodeCount.Location = new System.Drawing.Point(4, 78);
             this.labelNodeCount.Name = "labelNodeCount";
             this.labelNodeCount.Size = new System.Drawing.Size(91, 17);
@@ -229,6 +234,7 @@ namespace FREE_OSINT
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.panel4);
@@ -241,6 +247,7 @@ namespace FREE_OSINT
             // 
             // panel5
             // 
+            this.panel5.BackColor = System.Drawing.Color.DodgerBlue;
             this.panel5.Controls.Add(this.btnForward);
             this.panel5.Controls.Add(this.btnReload);
             this.panel5.Controls.Add(this.btnBack);
@@ -255,6 +262,7 @@ namespace FREE_OSINT
             // btnForward
             // 
             this.btnForward.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnForward.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnForward.Image = ((System.Drawing.Image)(resources.GetObject("btnForward.Image")));
             this.btnForward.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnForward.Location = new System.Drawing.Point(1085, 3);
@@ -262,12 +270,13 @@ namespace FREE_OSINT
             this.btnForward.Size = new System.Drawing.Size(148, 34);
             this.btnForward.TabIndex = 11;
             this.btnForward.Text = "Forward";
-            this.btnForward.UseVisualStyleBackColor = true;
+            this.btnForward.UseVisualStyleBackColor = false;
             this.btnForward.Click += new System.EventHandler(this.btnForward_Click);
             // 
             // btnReload
             // 
             this.btnReload.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnReload.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnReload.Image = ((System.Drawing.Image)(resources.GetObject("btnReload.Image")));
             this.btnReload.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReload.Location = new System.Drawing.Point(934, 3);
@@ -275,12 +284,13 @@ namespace FREE_OSINT
             this.btnReload.Size = new System.Drawing.Size(148, 34);
             this.btnReload.TabIndex = 10;
             this.btnReload.Text = "Reload";
-            this.btnReload.UseVisualStyleBackColor = true;
+            this.btnReload.UseVisualStyleBackColor = false;
             this.btnReload.Click += new System.EventHandler(this.btnReload_Click);
             // 
             // btnBack
             // 
             this.btnBack.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnBack.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnBack.Image = ((System.Drawing.Image)(resources.GetObject("btnBack.Image")));
             this.btnBack.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBack.Location = new System.Drawing.Point(780, 3);
@@ -288,11 +298,12 @@ namespace FREE_OSINT
             this.btnBack.Size = new System.Drawing.Size(148, 34);
             this.btnBack.TabIndex = 9;
             this.btnBack.Text = "Back";
-            this.btnBack.UseVisualStyleBackColor = true;
+            this.btnBack.UseVisualStyleBackColor = false;
             this.btnBack.Click += new System.EventHandler(this.btnBack_Click);
             // 
             // button1
             // 
+            this.button1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.Location = new System.Drawing.Point(168, 3);
@@ -300,7 +311,7 @@ namespace FREE_OSINT
             this.button1.Size = new System.Drawing.Size(148, 34);
             this.button1.TabIndex = 7;
             this.button1.Text = "From URL";
-            this.button1.UseVisualStyleBackColor = true;
+            this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // panel4
@@ -335,6 +346,7 @@ namespace FREE_OSINT
             // 
             this.labelURLTitle.AutoSize = true;
             this.labelURLTitle.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelURLTitle.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.labelURLTitle.Location = new System.Drawing.Point(6, 44);
             this.labelURLTitle.Name = "labelURLTitle";
             this.labelURLTitle.Size = new System.Drawing.Size(0, 25);

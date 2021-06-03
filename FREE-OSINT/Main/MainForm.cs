@@ -1038,5 +1038,22 @@ namespace FREE_OSINT
                 report_Modules.Hide();
             }
         }
+
+        private void btnOpenResult_Click(object sender, EventArgs e)
+        {
+            ResultsForm frm = new ResultsForm("File");
+            frm.TopLevel = false;
+            frm.Visible = true;
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Dock = DockStyle.Fill;
+            TabPage myTabPage = new TabPage("Results");
+            myTabPage.Controls.Add(frm);
+            myTabPage.Padding = new System.Windows.Forms.Padding(3);
+            myTabPage.BackColor = System.Drawing.Color.DodgerBlue;
+
+            this.tabControl.TabPages.Add(myTabPage);
+            this.tabControl.SelectedTab = Main_Instance.Instance.MainForm_Instance.tabControl.TabPages[Main_Instance.Instance.MainForm_Instance.tabControl.TabPages.Count - 1];
+            this.SetTabHeader(myTabPage, Color.DodgerBlue);
+        }
     }
 }

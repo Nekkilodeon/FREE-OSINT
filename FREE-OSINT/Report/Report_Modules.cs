@@ -20,6 +20,7 @@ namespace FREE_OSINT
         {
             InitializeComponent();
             this.module_type = type;
+            this.CenterToScreen();
             populateList(null);
             this.Title.Text = type.ToString();
         }
@@ -27,6 +28,7 @@ namespace FREE_OSINT
         private void btnOk_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
+            
             selected_module = Main_Instance.Instance.Module_list[module_type].Find(x => x.Title().Equals(listReportModules.Items[listReportModules.SelectedIndices[0]].Text));
         }
 

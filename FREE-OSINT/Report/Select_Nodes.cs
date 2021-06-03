@@ -17,6 +17,7 @@ namespace FREE_OSINT
         {
             selected_nodes = new List<TreeNode>();
             InitializeComponent();
+            this.CenterToScreen();
             populateTreeView(treeView);
         }
 

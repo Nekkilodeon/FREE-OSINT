@@ -90,6 +90,8 @@ namespace FREE_OSINT
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStripTargets = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnOpenResult = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.workplace_panel.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -249,7 +251,7 @@ namespace FREE_OSINT
             this.configToolStripMenuItem1.Image = ((System.Drawing.Image)(resources.GetObject("configToolStripMenuItem1.Image")));
             this.configToolStripMenuItem1.ImageScaling = System.Windows.Forms.ToolStripItemImageScaling.None;
             this.configToolStripMenuItem1.Name = "configToolStripMenuItem1";
-            this.configToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.configToolStripMenuItem1.Size = new System.Drawing.Size(144, 26);
             this.configToolStripMenuItem1.Text = "Options";
             this.configToolStripMenuItem1.Click += new System.EventHandler(this.configToolStripMenuItem1_Click);
             // 
@@ -539,13 +541,13 @@ namespace FREE_OSINT
             this.treeViewTargets.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewTargets.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeViewTargets.FullRowSelect = true;
-            this.treeViewTargets.Location = new System.Drawing.Point(0, 160);
+            this.treeViewTargets.Location = new System.Drawing.Point(0, 186);
             this.treeViewTargets.Margin = new System.Windows.Forms.Padding(10);
             this.treeViewTargets.Name = "treeViewTargets";
             this.treeViewTargets.ShowLines = false;
             this.treeViewTargets.ShowPlusMinus = false;
             this.treeViewTargets.ShowRootLines = false;
-            this.treeViewTargets.Size = new System.Drawing.Size(335, 665);
+            this.treeViewTargets.Size = new System.Drawing.Size(335, 639);
             this.treeViewTargets.TabIndex = 3;
             this.treeViewTargets.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeViewTargets_AfterSelect);
             this.treeViewTargets.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.NodeClick);
@@ -554,6 +556,8 @@ namespace FREE_OSINT
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.button3);
+            this.panel3.Controls.Add(this.btnOpenResult);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.btnSearch);
             this.panel3.Controls.Add(this.panel4);
@@ -563,14 +567,14 @@ namespace FREE_OSINT
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(335, 160);
+            this.panel3.Size = new System.Drawing.Size(335, 186);
             this.panel3.TabIndex = 4;
             // 
             // button2
             // 
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.Location = new System.Drawing.Point(172, 85);
+            this.button2.Location = new System.Drawing.Point(172, 75);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(157, 34);
             this.button2.TabIndex = 8;
@@ -582,7 +586,7 @@ namespace FREE_OSINT
             // 
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnSearch.Location = new System.Drawing.Point(6, 85);
+            this.btnSearch.Location = new System.Drawing.Point(6, 75);
             this.btnSearch.Name = "btnSearch";
             this.btnSearch.Size = new System.Drawing.Size(163, 34);
             this.btnSearch.TabIndex = 7;
@@ -598,7 +602,7 @@ namespace FREE_OSINT
             this.panel4.Controls.Add(this.btnExpand);
             this.panel4.Controls.Add(this.btnColapse);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 135);
+            this.panel4.Location = new System.Drawing.Point(0, 161);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(335, 25);
             this.panel4.TabIndex = 6;
@@ -679,6 +683,29 @@ namespace FREE_OSINT
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
+            // 
+            // btnOpenResult
+            // 
+            this.btnOpenResult.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenResult.Image")));
+            this.btnOpenResult.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOpenResult.Location = new System.Drawing.Point(6, 115);
+            this.btnOpenResult.Name = "btnOpenResult";
+            this.btnOpenResult.Size = new System.Drawing.Size(163, 34);
+            this.btnOpenResult.TabIndex = 9;
+            this.btnOpenResult.Text = "Open Result";
+            this.btnOpenResult.UseVisualStyleBackColor = true;
+            this.btnOpenResult.Click += new System.EventHandler(this.btnOpenResult_Click);
+            // 
+            // button3
+            // 
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.Location = new System.Drawing.Point(172, 115);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(157, 34);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "Settings";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -806,6 +833,8 @@ namespace FREE_OSINT
         private ContextMenuStrip contextMenuStrip1;
         private Button button2;
         private Button btnSearch;
+        private Button button3;
+        private Button btnOpenResult;
     }
 }
 

@@ -159,7 +159,7 @@ namespace FREE_OSINT
             }*/
 
             SearchingForm searchingForm = new SearchingForm(searchables, txtQuery.Text, new List<object>());
-           
+
             var result = searchingForm.ShowDialog();
 
             if (result == DialogResult.OK)
@@ -167,7 +167,7 @@ namespace FREE_OSINT
                 List<SearchResult> searchResults = searchingForm.searchResults;
                 //ResultsForm resultsForm = new ResultsForm(searchResults);
                 //resultsForm.ShowDialog();
-                
+
                 ResultsForm frm = new ResultsForm(searchResults);
                 frm.TopLevel = false;
                 frm.Visible = true;
@@ -179,6 +179,7 @@ namespace FREE_OSINT
                 myTabPage.BackColor = System.Drawing.Color.DodgerBlue;
 
                 Main_Instance.Instance.MainForm_Instance.tabControl.TabPages.Add(myTabPage);
+                Main_Instance.Instance.MainForm_Instance.tabControl.SelectedTab = Main_Instance.Instance.MainForm_Instance.tabControl.TabPages[Main_Instance.Instance.MainForm_Instance.tabControl.TabPages.Count - 1];
                 Main_Instance.Instance.MainForm_Instance.SetTabHeader(myTabPage, Color.DodgerBlue);
                 this.DialogResult = DialogResult.OK;
 
