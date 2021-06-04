@@ -54,7 +54,7 @@ namespace FREE_OSINT
             this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.workplace_panel = new System.Windows.Forms.Panel();
-            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabControl = new CustomTabControl();
             this.tabPageWorspace = new System.Windows.Forms.TabPage();
             this.panelDrawWorkspace = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -79,6 +79,7 @@ namespace FREE_OSINT
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeViewTargets = new System.Windows.Forms.TreeView();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnOpenResult = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -90,8 +91,6 @@ namespace FREE_OSINT
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.menuStripTargets = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.btnOpenResult = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.workplace_panel.SuspendLayout();
             this.tabControl.SuspendLayout();
@@ -271,11 +270,13 @@ namespace FREE_OSINT
             // 
             // tabControl
             // 
+            this.tabControl.DisplayStyle = TabStyle.Rounded;
             this.tabControl.Controls.Add(this.tabPageWorspace);
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl.Location = new System.Drawing.Point(335, 85);
             this.tabControl.Multiline = true;
+
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
             this.tabControl.Size = new System.Drawing.Size(1247, 740);
@@ -286,12 +287,11 @@ namespace FREE_OSINT
             // 
             // tabPageWorspace
             // 
-            this.tabPageWorspace.BackColor = System.Drawing.Color.Orange;
+            this.tabPageWorspace.BackColor = Color.Orange;
             this.tabPageWorspace.Controls.Add(this.panelDrawWorkspace);
             this.tabPageWorspace.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.tabPageWorspace.Location = new System.Drawing.Point(4, 25);
             this.tabPageWorspace.Name = "tabPageWorspace";
-            this.tabPageWorspace.Padding = new System.Windows.Forms.Padding(3);
             this.tabPageWorspace.Size = new System.Drawing.Size(1239, 711);
             this.tabPageWorspace.TabIndex = 0;
             this.tabPageWorspace.Text = "Workspace";
@@ -299,16 +299,17 @@ namespace FREE_OSINT
             // panelDrawWorkspace
             // 
             this.panelDrawWorkspace.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelDrawWorkspace.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelDrawWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDrawWorkspace.Location = new System.Drawing.Point(3, 3);
+            this.panelDrawWorkspace.Location = new System.Drawing.Point(0, 0);
             this.panelDrawWorkspace.Name = "panelDrawWorkspace";
-            this.panelDrawWorkspace.Size = new System.Drawing.Size(1233, 705);
+            this.panelDrawWorkspace.Size = new System.Drawing.Size(1239, 711);
             this.panelDrawWorkspace.TabIndex = 2;
             this.panelDrawWorkspace.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelDrawWorkspace_Paint);
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.Menu;
+            this.panel2.BackColor = System.Drawing.SystemColors.Control;
             this.panel2.Controls.Add(this.btnPerformance);
             this.panel2.Controls.Add(this.btnRecolor);
             this.panel2.Controls.Add(this.btnResetBoxes);
@@ -526,6 +527,7 @@ namespace FREE_OSINT
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.treeViewTargets);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -538,6 +540,7 @@ namespace FREE_OSINT
             // 
             this.treeViewTargets.AllowDrop = true;
             this.treeViewTargets.BackColor = System.Drawing.SystemColors.Window;
+            this.treeViewTargets.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.treeViewTargets.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeViewTargets.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeViewTargets.FullRowSelect = true;
@@ -547,7 +550,7 @@ namespace FREE_OSINT
             this.treeViewTargets.ShowLines = false;
             this.treeViewTargets.ShowPlusMinus = false;
             this.treeViewTargets.ShowRootLines = false;
-            this.treeViewTargets.Size = new System.Drawing.Size(335, 639);
+            this.treeViewTargets.Size = new System.Drawing.Size(331, 635);
             this.treeViewTargets.TabIndex = 3;
             this.treeViewTargets.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeViewTargets_AfterSelect);
             this.treeViewTargets.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.NodeClick);
@@ -556,7 +559,6 @@ namespace FREE_OSINT
             // 
             // panel3
             // 
-            this.panel3.Controls.Add(this.button3);
             this.panel3.Controls.Add(this.btnOpenResult);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.btnSearch);
@@ -567,31 +569,52 @@ namespace FREE_OSINT
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(335, 186);
+            this.panel3.Size = new System.Drawing.Size(331, 186);
             this.panel3.TabIndex = 4;
+            // 
+            // btnOpenResult
+            // 
+            this.btnOpenResult.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.btnOpenResult.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnOpenResult.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnOpenResult.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenResult.Image")));
+            this.btnOpenResult.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnOpenResult.Location = new System.Drawing.Point(6, 115);
+            this.btnOpenResult.Name = "btnOpenResult";
+            this.btnOpenResult.Size = new System.Drawing.Size(163, 34);
+            this.btnOpenResult.TabIndex = 9;
+            this.btnOpenResult.Text = "Open Result";
+            this.btnOpenResult.UseVisualStyleBackColor = false;
+            this.btnOpenResult.Click += new System.EventHandler(this.btnOpenResult_Click);
             // 
             // button2
             // 
+            this.button2.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
             this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button2.Location = new System.Drawing.Point(172, 75);
+            this.button2.Location = new System.Drawing.Point(172, 115);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(157, 34);
             this.button2.TabIndex = 8;
             this.button2.Text = "Report";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // btnSearch
             // 
+            this.btnSearch.BackColor = System.Drawing.Color.DeepSkyBlue;
+            this.btnSearch.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.btnSearch.Font = new System.Drawing.Font("Segoe UI Semibold", 11F, System.Drawing.FontStyle.Bold);
+            this.btnSearch.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btnSearch.Image = ((System.Drawing.Image)(resources.GetObject("btnSearch.Image")));
             this.btnSearch.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnSearch.Location = new System.Drawing.Point(6, 75);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(163, 34);
+            this.btnSearch.Size = new System.Drawing.Size(323, 34);
             this.btnSearch.TabIndex = 7;
             this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // panel4
@@ -604,7 +627,7 @@ namespace FREE_OSINT
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 161);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(335, 25);
+            this.panel4.Size = new System.Drawing.Size(331, 25);
             this.panel4.TabIndex = 6;
             // 
             // label3
@@ -613,7 +636,7 @@ namespace FREE_OSINT
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(3, -3);
+            this.label3.Location = new System.Drawing.Point(1, -3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 24);
             this.label3.TabIndex = 2;
@@ -683,29 +706,6 @@ namespace FREE_OSINT
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
-            // 
-            // btnOpenResult
-            // 
-            this.btnOpenResult.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenResult.Image")));
-            this.btnOpenResult.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnOpenResult.Location = new System.Drawing.Point(6, 115);
-            this.btnOpenResult.Name = "btnOpenResult";
-            this.btnOpenResult.Size = new System.Drawing.Size(163, 34);
-            this.btnOpenResult.TabIndex = 9;
-            this.btnOpenResult.Text = "Open Result";
-            this.btnOpenResult.UseVisualStyleBackColor = true;
-            this.btnOpenResult.Click += new System.EventHandler(this.btnOpenResult_Click);
-            // 
-            // button3
-            // 
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.button3.Location = new System.Drawing.Point(172, 115);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(157, 34);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Settings";
-            this.button3.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -822,7 +822,7 @@ namespace FREE_OSINT
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnResetBoxes;
-        public System.Windows.Forms.TabControl tabControl;
+        public CustomTabControl tabControl;
         private System.Windows.Forms.TabPage tabPageWorspace;
         private System.Windows.Forms.ToolStripMenuItem modulesToolStripMenuItem2;
         private System.Windows.Forms.ToolStripMenuItem allModulesToolStripMenuItem;
@@ -833,7 +833,6 @@ namespace FREE_OSINT
         private ContextMenuStrip contextMenuStrip1;
         private Button button2;
         private Button btnSearch;
-        private Button button3;
         private Button btnOpenResult;
     }
 }

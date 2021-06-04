@@ -345,11 +345,11 @@ namespace FREE_OSINT
             // labelURLTitle
             // 
             this.labelURLTitle.AutoSize = true;
-            this.labelURLTitle.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelURLTitle.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelURLTitle.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.labelURLTitle.Location = new System.Drawing.Point(6, 44);
+            this.labelURLTitle.Location = new System.Drawing.Point(3, 41);
             this.labelURLTitle.Name = "labelURLTitle";
-            this.labelURLTitle.Size = new System.Drawing.Size(0, 25);
+            this.labelURLTitle.Size = new System.Drawing.Size(0, 23);
             this.labelURLTitle.TabIndex = 8;
             // 
             // panelBrowser

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace FREE_OSINT
 {
@@ -13,11 +14,12 @@ namespace FREE_OSINT
         public static string modules_directory = "modules";
         static internal Dictionary<int, Color> ColorsHierarchy;
         internal static string lib_directory = "libs";
-        public static string Documents_Path = System.IO.Path.Combine(Environment.GetFolderPath(
-    Environment.SpecialFolder.MyDoc‌​uments), "FREE-OSINT");
+        public static string Documents_Path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "FREE-OSINT");
+        public static List<String> recent_workspaces;
         public General_Config()
         {
             ColorsHierarchy = new Dictionary<int, Color>();
+            recent_workspaces = new List<string>();
             ColorsHierarchy.Add(0, Color.Orange);
             ColorsHierarchy.Add(1, Color.CornflowerBlue);
             ColorsHierarchy.Add(2, Color.SkyBlue);
@@ -28,6 +30,35 @@ namespace FREE_OSINT
             SubNodes.Add(0, Color.FromArgb(0, 247, 250));
             SubNodes.Add(1, Color.FromArgb(150, 247, 250));
             SubNodes.Add(2, Color.FromArgb(213, 213, 213));*/
+        }
+        public static void SaveGeneralConfig()
+        {
+            XmlWriterSettings settings = new XmlWriterSettings();
+            settings.Indent = true;
+            settings.IndentChars = ("    ");
+            settings.CloseOutput = true;
+            settings.OmitXmlDeclaration = true;
+            using (XmlWriter writer = XmlWriter.Create(Documents_Path + "/config.xml", settings))
+            {
+                writer.WriteStartElement("config");
+                writer.WriteStartElement("colors");
+                writer.WriteElementString("first", ColorsHierarchy[0].ToArgb() + "");
+                writer.WriteElementString("second", ColorsHierarchy[1].ToArgb() + "");
+                writer.WriteElementString("third", ColorsHierarchy[2].ToArgb() + "");
+                writer.WriteElementString("fourth", ColorsHierarchy[3].ToArgb() + "");
+                writer.WriteElementString("fifth", ColorsHierarchy[4].ToArgb() + "");
+                writer.WriteEndElement();
+                writer.WriteStartElement("recent");
+                if(recent_workspaces.Count > 0)
+                {
+                    for(int i = 0; i < recent_workspaces.Count; i++)
+                    writer.WriteElementString("project", recent_workspaces[i] + "");
+                }
+                writer.WriteEndElement();
+                writer.WriteEndElement();
+                writer.Flush();
+
+            }
         }
 
         public static TreeView Recolor(TreeView targetTreeView, bool recolorTree = false, bool recolorGraph = false)

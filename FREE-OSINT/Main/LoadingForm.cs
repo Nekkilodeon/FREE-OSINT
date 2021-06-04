@@ -67,10 +67,10 @@ namespace FREE_OSINT
             // and printing a document.
             public void ThreadProc()
             {
-                loadModules();
+                LoadModules();
                 //Console.WriteLine(boilerplate, numberValue);
             }
-            private void loadModules()
+            private void LoadModules()
             {
                 module_list = new List<IGeneral_module>();
 

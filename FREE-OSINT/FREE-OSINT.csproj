@@ -56,6 +56,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\FREE_OSINT_Lib\bin\Debug\netstandard2.0\FREE_OSINT_Lib.dll</HintPath>
     </Reference>
+    <Reference Include="JacksonSoft.CustomTabControl">
+      <HintPath>..\JacksonSoft.CustomTabControl.dll</HintPath>
+    </Reference>
     <Reference Include="NodeControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Nekkilodeon\FREE-OSINT_Node_Control\NodeControl\bin\Debug\NodeControl.dll</HintPath>

@@ -204,6 +204,7 @@ namespace FREE_OSINT
                 labelWorkspaceName.Text = proj_name;
                 //labelWorkspaceName.Text = saveFileDialog1.FileName;
                 ExportToXml(result);
+                updateRecentProjectList(result);
             }
             //EXPORT WORKPLACE TO FILE
         }
@@ -371,6 +372,7 @@ namespace FREE_OSINT
             finally
             {
                 Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
+                updateRecentProjectList(dlg.FileName);
                 ReloadWorkspace(false);
                 Main_Instance.Instance.sync_diagram_positions();
                 //Main_Instance.Instance.populate_position_dictionary();
@@ -378,6 +380,23 @@ namespace FREE_OSINT
             }
 
         }
+
+        private void updateRecentProjectList(string fileName)
+        {
+            if (General_Config.recent_workspaces.Contains(fileName))
+            {
+                General_Config.recent_workspaces.Remove(fileName);
+            }
+            else
+            {
+                if (General_Config.recent_workspaces.Count > 4)
+                {
+                    General_Config.recent_workspaces.RemoveAt(4);
+                }
+            }
+            General_Config.recent_workspaces.Insert(0, fileName);
+        }
+
         public void GetExpandedStatus(TreeNode node, List<string> ExpandedNodes)
         {
             //check if node is expanded
@@ -639,7 +658,8 @@ namespace FREE_OSINT
                 {
                     ResultsForm.OpenUrl(selectedNode.Text);
                 }
-            }else if (((MenuItem)sender).Text == "Copy" && selectedNode != null)
+            }
+            else if (((MenuItem)sender).Text == "Copy" && selectedNode != null)
             {
                 Clipboard.SetText(treeViewTargets.SelectedNode.Text);
             }
@@ -865,7 +885,7 @@ namespace FREE_OSINT
                 {
                     if (MessageBox.Show("Would you like to Close this Tab?", "Confirm", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                     {
-                        if(this.tabControl.TabPages[i].Controls[0] is ChromiumWebBrowser)
+                        if (this.tabControl.TabPages[i].Controls[0] is ChromiumWebBrowser)
                         {
                             ChromiumWebBrowser browser = (ChromiumWebBrowser)this.tabControl.TabPages[i].Controls[0];
                             browser.Dispose();

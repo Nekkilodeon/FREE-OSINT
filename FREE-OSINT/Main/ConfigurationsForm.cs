@@ -116,6 +116,7 @@ namespace FREE_OSINT.Main
 
         private void btnDone_Click(object sender, EventArgs e)
         {
+            General_Config.SaveGeneralConfig();
             this.DialogResult = DialogResult.OK;
         }
 

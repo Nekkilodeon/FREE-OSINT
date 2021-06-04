@@ -34,6 +34,7 @@ namespace FREE_OSINT
         {
             InitializeComponent();
             DesignTreeView();
+
         }
 
 
@@ -47,6 +48,7 @@ namespace FREE_OSINT
             DesignTreeView();
             browser = new ChromiumWebBrowser("");
             browser.Dock = DockStyle.Fill;
+            browser.Load("https://google.com");
             panelBrowser.Controls.Add(browser);
             setupBrowser();
 
@@ -166,6 +168,8 @@ namespace FREE_OSINT
             populateTreeView(searchResults);
 
             browser = new ChromiumWebBrowser("");
+            browser.Load("https://google.com");
+
             panelBrowser.Controls.Add(browser);
             setupBrowser();
         }
