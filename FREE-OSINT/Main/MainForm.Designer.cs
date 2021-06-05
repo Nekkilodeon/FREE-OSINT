@@ -270,24 +270,24 @@ namespace FREE_OSINT
             // 
             // tabControl
             // 
-            this.tabControl.DisplayStyle = TabStyle.Rounded;
+            this.tabControl.DisplayStyle = TabStyle.VisualStudio;
             this.tabControl.Controls.Add(this.tabPageWorspace);
+            this.tabControl.DisplayStyleProvider.ShowTabCloser = true;
+            this.tabControl.TabClosing += this.mouseDownTabs2;
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControl.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
             this.tabControl.Location = new System.Drawing.Point(335, 85);
-            this.tabControl.Multiline = true;
+            //this.tabControl.Multiline = true;
 
             this.tabControl.Name = "tabControl";
             this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(1247, 740);
-            this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            //this.tabControl.Size = new System.Drawing.Size(1247, 740);
+            //this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.TabIndex = 0;
-            this.tabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.tabControl1_DrawItem);
+            this.tabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.onDrawTabs);
             this.tabControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDownTabs);
             // 
             // tabPageWorspace
             // 
-            this.tabPageWorspace.BackColor = Color.Orange;
             this.tabPageWorspace.Controls.Add(this.panelDrawWorkspace);
             this.tabPageWorspace.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.tabPageWorspace.Location = new System.Drawing.Point(4, 25);
@@ -309,7 +309,7 @@ namespace FREE_OSINT
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.SystemColors.Control;
+            this.panel2.BackColor = System.Drawing.SystemColors.HighlightText;
             this.panel2.Controls.Add(this.btnPerformance);
             this.panel2.Controls.Add(this.btnRecolor);
             this.panel2.Controls.Add(this.btnResetBoxes);
@@ -526,8 +526,8 @@ namespace FREE_OSINT
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel1.BackColor = System.Drawing.SystemColors.HighlightText;
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.panel1.Controls.Add(this.treeViewTargets);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -741,6 +741,15 @@ namespace FREE_OSINT
             this.PerformLayout();
 
         }
+
+        private void mouseDownTabs2(object sender, TabControlCancelEventArgs e)
+        {
+            if(((CustomTabControl)sender).TabIndex == 0)
+            {
+                e.Cancel = true;
+            }
+        }
+
         private Dictionary<TabPage, Color> TabColors = new Dictionary<TabPage, Color>();
 
         private void tabControl1_DrawItem(object sender, DrawItemEventArgs e)

@@ -104,6 +104,12 @@
     <Compile Include="Main\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Main\WorkspaceDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\WorkspaceDialog.Designer.cs">
+      <DependentUpon>WorkspaceDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Main_Instance.cs" />
     <Compile Include="Main\Modules_All_Form.cs">
       <SubType>Form</SubType>
@@ -181,6 +187,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main\Modules_All_Form.resx">
       <DependentUpon>Modules_All_Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Main\WorkspaceDialog.resx">
+      <DependentUpon>WorkspaceDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Processing\Open_Url_Form.resx">
       <DependentUpon>Open_Url_Form.cs</DependentUpon>

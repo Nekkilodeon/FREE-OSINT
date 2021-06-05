@@ -41,7 +41,6 @@ namespace FREE_OSINT
             this.label2 = new System.Windows.Forms.Label();
             this.txtLogs = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.btnSendToGraph = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -78,7 +77,7 @@ namespace FREE_OSINT
             this.treeViewResults.Name = "treeViewResults";
             this.treeViewResults.ShowLines = false;
             this.treeViewResults.ShowPlusMinus = false;
-            this.treeViewResults.Size = new System.Drawing.Size(342, 634);
+            this.treeViewResults.Size = new System.Drawing.Size(342, 631);
             this.treeViewResults.TabIndex = 0;
             this.treeViewResults.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeViewResults_AfterSelect);
             this.treeViewResults.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.mouseClick);
@@ -86,31 +85,33 @@ namespace FREE_OSINT
             // 
             // menuStrip1
             // 
-            this.menuStrip1.BackColor = System.Drawing.Color.DodgerBlue;
+            this.menuStrip1.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.saveToolStripMenuItem1,
             this.loadToolStripMenuItem1});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1582, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1582, 31);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // saveToolStripMenuItem1
             // 
+            this.saveToolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.saveToolStripMenuItem1.ForeColor = System.Drawing.Color.Snow;
             this.saveToolStripMenuItem1.Name = "saveToolStripMenuItem1";
-            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(54, 24);
+            this.saveToolStripMenuItem1.Size = new System.Drawing.Size(60, 27);
             this.saveToolStripMenuItem1.Text = "Save";
             this.saveToolStripMenuItem1.Click += new System.EventHandler(this.saveToolStripMenuItem1_Click);
             // 
             // loadToolStripMenuItem1
             // 
+            this.loadToolStripMenuItem1.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.loadToolStripMenuItem1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.loadToolStripMenuItem1.Name = "loadToolStripMenuItem1";
-            this.loadToolStripMenuItem1.Size = new System.Drawing.Size(56, 24);
+            this.loadToolStripMenuItem1.Size = new System.Drawing.Size(61, 27);
             this.loadToolStripMenuItem1.Text = "Load";
             this.loadToolStripMenuItem1.Click += new System.EventHandler(this.loadToolStripMenuItem1_Click);
             // 
@@ -118,7 +119,7 @@ namespace FREE_OSINT
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI Semibold", 25F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.SystemColors.Control;
+            this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label1.Location = new System.Drawing.Point(-3, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(159, 57);
@@ -153,7 +154,7 @@ namespace FREE_OSINT
             this.label2.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.Control;
+            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.label2.Location = new System.Drawing.Point(0, 3);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 17);
@@ -180,25 +181,15 @@ namespace FREE_OSINT
             this.label3.TabIndex = 8;
             this.label3.Text = "Events";
             // 
-            // btnSendToGraph
-            // 
-            this.btnSendToGraph.Location = new System.Drawing.Point(191, 31);
-            this.btnSendToGraph.Name = "btnSendToGraph";
-            this.btnSendToGraph.Size = new System.Drawing.Size(136, 53);
-            this.btnSendToGraph.TabIndex = 9;
-            this.btnSendToGraph.Text = "Send to Graph";
-            this.btnSendToGraph.UseVisualStyleBackColor = true;
-            this.btnSendToGraph.Click += new System.EventHandler(this.btnSendToGraph_Click);
-            // 
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.panel6);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 28);
+            this.panel1.Location = new System.Drawing.Point(0, 31);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(344, 735);
+            this.panel1.Size = new System.Drawing.Size(344, 732);
             this.panel1.TabIndex = 10;
             // 
             // panel6
@@ -207,12 +198,12 @@ namespace FREE_OSINT
             this.panel6.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel6.Location = new System.Drawing.Point(0, 99);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(342, 634);
+            this.panel6.Size = new System.Drawing.Size(342, 631);
             this.panel6.TabIndex = 7;
             // 
             // panel3
             // 
-            this.panel3.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel3.BackColor = System.Drawing.SystemColors.Menu;
             this.panel3.Controls.Add(this.labelNodeCount);
             this.panel3.Controls.Add(this.label1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
@@ -225,7 +216,7 @@ namespace FREE_OSINT
             // 
             this.labelNodeCount.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.labelNodeCount.AutoSize = true;
-            this.labelNodeCount.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.labelNodeCount.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.labelNodeCount.Location = new System.Drawing.Point(4, 78);
             this.labelNodeCount.Name = "labelNodeCount";
             this.labelNodeCount.Size = new System.Drawing.Size(91, 17);
@@ -234,20 +225,20 @@ namespace FREE_OSINT
             // 
             // panel2
             // 
-            this.panel2.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel2.BackColor = System.Drawing.SystemColors.Menu;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.panel5);
             this.panel2.Controls.Add(this.panel4);
             this.panel2.Controls.Add(this.labelURLTitle);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(344, 28);
+            this.panel2.Location = new System.Drawing.Point(344, 31);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1238, 100);
             this.panel2.TabIndex = 11;
             // 
             // panel5
             // 
-            this.panel5.BackColor = System.Drawing.Color.DodgerBlue;
+            this.panel5.BackColor = System.Drawing.Color.DeepSkyBlue;
             this.panel5.Controls.Add(this.btnForward);
             this.panel5.Controls.Add(this.btnReload);
             this.panel5.Controls.Add(this.btnBack);
@@ -346,7 +337,7 @@ namespace FREE_OSINT
             // 
             this.labelURLTitle.AutoSize = true;
             this.labelURLTitle.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelURLTitle.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.labelURLTitle.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.labelURLTitle.Location = new System.Drawing.Point(3, 41);
             this.labelURLTitle.Name = "labelURLTitle";
             this.labelURLTitle.Size = new System.Drawing.Size(0, 23);
@@ -355,9 +346,9 @@ namespace FREE_OSINT
             // panelBrowser
             // 
             this.panelBrowser.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelBrowser.Location = new System.Drawing.Point(344, 128);
+            this.panelBrowser.Location = new System.Drawing.Point(344, 131);
             this.panelBrowser.Name = "panelBrowser";
-            this.panelBrowser.Size = new System.Drawing.Size(1238, 635);
+            this.panelBrowser.Size = new System.Drawing.Size(1238, 632);
             this.panelBrowser.TabIndex = 12;
             this.panelBrowser.Paint += new System.Windows.Forms.PaintEventHandler(this.panelBrowser_Paint_1);
             // 
@@ -369,7 +360,6 @@ namespace FREE_OSINT
             this.Controls.Add(this.panelBrowser);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.btnSendToGraph);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtLogs);
             this.Controls.Add(this.menuStrip1);
@@ -408,7 +398,6 @@ namespace FREE_OSINT
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtLogs;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button btnSendToGraph;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label labelNodeCount;

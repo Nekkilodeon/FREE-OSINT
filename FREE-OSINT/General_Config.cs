@@ -14,6 +14,9 @@ namespace FREE_OSINT
         public static string modules_directory = "modules";
         static internal Dictionary<int, Color> ColorsHierarchy;
         internal static string lib_directory = "libs";
+
+        
+
         public static string Documents_Path = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDoc‌​uments), "FREE-OSINT");
         public static List<String> recent_workspaces;
         public General_Config()

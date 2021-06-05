@@ -122,19 +122,34 @@ namespace FREE_OSINT
 
         public MainForm()
         {
-            InitializeComponent();
-            Main_Instance.Instance.NodeDiagram.Dock = DockStyle.Fill;
-            Main_Instance.Instance.Workspace.TargetTreeView = treeViewTargets;
-            Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
-            Base_Box_Size = Main_Instance.Instance.NodeDiagram.NodeSize;
-            panelDrawWorkspace.Controls.Add(Main_Instance.Instance.NodeDiagram);
-            Main_Instance.Instance.NodeDiagram.LineType = LineTypeEnum.Straight;
-            treeViewTargets.ItemDrag += new ItemDragEventHandler(TreeView1_ItemDrag);
-            treeViewTargets.DragEnter += new DragEventHandler(TreeView1_DragEnter);
-            treeViewTargets.DragOver += new DragEventHandler(TreeView1_DragOver);
-            treeViewTargets.DragDrop += new DragEventHandler(TreeView1_DragDrop);
-            Main_Instance.Instance.MainForm_Instance = this;
-            SetTabHeader(tabControl.TabPages[0], Color.Orange);
+            WorkspaceDialog workspaceDialog = new WorkspaceDialog();
+            var result = workspaceDialog.ShowDialog();
+            if(result == DialogResult.OK)
+            {
+                InitializeComponent();
+                if(workspaceDialog.selected_workspace.Length > 0)
+                {
+                    OpenFileDialog dlg = new OpenFileDialog();
+                    dlg.FileName = workspaceDialog.selected_workspace;
+                    OpenFile(dlg);
+                }
+                Main_Instance.Instance.NodeDiagram.Dock = DockStyle.Fill;
+                Main_Instance.Instance.Workspace.TargetTreeView = treeViewTargets;
+                Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
+                Base_Box_Size = Main_Instance.Instance.NodeDiagram.NodeSize;
+                panelDrawWorkspace.Controls.Add(Main_Instance.Instance.NodeDiagram);
+                Main_Instance.Instance.NodeDiagram.LineType = LineTypeEnum.Straight;
+                treeViewTargets.ItemDrag += new ItemDragEventHandler(TreeView1_ItemDrag);
+                treeViewTargets.DragEnter += new DragEventHandler(TreeView1_DragEnter);
+                treeViewTargets.DragOver += new DragEventHandler(TreeView1_DragOver);
+                treeViewTargets.DragDrop += new DragEventHandler(TreeView1_DragDrop);
+                Main_Instance.Instance.MainForm_Instance = this;
+                SetTabHeader(tabControl.TabPages[0], Color.Orange);
+            }
+            else
+            {
+                Application.Exit();
+            }
         }
 
         private void BtnModules_Click(object sender, EventArgs e)
@@ -395,6 +410,7 @@ namespace FREE_OSINT
                 }
             }
             General_Config.recent_workspaces.Insert(0, fileName);
+            General_Config.SaveGeneralConfig();
         }
 
         public void GetExpandedStatus(TreeNode node, List<string> ExpandedNodes)

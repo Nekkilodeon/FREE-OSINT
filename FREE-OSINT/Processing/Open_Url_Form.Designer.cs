@@ -102,6 +102,7 @@
             this.txtURL.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.txtURL.Location = new System.Drawing.Point(0, 45);
             this.txtURL.Name = "txtURL";
+            this.txtURL.ReadOnly = true;
             this.txtURL.Size = new System.Drawing.Size(1582, 22);
             this.txtURL.TabIndex = 0;
             // 
