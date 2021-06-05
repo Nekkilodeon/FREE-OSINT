@@ -189,7 +189,7 @@ namespace FREE_OSINT
                 ConditionNode node = (ConditionNode)diagramEventArgs.SelectedObjects.First();
                 if (node.Text.Contains("http://") || node.Text.Contains("https://"))
                 {
-                    MainForm_Instance.addNewTab(node.Text, node.Text);
+                    MainForm_Instance.AddNewTab(node.Text, node.Text);
                 }
                 else
                 {
@@ -197,7 +197,7 @@ namespace FREE_OSINT
                     {
                         if (cnd.Text.Contains("http://") || cnd.Text.Contains("https://"))
                         {
-                            MainForm_Instance.addNewTab(node.Text, cnd.Text);
+                            MainForm_Instance.AddNewTab(node.Text, cnd.Text);
                             break;
                         }
 

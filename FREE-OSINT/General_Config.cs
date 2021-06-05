@@ -24,10 +24,10 @@ namespace FREE_OSINT
             ColorsHierarchy = new Dictionary<int, Color>();
             recent_workspaces = new List<string>();
             ColorsHierarchy.Add(0, Color.Orange);
-            ColorsHierarchy.Add(1, Color.CornflowerBlue);
-            ColorsHierarchy.Add(2, Color.SkyBlue);
+            ColorsHierarchy.Add(1, Color.DeepSkyBlue);
+            ColorsHierarchy.Add(2, Color.Silver);
             ColorsHierarchy.Add(3, Color.PowderBlue);
-            ColorsHierarchy.Add(4, Color.Silver);
+            ColorsHierarchy.Add(4, Color.BlueViolet);
 
             /*
             SubNodes.Add(0, Color.FromArgb(0, 247, 250));

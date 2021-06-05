@@ -20,7 +20,7 @@ namespace FREE_OSINT.Main
         public WorkspaceDialog()
         {
             recents = new List<string>();
-            this.CenterToScreen();
+            this.CenterToParent();
             InitializeComponent();
             LoadConfig();
         }
@@ -96,7 +96,6 @@ namespace FREE_OSINT.Main
         private void btnNew_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.OK;
-
         }
 
         private void btnOpen_Click(object sender, EventArgs e)

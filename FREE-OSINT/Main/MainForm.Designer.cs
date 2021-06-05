@@ -55,8 +55,6 @@ namespace FREE_OSINT
             this.configToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.workplace_panel = new System.Windows.Forms.Panel();
             this.tabControl = new CustomTabControl();
-            this.tabPageWorspace = new System.Windows.Forms.TabPage();
-            this.panelDrawWorkspace = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnPerformance = new System.Windows.Forms.Button();
             this.btnRecolor = new System.Windows.Forms.Button();
@@ -89,12 +87,12 @@ namespace FREE_OSINT
             this.labelWorkspaceName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.tabPageWorspace = new System.Windows.Forms.TabPage();
+            this.panelDrawWorkspace = new System.Windows.Forms.Panel();
             this.menuStripTargets = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1.SuspendLayout();
             this.workplace_panel.SuspendLayout();
-            this.tabControl.SuspendLayout();
-            this.tabPageWorspace.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.slideWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slideHeight)).BeginInit();
@@ -102,10 +100,12 @@ namespace FREE_OSINT
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.tabPageWorspace.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.White;
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
@@ -276,36 +276,9 @@ namespace FREE_OSINT
             this.tabControl.TabClosing += this.mouseDownTabs2;
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl.Location = new System.Drawing.Point(335, 85);
-            //this.tabControl.Multiline = true;
-
-            this.tabControl.Name = "tabControl";
-            this.tabControl.SelectedIndex = 0;
-            //this.tabControl.Size = new System.Drawing.Size(1247, 740);
-            //this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl.TabIndex = 0;
             this.tabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.onDrawTabs);
-            this.tabControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.mouseDownTabs);
-            // 
-            // tabPageWorspace
-            // 
-            this.tabPageWorspace.Controls.Add(this.panelDrawWorkspace);
-            this.tabPageWorspace.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.tabPageWorspace.Location = new System.Drawing.Point(4, 25);
-            this.tabPageWorspace.Name = "tabPageWorspace";
-            this.tabPageWorspace.Size = new System.Drawing.Size(1239, 711);
-            this.tabPageWorspace.TabIndex = 0;
-            this.tabPageWorspace.Text = "Workspace";
-            // 
-            // panelDrawWorkspace
-            // 
-            this.panelDrawWorkspace.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelDrawWorkspace.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelDrawWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDrawWorkspace.Location = new System.Drawing.Point(0, 0);
-            this.panelDrawWorkspace.Name = "panelDrawWorkspace";
-            this.panelDrawWorkspace.Size = new System.Drawing.Size(1239, 711);
-            this.panelDrawWorkspace.TabIndex = 2;
-            this.panelDrawWorkspace.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelDrawWorkspace_Paint);
+            this.tabControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownTabs);
             // 
             // panel2
             // 
@@ -337,10 +310,10 @@ namespace FREE_OSINT
             // 
             // btnPerformance
             // 
-            this.btnPerformance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPerformance.Location = new System.Drawing.Point(531, 4);
+            this.btnPerformance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPerformance.Location = new System.Drawing.Point(95, 4);
             this.btnPerformance.Name = "btnPerformance";
-            this.btnPerformance.Size = new System.Drawing.Size(203, 31);
+            this.btnPerformance.Size = new System.Drawing.Size(276, 31);
             this.btnPerformance.TabIndex = 21;
             this.btnPerformance.Text = "Refresh";
             this.btnPerformance.UseVisualStyleBackColor = true;
@@ -349,6 +322,7 @@ namespace FREE_OSINT
             // btnRecolor
             // 
             this.btnRecolor.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnRecolor.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRecolor.Location = new System.Drawing.Point(971, 4);
             this.btnRecolor.Name = "btnRecolor";
             this.btnRecolor.Size = new System.Drawing.Size(129, 31);
@@ -359,9 +333,11 @@ namespace FREE_OSINT
             // 
             // btnResetBoxes
             // 
-            this.btnResetBoxes.Location = new System.Drawing.Point(79, 3);
+            this.btnResetBoxes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnResetBoxes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnResetBoxes.Location = new System.Drawing.Point(539, 4);
             this.btnResetBoxes.Name = "btnResetBoxes";
-            this.btnResetBoxes.Size = new System.Drawing.Size(95, 23);
+            this.btnResetBoxes.Size = new System.Drawing.Size(216, 31);
             this.btnResetBoxes.TabIndex = 19;
             this.btnResetBoxes.Text = "Reset";
             this.btnResetBoxes.UseVisualStyleBackColor = true;
@@ -369,8 +345,9 @@ namespace FREE_OSINT
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(149, 33);
+            this.label9.Location = new System.Drawing.Point(682, 36);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(49, 17);
             this.label9.TabIndex = 18;
@@ -378,8 +355,9 @@ namespace FREE_OSINT
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(53, 33);
+            this.label8.Location = new System.Drawing.Point(586, 36);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(44, 17);
             this.label8.TabIndex = 17;
@@ -387,8 +365,9 @@ namespace FREE_OSINT
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(3, 53);
+            this.label7.Location = new System.Drawing.Point(536, 57);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(31, 17);
             this.label7.TabIndex = 16;
@@ -396,7 +375,8 @@ namespace FREE_OSINT
             // 
             // slideWidth
             // 
-            this.slideWidth.Location = new System.Drawing.Point(26, 53);
+            this.slideWidth.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.slideWidth.Location = new System.Drawing.Point(559, 57);
             this.slideWidth.Maximum = 100;
             this.slideWidth.Minimum = -99;
             this.slideWidth.Name = "slideWidth";
@@ -407,7 +387,8 @@ namespace FREE_OSINT
             // 
             // slideHeight
             // 
-            this.slideHeight.Location = new System.Drawing.Point(127, 53);
+            this.slideHeight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.slideHeight.Location = new System.Drawing.Point(660, 57);
             this.slideHeight.Maximum = 100;
             this.slideHeight.Minimum = -99;
             this.slideHeight.Name = "slideHeight";
@@ -430,6 +411,7 @@ namespace FREE_OSINT
             // btnSelectFont
             // 
             this.btnSelectFont.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnSelectFont.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelectFont.Location = new System.Drawing.Point(836, 4);
             this.btnSelectFont.Name = "btnSelectFont";
             this.btnSelectFont.Size = new System.Drawing.Size(129, 31);
@@ -441,6 +423,7 @@ namespace FREE_OSINT
             // btnHDPIEnable
             // 
             this.btnHDPIEnable.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnHDPIEnable.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHDPIEnable.Location = new System.Drawing.Point(1106, 4);
             this.btnHDPIEnable.Name = "btnHDPIEnable";
             this.btnHDPIEnable.Size = new System.Drawing.Size(129, 31);
@@ -453,7 +436,7 @@ namespace FREE_OSINT
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(228, 11);
+            this.label4.Location = new System.Drawing.Point(19, 52);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(70, 17);
             this.label4.TabIndex = 6;
@@ -462,7 +445,8 @@ namespace FREE_OSINT
             // btnSaveImage
             // 
             this.btnSaveImage.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnSaveImage.Location = new System.Drawing.Point(304, 4);
+            this.btnSaveImage.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveImage.Location = new System.Drawing.Point(95, 45);
             this.btnSaveImage.Name = "btnSaveImage";
             this.btnSaveImage.Size = new System.Drawing.Size(129, 31);
             this.btnSaveImage.TabIndex = 5;
@@ -473,6 +457,7 @@ namespace FREE_OSINT
             // btnStraight
             // 
             this.btnStraight.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnStraight.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnStraight.Location = new System.Drawing.Point(1106, 47);
             this.btnStraight.Name = "btnStraight";
             this.btnStraight.Size = new System.Drawing.Size(129, 29);
@@ -484,6 +469,7 @@ namespace FREE_OSINT
             // btn4way
             // 
             this.btn4way.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btn4way.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn4way.Location = new System.Drawing.Point(971, 47);
             this.btn4way.Name = "btn4way";
             this.btn4way.Size = new System.Drawing.Size(129, 29);
@@ -495,6 +481,7 @@ namespace FREE_OSINT
             // btnBezier
             // 
             this.btnBezier.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.btnBezier.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBezier.Location = new System.Drawing.Point(836, 47);
             this.btnBezier.Name = "btnBezier";
             this.btnBezier.Size = new System.Drawing.Size(129, 29);
@@ -516,7 +503,8 @@ namespace FREE_OSINT
             // btnAutoLayout
             // 
             this.btnAutoLayout.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnAutoLayout.Location = new System.Drawing.Point(304, 46);
+            this.btnAutoLayout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAutoLayout.Location = new System.Drawing.Point(242, 45);
             this.btnAutoLayout.Name = "btnAutoLayout";
             this.btnAutoLayout.Size = new System.Drawing.Size(129, 31);
             this.btnAutoLayout.TabIndex = 0;
@@ -527,7 +515,6 @@ namespace FREE_OSINT
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.HighlightText;
-            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.panel1.Controls.Add(this.treeViewTargets);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
@@ -550,12 +537,12 @@ namespace FREE_OSINT
             this.treeViewTargets.ShowLines = false;
             this.treeViewTargets.ShowPlusMinus = false;
             this.treeViewTargets.ShowRootLines = false;
-            this.treeViewTargets.Size = new System.Drawing.Size(331, 635);
+            this.treeViewTargets.Size = new System.Drawing.Size(335, 639);
             this.treeViewTargets.TabIndex = 3;
             this.treeViewTargets.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeViewTargets_AfterSelect);
             this.treeViewTargets.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.NodeClick);
             this.treeViewTargets.KeyDown += new System.Windows.Forms.KeyEventHandler(this.OnKeyDownTreeView);
-            this.treeViewTargets.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.doubleClickTreeView);
+            this.treeViewTargets.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.DoubleClickTreeView);
             // 
             // panel3
             // 
@@ -569,7 +556,7 @@ namespace FREE_OSINT
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(331, 186);
+            this.panel3.Size = new System.Drawing.Size(335, 186);
             this.panel3.TabIndex = 4;
             // 
             // btnOpenResult
@@ -627,7 +614,7 @@ namespace FREE_OSINT
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel4.Location = new System.Drawing.Point(0, 161);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(331, 25);
+            this.panel4.Size = new System.Drawing.Size(335, 25);
             this.panel4.TabIndex = 6;
             // 
             // label3
@@ -636,7 +623,7 @@ namespace FREE_OSINT
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Bahnschrift", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(1, -3);
+            this.label3.Location = new System.Drawing.Point(3, -3);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(67, 24);
             this.label3.TabIndex = 2;
@@ -695,6 +682,27 @@ namespace FREE_OSINT
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
+            // tabPageWorspace
+            // 
+            this.tabPageWorspace.Controls.Add(this.panelDrawWorkspace);
+            this.tabPageWorspace.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.tabPageWorspace.Location = new System.Drawing.Point(4, 25);
+            this.tabPageWorspace.Name = "tabPageWorspace";
+            this.tabPageWorspace.Size = new System.Drawing.Size(1239, 711);
+            this.tabPageWorspace.TabIndex = 0;
+            this.tabPageWorspace.Text = "Workspace";
+            // 
+            // panelDrawWorkspace
+            // 
+            this.panelDrawWorkspace.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelDrawWorkspace.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelDrawWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDrawWorkspace.Location = new System.Drawing.Point(0, 0);
+            this.panelDrawWorkspace.Name = "panelDrawWorkspace";
+            this.panelDrawWorkspace.Size = new System.Drawing.Size(1239, 711);
+            this.panelDrawWorkspace.TabIndex = 2;
+            this.panelDrawWorkspace.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelDrawWorkspace_Paint);
+            // 
             // menuStripTargets
             // 
             this.menuStripTargets.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -715,6 +723,7 @@ namespace FREE_OSINT
             this.ClientSize = new System.Drawing.Size(1582, 853);
             this.Controls.Add(this.workplace_panel);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
@@ -725,8 +734,6 @@ namespace FREE_OSINT
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.workplace_panel.ResumeLayout(false);
-            this.tabControl.ResumeLayout(false);
-            this.tabPageWorspace.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.slideWidth)).EndInit();
@@ -737,6 +744,7 @@ namespace FREE_OSINT
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.tabPageWorspace.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

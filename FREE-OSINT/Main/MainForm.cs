@@ -136,6 +136,7 @@ namespace FREE_OSINT
                 Main_Instance.Instance.NodeDiagram.Dock = DockStyle.Fill;
                 Main_Instance.Instance.Workspace.TargetTreeView = treeViewTargets;
                 Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
+
                 Base_Box_Size = Main_Instance.Instance.NodeDiagram.NodeSize;
                 panelDrawWorkspace.Controls.Add(Main_Instance.Instance.NodeDiagram);
                 Main_Instance.Instance.NodeDiagram.LineType = LineTypeEnum.Straight;
@@ -144,7 +145,7 @@ namespace FREE_OSINT
                 treeViewTargets.DragOver += new DragEventHandler(TreeView1_DragOver);
                 treeViewTargets.DragDrop += new DragEventHandler(TreeView1_DragDrop);
                 Main_Instance.Instance.MainForm_Instance = this;
-                SetTabHeader(tabControl.TabPages[0], Color.Orange);
+                //SetTabHeader(tabControl.TabPages[0], Color.Orange);
             }
             else
             {
@@ -665,7 +666,7 @@ namespace FREE_OSINT
             {
                 if (selectedNode.Text.Contains("http:") || selectedNode.Text.Contains("https:"))
                 {
-                    addNewTab(selectedNode.Parent != null ? selectedNode.Parent.Text.Substring(0, 8) : selectedNode.Text.Split(':')[1].Substring(2, 10), selectedNode.Text);
+                    AddNewTab(selectedNode.Parent != null ? selectedNode.Parent.Text.Substring(0, 8) : selectedNode.Text.Split(':')[1].Substring(2, 10), selectedNode.Text);
                 }
             }
             if (((MenuItem)sender).Text == "Default Browser" && selectedNode != null)
@@ -890,7 +891,7 @@ namespace FREE_OSINT
             }
         }
 
-        private void mouseDownTabs(object sender, MouseEventArgs e)
+        private void MouseDownTabs(object sender, MouseEventArgs e)
         {
             for (int i = 1; i < this.tabControl.TabPages.Count; i++)
             {
@@ -913,7 +914,7 @@ namespace FREE_OSINT
                 }
             }
         }
-        public void addNewTab(string title_str, string url)
+        public void AddNewTab(string title_str, string url)
         {
             string title = title_str;// + (tabControl.TabCount + 1).ToString();
             if (title.Length > 10)
@@ -984,7 +985,7 @@ namespace FREE_OSINT
             }
         }
 
-        private void btnHorizontalIntuitive_Click(object sender, EventArgs e)
+        private void BtnHorizontalIntuitive_Click(object sender, EventArgs e)
         {
             Main_Instance.Instance.NodeDiagram.AutoLayout(false, true);
             foreach (ConditionNode conditionNode in Main_Instance.Instance.NodeDiagram.Nodes)
@@ -993,7 +994,7 @@ namespace FREE_OSINT
             }
         }
 
-        private void doubleClickTreeView(object sender, MouseEventArgs e)
+        private void DoubleClickTreeView(object sender, MouseEventArgs e)
         {
             selectedNode = treeViewTargets.SelectedNode;
             if (selectedNode != null && (selectedNode.Text.Contains("http:") || selectedNode.Text.Contains("https:")))
@@ -1007,7 +1008,7 @@ namespace FREE_OSINT
                 {
 
                 }
-                addNewTab(tab_title, selectedNode.Text);
+                AddNewTab(tab_title, selectedNode.Text);
             }
         }
 
