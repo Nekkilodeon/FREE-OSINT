@@ -32,7 +32,12 @@ namespace FREE_OSINT
             NodeDiagram.DiagramEvent += NodeDiagram_DiagramEvent;
             Config = new General_Config();
         }
-
+        /// <summary>
+        /// Node diagram even listener is triggered whenever there's a diagram event, like the operations form dragging, removing, adding, editing and etc.
+        /// This function updates the current workspace with the changes in the diagram
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void NodeDiagram_DiagramEvent(object sender, EventArgs e)
         {
             //NodeDiagram nodeDiagram = sender as NodeDiagram;
@@ -71,7 +76,7 @@ namespace FREE_OSINT
                     selectedNodes.Add(selected_node);
                     //Workspace.find_remove(((ConditionNode)node).Text);
                 }
-                compose_funcion(selectedNodes);
+                Compose_funcion(selectedNodes);
             }
             else if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.REMOVE)
             {
@@ -83,7 +88,7 @@ namespace FREE_OSINT
                     //Workspace.find_remove(((ConditionNode)node).Text);
                 }
                 Workspace.ReloadTargetsFromTreeView();
-                drawTreeNodes();
+                DrawTreeNodes();
             }
             else if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.ADD)
             {
@@ -121,7 +126,7 @@ namespace FREE_OSINT
                         unassigned.AddNode(treeNode);
                     }
                     Workspace.ReloadTreeViewFromTargets();
-                    drawTreeNodes();
+                    DrawTreeNodes();
                 }
             }
             else if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.LINK)
@@ -138,7 +143,7 @@ namespace FREE_OSINT
                 //node2.
 
                 Workspace.ReloadTargetsFromTreeView();
-                drawTreeNodes();
+                DrawTreeNodes();
             }
             else if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.EDIT)
             {
@@ -182,7 +187,7 @@ namespace FREE_OSINT
                 Main_Instance.Instance.Workspace.TreeViewColors.Add(node1.Text, backup_color);
 
                 Workspace.ReloadTargetsFromTreeView();
-                drawTreeNodes();
+                DrawTreeNodes();
             }
             else if (diagramEventArgs.Operation == NodeDiagram.DiagramEventArgs.Operation_Type.OPEN_URL)
             {
@@ -208,8 +213,11 @@ namespace FREE_OSINT
 
         }
 
-
-        public void compose_funcion(List<TreeNode> selectedNodes)
+        /// <summary>
+        /// Represents the compose functionality when selecting a node
+        /// </summary>
+        /// <param name="selectedNodes">List of selected nodes to create a composed query</param>
+        public void Compose_funcion(List<TreeNode> selectedNodes)
         {
 
             List<String> to_query = new List<string>();
@@ -219,6 +227,7 @@ namespace FREE_OSINT
             if (dialogResult == DialogResult.Yes)
             {
                 string query = "";
+                //create initial query from selected nodes
                 foreach (TreeNode treeNode in selectedNodes)
                 {
                     TreeNode parent = treeNode;
@@ -310,19 +319,28 @@ namespace FREE_OSINT
                 }
             }
         }
-
-        public void drawTreeNodes()
+        /// <summary>
+        /// Draws treenodes from the warkspace into the diagram
+        /// </summary>
+        public void DrawTreeNodes()
         {
             nodeDiagram.Nodes.Clear();
             foreach (TreeNode treeNode in workspace.TargetTreeView.Nodes)
             {
-                drawSubNodes(treeNode, null, nodeDiagram, 0);
+                DrawSubNodes(treeNode, null, nodeDiagram, 0);
             }
             nodeDiagram.Redraw();
         }
-
-        private void drawSubNodes(TreeNode treeNode, ConditionNode prevNode, NodeDiagram nodeDiagram, int level)
+        /// <summary>
+        /// Recursive function which draws subnodes for each node until the last level
+        /// </summary>
+        /// <param name="treeNode">Current node</param>
+        /// <param name="prevNode">Previous node (Parent)</param>
+        /// <param name="nodeDiagram">Node diagram</param>
+        /// <param name="level">hierarchy level</param>
+        private void DrawSubNodes(TreeNode treeNode, ConditionNode prevNode, NodeDiagram nodeDiagram, int level)
         {
+            //check for children nodes
             if (treeNode.Nodes.Count > 0)
             {
                 Random rnd = new Random(100);
@@ -365,7 +383,7 @@ namespace FREE_OSINT
                         }
                         node.LinksTo.Add(new Condition() { LinksTo = node2 });
                         nodeDiagram.Nodes.Add(node2);
-                        drawSubNodes(subnode, node2, nodeDiagram, level + 1);
+                        DrawSubNodes(subnode, node2, nodeDiagram, level + 1);
                     }
                     else
                     {
@@ -378,8 +396,10 @@ namespace FREE_OSINT
             }
             else
             {
+                //No children in the current node
                 if (prevNode == null)
                 {
+                    //if the parent node is null, it mean the current node is a target node so we change color
                     ConditionNode node = new ConditionNode(nodeDiagram, Color.Orange, true) { Text = treeNode.Text };
                     if (Main_Instance.Instance.Workspace.TreeViewPositions.ContainsKey(node.Text))
                         node.Position = Main_Instance.Instance.Workspace.TreeViewPositions[node.Text];
@@ -389,7 +409,9 @@ namespace FREE_OSINT
             }
             return;
         }
-
+        /// <summary>
+        /// Thread safe instance for the singleton
+        /// </summary>
         public static Main_Instance Instance
         {
             get
@@ -411,7 +433,10 @@ namespace FREE_OSINT
         public Dictionary<General_Config.Module_Type, List<IGeneral_module>> Module_list { get => module_list; set => module_list = value; }
         public MainForm MainForm_Instance { get; set; }
 
-        public void sync_diagram_positions()
+        /// <summary>
+        /// Make sure update the workspace from the dictianaries with Positions and Colors
+        /// </summary>
+        public void Sync_diagram_positions()
         {
             if (Workspace.TreeViewPositions.Count > 0)
             {
@@ -434,14 +459,6 @@ namespace FREE_OSINT
                         ((ConditionNode)node).Container_color = container;
                     }
                 }
-            }
-        }
-
-        public void populate_position_dictionary()
-        {
-            foreach (Node node in nodeDiagram.Nodes)
-            {
-                workspace.TreeViewPositions.Add(node.Text, node.Position);
             }
         }
     }

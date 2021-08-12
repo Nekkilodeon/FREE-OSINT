@@ -122,11 +122,13 @@ namespace FREE_OSINT
 
         public MainForm()
         {
+            //Initiate the workpace select dialog before showing
             WorkspaceDialog workspaceDialog = new WorkspaceDialog();
             var result = workspaceDialog.ShowDialog();
             if(result == DialogResult.OK)
             {
                 InitializeComponent();
+                //if user selected a workspace, open the file
                 if(workspaceDialog.selected_workspace.Length > 0)
                 {
                     OpenFileDialog dlg = new OpenFileDialog();
@@ -134,12 +136,15 @@ namespace FREE_OSINT
                     OpenFile(dlg);
                 }
                 Main_Instance.Instance.NodeDiagram.Dock = DockStyle.Fill;
+                //sync the treeview from workspace with the one from the form
                 Main_Instance.Instance.Workspace.TargetTreeView = treeViewTargets;
+                //update the treeview with the target list info
                 Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
-
+                //set initial size for container size
                 Base_Box_Size = Main_Instance.Instance.NodeDiagram.NodeSize;
                 panelDrawWorkspace.Controls.Add(Main_Instance.Instance.NodeDiagram);
                 Main_Instance.Instance.NodeDiagram.LineType = LineTypeEnum.Straight;
+                //add listeners for drag&drop
                 treeViewTargets.ItemDrag += new ItemDragEventHandler(TreeView1_ItemDrag);
                 treeViewTargets.DragEnter += new DragEventHandler(TreeView1_DragEnter);
                 treeViewTargets.DragOver += new DragEventHandler(TreeView1_DragOver);
@@ -390,7 +395,7 @@ namespace FREE_OSINT
                 Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
                 updateRecentProjectList(dlg.FileName);
                 ReloadWorkspace(false);
-                Main_Instance.Instance.sync_diagram_positions();
+                Main_Instance.Instance.Sync_diagram_positions();
                 //Main_Instance.Instance.populate_position_dictionary();
                 this.Cursor = Cursors.Default; //Change the cursor back
             }
@@ -444,8 +449,8 @@ namespace FREE_OSINT
             treeViewTargets.Nodes.Clear();
             Main_Instance.Instance.Workspace.TargetTreeView = treeViewTargets;
             Main_Instance.Instance.Workspace.ReloadTreeViewFromTargets();
-            Main_Instance.Instance.drawTreeNodes();
-            Main_Instance.Instance.sync_diagram_positions();
+            Main_Instance.Instance.DrawTreeNodes();
+            Main_Instance.Instance.Sync_diagram_positions();
             labelWorkspaceName.Text = Main_Instance.Instance.Workspace.Title;
 
             if (save_state && ViewState["ExpandedNodes"] != null)
@@ -690,7 +695,7 @@ namespace FREE_OSINT
             {
                 List<TreeNode> selectedNodes = new List<TreeNode>();
                 selectedNodes.Add(selectedNode);
-                Main_Instance.Instance.compose_funcion(selectedNodes);
+                Main_Instance.Instance.Compose_funcion(selectedNodes);
             }
             else if (((MenuItem)sender).Text == "New Empty Child" && selectedNode != null)
             {
@@ -978,7 +983,7 @@ namespace FREE_OSINT
                 //CTRL + Q
                 List<TreeNode> selectedNodes = new List<TreeNode>();
                 selectedNodes.Add(treeViewTargets.SelectedNode);
-                Main_Instance.Instance.compose_funcion(selectedNodes);
+                Main_Instance.Instance.Compose_funcion(selectedNodes);
 
                 e.Handled = true;
                 e.SuppressKeyPress = true;
