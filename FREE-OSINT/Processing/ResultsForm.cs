@@ -548,7 +548,7 @@ namespace FREE_OSINT
             }
             else
             {
-                //this.DialogResult = DialogResult.Cancel;
+               this.DialogResult = DialogResult.Cancel;
             }
         }
         //This function is called recursively until all nodes are loaded

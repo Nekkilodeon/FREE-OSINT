@@ -125,11 +125,11 @@ namespace FREE_OSINT
             //Initiate the workpace select dialog before showing
             WorkspaceDialog workspaceDialog = new WorkspaceDialog();
             var result = workspaceDialog.ShowDialog();
-            if(result == DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 InitializeComponent();
                 //if user selected a workspace, open the file
-                if(workspaceDialog.selected_workspace.Length > 0)
+                if (workspaceDialog.selected_workspace.Length > 0)
                 {
                     OpenFileDialog dlg = new OpenFileDialog();
                     dlg.FileName = workspaceDialog.selected_workspace;
@@ -539,6 +539,8 @@ namespace FREE_OSINT
 
         private void OpenToolStripMenuItem1_Click(object sender, EventArgs e)
         {
+            OpenResultsTab();
+            /*
             ResultsForm resultsForm = new ResultsForm("File");
             if (!resultsForm.IsDisposed && resultsForm.DialogResult == DialogResult.Retry)
             {
@@ -549,7 +551,7 @@ namespace FREE_OSINT
             {
                 ReloadWorkspace(false);
                 //Main_Instance.Instance.NodeDiagram.AutoLayout(false);
-            }
+            }*/
             //resultsForm.ShowDialog();
         }
 
@@ -1083,19 +1085,26 @@ namespace FREE_OSINT
 
         private void btnOpenResult_Click(object sender, EventArgs e)
         {
+            OpenResultsTab();
+        }
+        private void OpenResultsTab()
+        {
             ResultsForm frm = new ResultsForm("File");
-            frm.TopLevel = false;
-            frm.Visible = true;
-            frm.FormBorderStyle = FormBorderStyle.None;
-            frm.Dock = DockStyle.Fill;
-            TabPage myTabPage = new TabPage("Results");
-            myTabPage.Controls.Add(frm);
-            myTabPage.Padding = new System.Windows.Forms.Padding(3);
-            myTabPage.BackColor = System.Drawing.Color.DodgerBlue;
+            if (frm.DialogResult != DialogResult.Cancel)
+            {
+                frm.TopLevel = false;
+                frm.Visible = true;
+                frm.FormBorderStyle = FormBorderStyle.None;
+                frm.Dock = DockStyle.Fill;
+                TabPage myTabPage = new TabPage("Results");
+                myTabPage.Controls.Add(frm);
+                myTabPage.Padding = new System.Windows.Forms.Padding(3);
+                myTabPage.BackColor = System.Drawing.Color.DodgerBlue;
 
-            this.tabControl.TabPages.Add(myTabPage);
-            this.tabControl.SelectedTab = Main_Instance.Instance.MainForm_Instance.tabControl.TabPages[Main_Instance.Instance.MainForm_Instance.tabControl.TabPages.Count - 1];
-            this.SetTabHeader(myTabPage, Color.DodgerBlue);
+                this.tabControl.TabPages.Add(myTabPage);
+                this.tabControl.SelectedTab = Main_Instance.Instance.MainForm_Instance.tabControl.TabPages[Main_Instance.Instance.MainForm_Instance.tabControl.TabPages.Count - 1];
+                this.SetTabHeader(myTabPage, Color.DodgerBlue);
+            }
         }
     }
 }
