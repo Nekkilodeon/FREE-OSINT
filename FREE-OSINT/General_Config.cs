@@ -15,6 +15,7 @@ namespace FREE_OSINT
         static internal Dictionary<int, Color> ColorsHierarchy;
         internal static string lib_directory = "libs";
         public static bool skip_tips = false;
+        public static bool auto_closeSearch = true;
 
         
 
@@ -60,6 +61,7 @@ namespace FREE_OSINT
                 }
                 writer.WriteEndElement();
                 writer.WriteElementString("skip_tips", skip_tips.ToString());
+                writer.WriteElementString("auto_closeSearch", auto_closeSearch.ToString());
                 writer.WriteEndElement();
                 writer.Flush();
 

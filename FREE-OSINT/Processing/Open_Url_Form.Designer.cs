@@ -58,8 +58,9 @@
             this.labelURLTitle.Font = new System.Drawing.Font("Segoe UI Semibold", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelURLTitle.Location = new System.Drawing.Point(12, 11);
             this.labelURLTitle.Name = "labelURLTitle";
-            this.labelURLTitle.Size = new System.Drawing.Size(0, 23);
+            this.labelURLTitle.Size = new System.Drawing.Size(42, 23);
             this.labelURLTitle.TabIndex = 15;
+            this.labelURLTitle.Text = "Title";
             // 
             // btnForward
             // 
@@ -99,11 +100,13 @@
             // 
             // txtURL
             // 
-            this.txtURL.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.txtURL.Location = new System.Drawing.Point(0, 45);
+            this.txtURL.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.txtURL.Location = new System.Drawing.Point(16, 45);
+            this.txtURL.Margin = new System.Windows.Forms.Padding(20, 20, 3, 3);
+            this.txtURL.Multiline = true;
             this.txtURL.Name = "txtURL";
             this.txtURL.ReadOnly = true;
-            this.txtURL.Size = new System.Drawing.Size(1582, 22);
+            this.txtURL.Size = new System.Drawing.Size(1554, 22);
             this.txtURL.TabIndex = 0;
             // 
             // panelBrowser
@@ -124,6 +127,7 @@
             this.Controls.Add(this.panelOptions);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Open_Url_Form";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Open URL";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.onFormClosing);
             this.Load += new System.EventHandler(this.Open_Url_Form_Load);

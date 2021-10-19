@@ -98,8 +98,10 @@
             this.Controls.Add(this.btnDone);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.listViewModules);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SearchingForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Searching";
             this.ResumeLayout(false);
             this.PerformLayout();

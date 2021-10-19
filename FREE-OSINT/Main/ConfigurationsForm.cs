@@ -19,6 +19,7 @@ namespace FREE_OSINT.Main
         {
             InitializeComponent();
             checkTips.Checked = General_Config.skip_tips;
+            checkAutoCloseSearch.Checked = General_Config.auto_closeSearch;
             PopulateListBoxColors();
             this.CenterToScreen();
 
@@ -122,6 +123,7 @@ namespace FREE_OSINT.Main
         private void btnDone_Click(object sender, EventArgs e)
         {
             General_Config.skip_tips = checkTips.Checked;
+            General_Config.auto_closeSearch = checkAutoCloseSearch.Checked;
             General_Config.SaveGeneralConfig();
             this.DialogResult = DialogResult.OK;
         }

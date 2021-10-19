@@ -119,8 +119,10 @@
             this.Controls.Add(this.btnInteract);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.listModules);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Modules_All_Form";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "All Modules";
             this.ResumeLayout(false);
             this.PerformLayout();

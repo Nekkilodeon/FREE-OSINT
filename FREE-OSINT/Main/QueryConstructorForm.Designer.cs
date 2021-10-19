@@ -113,8 +113,10 @@
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.txtQuery);
             this.Controls.Add(this.listQueryParams);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "QueryConstructorForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Query Builder";
             this.ResumeLayout(false);
             this.PerformLayout();

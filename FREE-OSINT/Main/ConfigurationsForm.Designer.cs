@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfigurationsForm));
             this.listViewColors = new System.Windows.Forms.ListView();
             this.columnColor = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -38,6 +39,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.checkPerformance = new System.Windows.Forms.CheckBox();
             this.checkTips = new System.Windows.Forms.CheckBox();
+            this.checkAutoCloseSearch = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,7 +90,7 @@
             // 
             // btnDone
             // 
-            this.btnDone.Location = new System.Drawing.Point(359, 369);
+            this.btnDone.Location = new System.Drawing.Point(359, 232);
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(149, 55);
             this.btnDone.TabIndex = 3;
@@ -145,11 +147,22 @@
             this.checkTips.Text = "Skip Tips";
             this.checkTips.UseVisualStyleBackColor = true;
             // 
+            // checkAutoCloseSearch
+            // 
+            this.checkAutoCloseSearch.AutoSize = true;
+            this.checkAutoCloseSearch.Location = new System.Drawing.Point(304, 145);
+            this.checkAutoCloseSearch.Name = "checkAutoCloseSearch";
+            this.checkAutoCloseSearch.Size = new System.Drawing.Size(192, 21);
+            this.checkAutoCloseSearch.TabIndex = 8;
+            this.checkAutoCloseSearch.Text = "Auto close search window";
+            this.checkAutoCloseSearch.UseVisualStyleBackColor = true;
+            // 
             // ConfigurationsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(526, 450);
+            this.ClientSize = new System.Drawing.Size(526, 303);
+            this.Controls.Add(this.checkAutoCloseSearch);
             this.Controls.Add(this.checkTips);
             this.Controls.Add(this.checkPerformance);
             this.Controls.Add(this.label1);
@@ -157,7 +170,10 @@
             this.Controls.Add(this.btnDone);
             this.Controls.Add(this.labelHierarchy);
             this.Controls.Add(this.listViewColors);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConfigurationsForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Configurations";
             this.Shown += new System.EventHandler(this.ConfigurationsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
@@ -178,5 +194,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkPerformance;
         private System.Windows.Forms.CheckBox checkTips;
+        private System.Windows.Forms.CheckBox checkAutoCloseSearch;
     }
 }

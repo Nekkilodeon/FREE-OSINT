@@ -160,7 +160,8 @@ namespace FREE_OSINT
                     searchingForm.btnDone.Enabled = true;
                     searchingForm.listViewModules.Invoke((MethodInvoker)delegate
                     {
-                        searchingForm.Done();
+                        if (General_Config.auto_closeSearch)
+                            searchingForm.Done();
                     });
 
                 });

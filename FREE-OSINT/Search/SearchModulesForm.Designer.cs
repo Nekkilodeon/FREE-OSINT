@@ -162,8 +162,10 @@
             this.Controls.Add(this.btnSearchModules);
             this.Controls.Add(this.listModules);
             this.Controls.Add(this.btnInteract);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "SearchModulesForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Search";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.closingForm);
             this.Shown += new System.EventHandler(this.ModulesForm_Load);
