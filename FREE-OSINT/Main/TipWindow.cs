@@ -26,8 +26,9 @@ namespace FREE_OSINT.Main
                 this.tipNumber = tipNumber;
                 string tipFile = Directory.GetCurrentDirectory() + "\\Tips\\" + tipNumber + "_" + subTipNumber + ".gif";
                 tipText.Text = tips.tips[tipNumber - 1].tip[subTipNumber - 1];
+
                 PictureDisplayBox.Image = Image.FromFile(tipFile);
-                PictureDisplayBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                //PictureDisplayBox.SizeMode = PictureBoxSizeMode.StretchImage;
             }
             catch (Exception e)
             {
@@ -57,7 +58,7 @@ namespace FREE_OSINT.Main
                 string tipFile = Directory.GetCurrentDirectory() + "\\Tips\\" + tipNumber + "_" + subTipNumber + ".gif";
                 tipText.Text = tips.tips[tipNumber - 1].tip[subTipNumber - 1];
                 PictureDisplayBox.Image = Image.FromFile(tipFile);
-                PictureDisplayBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                //PictureDisplayBox.SizeMode = PictureBoxSizeMode.StretchImage;
             }
             catch (Exception ex)
             {
@@ -65,7 +66,7 @@ namespace FREE_OSINT.Main
                 string tipFile = Directory.GetCurrentDirectory() + "\\Tips\\" + tipNumber + "_" + subTipNumber + ".gif";
                 tipText.Text = tips.tips[tipNumber - 1].tip[subTipNumber - 1];
                 PictureDisplayBox.Image = Image.FromFile(tipFile);
-                PictureDisplayBox.SizeMode = PictureBoxSizeMode.StretchImage;
+                //PictureDisplayBox.SizeMode = PictureBoxSizeMode.StretchImage;
             }
         }
         public void LoadJson()
@@ -89,6 +90,14 @@ namespace FREE_OSINT.Main
             public string[] tip { get; set; }
         }
 
+        private void TipWindow_Load(object sender, EventArgs e)
+        {
 
+        }
+
+        private void PictureDisplayBox_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
