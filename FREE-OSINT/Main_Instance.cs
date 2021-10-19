@@ -123,6 +123,12 @@ namespace FREE_OSINT
                             treeNode = new TreeNode(node.Text, treeNodes.ToArray());
                         }
                         Target unassigned = Workspace.FindTarget("Unassigned");
+                        if (unassigned == null)
+                        {
+                            Workspace.Targets.Add(new Target("Unassigned"));
+                            unassigned = Workspace.FindTarget("Unassigned");
+                        }
+
                         unassigned.AddNode(treeNode);
                     }
                     Workspace.ReloadTreeViewFromTargets();
@@ -361,7 +367,7 @@ namespace FREE_OSINT
                     if (subnode.Nodes.Count > 0)
                     {
                         var node2 = new ConditionNode(nodeDiagram,
-                            level == 0 ? Color.Cyan : level == 1 ? Color.DarkGray : Color.Gray
+                            level == 0 ? General_Config.ColorsHierarchy[1] : level == 1 ? General_Config.ColorsHierarchy[2] : General_Config.ColorsHierarchy[3]
                             , false)
                         { Text = subnode.Text };
 

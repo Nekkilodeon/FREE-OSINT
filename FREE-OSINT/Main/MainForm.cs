@@ -153,6 +153,13 @@ namespace FREE_OSINT
                 treeViewTargets.DragDrop += new DragEventHandler(TreeView1_DragDrop);
                 Main_Instance.Instance.MainForm_Instance = this;
                 //SetTabHeader(tabControl.TabPages[0], Color.Orange);
+
+                ReloadWorkspace(false);
+                Main_Instance.Instance.NodeDiagram.AutoLayout(true, false);
+                foreach (ConditionNode conditionNode in Main_Instance.Instance.NodeDiagram.Nodes)
+                {
+                    Main_Instance.Instance.Workspace.TreeViewPositions[conditionNode.Text] = conditionNode.Position;
+                }
             }
             else
             {

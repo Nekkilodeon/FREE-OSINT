@@ -26,6 +26,7 @@ namespace FREE_OSINT_Lib
             TreeViewColors = new Dictionary<String, Int32>();
             Title = "Untitled";
             this.ReloadTreeViewFromTargets();
+            
         }
 
 
