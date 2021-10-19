@@ -28,7 +28,7 @@ namespace FREE_OSINT
         private Size Base_Box_Size;
         private Dictionary<string, List<string>> ViewState;
         private bool TabClosing = false;
-
+        private bool comprehensive = false;
         private void TreeView1_ItemDrag(object sender, ItemDragEventArgs e)
         {
             // Move the dragged node when the left mouse button is used.
@@ -579,7 +579,8 @@ namespace FREE_OSINT
 
         private void BtnAutoLayout_Click(object sender, EventArgs e)
         {
-            Main_Instance.Instance.NodeDiagram.AutoLayout(true, false);
+            Main_Instance.Instance.NodeDiagram.AutoLayout(true, comprehensive);
+            comprehensive ^= comprehensive;
             foreach (ConditionNode conditionNode in Main_Instance.Instance.NodeDiagram.Nodes)
             {
                 Main_Instance.Instance.Workspace.TreeViewPositions[conditionNode.Text] = conditionNode.Position;
@@ -612,7 +613,8 @@ namespace FREE_OSINT
 
         private void BtnSaveImage_Click(object sender, EventArgs e)
         {
-            Main_Instance.Instance.NodeDiagram.AutoLayout(false, false);
+            Main_Instance.Instance.NodeDiagram.AutoLayout(false, comprehensive);
+            comprehensive = !comprehensive;
             foreach (ConditionNode conditionNode in Main_Instance.Instance.NodeDiagram.Nodes)
             {
                 Main_Instance.Instance.Workspace.TreeViewPositions[conditionNode.Text] = conditionNode.Position;
