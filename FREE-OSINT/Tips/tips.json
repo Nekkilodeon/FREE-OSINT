@@ -1,0 +1,32 @@
+{
+  "tips": [
+    {
+      "tip": [
+        "You can manipulate the intel from the workspace and from the side tree panel. Create Target or Intel containers,change their color, text, position, relation.",
+        "The top panel contains tabs, where you can add or remove web pages and results pages.",
+        "If the containers are out of order, you can auto-arrange the layout using the horizontal and vertical buttons. Change the size for the containers or reset them. Try out some extra settings on the top panel.",
+        "You can open and save your current workspace on the top left menu. You can also access all the necessary modules and the settings in the top menu.",
+        "To access all of your imported modules, use the modules action."
+      ]
+    },
+    {
+      "tip": [
+        "In order to perform a quick search, select the desired modules, insert the query and press search.",
+        "If a module has Interact and Configure capabilities you can access them on the right side."
+      ]
+    },
+    {
+      "tip": [
+        "The result tab contains results from the modules used in the quick search. If a module was able to retrieve intel, you can access it by double clicking on the item.",
+        "You have a range of actions for each item in the tree, like inserting to a specific target, opening the url or just clicking on the url node, call the process module, or remove the item entirely.",
+        "When applying a process module, the expected output is created on the item list with the name of the module.",
+        "You can select information directly from the embedded browser, just select the text and right click to add intel to the target."
+      ]
+    },
+    {
+      "tip": [
+        "You can change the normal color hierarchy, by dragging and droping the colors or double clicking. All changes are saved after pressing the DONE button."
+      ]
+    }
+  ]
+}

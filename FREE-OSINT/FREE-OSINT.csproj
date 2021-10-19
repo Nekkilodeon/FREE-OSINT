@@ -87,6 +87,12 @@
     <Reference Include="JacksonSoft.CustomTabControl">
       <HintPath>..\JacksonSoft.CustomTabControl.dll</HintPath>
     </Reference>
+    <Reference Include="Json.Net, Version=1.0.33.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Json.Net.1.0.33\lib\netstandard2.0\Json.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NodeControl, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\Nekkilodeon\FREE-OSINT_Node_Control\NodeControl\bin\Debug\NodeControl.dll</HintPath>
@@ -131,6 +137,12 @@
     </Compile>
     <Compile Include="Main\MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Main\TipWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Main\TipWindow.Designer.cs">
+      <DependentUpon>TipWindow.cs</DependentUpon>
     </Compile>
     <Compile Include="Main\WorkspaceDialog.cs">
       <SubType>Form</SubType>
@@ -216,6 +228,9 @@
     <EmbeddedResource Include="Main\Modules_All_Form.resx">
       <DependentUpon>Modules_All_Form.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Main\TipWindow.resx">
+      <DependentUpon>TipWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Main\WorkspaceDialog.resx">
       <DependentUpon>WorkspaceDialog.cs</DependentUpon>
     </EmbeddedResource>
@@ -266,6 +281,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="Tips\tips.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -313,7 +331,44 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="FreeOsint_icon.ico" />
+    <Content Include="Tips\4_1.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tips\1_5.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tips\1_4.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tips\1_1.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tips\1_2.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tips\1_3.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tips\2_1.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tips\2_2.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tips\3_4.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tips\3_3.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tips\3_1.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Tips\3_2.gif">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

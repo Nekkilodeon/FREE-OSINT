@@ -33,6 +33,8 @@ namespace FREE_OSINT.Main
                 XmlDocument xDoc = new XmlDocument();
                 xDoc.Load(configFileName);
                 XmlNode colors = xDoc.DocumentElement.GetElementsByTagName("colors")[0];
+                bool skip_tips = Boolean.Parse(xDoc.DocumentElement.GetElementsByTagName("skip_tips")[0].InnerText);
+                General_Config.skip_tips = skip_tips;
                 Dictionary<int, Color> ColorsHierarchy = new Dictionary<int, Color>();
                 int i = 0;
                 foreach (XmlNode color in colors.ChildNodes)

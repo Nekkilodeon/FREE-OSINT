@@ -1,4 +1,5 @@
-﻿using FREE_OSINT_Lib;
+﻿using FREE_OSINT.Main;
+using FREE_OSINT_Lib;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,7 +21,7 @@ namespace FREE_OSINT
             InitializeComponent();
             loadModules();
             this.CenterToScreen();
-
+            
         }
         public SearchModulesForm(string query)
         {
@@ -204,7 +205,11 @@ namespace FREE_OSINT
 
         private void ModulesForm_Load(object sender, EventArgs e)
         {
-
+            if (!General_Config.skip_tips)
+            {
+                TipWindow tipWindow = new TipWindow(2);
+                tipWindow.ShowDialog();
+            }
         }
 
         private void closingForm(object sender, FormClosingEventArgs e)

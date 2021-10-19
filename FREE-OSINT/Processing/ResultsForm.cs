@@ -1,5 +1,6 @@
 ﻿using CefSharp;
 using CefSharp.WinForms;
+using FREE_OSINT.Main;
 using FREE_OSINT_Lib;
 using Microsoft.Win32;
 using System;
@@ -717,7 +718,7 @@ namespace FREE_OSINT
                     }
                 }
             }
-            else if (((MenuItem)sender).Text == "Chromium" && selectedNode != null)
+            else if (((MenuItem)sender).Text == "Embedded Browser" && selectedNode != null)
             {
                 if (selectedNode.Text.Contains("http:") || selectedNode.Text.Contains("https:"))
                 {
@@ -795,7 +796,11 @@ namespace FREE_OSINT
 
         private void ResultsForm_Load(object sender, EventArgs e)
         {
-
+            if (!General_Config.skip_tips)
+            {
+                TipWindow tipWindow = new TipWindow(3);
+                tipWindow.ShowDialog();
+            }
         }
         private void formClosing(object sender, FormClosingEventArgs e)
         {

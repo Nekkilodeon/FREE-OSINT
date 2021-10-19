@@ -166,7 +166,7 @@
             this.Name = "SearchModulesForm";
             this.Text = "Search";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.closingForm);
-            this.Load += new System.EventHandler(this.ModulesForm_Load);
+            this.Shown += new System.EventHandler(this.ModulesForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -14,6 +14,7 @@ namespace FREE_OSINT
         public static string modules_directory = "modules";
         static internal Dictionary<int, Color> ColorsHierarchy;
         internal static string lib_directory = "libs";
+        public static bool skip_tips = false;
 
         
 
@@ -58,6 +59,7 @@ namespace FREE_OSINT
                     writer.WriteElementString("project", recent_workspaces[i] + "");
                 }
                 writer.WriteEndElement();
+                writer.WriteElementString("skip_tips", skip_tips.ToString());
                 writer.WriteEndElement();
                 writer.Flush();
 

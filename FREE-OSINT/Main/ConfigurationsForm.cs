@@ -18,6 +18,7 @@ namespace FREE_OSINT.Main
         public ConfigurationsForm()
         {
             InitializeComponent();
+            checkTips.Checked = General_Config.skip_tips;
             PopulateListBoxColors();
             this.CenterToScreen();
 
@@ -44,7 +45,11 @@ namespace FREE_OSINT.Main
 
         private void ConfigurationsForm_Load(object sender, EventArgs e)
         {
-
+            if (!General_Config.skip_tips)
+            {
+                TipWindow tipWindow = new TipWindow(4);
+                tipWindow.ShowDialog();
+            }
         }
 
         private void ListViewColors_SelectedIndexChanged(object sender, EventArgs e)
@@ -116,6 +121,7 @@ namespace FREE_OSINT.Main
 
         private void btnDone_Click(object sender, EventArgs e)
         {
+            General_Config.skip_tips = checkTips.Checked;
             General_Config.SaveGeneralConfig();
             this.DialogResult = DialogResult.OK;
         }

@@ -37,6 +37,7 @@
             this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
             this.label1 = new System.Windows.Forms.Label();
             this.checkPerformance = new System.Windows.Forms.CheckBox();
+            this.checkTips = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -126,7 +127,7 @@
             // checkPerformance
             // 
             this.checkPerformance.AutoSize = true;
-            this.checkPerformance.Location = new System.Drawing.Point(16, 218);
+            this.checkPerformance.Location = new System.Drawing.Point(304, 91);
             this.checkPerformance.Name = "checkPerformance";
             this.checkPerformance.Size = new System.Drawing.Size(150, 21);
             this.checkPerformance.TabIndex = 6;
@@ -134,11 +135,22 @@
             this.checkPerformance.UseVisualStyleBackColor = true;
             this.checkPerformance.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
+            // checkTips
+            // 
+            this.checkTips.AutoSize = true;
+            this.checkTips.Location = new System.Drawing.Point(304, 118);
+            this.checkTips.Name = "checkTips";
+            this.checkTips.Size = new System.Drawing.Size(88, 21);
+            this.checkTips.TabIndex = 7;
+            this.checkTips.Text = "Skip Tips";
+            this.checkTips.UseVisualStyleBackColor = true;
+            // 
             // ConfigurationsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(526, 450);
+            this.Controls.Add(this.checkTips);
             this.Controls.Add(this.checkPerformance);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.numericUpDown1);
@@ -147,7 +159,7 @@
             this.Controls.Add(this.listViewColors);
             this.Name = "ConfigurationsForm";
             this.Text = "Configurations";
-            this.Load += new System.EventHandler(this.ConfigurationsForm_Load);
+            this.Shown += new System.EventHandler(this.ConfigurationsForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -165,5 +177,6 @@
         private System.Windows.Forms.NumericUpDown numericUpDown1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.CheckBox checkPerformance;
+        private System.Windows.Forms.CheckBox checkTips;
     }
 }

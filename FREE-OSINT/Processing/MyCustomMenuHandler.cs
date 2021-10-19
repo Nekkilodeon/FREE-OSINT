@@ -22,7 +22,6 @@ namespace FREE_OSINT
         {
             this.resultsForm = resultsForm;
         }
-
         public void OnBeforeContextMenu(IWebBrowser browserControl, IBrowser browser, IFrame frame, IContextMenuParams parameters, IMenuModel model)
         {
             // Remove any existent option using the Clear method of the model
@@ -41,7 +40,8 @@ namespace FREE_OSINT
             // Add a new item to the list using the AddItem method of the model
             model.AddSubMenu((CefMenuCommand)initial_command, "Add to Target");
             IMenuModel target_menu = model.GetSubMenu((CefMenuCommand)initial_command);
-            target_menu.AddItem((CefMenuCommand)initial_command + 1, "New");
+            /*            target_menu.AddItem((CefMenuCommand)initial_command + 1, "New");
+            */
             int i = 2;
             foreach (Target target in Main_Instance.Instance.Workspace.Targets)
             {

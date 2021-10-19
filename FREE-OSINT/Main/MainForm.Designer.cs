@@ -54,7 +54,9 @@ namespace FREE_OSINT
             this.configToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.configToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.workplace_panel = new System.Windows.Forms.Panel();
-            this.tabControl = new CustomTabControl();
+            this.tabControl = new System.Windows.Forms.CustomTabControl();
+            this.tabPageWorspace = new System.Windows.Forms.TabPage();
+            this.panelDrawWorkspace = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnPerformance = new System.Windows.Forms.Button();
             this.btnRecolor = new System.Windows.Forms.Button();
@@ -87,20 +89,21 @@ namespace FREE_OSINT
             this.labelWorkspaceName = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.tabPageWorspace = new System.Windows.Forms.TabPage();
-            this.panelDrawWorkspace = new System.Windows.Forms.Panel();
             this.menuStripTargets = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.menuStrip1.SuspendLayout();
             this.workplace_panel.SuspendLayout();
+            this.tabControl.SuspendLayout();
+            this.tabPageWorspace.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.slideWidth)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.slideHeight)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
+            this.Shown += new System.EventHandler(this.SimpleInputForm_Load);
+
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tabPageWorspace.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -270,15 +273,55 @@ namespace FREE_OSINT
             // 
             // tabControl
             // 
-            this.tabControl.DisplayStyle = TabStyle.VisualStudio;
             this.tabControl.Controls.Add(this.tabPageWorspace);
+            this.tabControl.DisplayStyle = System.Windows.Forms.TabStyle.VisualStudio;
+            // 
+            // 
+            // 
+            this.tabControl.DisplayStyleProvider.BorderColor = System.Drawing.SystemColors.ControlDark;
+            this.tabControl.DisplayStyleProvider.BorderColorHot = System.Drawing.SystemColors.ControlDark;
+            this.tabControl.DisplayStyleProvider.BorderColorSelected = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(157)))), ((int)(((byte)(185)))));
+            this.tabControl.DisplayStyleProvider.CloserColor = System.Drawing.Color.DarkGray;
+            this.tabControl.DisplayStyleProvider.FocusTrack = false;
+            this.tabControl.DisplayStyleProvider.HotTrack = true;
+            this.tabControl.DisplayStyleProvider.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.tabControl.DisplayStyleProvider.Opacity = 1F;
+            this.tabControl.DisplayStyleProvider.Overlap = 7;
+            this.tabControl.DisplayStyleProvider.Padding = new System.Drawing.Point(14, 1);
             this.tabControl.DisplayStyleProvider.ShowTabCloser = true;
-            this.tabControl.TabClosing += this.mouseDownTabs2;
+            this.tabControl.DisplayStyleProvider.TextColor = System.Drawing.SystemColors.ControlText;
+            this.tabControl.DisplayStyleProvider.TextColorDisabled = System.Drawing.SystemColors.ControlDark;
+            this.tabControl.DisplayStyleProvider.TextColorSelected = System.Drawing.SystemColors.ControlText;
             this.tabControl.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl.HotTrack = true;
             this.tabControl.Location = new System.Drawing.Point(335, 85);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(1247, 740);
             this.tabControl.TabIndex = 0;
             this.tabControl.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.onDrawTabs);
             this.tabControl.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MouseDownTabs);
+            // 
+            // tabPageWorspace
+            // 
+            this.tabPageWorspace.Controls.Add(this.panelDrawWorkspace);
+            this.tabPageWorspace.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.tabPageWorspace.Location = new System.Drawing.Point(4, 24);
+            this.tabPageWorspace.Name = "tabPageWorspace";
+            this.tabPageWorspace.Size = new System.Drawing.Size(1239, 712);
+            this.tabPageWorspace.TabIndex = 0;
+            this.tabPageWorspace.Text = "Workspace";
+            // 
+            // panelDrawWorkspace
+            // 
+            this.panelDrawWorkspace.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panelDrawWorkspace.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelDrawWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDrawWorkspace.Location = new System.Drawing.Point(0, 0);
+            this.panelDrawWorkspace.Name = "panelDrawWorkspace";
+            this.panelDrawWorkspace.Size = new System.Drawing.Size(1239, 712);
+            this.panelDrawWorkspace.TabIndex = 2;
+            this.panelDrawWorkspace.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelDrawWorkspace_Paint);
             // 
             // panel2
             // 
@@ -682,27 +725,6 @@ namespace FREE_OSINT
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
-            // tabPageWorspace
-            // 
-            this.tabPageWorspace.Controls.Add(this.panelDrawWorkspace);
-            this.tabPageWorspace.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.tabPageWorspace.Location = new System.Drawing.Point(4, 25);
-            this.tabPageWorspace.Name = "tabPageWorspace";
-            this.tabPageWorspace.Size = new System.Drawing.Size(1239, 711);
-            this.tabPageWorspace.TabIndex = 0;
-            this.tabPageWorspace.Text = "Workspace";
-            // 
-            // panelDrawWorkspace
-            // 
-            this.panelDrawWorkspace.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.panelDrawWorkspace.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelDrawWorkspace.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDrawWorkspace.Location = new System.Drawing.Point(0, 0);
-            this.panelDrawWorkspace.Name = "panelDrawWorkspace";
-            this.panelDrawWorkspace.Size = new System.Drawing.Size(1239, 711);
-            this.panelDrawWorkspace.TabIndex = 2;
-            this.panelDrawWorkspace.Paint += new System.Windows.Forms.PaintEventHandler(this.PanelDrawWorkspace_Paint);
-            // 
             // menuStripTargets
             // 
             this.menuStripTargets.ImageScalingSize = new System.Drawing.Size(20, 20);
@@ -734,6 +756,8 @@ namespace FREE_OSINT
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.workplace_panel.ResumeLayout(false);
+            this.tabControl.ResumeLayout(false);
+            this.tabPageWorspace.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.slideWidth)).EndInit();
@@ -744,7 +768,6 @@ namespace FREE_OSINT
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tabPageWorspace.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -792,6 +815,10 @@ namespace FREE_OSINT
             //e.Graphics.DrawString(this.tabControl.TabPages[e.Index].Text, e.Font, Brushes.Black, e.Bounds.Left + 12, e.Bounds.Top + 4);
 
 
+        }
+        private void SimpleInputForm_Load(object sender, EventArgs e)
+        {
+            this.ShowTips();
         }
 
         #endregion

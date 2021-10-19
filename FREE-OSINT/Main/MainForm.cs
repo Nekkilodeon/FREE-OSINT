@@ -135,6 +135,8 @@ namespace FREE_OSINT
                     dlg.FileName = workspaceDialog.selected_workspace;
                     OpenFile(dlg);
                 }
+
+
                 Main_Instance.Instance.NodeDiagram.Dock = DockStyle.Fill;
                 //sync the treeview from workspace with the one from the form
                 Main_Instance.Instance.Workspace.TargetTreeView = treeViewTargets;
@@ -156,6 +158,7 @@ namespace FREE_OSINT
             {
                 Application.Exit();
             }
+
         }
 
         private void BtnModules_Click(object sender, EventArgs e)
@@ -255,7 +258,7 @@ namespace FREE_OSINT
                 {
                     point = Main_Instance.Instance.Workspace.TreeViewPositions[target.Title];
                 }
-                Color color = Color.AliceBlue;
+                Color color = Color.DodgerBlue;
                 if (((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(point.X, point.Y)) != null)
                 {
                     color = ((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(point.X, point.Y)).Container_color;
@@ -268,7 +271,7 @@ namespace FREE_OSINT
                     {
                         subpoint = Main_Instance.Instance.Workspace.TreeViewPositions[node.Text];
                     }
-                    Color subcolor = Color.AliceBlue;
+                    Color subcolor = Color.DodgerBlue;
                     if (((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(subpoint.X, subpoint.Y)) != null)
                     {
                         subcolor = ((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(subpoint.X, subpoint.Y)).Container_color;
@@ -296,7 +299,7 @@ namespace FREE_OSINT
                         subpoint = Main_Instance.Instance.Workspace.TreeViewPositions[node.Text];
 
                     }
-                    Color subcolor = Color.AliceBlue;
+                    Color subcolor = Color.DodgerBlue;
                     if (((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(subpoint.X, subpoint.Y)) != null)
                     {
                         subcolor = ((ConditionNode)Main_Instance.Instance.NodeDiagram.NodeAt(subpoint.X, subpoint.Y)).Container_color;
@@ -773,6 +776,15 @@ namespace FREE_OSINT
         private void MainForm_Load(object sender, EventArgs e)
         {
             //openFile("MCIF.workspace.xml");
+        }
+
+        private void ShowTips()
+        {
+            if (!General_Config.skip_tips)
+            {
+                TipWindow tipWindow = new TipWindow(1);
+                tipWindow.ShowDialog();
+            }
         }
 
         private void ClosingForm(object sender, FormClosingEventArgs e)

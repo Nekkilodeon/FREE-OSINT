@@ -368,7 +368,7 @@ namespace FREE_OSINT
             this.Name = "ResultsForm";
             this.Text = "Results";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.formClosing);
-            this.Load += new System.EventHandler(this.ResultsForm_Load);
+            this.Shown += new System.EventHandler(this.ResultsForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.panel1.ResumeLayout(false);
