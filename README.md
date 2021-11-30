@@ -7,7 +7,7 @@ Data retreival is done using search modules, Information analysis and Pivoting a
 In order to achieve this functionality, a shared library containing several interfaces is used. You can download the latest lib in the [Releases](https://github.com/Nekkilodeon/FREE-OSINT/releases).
 
 The project contains several libraries under their respective licenses:
- - [Node Control by Drake7707](https://github.com/drake7707/nodecontrol)
+ - [FREE-OSINT Node Control](https://github.com/Nekkilodeon/FREE-OSINT_Node_Control), a modified version of [Node Control by Drake7707](https://github.com/drake7707/nodecontrol)
  - [CefSharp](https://github.com/cefsharp/CefSharp)
 
 Modules currently available for the application:
